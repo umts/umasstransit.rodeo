@@ -11,5 +11,6 @@ class ManeuversController < ApplicationController
   private
 
   def find_maneuver
+    @maneuver = Maneuver.find_by id: params.require(:id)
   end
 end
