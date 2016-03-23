@@ -1,8 +1,7 @@
 class Maneuver < ActiveRecord::Base
-  serialize :obstacles, Array
-  serialize :distance_targets, Array
+  has_and_belongs_to_many :participants, through: :maneuver_participants
+  has_many :obstacles
+  has_many :distance_targets
 
-  validates :name, :obstacles, presence: true
-  validates :completed_as_designed, :reversed_direction,
-    inclusion: { in: [true, false] }
+  validates :name, :sequence_number, presence: true
 end

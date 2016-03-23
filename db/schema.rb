@@ -11,29 +11,59 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160323201710) do
+ActiveRecord::Schema.define(version: 20160323213141) do
 
   create_table "buses", force: :cascade do |t|
-    t.string   "number"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "number",     limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "distance_targets", force: :cascade do |t|
+    t.integer  "x",           limit: 4
+    t.integer  "y",           limit: 4
+    t.integer  "direction",   limit: 4
+    t.integer  "intervals",   limit: 4
+    t.integer  "multiplier",  limit: 4
+    t.integer  "maneuver_id", limit: 4
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
   end
 
   create_table "maneuvers", force: :cascade do |t|
-    t.string   "name"
-    t.string   "obstacles"
-    t.string   "distance_targets"
-    t.string   "completed_as_designed"
+    t.string   "name",            limit: 255
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.integer  "sequence_number", limit: 4
+  end
+
+  create_table "maneuvers_participants", id: false, force: :cascade do |t|
+    t.integer  "maneuver_id",           limit: 4
+    t.integer  "participant_id",        limit: 4
+    t.string   "obstacles_hit",         limit: 255
+    t.integer  "distance_achieved",     limit: 4
+    t.boolean  "completed_as_designed"
     t.boolean  "reversed_direction"
+    t.integer  "score",                 limit: 4
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+  end
+
+  create_table "obstacles", force: :cascade do |t|
+    t.integer  "x",           limit: 4
+    t.integer  "y",           limit: 4
+    t.integer  "point_value", limit: 4
+    t.integer  "maneuver_id", limit: 4
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
   end
 
   create_table "participants", force: :cascade do |t|
-    t.string   "name"
-    t.integer  "number"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "name",       limit: 255
+    t.integer  "number",     limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "bus_id",     limit: 4
   end
 
 end
