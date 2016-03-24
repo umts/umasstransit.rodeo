@@ -6,10 +6,10 @@
 = form_tag maneuver_participants_path do
   = hidden_field_tag :maneuver_id, @maneuver.id
   = hidden_field_tag :participant_id, @participant.id
-  - @maneuver.grouped_obstacles.each do |(point_value, type), _obstacles|
+  - @maneuver.grouped_obstacles.each do |(point_value, type), obstacles|
     .field
       = label_tag "#{point_value}-point #{type.pluralize} touched"
-      = number_field_tag "obstacle_#{point_value}", 0
+      = number_field_tag "obstacle_#{point_value}", 0, max: obstacles.count
   - @maneuver.distance_targets.each do |target|
     .field
       = label_tag "#{target.interval_type} from #{target.name}"

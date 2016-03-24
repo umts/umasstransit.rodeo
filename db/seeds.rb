@@ -109,6 +109,14 @@ FactoryGirl.create :distance_target, intervals: 0, multiplier: 1, minimum: 15,
     maneuver: maneuvers['Diminishing Clearance']
 end
 
+# Judgement stop
+FactoryGirl.create :obstacle, point_value: 50, obstacle_type: '18" marker',
+  maneuver: maneuvers['Judgement Stop']
+
+FactoryGirl.create :distance_target, intervals: 0, multiplier: 1, minimum: 6,
+  maneuver: maneuvers['Judgement Stop'], name: 'marker cone to front of bus'
+
+
 awesome_bus = FactoryGirl.create :bus, number: '3306'
 not_so_awesome_bus = FactoryGirl.create :bus, number: '3312'
 dave = FactoryGirl.create :participant, number: 1, bus: awesome_bus,
