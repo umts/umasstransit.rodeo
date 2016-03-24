@@ -1,8 +1,8 @@
 FactoryGirl.define do
   factory :obstacle do
-    x 1
-    y 1
-    point_value 1
-    maneuver_id 1
+    x 0
+    y 0
+    point_value 10
+    maneuver
   end
 end

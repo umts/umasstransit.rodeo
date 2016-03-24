@@ -6,6 +6,7 @@ class ManeuversController < ApplicationController
   end
 
   def show
+    @buses = Bus.order :number
   end
 
   private

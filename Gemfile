@@ -12,6 +12,7 @@ gem 'rails', '~> 4.2'
 gem 'rubocop'
 gem 'sass-rails'
 gem 'uglifier'
+gem 'underscore-rails'
 
 group :production do
   gem 'exception_notification'
