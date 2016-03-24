@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
   root 'maneuvers#index'
 
-  resources :maneuvers, only: %i(index show)
+  resources :maneuvers, only: :index do
+    member do
+      get :next_participant
+    end
+  end
 
-  get '/buses/:number/participants', to: 'buses#participants'
+  resources :maneuver_participants, only: %i(create new)
 end

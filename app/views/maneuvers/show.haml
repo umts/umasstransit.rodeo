@@ -1,8 +1,0 @@
-%h1 #{@maneuver.name}
-
-#scoring
-  = label_tag :bus_number, 'What bus do you see in the distance?'
-  = select_tag :bus_number, options_from_collection_for_select(@buses, :number, :number), include_blank: 'Select a bus number...'
-  %br
-  = label_tag :participant_number, "Who's driving it?"
-  = select_tag :participant_number, nil, include_blank: 'Select a bus number first...', disabled: true

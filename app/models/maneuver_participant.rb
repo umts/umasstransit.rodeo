@@ -4,7 +4,6 @@ class ManeuverParticipant < ActiveRecord::Base
 
   serialize :obstacles_hit, Array
 
-  validates :maneuver, :participant, :score, presence: true
-  validates :completed_as_designed, :reversed_direction,
-    inclusion: { in: [true, false] }
+  validates :maneuver, :participant, :score, :reversed_direction, presence: true
+  validates :completed_as_designed, inclusion: { in: [true, false] }
 end

@@ -1,0 +1,26 @@
+%h1 Judging #{@maneuver.name}
+%h2 Participant #{@participant.number} (#{@participant.name})
+
+.diagram= image_tag @maneuver.image_path
+
+= form_tag maneuver_participants_path do
+  = hidden_field_tag :maneuver_id, @maneuver.id
+  = hidden_field_tag :participant_id, @participant.id
+  - @maneuver.grouped_obstacles.each do |(point_value, type), _obstacles|
+    .field
+      = label_tag "#{point_value}-point #{type.pluralize} touched"
+      = number_field_tag "obstacle_#{point_value}", 0
+  - @maneuver.distance_targets.each do |target|
+    .field
+      = label_tag "#{target.interval_type} from #{target.name}"
+      = number_field_tag "target_#{target.index}", target.minimum
+  .field
+    = label_tag 'Number of times reversed direction'
+    = number_field_tag :reversed_direction, 0
+    %br
+    - if @maneuver.name.include? 'Reverse'
+      (not including the initial reverse)
+  .field
+    = label_tag 'Completed maneuver as designed'
+    = check_box_tag :completed_as_designed, true, true
+  = submit_tag 'Next participant'

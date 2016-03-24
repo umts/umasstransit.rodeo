@@ -1,12 +1,15 @@
 class ManeuversController < ApplicationController
-  before_action :find_maneuver, only: %i(show)
+  before_action :find_maneuver, only: :next_participant
 
   def index
     @maneuvers = Maneuver.order :sequence_number
   end
 
-  def show
-    @buses = Bus.order :number
+  def next_participant
+    redirect_to(
+      new_maneuver_participant_path maneuver: @maneuver.name,
+                                    participant: @maneuver.next_participant.number
+    ) and return
   end
 
   private

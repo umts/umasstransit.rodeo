@@ -1,6 +1,6 @@
 class CreateManeuverParticipants < ActiveRecord::Migration
   def change
-    create_join_table :maneuvers, :participants do |t|
+    create_table :maneuver_participants do |t|
       t.integer :maneuver_id
       t.integer :participant_id
       t.string  :obstacles_hit

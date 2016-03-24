@@ -1,6 +1,6 @@
 class Participant < ActiveRecord::Base
   belongs_to :bus
-  has_and_belongs_to_many :maneuvers, through: :maneuver_participants
+  has_many :maneuver_participants
 
   validates :name, :number, presence: true, uniqueness: true
   validates :bus, presence: true
