@@ -7,6 +7,10 @@ class Participant < ActiveRecord::Base
 
   default_scope { order :number }
 
+  def has_completed?(maneuver)
+    ManeuverParticipant.find_by(maneuver: maneuver, participant: self).present?
+  end
+
   def self.next_number
     last_number = pluck(:number).sort.last || 0
     last_number + 1

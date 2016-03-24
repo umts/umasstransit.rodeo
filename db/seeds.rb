@@ -8,8 +8,8 @@ man_names = ['Serpentine', 'Offset Street', 'Rear Dual Clearance',
 
 maneuvers = {}
   
-man_names.each_with_index do |man_name|
-  maneuvers[man_name] = FactoryGirl.create :maneuver
+man_names.each do |man_name|
+  maneuvers[man_name] = FactoryGirl.create :maneuver, name: man_name
 end
 maneuvers['Diminishing Clearance'] = FactoryGirl.create :maneuver,
                                                          name: 'Diminishing Clearance',
