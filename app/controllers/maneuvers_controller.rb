@@ -6,10 +6,13 @@ class ManeuversController < ApplicationController
   end
 
   def next_participant
-    redirect_to(
-      new_maneuver_participant_path maneuver: @maneuver.name,
-                                    participant: @maneuver.next_participant.number
-    ) and return
+    if @maneuver.next_participant.present?
+      redirect_to(
+        new_maneuver_participant_path maneuver: @maneuver.name,
+                                      participant: @maneuver.next_participant.number
+      ) and return
+    else redirect_to maneuvers_path and return
+    end
   end
 
   private

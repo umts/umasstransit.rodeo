@@ -8,7 +8,6 @@ class ManeuverParticipant < ActiveRecord::Base
   before_validation :set_score, on: :create
 
   validates :maneuver, :participant, :score, :reversed_direction, presence: true
-  validates :completed_as_designed, inclusion: { in: [true, false] }
 
   private
 
@@ -18,11 +17,14 @@ class ManeuverParticipant < ActiveRecord::Base
       score -= point_value * count
     end
     distances_achieved.each do |(minimum, multiplier), distance|
-      score -= (distance - minimum) * multiplier
+      # if distance is less than minimum, don't add anything
+      score -= [0, (distance - minimum)].max * multiplier
     end
     score -= reversed_direction * 10
     score -= 25 if maneuver.speed_target.present? && !speed_achieved?
     score -= 25 if maneuver.counts_additional_stops? && made_additional_stops?
+    # bound score between 0 and 50
+    score = [0, [score, 50].min].max
     assign_attributes score: score
   end
 end
