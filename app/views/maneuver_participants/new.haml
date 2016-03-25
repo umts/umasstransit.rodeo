@@ -9,11 +9,11 @@
   - @maneuver.grouped_obstacles.each do |(point_value, type), obstacles|
     .field
       = label_tag "#{point_value}-point #{type.pluralize} touched"
-      = number_field_tag "obstacle_#{point_value}", 0, max: obstacles.count
+      = number_field_tag "obstacle_#{obstacles.first.id}", 0, max: obstacles.count
   - @maneuver.distance_targets.each do |target|
     .field
       = label_tag "#{target.interval_type} from #{target.name}"
-      = number_field_tag "target_#{target.index}", target.minimum
+      = number_field_tag "target_#{target.id}", target.minimum
   .field
     = label_tag 'Number of times reversed direction'
     = number_field_tag :reversed_direction, 0
@@ -23,8 +23,14 @@
   - if @maneuver.speed_target.present?
     .field
       = label_tag "Achieved #{@maneuver.speed_target} mph"
-      = check_box_tag :speed_target, true, true
+      = check_box_tag :speed_achieved, true, true
+  - if @maneuver.counts_additional_stops?
+    .field
+      = label_tag 'Made additional stops'
+      = check_box_tag :made_additional_stops, true, false
   .field
     = label_tag 'Completed maneuver as designed'
     = check_box_tag :completed_as_designed, true, true
   = submit_tag 'Next participant'
+
+= link_to 'Judge another maneuver', maneuvers_path

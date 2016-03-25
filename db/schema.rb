@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160324201321) do
+ActiveRecord::Schema.define(version: 20160325041711) do
 
   create_table "buses", force: :cascade do |t|
     t.string   "number",     limit: 255
@@ -36,23 +36,23 @@ ActiveRecord::Schema.define(version: 20160324201321) do
     t.integer  "maneuver_id",           limit: 4
     t.integer  "participant_id",        limit: 4
     t.string   "obstacles_hit",         limit: 255
-    t.integer  "distance_achieved",     limit: 4
     t.boolean  "completed_as_designed"
     t.integer  "reversed_direction",    limit: 4
     t.integer  "score",                 limit: 4
     t.datetime "created_at",                        null: false
     t.datetime "updated_at",                        null: false
-    t.integer  "speed_achieved",        limit: 4
-    t.integer  "stops_made",            limit: 4
+    t.boolean  "speed_achieved"
+    t.string   "distances_achieved",    limit: 255
+    t.boolean  "made_additional_stops"
   end
 
   create_table "maneuvers", force: :cascade do |t|
-    t.string   "name",            limit: 255
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
-    t.integer  "sequence_number", limit: 4
-    t.integer  "speed_target",    limit: 4
-    t.boolean  "has_stops_count"
+    t.string   "name",                    limit: 255
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.integer  "sequence_number",         limit: 4
+    t.integer  "speed_target",            limit: 4
+    t.boolean  "counts_additional_stops"
   end
 
   create_table "obstacles", force: :cascade do |t|

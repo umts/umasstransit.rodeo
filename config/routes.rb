@@ -8,4 +8,6 @@ Rails.application.routes.draw do
   end
 
   resources :maneuver_participants, only: %i(create new)
+
+  resources :participants, only: :index
 end

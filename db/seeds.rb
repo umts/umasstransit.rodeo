@@ -16,7 +16,7 @@ maneuvers['Diminishing Clearance'] = FactoryGirl.create :maneuver,
                                                          speed_target: 20
 maneuvers['Judgement Stop'] = FactoryGirl.create :maneuver,
                                                   name: 'Judgement Stop',
-                                                  has_stops_count: true
+                                                  counts_additional_stops: true
 
 # Serpentine
 ([10] * 14 << 25).each do |obst_point|
@@ -116,7 +116,6 @@ FactoryGirl.create :obstacle, point_value: 50, obstacle_type: '18" marker',
 FactoryGirl.create :distance_target, intervals: 0, multiplier: 1, minimum: 6,
   maneuver: maneuvers['Judgement Stop'], name: 'marker cone to front of bus'
 
-
 awesome_bus = FactoryGirl.create :bus, number: '3306'
 not_so_awesome_bus = FactoryGirl.create :bus, number: '3312'
 dave = FactoryGirl.create :participant, number: 1, bus: awesome_bus,
@@ -125,6 +124,3 @@ FactoryGirl.create :participant, number: 2, bus: awesome_bus,
   name: 'Matt Moretti'
 FactoryGirl.create :participant, number: 3, bus: awesome_bus,
   name: 'Adam Sherson'
-
-FactoryGirl.create :maneuver_participant, maneuver: maneuvers['Serpentine'],
-  participant: dave

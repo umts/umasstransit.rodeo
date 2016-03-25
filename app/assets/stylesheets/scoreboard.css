@@ -1,0 +1,8 @@
+table.scoreboard{
+  border: 1px solid black;
+}
+
+table.scoreboard td{
+  border: 1px solid black;
+  border-collapse: collapse;
+}

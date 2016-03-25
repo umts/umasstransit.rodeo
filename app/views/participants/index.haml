@@ -1,0 +1,14 @@
+%h1 Scoreboard
+
+%table.scoreboard
+  %tr
+    %th Participant
+    - @maneuvers.each do |maneuver|
+      %th= maneuver.name
+    %th Total score
+  - @participants.each do |participant|
+    %tr
+      %td= "#{participant.name} (#{participant.number})"
+      - @maneuvers.each do |maneuver|
+        %td= participant.maneuver_record(maneuver).try :score
+      %td= participant.total_score
