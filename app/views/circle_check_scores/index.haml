@@ -1,0 +1,17 @@
+%h1 Circle Check Scores
+
+%table.circle_check_scores
+  %tr
+    %th Participant
+    %th Defects found
+    %th Total defects
+    %th
+  - @participants.each do |participant|
+    = form_for CircleCheckScore.find_or_initialize_by participant: participant do |f|
+      %tr
+        %td
+          #{participant.name} (#{participant.number})
+          = f.hidden_field :participant_id, value: participant.id
+        %td= f.number_field :defects_found
+        %td= f.number_field :total_defects, value: CircleCheckScore::TOTAL_DEFECTS_DEFAULT
+        %td= f.submit 'Save score'

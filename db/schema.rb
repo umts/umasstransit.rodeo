@@ -11,12 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160325041711) do
+ActiveRecord::Schema.define(version: 20160325212946) do
 
   create_table "buses", force: :cascade do |t|
     t.string   "number",     limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+  end
+
+  create_table "circle_check_scores", force: :cascade do |t|
+    t.integer  "total_defects",  limit: 4
+    t.integer  "defects_found",  limit: 4
+    t.integer  "participant_id", limit: 4
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
   create_table "distance_targets", force: :cascade do |t|

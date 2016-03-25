@@ -1,6 +1,7 @@
 class ManeuverParticipant < ActiveRecord::Base
   belongs_to :maneuver
   belongs_to :participant
+  validates :maneuver, uniqueness: { scope: :participant }
 
   serialize :obstacles_hit, Hash
   serialize :distances_achieved, Hash

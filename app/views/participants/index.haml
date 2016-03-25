@@ -5,10 +5,12 @@
     %th Participant
     - @maneuvers.each do |maneuver|
       %th= maneuver.name
+    %th Circle Check
     %th Total score
   - @participants.each do |participant|
     %tr
       %td #{participant.name} (#{participant.number})
       - @maneuvers.each do |maneuver|
         %td= participant.maneuver_record(maneuver).try :score
+      %td= participant.circle_check_score.try :score
       %td= participant.total_score
