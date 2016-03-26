@@ -3,3 +3,7 @@
  *= require_self
  *= require bootstrap
  */
+
+body{
+  background-color: lightblue !important;
+}
