@@ -3,7 +3,7 @@
 
 .diagram= image_tag @maneuver.image_path
 
-= form_tag maneuver_participant_path(@record) do
+= form_tag maneuver_participant_path(@record), method: :put do
   = hidden_field_tag :maneuver_id, @maneuver.id
   = hidden_field_tag :participant_id, @participant.id
   - @maneuver.grouped_obstacles.each do |(point_value, type), obstacles|
@@ -16,7 +16,7 @@
     .field
       = label_tag "#{target.interval_type} from #{target.name}"
       = number_field_tag "target_#{target.id}",
-        @record.distances_achieved[[target.minimum, target.intervals]]
+        @record.distances_achieved[[target.minimum, target.multiplier]]
   .field
     = label_tag 'Number of times reversed direction'
     = number_field_tag :reversed_direction, @record.reversed_direction

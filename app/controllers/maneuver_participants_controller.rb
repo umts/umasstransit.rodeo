@@ -56,7 +56,7 @@ class ManeuverParticipantsController < ApplicationController
   def parse_distance_targets
     distances_achieved = {}
     params.select do |key, value|
-      key.starts_with?('target') && value.to_i != 0
+      key.starts_with?('target')
     end.each do |key, value|
       target = DistanceTarget.find_by id: key.split('_').last.to_i
       if target.present?
