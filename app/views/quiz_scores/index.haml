@@ -1,0 +1,17 @@
+%h1 Quiz Scores
+
+%table.quiz_scores
+  %tr
+    %th Participant
+    %th Points achieved
+    %th Total points
+    %th
+  - @participants.each do |participant|
+    = form_for QuizScore.find_or_initialize_by participant: participant do |f|
+      %tr
+        %td
+          #{participant.name} (#{participant.number})
+          = f.hidden_field :participant_id, value: participant.id
+        %td= f.number_field :points_achieved, placeholder: 'Enter a score...'
+        %td= f.number_field :total_points, value: QuizScore::TOTAL_POINTS_DEFAULT
+        %td= f.submit 'Save score'

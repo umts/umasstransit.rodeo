@@ -1,7 +1,9 @@
 class Participant < ActiveRecord::Base
   belongs_to :bus
   has_many :maneuver_participants
+  has_many :maneuvers, through: :maneuver_participants
   has_one :circle_check_score
+  has_one :quiz_score
 
   validates :name, :number, presence: true, uniqueness: true
   validates :bus, presence: true
@@ -9,11 +11,11 @@ class Participant < ActiveRecord::Base
   default_scope { order :number }
 
   def has_completed?(maneuver)
-    maneuver_record(maneuver).present?
+    maneuvers.include? maneuver
   end
 
   def maneuver_record(maneuver)
-    ManeuverParticipant.find_by(maneuver: maneuver, participant: self)
+    maneuver_participants.find_by maneuver: maneuver
   end
 
   def maneuver_score
@@ -23,6 +25,7 @@ class Participant < ActiveRecord::Base
   def total_score
     total = maneuver_score
     total += circle_check_score.score if circle_check_score.present?
+    total += quiz_score.score if quiz_score.present?
     total
   end
 

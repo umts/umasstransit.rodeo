@@ -12,6 +12,6 @@
         %td
           #{participant.name} (#{participant.number})
           = f.hidden_field :participant_id, value: participant.id
-        %td= f.number_field :defects_found
+        %td= f.number_field :defects_found, placeholder: 'Enter a score...'
         %td= f.number_field :total_defects, value: CircleCheckScore::TOTAL_DEFECTS_DEFAULT
         %td= f.submit 'Save score'

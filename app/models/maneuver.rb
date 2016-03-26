@@ -1,5 +1,6 @@
 class Maneuver < ActiveRecord::Base
   has_many :maneuver_participants
+  has_many :participants, through: :maneuver_participants
   has_many :obstacles
   has_many :distance_targets
 
@@ -9,10 +10,23 @@ class Maneuver < ActiveRecord::Base
     "maneuvers/#{name}.png"
   end
 
-  def next_participant
-    Participant.includes(:maneuver_participants).find do |participant|
-      !participant.maneuver_participants.pluck(:maneuver_id).include? id
+  def previous_participant(number = nil)
+    if number.present?
+      participants.where('number < ?', number).last
+    else participants.last
     end
+  end
+
+  def next_participant(number = nil)
+    if number.present?
+      participant = participants.where('number > ?', number).first
+    end
+    unless participant.present?
+      participant = Participant.order(:number).find do |participant|
+                      !participant.has_completed? self
+                    end
+    end
+    participant
   end
 
   def grouped_obstacles

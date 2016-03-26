@@ -6,10 +6,13 @@ Rails.application.routes.draw do
   resources :maneuvers, only: :index do
     member do
       get :next_participant
+      get :previous_participant
     end
   end
 
-  resources :maneuver_participants, only: %i(create new)
+  resources :maneuver_participants, except: %i(destroy edit index)
 
   resources :participants, only: :index
+
+  resources :quiz_scores, only: %i(create index update)
 end

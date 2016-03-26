@@ -1,4 +1,6 @@
 class ManeuverParticipantsController < ApplicationController
+  before_action :find_record, only: %i(show update)
+
   def create
     maneuver = Maneuver.find_by id: params.require(:maneuver_id)
     participant = Participant.find_by id: params.require(:participant_id)
@@ -20,7 +22,25 @@ class ManeuverParticipantsController < ApplicationController
                                       participant: @participant
   end
 
+  def show
+    @maneuver = @record.maneuver
+    @participant = @record.participant
+  end
+
+  def update
+    attrs = params.permit(:reversed_direction, :speed_achieved,
+                          :made_additional_stops, :completed_as_designed)
+    attrs[:obstacles_hit] = parse_obstacles
+    attrs[:distances_achieved] = parse_distance_targets
+    @record.update! attrs
+    redirect_to :back
+  end
+
   private
+
+  def find_record
+    @record = ManeuverParticipant.find_by id: params.require(:id)
+  end
 
   def parse_obstacles
     obstacles_hit = {}

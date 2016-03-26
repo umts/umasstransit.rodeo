@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160325212946) do
+ActiveRecord::Schema.define(version: 20160325220900) do
 
   create_table "buses", force: :cascade do |t|
     t.string   "number",     limit: 255
@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 20160325212946) do
     t.integer  "minimum",     limit: 4
   end
 
-  create_table "maneuver_participants", id: false, force: :cascade do |t|
+  create_table "maneuver_participants", force: :cascade do |t|
     t.integer  "maneuver_id",           limit: 4
     t.integer  "participant_id",        limit: 4
     t.string   "obstacles_hit",         limit: 255
@@ -79,6 +79,14 @@ ActiveRecord::Schema.define(version: 20160325212946) do
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
     t.integer  "bus_id",     limit: 4
+  end
+
+  create_table "quiz_scores", force: :cascade do |t|
+    t.float    "points_achieved", limit: 24
+    t.float    "total_points",    limit: 24
+    t.integer  "participant_id",  limit: 4
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
 end
