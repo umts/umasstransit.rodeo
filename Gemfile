@@ -14,6 +14,10 @@ gem 'sass-rails'
 gem 'uglifier'
 gem 'underscore-rails'
 
+source 'https://rails-assets.org' do
+  gem 'rails-assets-bootstrap'
+end
+
 group :production do
   gem 'exception_notification'
 end
