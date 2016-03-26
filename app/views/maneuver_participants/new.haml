@@ -1,7 +1,7 @@
-.container
+.scoring.container
   .col-md-8.col-md-offset-2
     %h1 Judging #{@maneuver.name}
-    %h2 Participant #{@participant.number} (#{@participant.name})
+    %h3 Participant #{@participant.number} (#{@participant.name})
     .diagram= image_tag @maneuver.image_path
 
     = form_tag maneuver_participants_path do
@@ -19,7 +19,7 @@
             = number_field_tag "target_#{target.id}", target.minimum, class: 'form-control'
         .field
           = label_tag 'Number of times reversed direction'
-          = number_field_tag :reversed_direction, 0
+          = number_field_tag :reversed_direction, 0, class: 'form-control'
           %br
           - if @maneuver.name.include? 'Reverse'
             (not including the initial reverse)
@@ -29,13 +29,15 @@
             = check_box_tag :speed_achieved, true, true
         - if @maneuver.counts_additional_stops?
           .field
-            = label_tag 'Made additional stops'
-            = check_box_tag :made_additional_stops, true, false
+            = label_tag 'Made additional stops?'
+            .checkbox= check_box_tag :made_additional_stops, true, false
         .field
-          = label_tag 'Completed maneuver as designed'
+          = label_tag 'Completed maneuver as designed?'
           = check_box_tag :completed_as_designed, true, true
-      = submit_tag 'Save score and next', class: 'btn btn-primary'
+      = submit_tag 'Save score and next participant', class: 'btn btn-primary'
 
-    = link_to 'Previous participant', previous_participant_maneuver_path(@maneuver)
-    %br
-    = link_to 'Judge another maneuver', maneuvers_path
+    .actions
+      = link_to previous_participant_maneuver_path(@maneuver) do
+        %button.btn.btn-secondary{type: 'button'} Previous participant
+      = link_to maneuvers_path do
+        %button.btn.btn-secondary{type: 'button'} Judge a different maneuver

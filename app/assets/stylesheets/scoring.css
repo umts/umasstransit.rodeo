@@ -6,3 +6,12 @@
   max-width: 70%;
   max-height: 400px;
 }
+
+.actions{
+  margin-top: 10px;
+}
+
+.scoring input[type=checkbox]{
+  margin-left: 10px;
+  transform: scale(2,2);
+}
