@@ -1,8 +1,14 @@
 table.scoreboard{
-  border: 1px solid black;
+  border: 1px solid lightgrey;
+  font-size: small;
+}
+
+table.scoreboard th{
+  background: lightgrey;
+  padding: 3px;
+  text-align: center;
 }
 
 table.scoreboard td{
-  border: 1px solid black;
-  border-collapse: collapse;
+  text-align: center;
 }
