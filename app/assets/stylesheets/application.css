@@ -7,3 +7,7 @@
 body{
   background-color: lightblue !important;
 }
+
+#main-panel{
+  margin: 15px;
+}

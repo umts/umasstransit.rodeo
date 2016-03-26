@@ -11,6 +11,10 @@
   margin-top: 10px;
 }
 
+.scoring .field{
+  margin-top: 5px;
+}
+
 .scoring input[type=checkbox]{
   margin-left: 10px;
   transform: scale(2,2);
