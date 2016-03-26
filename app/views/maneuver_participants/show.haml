@@ -1,41 +1,61 @@
-%h1 Judging #{@maneuver.name}
-%h2 Participant #{@participant.number} (#{@participant.name})
+.scoring.container
+  %h1 Judging #{@maneuver.name}
+  %h3 Participant #{@participant.number} (#{@participant.name})
+  %hr
+  .diagram= image_tag @maneuver.image_path
 
-.diagram= image_tag @maneuver.image_path
+  = form_tag maneuver_participant_path(@record), method: :put do
+    = hidden_field_tag :maneuver_id, @maneuver.id
+    = hidden_field_tag :participant_id, @participant.id
+    - @maneuver.grouped_obstacles.each do |(point_value, type), obstacles|
+      .field
+        = label_tag "#{point_value}-point #{type.pluralize} touched"
+        = number_field_tag "obstacle_#{obstacles.first.id}", 
+                            @record.obstacles_hit[point_value] || 0,
+                            min: 0, max: obstacles.count
+        %button.btn.btn-primary.increment{type: :button,
+          data: { field: "obstacle_#{obstacles.first.id}",
+                  type: 'minus' } }-
+        %button.btn.btn-primary.increment{type: :button,
+          data: { field: "obstacle_#{obstacles.first.id}",
+                  type: 'plus' } }+
+    - @maneuver.distance_targets.each do |target|
+      .field
+        = label_tag "#{target.interval_type} from #{target.name}"
+        = number_field_tag "target_#{target.id}",
+          @record.distances_achieved[[target.minimum, target.multiplier]],
+          min: 0
+        %button.btn.btn-primary.increment{type: :button,
+          data: { field: "target_#{target.id}",
+                  type: 'minus' } }-
+        %button.btn.btn-primary.increment{type: :button,
+          data: { field: "target_#{target.id}",
+          type: 'plus' } }+
+    .field
+      = label_tag 'Number of times reversed direction'
+      = number_field_tag :reversed_direction, @record.reversed_direction, min: 0
+      %button.btn.btn-primary.increment{type: :button, disabled: true,
+        data: { field: :reversed_direction, type: 'minus' } }-
+      %button.btn.btn-primary.increment{type: :button,
+        data: { field: :reversed_direction, type: 'plus' } }+
+      %br
+      - if @maneuver.name.include? 'Reverse'
+        (not including the initial reverse)
+    - if @maneuver.speed_target.present?
+      .field
+        = label_tag "Achieved #{@maneuver.speed_target} mph"
+        = check_box_tag :speed_achieved, true, @record.speed_achieved?
+    - if @maneuver.counts_additional_stops?
+      .field
+        = label_tag 'Made additional stops'
+        = check_box_tag :made_additional_stops, true, @record.made_additional_stops?
+    .field
+      = label_tag 'Completed maneuver as designed?'
+      = check_box_tag :completed_as_designed, true, @record.completed_as_designed?
+    = submit_tag 'Save score', class: 'btn btn-primary'
 
-= form_tag maneuver_participant_path(@record), method: :put do
-  = hidden_field_tag :maneuver_id, @maneuver.id
-  = hidden_field_tag :participant_id, @participant.id
-  - @maneuver.grouped_obstacles.each do |(point_value, type), obstacles|
-    .field
-      = label_tag "#{point_value}-point #{type.pluralize} touched"
-      = number_field_tag "obstacle_#{obstacles.first.id}", 
-                          @record.obstacles_hit[point_value] || 0,
-                          max: obstacles.count
-  - @maneuver.distance_targets.each do |target|
-    .field
-      = label_tag "#{target.interval_type} from #{target.name}"
-      = number_field_tag "target_#{target.id}",
-        @record.distances_achieved[[target.minimum, target.multiplier]]
-  .field
-    = label_tag 'Number of times reversed direction'
-    = number_field_tag :reversed_direction, @record.reversed_direction
-    %br
-    - if @maneuver.name.include? 'Reverse'
-      (not including the initial reverse)
-  - if @maneuver.speed_target.present?
-    .field
-      = label_tag "Achieved #{@maneuver.speed_target} mph"
-      = check_box_tag :speed_achieved, true, @record.speed_achieved?
-  - if @maneuver.counts_additional_stops?
-    .field
-      = label_tag 'Made additional stops'
-      = check_box_tag :made_additional_stops, true, @record.made_additional_stops?
-  .field
-    = label_tag 'Completed maneuver as designed'
-    = check_box_tag :completed_as_designed, true, @record.completed_as_designed?
-  = submit_tag 'Save score'
-
-= link_to 'Previous participant', previous_participant_maneuver_path(@maneuver, relative_to: @participant.number)
-%br
-= link_to 'Next participant', next_participant_maneuver_path(@maneuver, relative_to: @participant.number)
+  .actions
+    = link_to previous_participant_maneuver_path(@maneuver, relative_to: @participant.number) do
+      %button.btn.btn-secondary{type: :button} Previous participant
+    = link_to next_participant_maneuver_path(@maneuver, relative_to: @participant.number) do
+      %button.btn.btn-secondary{type: :button} Next participant

@@ -1,0 +1,7 @@
+table.quiz_scores th{
+  text-align: center;
+}
+
+table.quiz_scores td{
+  padding: 5px;
+}

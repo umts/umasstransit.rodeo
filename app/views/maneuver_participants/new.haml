@@ -1,6 +1,7 @@
 .scoring.container
   %h1 Judging #{@maneuver.name}
   %h3 Participant #{@participant.number} (#{@participant.name})
+  %hr
   .diagram= image_tag @maneuver.image_path
 
   = form_tag maneuver_participants_path do
