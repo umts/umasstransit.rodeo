@@ -3,10 +3,10 @@
     .navbar-header
       %a.navbar-brand{href: '#'}= image_tag 'favicon.png'
     = link_to maneuvers_path do
-      %button.btn.btn-default.navbar-btn{type: 'button'} Maneuvers
+      %button.btn.btn-default.navbar-btn{type: :button} Maneuvers
     = link_to circle_check_scores_path do
-      %button.btn.btn-default.navbar-btn{type: 'button'} Circle Check Scores
+      %button.btn.btn-default.navbar-btn{type: :button} Circle Check Scores
     = link_to quiz_scores_path do
-      %button.btn.btn-default.navbar-btn{type: 'button'} Quiz Scores
+      %button.btn.btn-default.navbar-btn{type: :button} Quiz Scores
     = link_to participants_path do
-      %button.btn.btn-default.navbar-btn{type: 'button'} Scoreboard
+      %button.btn.btn-default.navbar-btn{type: :button} Scoreboard

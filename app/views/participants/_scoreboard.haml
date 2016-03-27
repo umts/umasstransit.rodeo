@@ -1,0 +1,21 @@
+%table.scoreboard
+  %tr
+    %th Participant
+    - @maneuvers.each do |maneuver|
+      %th= maneuver.name
+    %th Maneuvers total
+    %th Circle Check
+    %th Quiz
+    %th Total score
+  - @participants.each do |participant|
+    %tr
+      %td #{participant.name} (#{participant.number})
+      - @maneuvers.each do |maneuver|
+        %td
+          - record = participant.maneuver_record maneuver
+          - if record.present?
+            = link_to record.score, record
+      %td= participant.maneuver_score
+      %td= participant.circle_check_score.try :score
+      %td= participant.quiz_score.try :score
+      %td= participant.total_score
