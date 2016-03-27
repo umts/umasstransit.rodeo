@@ -8,4 +8,10 @@ $(document).ready(function(){
       $('img.scoreboard-sort-loading').addClass('hidden');
     });
   });
+
+});
+
+PrivatePub.subscribe('/scoreboard', function(){
+  var order = $('button.scoreboard-order.btn-primary').data('order');
+  $('.scoreboard-content').load('/participants/scoreboard?sort_order=' + order);
 });

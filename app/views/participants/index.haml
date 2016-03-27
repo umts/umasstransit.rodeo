@@ -7,5 +7,8 @@
     %button.btn.scoreboard-order{type: :button,
       data: { order: sort_order},
       class: sort_order_button_class(sort_order, @sort_order) }= sort_order.to_s.humanize
-= image_tag 'loading.svg', class: 'scoreboard-sort-loading hidden'
+= image_tag 'loading.gif', class: 'scoreboard-sort-loading hidden'
+
 .scoreboard-content= render partial: 'scoreboard'
+
+= subscribe_to '/scoreboard'

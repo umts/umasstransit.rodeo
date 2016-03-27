@@ -6,7 +6,7 @@ class ManeuverParticipant < ActiveRecord::Base
   serialize :obstacles_hit, Hash
   serialize :distances_achieved, Hash
 
-  before_validation :set_score, on: :create
+  before_validation :set_score
 
   validates :maneuver, :participant, :score, :reversed_direction, presence: true
 
