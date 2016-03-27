@@ -2,17 +2,19 @@ class CircleCheckScoresController < ApplicationController
   before_action :find_score, only: :update
 
   def create
-    CircleCheckScore.create! score_params
+    score = CircleCheckScore.create! score_params
     redirect_to circle_check_scores_path
+    PrivatePub.publish_to '/scoreboard', score
   end
 
   def index
-    @participants = Participant.includes(:circle_check_score).order(:number)
+    @participants = Participant.includes(:circle_check_score).order :number
   end
 
   def update
     @score.update! score_params
     redirect_to circle_check_scores_path
+    PrivatePub.publish_to '/scoreboard', @score
   end
 
   private

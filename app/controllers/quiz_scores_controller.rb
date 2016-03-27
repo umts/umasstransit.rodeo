@@ -2,8 +2,9 @@ class QuizScoresController < ApplicationController
   before_action :find_score, only: :update
 
   def create
-    QuizScore.create! score_params
+    score = QuizScore.create! score_params
     redirect_to quiz_scores_path
+    PrivatePub.publish_to '/scoreboard', score
   end
 
   def index
@@ -13,6 +14,7 @@ class QuizScoresController < ApplicationController
   def update
     @score.update! score_params
     redirect_to quiz_scores_path
+    PrivatePub.publish_to '/scoreboard', @score
   end
 
   private
