@@ -1,10 +1,13 @@
-.diagram{
-  text-align: center;
+.scoring h1{
+  font-size: 50px;
 }
 
-.diagram img{
-  max-width: 70%;
-  max-height: 400px;
+.scoring .diagram-link{
+  font-size: 30px;
+}
+
+.scoring h3{
+  font-size: 30px;
 }
 
 .actions{
@@ -23,11 +26,25 @@
 .scoring input[type=number]{
   border: 1px solid lightgrey;
   border-radius: 5px;
-  height: 30px;
+  height: 60px;
   padding-left: 10px;
   width: 150px;
 }
 
 .scoring .btn-primary, .scoring .btn-secondary{
+  height: 120px;
   margin-top: 10px;
+}
+
+.scoring button.increment{
+  width: 120px;
+  font-size: 50px;
+}
+
+.scoring .btn.submit{
+  font-size: 30px;
+}
+
+.scoring button.actions{
+  font-size: 30px;
 }

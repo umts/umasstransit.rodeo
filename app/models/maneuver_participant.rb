@@ -24,6 +24,7 @@ class ManeuverParticipant < ActiveRecord::Base
     score -= reversed_direction * 10
     score -= 25 if maneuver.speed_target.present? && !speed_achieved?
     score -= 25 if maneuver.counts_additional_stops? && made_additional_stops?
+    score -= 50 unless completed_as_designed?
     # bound score between 0 and 50
     score = [0, [score, 50].min].max
     assign_attributes score: score

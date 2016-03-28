@@ -1,5 +1,5 @@
 $(document).ready(function(){
-  $('.container').on('click', 'button.increment', function(){
+  $('.scoring').on('click', 'button.increment', function(){
     $(this).siblings('button.increment').prop('disabled', false);
     var field_name = $(this).data('field');
     var field = $('input[type=number]#' + field_name);

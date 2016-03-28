@@ -12,6 +12,7 @@ img.scoreboard-sort-loading{
 table.scoreboard{
   border: 1px solid lightgrey;
   font-size: small;
+  width: 100%;
 }
 
 table.scoreboard tr{

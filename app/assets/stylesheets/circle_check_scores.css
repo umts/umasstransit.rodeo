@@ -1,3 +1,17 @@
+.circle_check_scores h1{
+  font-size: 50px;
+}
+
+.circle_check_scores input[type=number]{
+  height: 60px;
+  font-size: 30px;
+}
+
+.circle_check_scores .btn-primary{
+  font-size: 30px;
+  height: 60px;
+}
+
 table.circle_check_scores th{
   text-align: center;
 }
