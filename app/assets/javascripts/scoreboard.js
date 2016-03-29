@@ -4,7 +4,7 @@ $(document).ready(function(){
     $(this).removeClass('btn-secondary').addClass('btn-primary');
     $(this).siblings('button').removeClass('btn-primary').addClass('btn-secondary');
     var order = $(this).data('order');
-    $('.scoreboard-content').load('/participants/scoreboard?sort_order=' + order, function(){
+    $('.scoreboard-content').load('/participants/scoreboard_partial?sort_order=' + order, function(){
       $('img.scoreboard-sort-loading').addClass('hidden');
     });
   });
@@ -13,5 +13,5 @@ $(document).ready(function(){
 
 PrivatePub.subscribe('/scoreboard', function(){
   var order = $('button.scoreboard-order.btn-primary').data('order');
-  $('.scoreboard-content').load('/participants/scoreboard?sort_order=' + order);
+  $('.scoreboard-content').load('/participants/scoreboard_partial?sort_order=' + order);
 });

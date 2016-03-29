@@ -1,14 +1,12 @@
 class Participant < ActiveRecord::Base
   SORT_ORDERS = %i(total_score maneuver_score participant_name participant_number)
 
-  belongs_to :bus
   has_many :maneuver_participants
   has_many :maneuvers, through: :maneuver_participants
   has_one :circle_check_score
   has_one :quiz_score
 
   validates :name, :number, presence: true, uniqueness: true
-  validates :bus, presence: true
 
   default_scope { order :number }
 
