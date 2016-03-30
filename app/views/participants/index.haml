@@ -11,15 +11,16 @@
       %th Number
       %th
     - @participants.each do |participant|
-      = form_for participant do |f|
-        %tr
+      %tr
+        = form_for participant do |f|
           %td= f.text_field :name, value: participant.name, class: 'form-control'
           %td= f.number_field :number, value: participant.number, class: 'form-control'
           %td= f.submit 'Save', class: 'btn btn-primary'
+        %td= button_to 'Remove', participant_path(participant), method: :delete, class: 'btn btn-primary delete'
     %tr
       %td{colspan: 3} Add new participant:
     = form_for Participant.new do |f|
       %tr
         %td= f.text_field :name, placeholder: 'e.g. Derek Pires', class: 'form-control'
         %td= f.number_field :number, value: Participant.next_number, class: 'form-control'
-        %td= f.submit 'Add participant', class: 'btn btn-primary'
+        %td= f.submit 'Add', class: 'btn btn-primary'

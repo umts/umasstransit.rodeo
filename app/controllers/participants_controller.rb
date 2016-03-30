@@ -1,8 +1,15 @@
 class ParticipantsController < ApplicationController
+  before_action :find_user, only: %i(destroy update)
+
   def create
     participant = Participant.create! user_params
     redirect_to participants_path
     PrivatePub.publish_to '/scoreboard', participant
+  end
+
+  def destroy
+    @participant.destroy!
+    redirect_to participants_path
   end
 
   def index
@@ -23,13 +30,16 @@ class ParticipantsController < ApplicationController
   end
 
   def update
-    participant = Participant.find_by id: params.require(:id)
-    participant.update! user_params
+    @participant.update! user_params
     redirect_to participants_path
-    PrivatePub.publish_to '/scoreboard', participant
+    PrivatePub.publish_to '/scoreboard', @participant
   end
 
   private
+
+  def find_user
+    @participant = Participant.find_by id: params.require(:id)
+  end
 
   def user_params
     params.require(:participant).permit :name, :number

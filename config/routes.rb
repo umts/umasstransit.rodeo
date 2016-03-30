@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :participants, only: %i(create index update) do
+  resources :participants, except: %i(edit new show) do
     collection do
       get :scoreboard
       get :scoreboard_partial

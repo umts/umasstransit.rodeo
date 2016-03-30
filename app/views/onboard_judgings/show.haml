@@ -50,7 +50,7 @@
           data: { field: :onboard_judging_missed_flashers,
                   type: 'plus' } }+
       .field
-        = f.label '# times moved with door open'
+        = f.label 'Times moved w/ door open'
         = f.number_field :times_moved_with_door_open, value: @record.times_moved_with_door_open, min: 0
         %button.btn.btn-primary.increment{type: :button, disabled: @record.times_moved_with_door_open.zero?,
           data: { field: :onboard_judging_times_moved_with_door_open,
@@ -61,7 +61,7 @@
       %h2 Smoothness of Operation
       %hr
       .field
-        = f.label 'Unannounced passenger stops'
+        = f.label 'Unannounced PAX stops'
         = f.number_field :unannounced_stops, value: @record.unannounced_stops, min: 0, max: 2
         %button.btn.btn-primary.increment{type: :button, disabled: @record.unannounced_stops.zero?,
           data: { field: :onboard_judging_unannounced_stops,

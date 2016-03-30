@@ -28,7 +28,7 @@
   border-radius: 5px;
   height: 60px;
   padding-left: 10px;
-  width: 150px;
+  width: 100px;
 }
 
 .scoring .btn-primary, .scoring .btn-secondary{
@@ -38,6 +38,7 @@
 
 .scoring button.increment{
   width: 120px;
+  border-radius: 10px;
   font-size: 50px;
 }
 

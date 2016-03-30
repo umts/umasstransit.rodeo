@@ -21,3 +21,7 @@ table.participants th{
 table.participants td{
   padding: 5px;
 }
+
+table.participants .btn-primary.delete{
+  background-color: #b73434;
+}
