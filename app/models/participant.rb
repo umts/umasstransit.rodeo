@@ -7,7 +7,7 @@ class Participant < ActiveRecord::Base
   has_one :quiz_score, dependent: :destroy
   has_one :onboard_judging, dependent: :destroy
 
-  validates :name, :number, presence: true, uniqueness: true
+  validates :name, presence: true, uniqueness: true
 
   default_scope { order :number }
 

@@ -108,6 +108,7 @@ GEM
     faye-websocket (0.10.3)
       eventmachine (>= 0.12.0)
       websocket-driver (>= 0.5.1)
+    ffaker (2.2.0)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     haml (4.0.7)
@@ -284,6 +285,7 @@ DEPENDENCIES
   coffee-rails
   exception_notification
   factory_girl_rails
+  ffaker
   haml
   haml-lint
   haml-rails

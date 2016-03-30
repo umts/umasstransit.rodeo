@@ -12,3 +12,5 @@
       %button.btn.btn-default.navbar-btn{type: :button} Scoreboard
     = link_to participants_path do
       %button.btn.btn-default.navbar-btn{type: :button} Participants
+    - if params[:action] == 'scoreboard'
+      %button.btn.btn-default.navbar-btn.hide-button{type: :button} Hide

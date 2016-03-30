@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'coffee-rails'
 gem 'factory_girl_rails'
+gem 'ffaker'
 gem 'haml'
 gem 'haml-lint'
 gem 'haml-rails'
