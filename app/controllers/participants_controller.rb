@@ -10,6 +10,7 @@ class ParticipantsController < ApplicationController
   def destroy
     @participant.destroy!
     redirect_to participants_path
+    PrivatePub.publish_to '/scoreboard', removed: @participant
   end
 
   def index
