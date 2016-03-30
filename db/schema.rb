@@ -11,13 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160325220900) do
-
-  create_table "buses", force: :cascade do |t|
-    t.string   "number",     limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-  end
+ActiveRecord::Schema.define(version: 20160330172355) do
 
   create_table "circle_check_scores", force: :cascade do |t|
     t.integer  "total_defects",  limit: 4
@@ -71,6 +65,24 @@ ActiveRecord::Schema.define(version: 20160325220900) do
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
     t.string   "obstacle_type", limit: 255
+  end
+
+  create_table "onboard_judgings", force: :cascade do |t|
+    t.integer  "participant_id",             limit: 4
+    t.integer  "score",                      limit: 4
+    t.integer  "seconds_elapsed",            limit: 4
+    t.integer  "missed_turn_signals",        limit: 4
+    t.integer  "missed_horn_sounds",         limit: 4
+    t.integer  "missed_flashers",            limit: 4
+    t.integer  "times_moved_with_door_open", limit: 4
+    t.integer  "unannounced_stops",          limit: 4
+    t.integer  "sudden_stops",               limit: 4
+    t.integer  "abrupt_turns",               limit: 4
+    t.boolean  "speeding"
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+    t.integer  "minutes_elapsed",            limit: 4
+    t.integer  "sudden_starts",              limit: 4
   end
 
   create_table "participants", force: :cascade do |t|

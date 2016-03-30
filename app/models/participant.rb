@@ -5,6 +5,7 @@ class Participant < ActiveRecord::Base
   has_many :maneuvers, through: :maneuver_participants
   has_one :circle_check_score
   has_one :quiz_score
+  has_one :onboard_judging
 
   validates :name, :number, presence: true, uniqueness: true
 
@@ -24,6 +25,7 @@ class Participant < ActiveRecord::Base
 
   def total_score
     total = maneuver_score
+    total += onboard_judging.score if onboard_judging.present?
     total += circle_check_score.score if circle_check_score.present?
     total += quiz_score.score if quiz_score.present?
     total

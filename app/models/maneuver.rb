@@ -6,15 +6,12 @@ class Maneuver < ActiveRecord::Base
 
   validates :name, :sequence_number, presence: true, uniqueness: true
 
-  def image_path
-    "maneuvers/#{name}.png"
+  def grouped_obstacles
+    obstacles.group_by { |o| [o.point_value, o.obstacle_type] }
   end
 
-  def previous_participant(number = nil)
-    if number.present?
-      participants.where('number < ?', number).last
-    else participants.last
-    end
+  def image_path
+    "maneuvers/#{name}.png"
   end
 
   def next_participant(number = nil)
@@ -29,7 +26,10 @@ class Maneuver < ActiveRecord::Base
     participant
   end
 
-  def grouped_obstacles
-    obstacles.group_by { |o| [o.point_value, o.obstacle_type] }
+  def previous_participant(number = nil)
+    if number.present?
+      participants.where('number < ?', number).last
+    else participants.last
+    end
   end
 end

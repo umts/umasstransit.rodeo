@@ -1,0 +1,25 @@
+.select-participant
+  %h1 Onboard Judging
+  %h3 Select participant:
+  %hr
+
+  %table.select-participant
+    %tr
+      %th Participant
+      %th Has been judged?
+      %th
+    - @participants.each do |participant|
+      %tr
+        %td #{participant.number} (#{participant.name})
+        - if participant.onboard_judging.present?
+          %td.present-icon
+            %span.glyphicon.glyphicon-ok
+          %td
+            = link_to participant.onboard_judging do
+              %button.btn.btn-primary Review
+        - else
+          %td.present-icon
+            %span.glyphicon.glyphicon-remove
+          %td
+            = link_to new_onboard_judging_path(participant: participant.number) do
+              %button.btn.btn-primary Judge

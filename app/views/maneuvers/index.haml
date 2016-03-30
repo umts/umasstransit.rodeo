@@ -2,5 +2,6 @@
 %hr
 
 %ul.list-group
-- @maneuvers.each do |maneuver|
-  %li.list-group-item= link_to maneuver.name, next_participant_maneuver_path(maneuver)
+  - @maneuvers.each do |maneuver|
+    %li.list-group-item= link_to maneuver.name, next_participant_maneuver_path(maneuver)
+  %li.list-group-item= link_to 'Onboard Judging', select_participant_onboard_judgings_path

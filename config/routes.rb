@@ -12,6 +12,12 @@ Rails.application.routes.draw do
 
   resources :maneuver_participants, except: %i(destroy edit index)
 
+  resources :onboard_judgings, except: %i(destroy edit index) do
+    collection do
+      get :select_participant
+    end
+  end
+
   resources :participants, only: %i(create index update) do
     collection do
       get :scoreboard

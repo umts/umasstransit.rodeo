@@ -27,7 +27,7 @@ class ManeuversController < ApplicationController
       record = ManeuverParticipant.find_by maneuver: @maneuver,
                                            participant: participant
       redirect_to record
-    else redirect_to :back and return
+    else redirect_to :back
     end
   end
 

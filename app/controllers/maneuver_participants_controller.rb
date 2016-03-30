@@ -11,9 +11,9 @@ class ManeuverParticipantsController < ApplicationController
       attrs[:obstacles_hit] = parse_obstacles
       attrs[:distances_achieved] = parse_distance_targets
       record = ManeuverParticipant.create! attrs
-      PrivatePub.publish_to '/scoreboard', record
     end
     redirect_to next_participant_maneuver_path(maneuver)
+    PrivatePub.publish_to '/scoreboard', record
   end
 
   def new
@@ -34,8 +34,8 @@ class ManeuverParticipantsController < ApplicationController
     attrs[:obstacles_hit] = parse_obstacles
     attrs[:distances_achieved] = parse_distance_targets
     @record.update! attrs
-    PrivatePub.publish_to '/scoreboard', @record
     redirect_to :back
+    PrivatePub.publish_to '/scoreboard', @record
   end
 
   private

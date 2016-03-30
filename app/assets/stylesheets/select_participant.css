@@ -1,0 +1,29 @@
+.select-participant h1{
+  font-size: 50px;
+}
+
+table.select-participant th{
+  text-align: center;
+  padding: 5px;
+}
+
+table.select-participant td{
+  padding: 5px;
+}
+
+table.select-participant td.present-icon{
+  text-align: center;
+}
+
+.glyphicon-ok{
+  color: green;
+}
+
+.glyphicon-remove{
+  color: red;
+}
+
+.select-participant .btn-primary{
+  font-size: 30px;
+  height: 60px;
+}

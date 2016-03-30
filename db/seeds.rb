@@ -116,11 +116,6 @@ FactoryGirl.create :obstacle, point_value: 50, obstacle_type: '18" marker',
 FactoryGirl.create :distance_target, intervals: 0, multiplier: 1, minimum: 6,
   maneuver: maneuvers['Judgement Stop'], name: 'marker cone to front of bus'
 
-awesome_bus = FactoryGirl.create :bus, number: '3306'
-not_so_awesome_bus = FactoryGirl.create :bus, number: '3312'
-dave = FactoryGirl.create :participant, number: 1, bus: awesome_bus,
-  name: 'David Faulkenberry'
-FactoryGirl.create :participant, number: 2, bus: awesome_bus,
-  name: 'Matt Moretti'
-FactoryGirl.create :participant, number: 3, bus: awesome_bus,
-  name: 'Adam Sherson'
+FactoryGirl.create :participant, number: 1, name: 'David Faulkenberry'
+FactoryGirl.create :participant, number: 2, name: 'Matt Moretti'
+FactoryGirl.create :participant, number: 3, name: 'Adam Sherson'
