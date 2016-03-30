@@ -14,7 +14,7 @@ class ParticipantsController < ApplicationController
   end
 
   def index
-    @participants = Participant.order :number
+    @participants = Participant.order(:number).reverse
   end
 
   def scoreboard
