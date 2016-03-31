@@ -2,15 +2,21 @@
   .container-fluid
     .navbar-header
       %a.navbar-brand{href: '#'}= image_tag 'favicon.png'
-    = link_to maneuvers_path do
-      %button.btn.btn-default.navbar-btn{type: :button} Maneuvers
-    = link_to circle_check_scores_path do
-      %button.btn.btn-default.navbar-btn{type: :button} Circle Check
-    = link_to quiz_scores_path do
-      %button.btn.btn-default.navbar-btn{type: :button} Quiz
-    = link_to scoreboard_participants_path do
-      %button.btn.btn-default.navbar-btn{type: :button} Scoreboard
-    = link_to participants_path do
-      %button.btn.btn-default.navbar-btn{type: :button} Participants
-    - if params[:action] == 'scoreboard'
-      %button.btn.btn-default.navbar-btn.hide-button{type: :button} Hide
+    - if user_signed_in?
+      = link_to maneuvers_path do
+        %button.btn.btn-default.navbar-btn{type: :button} Maneuvers
+      - if current_user.circle_check_scorer? || current_user.admin?
+        = link_to circle_check_scores_path do
+          %button.btn.btn-default.navbar-btn{type: :button} Circle Check
+      - if current_user.quiz_scorer? || current_user.admin?
+        = link_to quiz_scores_path do
+          %button.btn.btn-default.navbar-btn{type: :button} Quiz
+      = link_to scoreboard_participants_path do
+        %button.btn.btn-default.navbar-btn{type: :button} Scoreboard
+      - if current_user.master_of_ceremonies? || current_user.admin?
+        = link_to participants_path do
+          %button.btn.btn-default.navbar-btn{type: :button} Participants
+      - if params[:action] == 'scoreboard'
+        %button.btn.btn-default.navbar-btn.hide-button{type: :button} Hide
+      = link_to destroy_user_session_path, method: :delete do
+        %button.btn.btn-default.navbar-btn.navbar-right.logout{type: :button} Logout

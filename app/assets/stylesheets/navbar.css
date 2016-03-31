@@ -5,3 +5,8 @@
 a.navbar-brand img{
   height: 40px;
 }
+
+.navbar button.logout{
+  background-color: #cce7ef;
+  margin-right: 10px;
+}

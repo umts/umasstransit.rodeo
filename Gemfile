@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'coffee-rails'
+gem 'devise'
 gem 'factory_girl_rails'
 gem 'ffaker'
 gem 'haml'

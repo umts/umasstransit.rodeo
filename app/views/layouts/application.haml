@@ -9,4 +9,9 @@
   %body
     = render partial: 'layouts/navbar'
     #main-panel.panel.panel-default
-      .panel-body= yield
+      .panel-body
+        - if notice
+          %p.notice= notice
+        - if alert
+          %p.alert= alert
+        = yield
