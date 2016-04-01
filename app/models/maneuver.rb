@@ -19,7 +19,7 @@ class Maneuver < ActiveRecord::Base
       participant = participants.where('number > ?', number).first
     end
     unless participant.present?
-      participant = Participant.order(:number).find do |participant|
+      participant = Participant.numbered.order(:number).find do |participant|
                       !participant.has_completed? self
                     end
     end

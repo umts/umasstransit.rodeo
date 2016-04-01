@@ -10,7 +10,7 @@
       %th
     - @participants.each do |participant|
       %tr
-        %td #{participant.number} (#{participant.name})
+        %td= participant.name_and_number
         - if participant.onboard_judging.present?
           %td.present-icon
             %span.glyphicon.glyphicon-ok

@@ -5,6 +5,7 @@ class ParticipantsController < ApplicationController
     params.require :number
     @participant.update number: params[:number]
     redirect_to participants_path
+    PrivatePub.publish_to '/scoreboard', @participant
   end
 
   def create

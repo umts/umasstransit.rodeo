@@ -8,11 +8,20 @@
       %th Points achieved
       %th Total points
       %th
-    - @participants.each do |participant|
-      = form_for QuizScore.find_or_initialize_by(participant: participant), class: 'form-inline' do |f|
+    - @unscored.each do |participant|
+      = form_for QuizScore.new(participant: participant), class: 'form-inline' do |f|
         %tr
           %td
-            #{participant.name} (#{participant.number})
+            = participant.name_and_number
+            = f.hidden_field :participant_id, value: participant.id
+          %td= f.number_field :points_achieved, placeholder: 'Enter a score...', step: 0.1, class: 'form-control'
+          %td= f.number_field :total_points, value: QuizScore::TOTAL_POINTS_DEFAULT, class: 'form-control'
+          %td= f.submit 'Save score', class: 'btn btn-primary'
+    - @scored.each do |participant|
+      = form_for participant.quiz_score, class: 'form-inline' do |f|
+        %tr
+          %td
+            = participant.name_and_number
             = f.hidden_field :participant_id, value: participant.id
           %td= f.number_field :points_achieved, placeholder: 'Enter a score...', step: 0.1, class: 'form-control'
           %td= f.number_field :total_points, value: QuizScore::TOTAL_POINTS_DEFAULT, class: 'form-control'

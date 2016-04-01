@@ -8,7 +8,10 @@ class CircleCheckScoresController < ApplicationController
   end
 
   def index
-    @participants = Participant.includes(:circle_check_score).order :number
+    sorted = Participant.unscoped.includes(:circle_check_score).order(:name).group_by do |participant|
+      participant.circle_check_score.present?
+    end
+    @scored, @unscored = sorted[true], sorted[false]
   end
 
   def update

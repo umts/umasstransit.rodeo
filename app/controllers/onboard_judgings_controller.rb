@@ -13,7 +13,7 @@ class OnboardJudgingsController < ApplicationController
   end
 
   def select_participant
-    @participants = Participant.includes(:onboard_judging).order :number
+    @participants = Participant.numbered.includes(:onboard_judging).order(:number).reverse
   end
 
   def show

@@ -9,6 +9,10 @@ class QuizScoresController < ApplicationController
 
   def index
     @participants = Participant.includes(:quiz_score).order :number
+    sorted = Participant.unscoped.includes(:quiz_score).order(:name).group_by do |participant|
+      participant.quiz_score.present?
+    end
+    @scored, @unscored = sorted[true], sorted[false]
   end
 
   def update
