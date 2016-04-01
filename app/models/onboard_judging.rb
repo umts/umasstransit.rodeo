@@ -1,4 +1,6 @@
 class OnboardJudging < ActiveRecord::Base
+  has_paper_trail
+
   belongs_to :participant
   validates :participant, uniqueness: true
   validates :score, :minutes_elapsed, :seconds_elapsed, presence: true

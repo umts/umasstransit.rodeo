@@ -19,11 +19,17 @@
         %td
           - record = participant.maneuver_record maneuver
           - if record.present?
-            = link_to record.score, record
+            - if current_user.admin?
+              = link_to record.score, record
+            - else
+              = record.score
       %td
         - record = participant.onboard_judging
         - if record.present?
-          = link_to record.score, record
+          - if current_user.admin?
+            = link_to record.score, record
+          - else
+            = record.score
       %td= participant.maneuver_score
       %td= participant.circle_check_score.try :score
       %td= participant.quiz_score.try :score

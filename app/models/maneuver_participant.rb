@@ -1,4 +1,6 @@
 class ManeuverParticipant < ActiveRecord::Base
+  has_paper_trail
+
   belongs_to :maneuver
   belongs_to :participant
   validates :maneuver, uniqueness: { scope: :participant }

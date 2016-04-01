@@ -1,4 +1,6 @@
 class QuizScore < ActiveRecord::Base
+  has_paper_trail
+
   belongs_to :participant
 
   validates :participant, :points_achieved, :total_points, presence: true
