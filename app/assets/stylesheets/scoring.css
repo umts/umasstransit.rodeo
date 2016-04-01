@@ -31,6 +31,16 @@
   width: 100px;
 }
 
+.scoring select{
+  border: 1px solid lightgrey;
+  border-radius: 5px;
+  display: inline;
+  font-size: 30px;
+  height: 60px;
+  padding-left: 10px;
+  width: 10em;
+}
+
 .scoring .btn-primary, .scoring .btn-secondary{
   height: 120px;
   margin-top: 10px;

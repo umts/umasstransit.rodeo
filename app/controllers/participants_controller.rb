@@ -1,5 +1,11 @@
 class ParticipantsController < ApplicationController
-  before_action :find_user, only: %i(destroy update)
+  before_action :find_user, only: %i(assign_number destroy update)
+
+  def assign_number
+    params.require :number
+    @participant.update number: params[:number]
+    redirect_to participants_path
+  end
 
   def create
     participant = Participant.create! user_params
@@ -14,7 +20,9 @@ class ParticipantsController < ApplicationController
   end
 
   def index
-    @participants = Participant.order(:number).reverse
+    @participants = Participant.order(:created_at).reverse
+    @unassigned = Participant.not_numbered.order :name
+    @next_number = Participant.next_number
   end
 
   def scoreboard

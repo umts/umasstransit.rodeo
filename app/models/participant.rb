@@ -12,6 +12,7 @@ class Participant < ActiveRecord::Base
   default_scope { order :number }
 
   scope :numbered, -> { where.not number: nil }
+  scope :not_numbered, -> { where number: nil }
 
   def has_completed?(maneuver)
     maneuvers.include? maneuver
@@ -41,7 +42,7 @@ class Participant < ActiveRecord::Base
   end
 
   def self.next_number
-    last_number = pluck(:number).sort.last || 0
+    last_number = numbered.pluck(:number).sort.last || 0
     last_number + 1
   end
 

@@ -21,6 +21,7 @@ Rails.application.routes.draw do
 
   resources :participants, except: %i(edit new show) do
     collection do
+      post :assign_number
       get :scoreboard
       get :scoreboard_partial
     end
