@@ -17,7 +17,8 @@ class ManeuversController < ApplicationController
           new_maneuver_participant_path maneuver: @maneuver.name,
                                         participant: participant.number)
       end
-    else redirect_to maneuvers_path
+    else redirect_to maneuvers_path,
+         notice: 'There are no more participants in the queue for this maneuver.'
     end
   end
 
@@ -27,7 +28,8 @@ class ManeuversController < ApplicationController
       record = ManeuverParticipant.find_by maneuver: @maneuver,
                                            participant: participant
       redirect_to record
-    else redirect_to :back
+    else redirect_to :back,
+         notice: 'This is the first participant who completed this maneuver.'
     end
   end
 

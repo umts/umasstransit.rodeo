@@ -4,19 +4,22 @@ class ParticipantsController < ApplicationController
   def assign_number
     params.require :number
     @participant.update number: params[:number]
-    redirect_to participants_path
+    redirect_to participants_path,
+      notice: 'Participant has been added to the queue.'
     PrivatePub.publish_to '/scoreboard', @participant
   end
 
   def create
     participant = Participant.create! user_params
-    redirect_to participants_path
+    redirect_to participants_path,
+      notice: 'Participant has been created.'
     PrivatePub.publish_to '/scoreboard', participant
   end
 
   def destroy
     @participant.destroy!
-    redirect_to participants_path
+    redirect_to participants_path,
+      notice: 'Participant has been removed.'
     PrivatePub.publish_to '/scoreboard', removed: @participant
   end
 
@@ -43,7 +46,8 @@ class ParticipantsController < ApplicationController
 
   def update
     @participant.update! user_params
-    redirect_to participants_path
+    redirect_to participants_path,
+      'Participant has been updated.'
     PrivatePub.publish_to '/scoreboard', @participant
   end
 

@@ -3,7 +3,8 @@ class OnboardJudgingsController < ApplicationController
 
   def create
     record = OnboardJudging.create! params.require(:onboard_judging).permit!
-    redirect_to select_participant_onboard_judgings_path
+    redirect_to select_participant_onboard_judgings_path,
+      notice: 'Onboard score has been saved.'
     PrivatePub.publish_to '/scoreboard', record
   end
 
@@ -22,7 +23,8 @@ class OnboardJudgingsController < ApplicationController
 
   def update
     @record.update params.require(:onboard_judging).permit!
-    redirect_to select_participant_onboard_judgings_path
+    redirect_to select_participant_onboard_judgings_path,
+      notice: 'Onboard score has been saved.'
     PrivatePub.publish_to '/scoreboard', @record
   end
 
