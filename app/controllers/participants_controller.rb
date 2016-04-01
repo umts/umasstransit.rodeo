@@ -19,6 +19,7 @@ class ParticipantsController < ApplicationController
 
   def scoreboard
     @participants = Participant.scoreboard_order
+    @top_20 = @participants.first 20
     @maneuvers = Maneuver.order :sequence_number
   end
 
@@ -26,6 +27,7 @@ class ParticipantsController < ApplicationController
     params.require :sort_order
     sort_order = params.fetch(:sort_order).to_sym
     @participants = Participant.scoreboard_order sort_order
+    @top_20 = Participant.scoreboard_order.first 20 # score order
     @maneuvers = Maneuver.order :sequence_number
     render partial: 'scoreboard_partial'
   end

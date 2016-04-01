@@ -1,7 +1,7 @@
 %h1 Which maneuver are you judging?
 %hr
 
-%ul.list-group
+%ul.list-group.maneuvers
   - @maneuvers.each do |maneuver|
     %li.list-group-item= link_to maneuver.name, next_participant_maneuver_path(maneuver)
   %li.list-group-item= link_to 'Onboard Judging', select_participant_onboard_judgings_path

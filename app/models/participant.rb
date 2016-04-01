@@ -11,6 +11,8 @@ class Participant < ActiveRecord::Base
 
   default_scope { order :number }
 
+  scope :numbered, -> { where.not number: nil }
+
   def has_completed?(maneuver)
     maneuvers.include? maneuver
   end
@@ -21,6 +23,13 @@ class Participant < ActiveRecord::Base
 
   def maneuver_score
     maneuver_participants.sum :score
+  end
+
+  def name_and_number
+    if number
+      "#{name} (#{number})"
+    else name
+    end
   end
 
   def total_score
@@ -42,13 +51,13 @@ class Participant < ActiveRecord::Base
     end
     case sort_order
     when :total_score, nil
-      includes(:maneuver_participants).sort_by(&:total_score).reverse
+      numbered.includes(:maneuver_participants).sort_by(&:total_score).reverse
     when :maneuver_score
-      includes(:maneuver_participants).sort_by(&:maneuver_score).reverse
+      numbered.includes(:maneuver_participants).sort_by(&:maneuver_score).reverse
     when :participant_name
-      unscoped.order :name
+      unscoped.numbered.order :name
     when :participant_number
-      order :number
+      numbered.order :number
     end
   end
 end

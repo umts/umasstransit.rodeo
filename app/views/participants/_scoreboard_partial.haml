@@ -10,7 +10,11 @@
     %th Total score
   - @participants.each do |participant|
     %tr
-      %td #{participant.name} (#{participant.number})
+      %td
+        - if @top_20.include? participant
+          = participant.name_and_number
+        - else
+          = participant.number
       - @maneuvers.each do |maneuver|
         %td
           - record = participant.maneuver_record maneuver

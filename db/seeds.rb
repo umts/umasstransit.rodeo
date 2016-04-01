@@ -117,9 +117,8 @@ FactoryGirl.create :obstacle, point_value: 50, obstacle_type: '18" marker',
 FactoryGirl.create :distance_target, intervals: 0, multiplier: 1, minimum: 6,
   maneuver: maneuvers['Judgement Stop'], name: 'marker cone to front of bus'
 
-50.times do |i|
-  p = FactoryGirl.create :participant, number: i,
-    name: FFaker::Name.name
+35.times do |i|
+  p = FactoryGirl.create :participant, name: FFaker::Name.name, number: i
   maneuvers.each do |_name, m|
     mp = ManeuverParticipant.new participant: p, maneuver: m, reversed_direction: 0, completed_as_designed: true
     unless m.name.include?('Passenger') || rand(4) == 3
@@ -140,3 +139,9 @@ FactoryGirl.create :distance_target, intervals: 0, multiplier: 1, minimum: 6,
     missed_turn_signals: 0, missed_flashers: rand(1), missed_horn_sounds: rand(1), times_moved_with_door_open: 0,
     unannounced_stops: 0, sudden_stops: 0, sudden_starts: 0, abrupt_turns: 0
 end
+15.times { FactoryGirl.create :participant, name: FFaker::Name.name }
+
+FactoryGirl.create :user, name: 'David Faulkenberry',
+                          email: 'dave@example.com',
+                          password: 'password',
+                          admin: true
