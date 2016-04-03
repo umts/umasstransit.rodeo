@@ -1,3 +1,6 @@
 development:
   server: "http://localhost:9292/faye"
   secret_token: "secret"
+production:
+  server: "http://45.55.158.215/faye/faye"
+  secret_token: "5150ca272a68bbc9d50b0e379d4032806534e90f482cec4787d0359d9faab224"
