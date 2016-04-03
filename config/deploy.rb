@@ -9,6 +9,12 @@ set :rbenv_ruby, '2.3.0'
 set :linked_files, %w(config/database.yml)
 server '45.55.158.215', user: 'dave', roles: [:app, :web, :db], primary: true
 
+namespace :faye do
+  task :start do
+    run "cd #{deploy_to}/current && bundle exec rackup private_pub.ru -s thin -E production -D"
+  end
+end
+
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
