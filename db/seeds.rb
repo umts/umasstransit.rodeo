@@ -117,31 +117,33 @@ FactoryGirl.create :obstacle, point_value: 50, obstacle_type: '18" marker',
 FactoryGirl.create :distance_target, intervals: 0, multiplier: 1, minimum: 6,
   maneuver: maneuvers['Judgement Stop'], name: 'marker cone to front of bus'
 
-35.times do |i|
-  p = FactoryGirl.create :participant, name: FFaker::Name.name, number: i
-  maneuvers.each do |_name, m|
-    mp = ManeuverParticipant.new participant: p, maneuver: m, reversed_direction: 0, completed_as_designed: true
-    unless m.name.include?('Passenger') || rand(4) == 3
-      m.obstacles.order('rand()').take(2).each do |obst|
-        mp.obstacles_hit[obst.point_value] ||= 0
-        mp.obstacles_hit[obst.point_value] += 1
+unless Rails.env.production?
+  35.times do |i|
+    p = FactoryGirl.create :participant, name: FFaker::Name.name, number: i
+    maneuvers.each do |_name, m|
+      mp = ManeuverParticipant.new participant: p, maneuver: m, reversed_direction: 0, completed_as_designed: true
+      unless m.name.include?('Passenger') || rand(4) == 3
+        m.obstacles.order('rand()').take(2).each do |obst|
+          mp.obstacles_hit[obst.point_value] ||= 0
+          mp.obstacles_hit[obst.point_value] += 1
+        end
       end
+      dt = m.distance_targets.order('rand()').first
+      if dt
+        mp.distances_achieved[[dt.minimum, dt.multiplier]] = rand(3)
+      end
+      mp.save!
     end
-    dt = m.distance_targets.order('rand()').first
-    if dt
-      mp.distances_achieved[[dt.minimum, dt.multiplier]] = rand(3)
-    end
-    mp.save!
+    CircleCheckScore.create! participant: p, total_defects: 5, defects_found: rand(5)
+    QuizScore.create! participant: p, total_points: 100, points_achieved: rand(100)
+    OnboardJudging.create! participant: p, minutes_elapsed: (6 + rand(3)), seconds_elapsed: rand(59),
+      missed_turn_signals: 0, missed_flashers: rand(1), missed_horn_sounds: rand(1), times_moved_with_door_open: 0,
+      unannounced_stops: 0, sudden_stops: 0, sudden_starts: 0, abrupt_turns: 0
   end
-  CircleCheckScore.create! participant: p, total_defects: 5, defects_found: rand(5)
-  QuizScore.create! participant: p, total_points: 100, points_achieved: rand(100)
-  OnboardJudging.create! participant: p, minutes_elapsed: (6 + rand(3)), seconds_elapsed: rand(59),
-    missed_turn_signals: 0, missed_flashers: rand(1), missed_horn_sounds: rand(1), times_moved_with_door_open: 0,
-    unannounced_stops: 0, sudden_stops: 0, sudden_starts: 0, abrupt_turns: 0
-end
-15.times { FactoryGirl.create :participant, name: FFaker::Name.name }
+  15.times { FactoryGirl.create :participant, name: FFaker::Name.name }
 
-FactoryGirl.create :user, name: 'David Faulkenberry',
-                          email: 'dave@example.com',
-                          password: 'password',
-                          admin: true
+  FactoryGirl.create :user, name: 'David Faulkenberry',
+                            email: 'dave@example.com',
+                            password: 'password',
+                            admin: true
+end
