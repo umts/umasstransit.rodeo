@@ -2,7 +2,7 @@ $(document).ready(function(){
   $('.faye-test').on('click', 'button.test', function(){
     $.post('/faye_test').fail(function(data){
       $('.failure').removeClass('hidden');
-      $('.failure-reason').text(data.responseText);
+      $('.failure-reason').html(data.responseText);
     });
   });
 
