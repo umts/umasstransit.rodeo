@@ -5,6 +5,8 @@
     - if Participant.any?
       = link_to scoreboard_participants_path do
         %button.btn.btn-default.navbar-btn{type: :button} Scoreboard
+      - if params[:action] == 'scoreboard'
+        %button.btn.btn-default.navbar-btn.hide-button{type: :button} Hide
     - if user_signed_in?
       = link_to maneuvers_path do
         %button.btn.btn-default.navbar-btn{type: :button} Maneuvers
@@ -17,8 +19,6 @@
       - if current_user.master_of_ceremonies? || current_user.admin?
         = link_to participants_path do
           %button.btn.btn-default.navbar-btn{type: :button} Participants
-      - if params[:action] == 'scoreboard'
-        %button.btn.btn-default.navbar-btn.hide-button{type: :button} Hide
       = link_to destroy_user_session_path, method: :delete do
         %button.btn.btn-default.navbar-btn.navbar-right.logout{type: :button} Logout
     - else

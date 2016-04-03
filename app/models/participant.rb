@@ -28,7 +28,7 @@ class Participant < ActiveRecord::Base
 
   def name_and_number
     if number
-      "#{name} (#{number})"
+      "#{name} (##{number})"
     else name
     end
   end

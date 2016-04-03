@@ -1,14 +1,28 @@
 .welcome
   Welcome to the 2016 UMass Transit Roadeo mobile webapp!
   %hr
-  Once the roadeo has begun, the scoreboard will be available here.
-  %br
-  Judges will be able to
-  = link_to 'log in', new_user_session_path
-  to record maneuver scores.
+  - if Participant.any?
+    To view the scoreboard, click
+    = link_to 'here', scoreboard_participants_path
+    or on the button above.
+  - else
+    Once the roadeo has begun, you will be able to view the scoreboard here.
+  .login-instructions
+    If you have signed up to judge the roadeo:
+    %ul
+      %li
+        You should receive an email with your password before the day of the roadeo.
+        %ul
+          %li Be sure to log in with the email where you received the password.
+          %li If you forget your password, a member of IT staff will be on hand at the roadeo to reset it.
+      %li
+        = link_to 'Log in', new_user_session_path
+        to record maneuver scores.
+      %li Enjoy the roadeo!
   .attributions
     = link_to 'This site', 'https://github.com/umts/umasstransit.rodeo'
     designed by
     = link_to 'David Faulkenberry', 'https://github.com/dfaulken'
-    for
+    and the rest of the
     = link_to 'UMass Transit IT', 'https://github.com/umts'
+    team.
