@@ -7,6 +7,13 @@ class OnboardJudging < ActiveRecord::Base
 
   before_validation :set_score
 
+  def creator
+    user_id = versions.find_by(event: 'create').whodunnit
+    if user_id
+      User.find_by id: user_id
+    end
+  end
+
   private
 
   def set_score

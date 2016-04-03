@@ -1,6 +1,8 @@
 .scoring
   %h1 Onboard Judging
   %h3 Participant #{@participant.number} (#{@participant.name})
+  - if current_user.admin? && @record.creator.present?
+    %h3 Score recorded by #{@record.creator.name}
   %hr
   = form_tag onboard_judging_path(@record), method: :put do
     = fields_for :onboard_judging do |f|
