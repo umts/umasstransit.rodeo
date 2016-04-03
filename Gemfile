@@ -25,6 +25,7 @@ end
 
 group :production do
   gem 'exception_notification'
+  gem 'thin'
 end
 
 group :development do
