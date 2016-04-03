@@ -1,6 +1,6 @@
 class ParticipantsController < ApplicationController
   before_action :find_user, only: %i(assign_number destroy update)
-  skip_before_action :authenticate_user!, only: %i(scoreboard scoreboard_partial)
+  skip_before_action :authenticate_user!, only: %i(scoreboard scoreboard_partial welcome)
 
   def assign_number
     params.require :number
@@ -51,6 +51,9 @@ class ParticipantsController < ApplicationController
     redirect_to participants_path,
       notice: 'Participant has been updated.'
     PrivatePub.publish_to '/scoreboard', @participant
+  end
+
+  def welcome
   end
 
   private

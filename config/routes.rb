@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
-  root 'participants#scoreboard'
+  root 'participants#welcome'
 
   resources :circle_check_scores, only: %i(create index update)
 
@@ -24,6 +24,7 @@ Rails.application.routes.draw do
       post :assign_number
       get :scoreboard
       get :scoreboard_partial
+      get :welcome
     end
   end
 

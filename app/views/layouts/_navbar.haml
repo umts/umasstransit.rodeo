@@ -1,10 +1,11 @@
 %nav.navbar.navbar-default.with-icon
   .container-fluid
     .navbar-header
-      %a.navbar-brand{href: scoreboard_participants_path}= image_tag 'favicon.png'
-    - if user_signed_in?
+      %a.navbar-brand{href: root_path}= image_tag 'favicon.png'
+    - if Participant.any?
       = link_to scoreboard_participants_path do
         %button.btn.btn-default.navbar-btn{type: :button} Scoreboard
+    - if user_signed_in?
       = link_to maneuvers_path do
         %button.btn.btn-default.navbar-btn{type: :button} Maneuvers
       - if current_user.circle_check_scorer? || current_user.admin?
