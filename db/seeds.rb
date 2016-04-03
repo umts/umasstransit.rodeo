@@ -117,7 +117,7 @@ FactoryGirl.create :obstacle, point_value: 50, obstacle_type: '18" marker',
 FactoryGirl.create :distance_target, intervals: 0, multiplier: 1, minimum: 6,
   maneuver: maneuvers['Judgement Stop'], name: 'marker cone to front of bus'
 
-unless Rails.env.production?
+unless Rails.env.production? || ENV['SKIP_PARTICIPANTS']
   35.times do |i|
     p = FactoryGirl.create :participant, name: FFaker::Name.name, number: i
     maneuvers.each do |_name, m|

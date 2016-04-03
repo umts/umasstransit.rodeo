@@ -1,5 +1,6 @@
 class ParticipantsController < ApplicationController
   before_action :find_user, only: %i(assign_number destroy update)
+  skip_before_action :authenticate_user!, only: %i(scoreboard scoreboard_partial)
 
   def assign_number
     params.require :number
@@ -30,6 +31,7 @@ class ParticipantsController < ApplicationController
   end
 
   def scoreboard
+    @can_edit_scores = current_user.try :admin?
     @participants = Participant.scoreboard_order
     @top_20 = @participants.first 20
     @maneuvers = Maneuver.order :sequence_number

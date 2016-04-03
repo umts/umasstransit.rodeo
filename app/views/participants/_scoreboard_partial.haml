@@ -19,14 +19,14 @@
         %td
           - record = participant.maneuver_record maneuver
           - if record.present?
-            - if current_user.admin?
+            - if @can_edit_scores
               = link_to record.score, record
             - else
               = record.score
       %td
         - record = participant.onboard_judging
         - if record.present?
-          - if current_user.admin?
+          - if @can_edit_scores
             = link_to record.score, record
           - else
             = record.score

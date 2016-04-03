@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
-  root 'maneuvers#index'
+  root 'participants#scoreboard'
 
   resources :circle_check_scores, only: %i(create index update)
 

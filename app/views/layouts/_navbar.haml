@@ -1,8 +1,10 @@
 %nav.navbar.navbar-default.with-icon
   .container-fluid
     .navbar-header
-      %a.navbar-brand{href: '#'}= image_tag 'favicon.png'
+      %a.navbar-brand{href: scoreboard_participants_path}= image_tag 'favicon.png'
     - if user_signed_in?
+      = link_to scoreboard_participants_path do
+        %button.btn.btn-default.navbar-btn{type: :button} Scoreboard
       = link_to maneuvers_path do
         %button.btn.btn-default.navbar-btn{type: :button} Maneuvers
       - if current_user.circle_check_scorer? || current_user.admin?
@@ -11,8 +13,6 @@
       - if current_user.quiz_scorer? || current_user.admin?
         = link_to quiz_scores_path do
           %button.btn.btn-default.navbar-btn{type: :button} Quiz
-      = link_to scoreboard_participants_path do
-        %button.btn.btn-default.navbar-btn{type: :button} Scoreboard
       - if current_user.master_of_ceremonies? || current_user.admin?
         = link_to participants_path do
           %button.btn.btn-default.navbar-btn{type: :button} Participants
@@ -20,3 +20,6 @@
         %button.btn.btn-default.navbar-btn.hide-button{type: :button} Hide
       = link_to destroy_user_session_path, method: :delete do
         %button.btn.btn-default.navbar-btn.navbar-right.logout{type: :button} Logout
+    - else
+      = link_to new_user_session_path do
+        %button.btn.btn-default.navbar-btn.navbar-right.login{type: :button} Log in

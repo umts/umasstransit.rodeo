@@ -10,7 +10,7 @@ a.navbar-brand img{
   height: 40px;
 }
 
-.navbar button.logout{
+.navbar button.logout,button.login{
   background-color: #cce7ef;
   margin-right: 10px;
 }
