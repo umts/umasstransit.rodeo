@@ -1,6 +1,8 @@
 .scoring
   %h1 Judging #{@maneuver.name}
   %h3 Participant #{@participant.number} (#{@participant.name})
+  - if current_user.admin? && @record.creator.present?
+    %h3 Score recorded by #{@record.creator.name}
   %hr
 
   = form_tag maneuver_participant_path(@record), method: :put do
