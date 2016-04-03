@@ -1,3 +1,7 @@
+.navbar.with-icon{
+  min-height: 70px;
+}
+
 .navbar button{
   font-size: 30px;
 }
