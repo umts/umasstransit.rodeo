@@ -47,7 +47,7 @@ class ParticipantsController < ApplicationController
   def update
     @participant.update! user_params
     redirect_to participants_path,
-      'Participant has been updated.'
+      notice: 'Participant has been updated.'
     PrivatePub.publish_to '/scoreboard', @participant
   end
 

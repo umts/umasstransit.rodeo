@@ -3,6 +3,10 @@ default: &default
   pool: 5
   timeout: 5000
 
+production:
+  <<: *default
+  database: umasstransit_rodeo_production
+
 development:
   <<: *default
   database: umasstransit_rodeo_development

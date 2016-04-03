@@ -12,8 +12,7 @@ class ManeuverParticipantsController < ApplicationController
       attrs[:distances_achieved] = parse_distance_targets
       record = ManeuverParticipant.create! attrs
     end
-    redirect_to next_participant_maneuver_path(maneuver),
-      notice: 'Maneuver score has been saved.'
+    redirect_to next_participant_maneuver_path(maneuver)
     PrivatePub.publish_to '/scoreboard', record
   end
 

@@ -9,6 +9,9 @@ class QuizScore < ActiveRecord::Base
   TOTAL_POINTS_DEFAULT = 100
 
   def score
-    (50 / total_points) * points_achieved
+    (50 / total_points * points_achieved).round 1
   end
+
+  private
+
 end
