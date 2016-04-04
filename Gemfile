@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'coffee-rails'
+gem 'certified'
 gem 'devise'
 gem 'factory_girl_rails'
 gem 'ffaker'
@@ -25,7 +26,6 @@ end
 
 group :production do
   gem 'exception_notification'
-  gem 'thin'
 end
 
 group :development do
