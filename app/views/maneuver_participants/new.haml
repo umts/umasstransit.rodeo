@@ -43,7 +43,7 @@
     - if @maneuver.counts_additional_stops?
       .field
         = label_tag 'Extra stops?'
-        .checkbox= check_box_tag :made_additional_stops, true, false
+        = check_box_tag :made_additional_stops, true, false
     .field
       = label_tag 'Completed as designed?'
       = check_box_tag :completed_as_designed, true, true
