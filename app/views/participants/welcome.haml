@@ -16,7 +16,10 @@
           %li Be sure to log in with the email where you received the password.
           %li
             Please
-            = link_to 'change your password', edit_user_registration_path
+            - if user_signed_in?
+              = link_to 'change your password', edit_user_registration_path
+            - else
+              change your password
             as soon as possible.
           %li If you forget your password, a member of IT staff will be on hand at the roadeo to reset it.
       %li
