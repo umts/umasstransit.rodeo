@@ -19,10 +19,21 @@ img.scoreboard-sort-loading{
   padding: 3px;
 }
 
+.scoreboard-content {
+  margin-top: 10px;
+  max-height: 1000px;
+  overflow: scroll;
+}
+
+.scoreboard-content:-webkit-full-screen {
+  border-radius: 6px;
+  padding: 5px;
+  width: 95%;
+}
+
 table.scoreboard{
   border: 1px solid lightgrey;
   font-size: small;
-  margin-top: 10px;
   width: 100%;
 }
 
