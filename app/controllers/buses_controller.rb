@@ -5,7 +5,7 @@ class BusesController < ApplicationController
   end
 
   def index
-    @buses = Bus.all
+    @buses = Bus.order :number
   end
 
   def destroy
