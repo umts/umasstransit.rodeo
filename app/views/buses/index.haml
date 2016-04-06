@@ -1,11 +1,10 @@
-List buses here.
+Add new bus
 %table.buses
   %tr
     %th Number
     %th
   = form_for Bus.new do |f|
     %tr
-      %td= f.text_field :number
-      %td= f.submit 'Add'
-      //buses.each do
+      %td= f.text_field :number, placeholder: 'Bus number', class: 'form-control'
+      %td= f.submit 'Add', class: 'btn btn-primary'
 
