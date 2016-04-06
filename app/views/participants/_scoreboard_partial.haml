@@ -23,6 +23,9 @@
               = link_to record.score, record
             - else
               = record.score
+          - elsif @can_edit_scores
+            = link_to new_maneuver_participant_path(maneuver: maneuver.name, participant: participant.number) do
+              &mdash;
       %td
         - record = participant.onboard_judging
         - if record.present?
@@ -30,7 +33,20 @@
             = link_to record.score, record
           - else
             = record.score
+        - else
+          = link_to new_onboard_judging_path(participant: participant.number) do
+            &mdash;
       %td= participant.maneuver_score
-      %td= participant.circle_check_score.try :score
-      %td= participant.quiz_score.try :score
+      %td
+        - if participant.circle_check_score.present?
+          = participant.circle_check_score.score
+        - else
+          = link_to circle_check_scores_path do
+            &mdash;
+      %td
+        - if participant.quiz_score.present?
+          = participant.quiz_score.score
+        - else 
+          = link_to quiz_scores_path do
+            &mdash;
       %td= participant.total_score
