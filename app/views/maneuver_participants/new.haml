@@ -1,6 +1,6 @@
 .scoring
   %h1 Judging #{@maneuver.name}
-  %h3 Participant #{@participant.number} (#{@participant.name})
+  %h3 Participant #{@participant.number} (#{@participant.name}, #{@participant.bus.number})
   %hr
 
   = form_tag maneuver_participants_path do

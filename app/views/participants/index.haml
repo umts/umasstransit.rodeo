@@ -8,8 +8,8 @@
           options_from_collection_for_select(@unassigned, :id, :name),
           class: 'form-control'
         = select_tag :bus_id,
-          options_from_collection_for_select(Bus.all, :id, :number),
-          class: 'form-control', include_blank: 'Bus number'
+          options_from_collection_for_select(@buses :id, :number),
+          class: 'form-control', include_blank: 'Bus number', required: true
         = number_field_tag :number, @next_number, min: @next_number
         %button.btn.btn-primary.increment{type: :button, disabled: true,
           data: { field: :number,
