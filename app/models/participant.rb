@@ -18,10 +18,6 @@ class Participant < ActiveRecord::Base
     maneuvers.include? maneuver
   end
 
-  def maneuver_record(maneuver)
-    maneuver_participants.find_by maneuver: maneuver
-  end
-
   def maneuver_score
     maneuver_participants.sum :score
   end
