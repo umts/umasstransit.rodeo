@@ -36,7 +36,7 @@
       %tr
         %td= f.text_field :name, placeholder: 'Name', class: 'form-control'
         %td= f.number_field :number, class: 'form-control'
-        %td= f.collection_select :bus_id, Bus.all, :id, :number,
+        %td= f.collection_select :bus_id, @buses, :id, :number,
           {include_blank: 'Bus number'}, {class: 'form-control'}
         %td= f.submit 'Add', class: 'btn btn-primary'
     - @participants.each do |participant|

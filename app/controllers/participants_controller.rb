@@ -28,6 +28,7 @@ class ParticipantsController < ApplicationController
     @participants = Participant.order(:created_at).reverse
     @unassigned = Participant.not_numbered.order :name
     @next_number = Participant.next_number
+    @buses = Bus.all.order :number
   end
 
   def scoreboard
