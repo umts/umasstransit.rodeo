@@ -1,6 +1,6 @@
 class BusesController < ApplicationController
   def create
-    Bus.create bus_params
+    Bus.create! bus_params
     redirect_to :back
   end
 
