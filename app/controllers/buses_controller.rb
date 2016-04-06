@@ -4,6 +4,16 @@ class BusesController < ApplicationController
     redirect_to :back
   end
 
+  def index
+    @buses = Bus.all
+  end
+
+  def destroy
+    bus = Bus.find_by id: params.require(:id)  
+    bus.destroy!
+    redirect_to :back
+  end
+
   private
 
   def bus_params
