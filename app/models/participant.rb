@@ -1,4 +1,6 @@
 class Participant < ActiveRecord::Base
+  has_paper_trail
+
   SORT_ORDERS = %i(total_score maneuver_score participant_name participant_number)
 
   has_many :maneuver_participants, dependent: :destroy
