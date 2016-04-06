@@ -61,4 +61,8 @@ class Participant < ActiveRecord::Base
       numbered.order :number
     end
   end
+
+  def self.top_20
+    numbered.includes(:maneuver_participants).sort_by(&:total_score).reverse.first 20
+  end
 end

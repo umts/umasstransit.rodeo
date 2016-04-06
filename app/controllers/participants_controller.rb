@@ -35,6 +35,7 @@ class ParticipantsController < ApplicationController
     @participants = Participant.scoreboard_order
     @top_20 = @participants.first 20
     @maneuvers = Maneuver.order :sequence_number
+    @scores = ManeuverParticipant.scoreboard_grouping
   end
 
   def scoreboard_partial
@@ -42,8 +43,9 @@ class ParticipantsController < ApplicationController
     sort_order = params.fetch(:sort_order).to_sym
     @can_edit_scores = current_user.try :admin?
     @participants = Participant.scoreboard_order sort_order
-    @top_20 = Participant.scoreboard_order.first 20 # score order
+    @top_20 = Participant.top_20
     @maneuvers = Maneuver.order :sequence_number
+    @scores = ManeuverParticipant.scoreboard_grouping
     render partial: 'scoreboard_partial'
   end
 

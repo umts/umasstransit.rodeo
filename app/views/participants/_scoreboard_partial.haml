@@ -9,6 +9,7 @@
     %th Quiz
     %th Total score
   - @participants.each do |participant|
+    - scores = @scores[participant.id]
     %tr
       %td
         - if @top_20.include? participant
@@ -17,7 +18,7 @@
           = '#' + participant.number.to_s
       - @maneuvers.each do |maneuver|
         %td
-          - record = participant.maneuver_record maneuver
+          - record = scores.try(:[], maneuver.id).try :first
           - if record.present?
             - if @can_edit_scores
               = link_to record.score, record
