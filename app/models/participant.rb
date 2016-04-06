@@ -9,6 +9,7 @@ class Participant < ActiveRecord::Base
   has_one :onboard_judging, dependent: :destroy
 
   validates :name, presence: true, uniqueness: true
+  validates :bus, presence: true, if: -> { number.present? }
 
   default_scope { order :number }
 
