@@ -40,6 +40,7 @@ class ParticipantsController < ApplicationController
   def scoreboard_partial
     params.require :sort_order
     sort_order = params.fetch(:sort_order).to_sym
+    @can_edit_scores = current_user.try :admin?
     @participants = Participant.scoreboard_order sort_order
     @top_20 = Participant.scoreboard_order.first 20 # score order
     @maneuvers = Maneuver.order :sequence_number
