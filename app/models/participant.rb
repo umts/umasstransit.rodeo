@@ -1,6 +1,7 @@
 class Participant < ActiveRecord::Base
   SORT_ORDERS = %i(total_score maneuver_score participant_name participant_number)
 
+  belongs_to :bus
   has_many :maneuver_participants, dependent: :destroy
   has_many :maneuvers, through: :maneuver_participants
   has_one :circle_check_score, dependent: :destroy
