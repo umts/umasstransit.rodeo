@@ -34,18 +34,18 @@ class Participant < ActiveRecord::Base
     result = options.map do |option|
       case option
       when :bus
-        option = bus.number
+        bus.number
       when :number
-        if number
-          option = self.send(option).to_s.insert(0, '#')
-        else option = nil
+        if number.present?
+          "##{number}"
+        else nil
         end
       else
-        option = self.send(option)
+        send(option)
       end
     end
-    first = result.slice(0)
-    last = result.slice(1,result.length).join(', ')
+    first = result.shift
+    last = result.join(', ')
     if last.present?
       "#{first} (#{last})"
     else
