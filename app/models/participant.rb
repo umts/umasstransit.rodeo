@@ -28,10 +28,28 @@ class Participant < ActiveRecord::Base
     maneuver_participants.sum :score
   end
 
-  def name_and_number
-    if number
-      "#{name} (##{number})"
-    else name
+  def display_information(*options)
+    # option can be any symbol with a corresponding method on Participant.
+    # OR, :bus.
+    result = options.map do |option|
+      case option
+      when :bus
+        option = bus.number
+      when :number
+        if number
+          option = self.send(option).to_s.insert(0, '#')
+        else option = nil
+        end
+      else
+        option = self.send(option)
+      end
+    end
+    first = result.slice(0)
+    last = result.slice(1,result.length).join(', ')
+    if last.present?
+      "#{first} (#{last})"
+    else
+      "#{first}"
     end
   end
 

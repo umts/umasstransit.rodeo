@@ -12,7 +12,7 @@
     %tr
       %td
         - if @top_20.include? participant
-          = participant.name_and_number
+          = participant.display_information(:name, :number)
         - else
           = '#' + participant.number.to_s
       - @maneuvers.each do |maneuver|
