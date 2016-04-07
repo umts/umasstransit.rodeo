@@ -14,7 +14,7 @@
         - if @top_20.include? participant
           = participant.display_information(:name, :number)
         - else
-          = '#' + participant.number.to_s
+          = participant.display_information(:number)
       - @maneuvers.each do |maneuver|
         %td
           - record = participant.maneuver_record maneuver
