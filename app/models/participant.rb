@@ -33,11 +33,6 @@ class Participant < ActiveRecord::Base
     # OR, :bus.
     result = options.map do |option|
       case option
-      when :bus
-        if bus.present?
-          bus.number
-        else nil
-        end
       when :number
         if number.present?
           "##{number}"
