@@ -41,7 +41,7 @@ class Participant < ActiveRecord::Base
       end
     end
     first = result.shift
-    last = result.delete_if { |x| x.nil? }.join(', ')
+    last = result.compact.join(', ')
     if last.present?
       "#{first} (#{last})"
     else
