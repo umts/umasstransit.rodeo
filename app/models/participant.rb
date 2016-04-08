@@ -30,7 +30,6 @@ class Participant < ActiveRecord::Base
 
   def display_information(*options)
     # option can be any symbol with a corresponding method on Participant.
-    # OR, :bus.
     result = options.map do |option|
       case option
       when :bus
