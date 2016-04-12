@@ -23,6 +23,7 @@ gem 'underscore-rails'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-bootstrap'
+  gem 'rails-assets-codedance--jquery.areyousure'
 end
 
 group :production do

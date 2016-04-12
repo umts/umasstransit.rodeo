@@ -3,7 +3,7 @@
   %h3 #{@participant.display_information(:name, :number, :bus)}
   %hr
 
-  = form_tag maneuver_participants_path do
+  = form_tag maneuver_participants_path, id: 'score_form' do
     = hidden_field_tag :maneuver_id, @maneuver.id
     = hidden_field_tag :participant_id, @participant.id
     - @maneuver.grouped_obstacles.each do |(point_value, type), obstacles|

@@ -1,4 +1,5 @@
 $(document).ready(function(){
+  $('#score_form').areYouSure();
   $('.scoring').on('click', 'button.increment', function(){
     $(this).siblings('button.increment').prop('disabled', false);
     var field_name = $(this).data('field');
@@ -8,7 +9,7 @@ $(document).ready(function(){
       var type = $(this).data('type');
       if(type === 'minus') value--;
       if(type === 'plus') value++;
-      field.val(value);
+      field.val(value).change();
       var min = field.attr('min');
       var max = field.attr('max');
       if(min && value === parseInt(min)) $(this).prop('disabled', true);
