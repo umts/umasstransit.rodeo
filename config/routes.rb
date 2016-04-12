@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   get  'faye_test', to: 'faye#test', as: :faye_test
   post 'faye_test', to: 'faye#test'
 
+  resources :buses, only: %i(create index destroy)
+
   resources :circle_check_scores, only: %i(create index update)
 
   resources :maneuvers, only: :index do

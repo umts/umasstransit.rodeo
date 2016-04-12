@@ -9,7 +9,7 @@
   text-align: center;
 }
 
-.participants input{
+.participants input, .participants select{
   font-size: 30px;
   height: 60px;
 }

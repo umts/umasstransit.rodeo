@@ -28,6 +28,7 @@ class ParticipantsController < ApplicationController
     @participants = Participant.order(:created_at).reverse
     @unassigned = Participant.not_numbered.order :name
     @next_number = Participant.next_number
+    @buses = Bus.order :number
   end
 
   def scoreboard
@@ -66,6 +67,6 @@ class ParticipantsController < ApplicationController
   end
 
   def user_params
-    params.require(:participant).permit :name, :number
+    params.require(:participant).permit :name, :number, :bus_id
   end
 end

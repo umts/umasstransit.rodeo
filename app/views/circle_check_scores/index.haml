@@ -13,7 +13,7 @@
           = form_for CircleCheckScore.new(participant: participant), class: 'form-inline' do |f|
             %tr
               %td
-                = participant.name_and_number
+                = participant.display_information(:name, :number)
                 = f.hidden_field :participant_id, value: participant.id
               %td= f.number_field :defects_found, placeholder: 'Enter a score...', class: 'form-control'
               %td= f.number_field :total_defects, value: CircleCheckScore::TOTAL_DEFECTS_DEFAULT, class: 'form-control'
@@ -23,7 +23,7 @@
           = form_for participant.circle_check_score, class: 'form-inline' do |f|
             %tr
               %td
-                = participant.name_and_number
+                = participant.display_information(:name, :number)
                 = f.hidden_field :participant_id, value: participant.id
               %td= f.number_field :defects_found, placeholder: 'Enter a score...', class: 'form-control'
               %td= f.number_field :total_defects, value: CircleCheckScore::TOTAL_DEFECTS_DEFAULT, class: 'form-control'
