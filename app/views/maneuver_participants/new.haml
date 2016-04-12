@@ -3,50 +3,51 @@
   %h3 #{@participant.display_information(:name, :number, :bus)}
   %hr
 
-  = form_tag maneuver_participants_path do
-    = hidden_field_tag :maneuver_id, @maneuver.id
-    = hidden_field_tag :participant_id, @participant.id
-    - @maneuver.grouped_obstacles.each do |(point_value, type), obstacles|
+  = form_tag maneuver_participants_path, id: 'score_form' do
+    .score_fields
+      = hidden_field_tag :maneuver_id, @maneuver.id
+      = hidden_field_tag :participant_id, @participant.id
+      - @maneuver.grouped_obstacles.each do |(point_value, type), obstacles|
+        .field
+          = label_tag "#{point_value}-point #{type.pluralize} touched"
+          = number_field_tag "obstacle_#{obstacles.first.id}", 0, min: 0, max: obstacles.count
+          %button.btn.btn-primary.increment{type: :button, disabled: true,
+            data: { field: "obstacle_#{obstacles.first.id}",
+                    type: 'minus' } }-
+          %button.btn.btn-primary.increment{type: :button,
+            data: { field: "obstacle_#{obstacles.first.id}",
+                    type: 'plus' } }+
+      - @maneuver.distance_targets.each do |target|
+        .field
+          = label_tag "#{target.interval_type} from #{target.name}"
+          = number_field_tag "target_#{target.id}", target.minimum, min: 0
+          %button.btn.btn-primary.increment{type: :button, disabled: true,
+            data: { field: "target_#{target.id}",
+                    type: 'minus' } }-
+          %button.btn.btn-primary.increment{type: :button,
+            data: { field: "target_#{target.id}",
+            type: 'plus' } }+
       .field
-        = label_tag "#{point_value}-point #{type.pluralize} touched"
-        = number_field_tag "obstacle_#{obstacles.first.id}", 0, min: 0, max: obstacles.count
+        - if @maneuver.name.include? 'Reverse'
+          = label_tag 'Extra reverses'
+        - else
+          = label_tag 'Reverses'
+        = number_field_tag :reversed_direction, 0, min: 0
         %button.btn.btn-primary.increment{type: :button, disabled: true,
-          data: { field: "obstacle_#{obstacles.first.id}",
-                  type: 'minus' } }-
+          data: { field: :reversed_direction, type: 'minus' } }-
         %button.btn.btn-primary.increment{type: :button,
-          data: { field: "obstacle_#{obstacles.first.id}",
-                  type: 'plus' } }+
-    - @maneuver.distance_targets.each do |target|
+          data: { field: :reversed_direction, type: 'plus' } }+
+      - if @maneuver.speed_target.present?
+        .field
+          = label_tag "Achieved #{@maneuver.speed_target} mph"
+          = check_box_tag :speed_achieved, true, true
+      - if @maneuver.counts_additional_stops?
+        .field
+          = label_tag 'Extra stops?'
+          = check_box_tag :made_additional_stops, true, false
       .field
-        = label_tag "#{target.interval_type} from #{target.name}"
-        = number_field_tag "target_#{target.id}", target.minimum, min: 0
-        %button.btn.btn-primary.increment{type: :button, disabled: true,
-          data: { field: "target_#{target.id}",
-                  type: 'minus' } }-
-        %button.btn.btn-primary.increment{type: :button,
-          data: { field: "target_#{target.id}",
-          type: 'plus' } }+
-    .field
-      - if @maneuver.name.include? 'Reverse'
-        = label_tag 'Extra reverses'
-      - else
-        = label_tag 'Reverses'
-      = number_field_tag :reversed_direction, 0, min: 0
-      %button.btn.btn-primary.increment{type: :button, disabled: true,
-        data: { field: :reversed_direction, type: 'minus' } }-
-      %button.btn.btn-primary.increment{type: :button,
-        data: { field: :reversed_direction, type: 'plus' } }+
-    - if @maneuver.speed_target.present?
-      .field
-        = label_tag "Achieved #{@maneuver.speed_target} mph"
-        = check_box_tag :speed_achieved, true, true
-    - if @maneuver.counts_additional_stops?
-      .field
-        = label_tag 'Extra stops?'
-        = check_box_tag :made_additional_stops, true, false
-    .field
-      = label_tag 'Completed as designed?'
-      = check_box_tag :completed_as_designed, true, true
+        = label_tag 'Completed as designed?'
+        = check_box_tag :completed_as_designed, true, true
     = submit_tag 'Save & next', class: 'btn btn-primary submit'
     = link_to previous_participant_maneuver_path(@maneuver) do
       %button.btn.btn-secondary.actions{type: :button} Previous participant
