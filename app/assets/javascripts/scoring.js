@@ -22,13 +22,14 @@ $(document).ready(function(){
     setTimeout(function() {
       $(".score_fields :input[type=number]").each(function(){
         if ($(this).val() != '0') {
-          var currentVal = $(this).val();
-          $(this).val(currentVal).change();
+          var current = $(this).val();
+          $(this).val(current).change();
+          return false;
         } else {
           $('#score_form').removeClass('dirty');
         }
       });
-    });
+    }, 1000);
   });
 });
 
