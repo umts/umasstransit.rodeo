@@ -71,7 +71,7 @@
                   type: 'plus' } }+
       .field
         = f.label 'Sudden stops'
-        = f.number_field :sudden_stops, value: 0, min: 0, max: 2
+        = f.number_field :sudden_stops, value: 0, min: 0
         %button.btn.btn-primary.increment{type: :button, disabled: true,
           data: { field: :onboard_judging_sudden_stops,
                   type: 'minus' } }-
@@ -80,7 +80,7 @@
                   type: 'plus' } }+
       .field
         = f.label 'Sudden starts'
-        = f.number_field :sudden_starts, value: 0, min: 0, max: 2
+        = f.number_field :sudden_starts, value: 0, min: 0
         %button.btn.btn-primary.increment{type: :button, disabled: true,
           data: { field: :onboard_judging_sudden_starts,
                   type: 'minus' } }-
@@ -89,7 +89,7 @@
                   type: 'plus' } }+
       .field
         = f.label 'Abrupt turns'
-        = f.number_field :abrupt_turns, value: 0, min: 0, max: 2
+        = f.number_field :abrupt_turns, value: 0, min: 0
         %button.btn.btn-primary.increment{type: :button, disabled: true,
           data: { field: :onboard_judging_abrupt_turns,
                   type: 'minus' } }-
