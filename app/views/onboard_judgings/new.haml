@@ -35,10 +35,10 @@
         = f.label 'Missed horn sounds'
         = f.number_field :missed_horn_sounds, value: 0, min: 0
         %button.btn.btn-primary.increment{type: :button, disabled: true,
-          data: { field: :onboard_judging_missed_turn_signals,
+          data: { field: :onboard_judging_missed_horn_sounds,
                   type: 'minus' } }-
         %button.btn.btn-primary.increment{type: :button,
-          data: { field: :onboard_judging_missed_turn_signals,
+          data: { field: :onboard_judging_missed_horn_sounds,
                   type: 'plus' } }+
       .field
         = f.label 'Missed flashers'
@@ -71,7 +71,7 @@
                   type: 'plus' } }+
       .field
         = f.label 'Sudden stops'
-        = f.number_field :sudden_stops, value: 0, min: 0, max: 2
+        = f.number_field :sudden_stops, value: 0, min: 0
         %button.btn.btn-primary.increment{type: :button, disabled: true,
           data: { field: :onboard_judging_sudden_stops,
                   type: 'minus' } }-
@@ -80,7 +80,7 @@
                   type: 'plus' } }+
       .field
         = f.label 'Sudden starts'
-        = f.number_field :sudden_starts, value: 0, min: 0, max: 2
+        = f.number_field :sudden_starts, value: 0, min: 0
         %button.btn.btn-primary.increment{type: :button, disabled: true,
           data: { field: :onboard_judging_sudden_starts,
                   type: 'minus' } }-
@@ -89,7 +89,7 @@
                   type: 'plus' } }+
       .field
         = f.label 'Abrupt turns'
-        = f.number_field :abrupt_turns, value: 0, min: 0, max: 2
+        = f.number_field :abrupt_turns, value: 0, min: 0
         %button.btn.btn-primary.increment{type: :button, disabled: true,
           data: { field: :onboard_judging_abrupt_turns,
                   type: 'minus' } }-

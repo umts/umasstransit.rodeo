@@ -1,4 +1,6 @@
 class Participant < ActiveRecord::Base
+  has_paper_trail
+
   SORT_ORDERS = %i(total_score maneuver_score participant_name participant_number)
 
   belongs_to :bus
@@ -18,10 +20,6 @@ class Participant < ActiveRecord::Base
 
   def has_completed?(maneuver)
     maneuvers.include? maneuver
-  end
-
-  def maneuver_record(maneuver)
-    maneuver_participants.find_by maneuver: maneuver
   end
 
   def maneuver_score
@@ -76,5 +74,9 @@ class Participant < ActiveRecord::Base
     when :participant_number
       numbered.order :number
     end
+  end
+
+  def self.top_20
+    numbered.includes(:maneuver_participants).sort_by(&:total_score).reverse.first 20
   end
 end

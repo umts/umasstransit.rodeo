@@ -9,6 +9,9 @@ $(document).ready(function(){
     });
   });
 
+  $('.scoreboard').on('click', 'button.fullscreen', function(){
+    $('.scoreboard-content').get(0).webkitRequestFullscreen();
+  });
 });
 
 PrivatePub.subscribe('/scoreboard', function(){

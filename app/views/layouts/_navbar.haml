@@ -5,8 +5,6 @@
     - if Participant.any?
       = link_to scoreboard_participants_path do
         %button.btn.btn-default.navbar-btn{type: :button} Scoreboard
-      - if params[:action] == 'scoreboard'
-        %button.btn.btn-default.navbar-btn.hide-button{type: :button} Hide
     - if user_signed_in?
       = link_to maneuvers_path do
         %button.btn.btn-default.navbar-btn{type: :button} Maneuvers

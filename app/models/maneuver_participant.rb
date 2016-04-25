@@ -19,6 +19,14 @@ class ManeuverParticipant < ActiveRecord::Base
     end
   end
 
+  def self.scoreboard_grouping
+    grouping = {}
+    ManeuverParticipant.all.group_by(&:participant_id).each_pair do |pid, mps|
+      grouping[pid] = mps.group_by(&:maneuver_id)
+    end
+    grouping
+  end
+
   private
 
   def set_score

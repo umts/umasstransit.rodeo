@@ -1,12 +1,37 @@
 .scoreboard-sorting{
   margin-left: 5px;
+  margin-bottom: 5px;
+}
+
+button.fullscreen{
+  font-size: 40px;
   margin-bottom: 10px;
+}
+
+button.fullscreen .glyphicon{
+  margin-top: 10px;
+  padding: 0 5px;
 }
 
 img.scoreboard-sort-loading{
   height: 30px;
   margin-bottom: 10px;
   padding: 3px;
+}
+
+.scoreboard-content {
+  max-height: 1050px;
+  overflow: scroll;
+}
+
+.scoreboard-content:not(:-wekbit-full-screen) {
+  margin-top: 10px;
+}
+
+.scoreboard-content:-webkit-full-screen {
+  border-radius: 6px;
+  padding: 5px;
+  width: 98%;
 }
 
 table.scoreboard{
