@@ -18,7 +18,8 @@ class ManeuversController < ApplicationController
                                         participant: participant.number)
       end
     else redirect_to maneuvers_path,
-         notice: 'There are no more participants in the queue for this maneuver.'
+                     notice: 'There are no more participants in the queue for
+                              this maneuver.'
     end
   end
 
@@ -29,7 +30,8 @@ class ManeuversController < ApplicationController
                                            participant: participant
       redirect_to record
     else redirect_to :back,
-         notice: 'This is the first participant who completed this maneuver.'
+                     notice: 'This is the first participant
+                     who completed this maneuver.'
     end
   end
 

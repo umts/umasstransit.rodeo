@@ -4,7 +4,7 @@ class OnboardJudgingsController < ApplicationController
   def create
     record = OnboardJudging.create! params.require(:onboard_judging).permit!
     redirect_to select_participant_onboard_judgings_path,
-      notice: 'Onboard score has been saved.'
+                notice: 'Onboard score has been saved.'
     PrivatePub.publish_to '/scoreboard', record
   end
 
@@ -14,7 +14,8 @@ class OnboardJudgingsController < ApplicationController
   end
 
   def select_participant
-    @participants = Participant.numbered.includes(:onboard_judging).order(:number).reverse
+    @participants = Participant.numbered.includes(:onboard_judging)
+                               .order(:number).reverse
   end
 
   def show
@@ -24,7 +25,7 @@ class OnboardJudgingsController < ApplicationController
   def update
     @record.update params.require(:onboard_judging).permit!
     redirect_to select_participant_onboard_judgings_path,
-      notice: 'Onboard score has been saved.'
+                notice: 'Onboard score has been saved.'
     PrivatePub.publish_to '/scoreboard', @record
   end
 

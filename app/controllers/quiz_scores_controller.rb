@@ -9,10 +9,12 @@ class QuizScoresController < ApplicationController
 
   def index
     @participants = Participant.includes(:quiz_score).order :number
-    sorted = Participant.unscoped.includes(:quiz_score).order(:name).group_by do |participant|
+    sorted = Participant.unscoped.includes(:quiz_score)
+                        .order(:name).group_by do |participant|
       participant.quiz_score.present?
     end
-    @scored, @unscored = sorted[true], sorted[false]
+    @scored = sorted[true]
+    @unscored = sorted[false]
   end
 
   def update
@@ -24,7 +26,9 @@ class QuizScoresController < ApplicationController
   private
 
   def score_params
-    params.require(:quiz_score).permit :participant_id, :points_achieved, :total_points
+    params.require(:quiz_score).permit :participant_id,
+                                       :points_achieved,
+                                       :total_points
   end
 
   def find_score
