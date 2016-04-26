@@ -1,7 +1,10 @@
 class Participant < ActiveRecord::Base
   has_paper_trail
 
-  SORT_ORDERS = %i(total_score maneuver_score participant_name participant_number)
+  SORT_ORDERS = %i(total_score
+                   maneuver_score
+                   participant_name
+                   participant_number)
 
   belongs_to :bus
   has_many :maneuver_participants, dependent: :destroy
@@ -68,7 +71,8 @@ class Participant < ActiveRecord::Base
     when :total_score, nil
       numbered.includes(:maneuver_participants).sort_by(&:total_score).reverse
     when :maneuver_score
-      numbered.includes(:maneuver_participants).sort_by(&:maneuver_score).reverse
+      numbered.includes(:maneuver_participants)
+              .sort_by(&:maneuver_score).reverse
     when :participant_name
       unscoped.numbered.order :name
     when :participant_number
@@ -77,6 +81,7 @@ class Participant < ActiveRecord::Base
   end
 
   def self.top_20
-    numbered.includes(:maneuver_participants).sort_by(&:total_score).reverse.first 20
+    numbered.includes(:maneuver_participants)
+            .sort_by(&:total_score).reverse.first 20
   end
 end
