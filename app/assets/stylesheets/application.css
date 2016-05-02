@@ -20,7 +20,7 @@ p.notice{
   text-align: center;
 }
 
-p.alert{
+p.errors{
   background-color: #e8b5b5;
   border: 3px solid #d16b6b;
   border-radius: 6px;

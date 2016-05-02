@@ -14,16 +14,12 @@ class ParticipantsController < ApplicationController
   def create
     participant = Participant.new user_params
     if participant.save
-      redirect_to participants_path,
-        notice: 'Participant has been created.'
+      redirect_to participants_path
+      flash[:notice] = "Participant was successfully created."
       PrivatePub.publish_to '/scoreboard', participant
-    elsif participant.errors.include?(:name)
-      redirect_to participants_path,
-        alert: 'Participant with that name already exists!'
-    # add more failures here if necessary
     else
-      redirect_to participants_path,
-        alert: 'An unknown error occured. Please contact IT for assistance.'
+      redirect_to participants_path
+      flash[:errors] = participant.errors.full_messages
     end
   end
 
