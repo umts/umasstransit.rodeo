@@ -1,12 +1,13 @@
 class ParticipantsController < ApplicationController
   before_action :find_user, only: %i(assign_number destroy update)
-  skip_before_action :authenticate_user!, only: %i(scoreboard scoreboard_partial welcome)
+  skip_before_action :authenticate_user!,
+                     only: %i(scoreboard scoreboard_partial welcome)
 
   def assign_number
     @participant.update! number: params.require(:number),
                          bus_id: params.require(:bus_id)
     redirect_to participants_path,
-      notice: 'Participant has been added to the queue.'
+                notice: 'Participant has been added to the queue.'
     PrivatePub.publish_to '/scoreboard', @participant
   end
 
@@ -29,7 +30,7 @@ class ParticipantsController < ApplicationController
   def destroy
     @participant.destroy!
     redirect_to participants_path,
-      notice: 'Participant has been removed.'
+                notice: 'Participant has been removed.'
     PrivatePub.publish_to '/scoreboard', removed: @participant
   end
 
@@ -62,7 +63,7 @@ class ParticipantsController < ApplicationController
   def update
     @participant.update! user_params
     redirect_to participants_path,
-      notice: 'Participant has been updated.'
+                notice: 'Participant has been updated.'
     PrivatePub.publish_to '/scoreboard', @participant
   end
 

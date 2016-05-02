@@ -11,7 +11,4 @@ class QuizScore < ActiveRecord::Base
   def score
     (50 / total_points * points_achieved).round 1
   end
-
-  private
-
 end
