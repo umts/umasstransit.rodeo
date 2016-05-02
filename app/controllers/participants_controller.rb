@@ -12,10 +12,15 @@ class ParticipantsController < ApplicationController
   end
 
   def create
-    participant = Participant.create! user_params
-    redirect_to participants_path,
-                notice: 'Participant has been created.'
-    PrivatePub.publish_to '/scoreboard', participant
+    participant = Participant.new user_params
+    if participant.save
+      redirect_to participants_path
+      flash[:notice] = "Participant was successfully created."
+      PrivatePub.publish_to '/scoreboard', participant
+    else
+      redirect_to participants_path
+      flash[:errors] = participant.errors.full_messages
+    end
   end
 
   def destroy
