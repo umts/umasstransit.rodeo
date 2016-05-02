@@ -16,9 +16,13 @@ class ParticipantsController < ApplicationController
       redirect_to participants_path,
         notice: 'Participant has been created.'
       PrivatePub.publish_to '/scoreboard', participant
-    else
+    elsif participant.errors.include?(:name)
       redirect_to participants_path,
         alert: 'Participant with that name already exists!'
+    # add more failures here if necessary
+    else
+      redirect_to participants_path,
+        alert: 'An unknown error occured. Please contact IT for assistance.'
     end
   end
 
