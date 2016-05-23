@@ -23,41 +23,6 @@
         null,
         null
       ],
-      "/Users/dsfaulkenberry/umasstransit.rodeo/app/controllers/buses_controller.rb": [
-        1,
-        1,
-        2,
-        2,
-        1,
-        1,
-        null,
-        2,
-        null,
-        null,
-        1,
-        4,
-        null,
-        null,
-        1,
-        0,
-        0,
-        0,
-        null,
-        null,
-        1,
-        null,
-        1,
-        2,
-        null,
-        null
-      ],
-      "/Users/dsfaulkenberry/umasstransit.rodeo/app/controllers/application_controller.rb": [
-        1,
-        1,
-        1,
-        1,
-        null
-      ],
       "/Users/dsfaulkenberry/umasstransit.rodeo/app/models/bus.rb": [
         1,
         1,
@@ -211,7 +176,7 @@
         1,
         3,
         null,
-        7,
+        8,
         null,
         1,
         1,
@@ -295,6 +260,41 @@
         1,
         0,
         null,
+        null
+      ],
+      "/Users/dsfaulkenberry/umasstransit.rodeo/app/controllers/buses_controller.rb": [
+        1,
+        1,
+        2,
+        2,
+        1,
+        1,
+        null,
+        2,
+        null,
+        null,
+        1,
+        4,
+        null,
+        null,
+        1,
+        0,
+        0,
+        0,
+        null,
+        null,
+        1,
+        null,
+        1,
+        2,
+        null,
+        null
+      ],
+      "/Users/dsfaulkenberry/umasstransit.rodeo/app/controllers/application_controller.rb": [
+        1,
+        1,
+        1,
+        1,
         null
       ],
       "/Users/dsfaulkenberry/umasstransit.rodeo/app/models/maneuver.rb": [
@@ -656,6 +656,6 @@
         0
       ]
     },
-    "timestamp": 1464023192
+    "timestamp": 1464023863
   }
 }
