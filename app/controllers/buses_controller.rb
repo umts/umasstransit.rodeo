@@ -1,6 +1,10 @@
 class BusesController < ApplicationController
   def create
-    Bus.create! bus_params
+    bus = Bus.new bus_params
+    if bus.save
+      flash[:notice] = 'Bus was successfully added.'
+    else flash[:errors] = bus.errors.full_messages
+    end
     redirect_to :back
   end
 

@@ -25,7 +25,7 @@ end
 # Sets current user based on two acceptable values:
 # 1. a symbol name of a user factory trait;
 # 2. a specific instance of User.
-def when_current_user_is(user, options = {})
+def when_current_user_is(user)
   current_user =
     case user
     when Symbol then create :user, user
