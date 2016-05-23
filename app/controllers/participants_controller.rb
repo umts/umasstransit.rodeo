@@ -15,7 +15,7 @@ class ParticipantsController < ApplicationController
     participant = Participant.new user_params
     if participant.save
       redirect_to participants_path
-      flash[:notice] = "Participant was successfully created."
+      flash[:notice] = 'Participant was successfully created.'
       PrivatePub.publish_to '/scoreboard', participant
     else
       redirect_to participants_path
