@@ -35,7 +35,6 @@ describe 'adding a quiz score' do
       expect(page).to have_text 'Quiz score was saved.'
       input = find_field :quiz_score_points_achieved
       expect(input.value).to eql '50.0'
-
     end
   end
 

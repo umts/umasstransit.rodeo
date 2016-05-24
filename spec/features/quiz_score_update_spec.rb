@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'updating a quiz score' do
   before :each do
-    create :quiz_score
+    create :quiz_score, points_achieved: 50, total_points: 100
   end
 
   context 'with admin privilege' do
