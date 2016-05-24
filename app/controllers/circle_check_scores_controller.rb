@@ -8,10 +8,12 @@ class CircleCheckScoresController < ApplicationController
   end
 
   def index
-    sorted = Participant.unscoped.includes(:circle_check_score).order(:name).group_by do |participant|
+    sorted = Participant.unscoped.includes(:circle_check_score).order(:name)
+    sorted = sorted.group_by do |participant|
       participant.circle_check_score.present?
     end
-    @scored, @unscored = sorted[true], sorted[false]
+    @scored = sorted[true]
+    @unscored = sorted[false]
   end
 
   def update
@@ -23,7 +25,8 @@ class CircleCheckScoresController < ApplicationController
   private
 
   def score_params
-    params.require(:circle_check_score).permit(:participant_id, :defects_found, :total_defects)
+    params.require(:circle_check_score)
+          .permit(:participant_id, :defects_found, :total_defects)
   end
 
   def find_score

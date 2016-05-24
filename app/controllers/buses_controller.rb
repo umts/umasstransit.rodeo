@@ -13,7 +13,7 @@ class BusesController < ApplicationController
   end
 
   def destroy
-    bus = Bus.find_by id: params.require(:id)  
+    bus = Bus.find_by id: params.require(:id)
     bus.destroy!
     redirect_to :back
   end

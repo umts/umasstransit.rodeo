@@ -9,13 +9,12 @@ class OnboardJudging < ActiveRecord::Base
 
   def creator
     user_id = versions.find_by(event: 'create').whodunnit
-    if user_id
-      User.find_by id: user_id
-    end
+    User.find_by id: user_id if user_id
   end
 
   private
 
+  # rubocop:disable Metrics/AbcSize
   def set_score
     score = 50
     score -= missed_turn_signals
@@ -31,4 +30,5 @@ class OnboardJudging < ActiveRecord::Base
     end
     assign_attributes score: score
   end
+  # rubocop:enable Metrics/AbcSize
 end

@@ -6,7 +6,8 @@ describe Participant do
     let(:maneuver) { create :maneuver }
     context 'participant has completed maneuver' do
       before :each do
-        create :maneuver_participant, maneuver: maneuver, participant: participant
+        create :maneuver_participant, maneuver: maneuver,
+                                      participant: participant
       end
       it 'returns true' do
         expect(participant.has_completed?(maneuver)).to be true
