@@ -12,6 +12,7 @@ class ParticipantsController < ApplicationController
   end
 
   def create
+    deny_access and return unless current_user.has_role? :judge
     participant = Participant.new user_params
     if participant.save
       redirect_to participants_path
@@ -57,6 +58,7 @@ class ParticipantsController < ApplicationController
   end
 
   def update
+    deny_access and return unless current_user.has_role? :judge
     @participant.update! user_params
     redirect_to participants_path,
                 notice: 'Participant has been updated.'

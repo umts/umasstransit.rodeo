@@ -9,9 +9,7 @@ class OnboardJudging < ActiveRecord::Base
 
   def creator
     user_id = versions.find_by(event: 'create').whodunnit
-    if user_id
-      User.find_by id: user_id
-    end
+    User.find_by id: user_id if user_id
   end
 
   private

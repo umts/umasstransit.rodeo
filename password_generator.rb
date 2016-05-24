@@ -18,6 +18,6 @@ ANIMALS = %w(
   Sn@ke
   Tortoi$e
   Wea$el
-)
+).freeze
 
 puts [ANIMALS.sample, rand(1000).to_s.rjust(3, '0')].join '_'

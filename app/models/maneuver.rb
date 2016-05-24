@@ -20,8 +20,8 @@ class Maneuver < ActiveRecord::Base
     end
     unless participant.present?
       participant = Participant.numbered.order(:number).find do |participant|
-                      !participant.has_completed? self
-                    end
+        !participant.has_completed? self
+      end
     end
     participant
   end

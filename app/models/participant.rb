@@ -4,7 +4,7 @@ class Participant < ActiveRecord::Base
   SORT_ORDERS = %i(total_score
                    maneuver_score
                    participant_name
-                   participant_number)
+                   participant_number).freeze
 
   belongs_to :bus
   has_many :maneuver_participants, dependent: :destroy
@@ -46,7 +46,7 @@ class Participant < ActiveRecord::Base
     if last.present?
       "#{first} (#{last})"
     else
-      "#{first}"
+      first.to_s
     end
   end
 

@@ -5,7 +5,6 @@ RSpec.describe OnboardJudging, type: :model do
 end
 
 describe OnboardJudging do
-  # let!(:participant) { create :participant }
   let!(:onboard_judging) { create :onboard_judging }
   describe 'set_score' do
     it 'private method is run' do
@@ -19,11 +18,10 @@ describe OnboardJudging do
       expected_score -= onboard_judging.sudden_starts
       expected_score -= onboard_judging.abrupt_turns
       if onboard_judging.minutes_elapsed >= 7
-        expected_score -= 60 * (onboard_judging.minutes_elapsed - 7) + onboard_judging.seconds_elapsed
+        expected_score -= 60 * (onboard_judging.minutes_elapsed - 7)
+        expected_score -= onboard_judging.seconds_elapsed
       end
       expect(onboard_judging.score).to eql expected_score
-      # binding.pry
-      # create :onboard_judging
     end
   end
 end

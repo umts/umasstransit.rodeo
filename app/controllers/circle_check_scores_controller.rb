@@ -2,6 +2,7 @@ class CircleCheckScoresController < ApplicationController
   before_action :find_score, only: :update
 
   def create
+    deny_access and return unless current_user.has_role? :circle_check_scorer
     score = CircleCheckScore.create! score_params
     redirect_to circle_check_scores_path, notice: 'Score was saved.'
     PrivatePub.publish_to '/scoreboard', score
@@ -11,10 +12,12 @@ class CircleCheckScoresController < ApplicationController
     sorted = Participant.unscoped.includes(:circle_check_score).order(:name).group_by do |participant|
       participant.circle_check_score.present?
     end
-    @scored, @unscored = sorted[true], sorted[false]
+    @scored = sorted[true]
+    @unscored = sorted[false]
   end
 
   def update
+    deny_access and return unless current_user.has_role? :circle_check_scorer
     @score.update! score_params
     redirect_to circle_check_scores_path, notice: 'Score was saved.'
     PrivatePub.publish_to '/scoreboard', @score
