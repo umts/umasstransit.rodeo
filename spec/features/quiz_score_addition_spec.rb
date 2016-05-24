@@ -59,7 +59,7 @@ describe 'adding a quiz score' do
   end
 
   context'out of range quiz score' do
-    it 'will not accept positive number greater than 100' do
+    it 'will not accept positive number greater than total points' do
       when_current_user_is :admin
       visit quiz_scores_url
       fill_in 'quiz_score_points_achieved', with: '9000'
