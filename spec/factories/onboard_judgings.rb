@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :onboard_judging do
-    user_id 1
+    participant
     score 1
     seconds_elapsed 1
     missed_turn_signals 1
@@ -11,5 +11,7 @@ FactoryGirl.define do
     sudden_stops 1
     abrupt_turns 1
     speeding false
+    sudden_starts 1
+    minutes_elapsed 7
   end
 end
