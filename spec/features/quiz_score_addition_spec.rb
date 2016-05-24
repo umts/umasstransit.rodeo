@@ -16,7 +16,7 @@ describe 'adding a quiz score' do
   end
 
   context 'with quiz scorer privilege' do
-    it 'adds and updates the quiz score' do
+    it 'adds the quiz score' do
       when_current_user_is :quiz_scorer
       visit quiz_scores_url
       fill_in 'quiz_score_points_achieved', with: '50'
@@ -24,15 +24,10 @@ describe 'adding a quiz score' do
       expect(page).to have_text 'Quiz score was saved.'
       input = find_field :quiz_score_points_achieved
       expect(input.value).to eql '50.0'
-      fill_in 'quiz_score_points_achieved', with: '70'
-      click_on 'Save score'
-      expect(page).to have_text 'Quiz score was saved.'
-      input = find_field :quiz_score_points_achieved
-      expect(input.value).to eql '70.0'
     end
   end
   context 'with admin privilege' do
-    it 'adds and updates the quiz score' do
+    it 'adds the quiz score' do
       when_current_user_is :admin
       visit quiz_scores_url
       fill_in 'quiz_score_points_achieved', with: '50'
@@ -40,11 +35,7 @@ describe 'adding a quiz score' do
       expect(page).to have_text 'Quiz score was saved.'
       input = find_field :quiz_score_points_achieved
       expect(input.value).to eql '50.0'
-      fill_in 'quiz_score_points_achieved', with: '70'
-      click_on 'Save score'
-      expect(page).to have_text 'Quiz score was saved.'
-      input = find_field :quiz_score_points_achieved
-      expect(input.value).to eql '70.0'
+
     end
   end
 
