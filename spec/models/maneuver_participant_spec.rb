@@ -1,5 +1,11 @@
 require 'rails_helper'
-
-RSpec.describe ManeuverParticipant, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+=begin
+describe 'creating maneuvers' do 
+	let!(:participant) {create :participant}
+	let!(:maneuvers) {create :maneuver}
+	let!(:obstacles) {create :obstacles}
+	let!(:distance_targets) {create :distance_targets}
+	it 'puts in scores'
+	end
 end
+=end

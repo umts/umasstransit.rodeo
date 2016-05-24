@@ -1,46 +1,33 @@
 require 'rails_helper'
 
-describe 'deleting a bus - admin' do 
-	before :each do 
-		create :bus
-		when_current_user_is :admin
-		visit buses_url
-	end
-	context 'with admin privelege' do 
-		it 'delete a bus' do 
-			expect(page).to have_text 'Bus 1'
-			click_on 'Remove'
-			expect(page).not_to have_text 'Bus 1'
-		end
-	end
-end
+describe 'deleting a bus' do
+  context 'with admin privilege' do
+    let!(:bus) { create :bus }
+    it 'deletes a bus' do
+      when_current_user_is :admin
+      visit buses_url
+      click_on 'Remove'
+      expect(page).not_to have_text bus.number
+    end
+  end
 
-describe 'deleting a bus - master of ceremonies' do 
-	before :each do 
-		create :bus
-		when_current_user_is :master_of_ceremonies
-		visit buses_url
-	end
-	context 'with admin privelege' do 
-		it 'delete a bus' do 
-			expect(page).to have_text 'Bus 1'
-			click_on 'Remove'
-			expect(page).not_to have_text 'Bus 1'
-		end
-	end
-end
+  context 'with master of ceremonies privilege' do
+    let!(:bus) { create :bus }
+    it 'deletes a bus' do
+      when_current_user_is :master_of_ceremonies
+      visit buses_url
+      click_on 'Remove'
+      expect(page).not_to have_text bus.number
+    end
+  end
 
-describe 'deleting a bus - judge' do 
-	before :each do 
-		create :bus
-		when_current_user_is :judge
-		visit buses_url
-	end
-	context 'with admin privelege' do 
-		it 'delete a bus' do 
-			expect(page).not_to have_text 'Bus 1'
-			click_on 'Remove'
-			expect(page).to have_text 'Bus 1'
-		end
-	end
+  context 'with judge privilege' do
+    let!(:bus) { create :bus }
+    it 'will not delete a bus' do
+      when_current_user_is :judge
+      visit buses_url
+      click_on 'Remove'
+      expect(page).to have_text bus.number
+    end
+  end
 end
