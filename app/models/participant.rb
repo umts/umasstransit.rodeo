@@ -63,6 +63,7 @@ class Participant < ActiveRecord::Base
     last_number + 1
   end
 
+  # rubocop:disable Metrics/CyclomaticComplexity
   def self.scoreboard_order(sort_order = nil)
     if sort_order
       raise ArgumentError unless SORT_ORDERS.include? sort_order
@@ -79,6 +80,7 @@ class Participant < ActiveRecord::Base
       numbered.order :number
     end
   end
+  # rubocop:enable Metrics/CyclomaticComplexity
 
   def self.top_20
     numbered.includes(:maneuver_participants)

@@ -27,6 +27,7 @@ class ManeuverParticipant < ActiveRecord::Base
 
   private
 
+  # rubocop:disable Metrics/AbcSize
   def set_score
     score = 50
     obstacles_hit.each do |point_value, count|
@@ -44,4 +45,5 @@ class ManeuverParticipant < ActiveRecord::Base
     score = [0, [score, 50].min].max
     assign_attributes score: score
   end
+  # rubocop:enable Metrics/AbcSize
 end

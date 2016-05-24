@@ -2,7 +2,7 @@ class ManeuverParticipantsController < ApplicationController
   before_action :find_record, only: %i(show update)
 
   def create
-    deny_access and return unless current_user.has_role? :judge
+    deny_access && return unless current_user.has_role? :judge
     maneuver = Maneuver.find_by id: params.require(:maneuver_id)
     participant = Participant.find_by id: params.require(:participant_id)
     unless participant.has_completed? maneuver
@@ -30,7 +30,7 @@ class ManeuverParticipantsController < ApplicationController
   end
 
   def update
-    deny_access and return unless current_user.has_role? :judge
+    deny_access && return unless current_user.has_role? :judge
     attrs = params.permit(:reversed_direction, :speed_achieved,
                           :made_additional_stops, :completed_as_designed)
     attrs[:obstacles_hit] = parse_obstacles

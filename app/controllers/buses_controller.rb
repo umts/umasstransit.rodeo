@@ -1,6 +1,6 @@
 class BusesController < ApplicationController
   def create
-    deny_access and return unless current_user.has_role? :master_of_ceremonies
+    deny_access && return unless current_user.has_role? :master_of_ceremonies
     bus = Bus.new bus_params
     if bus.save
       flash[:notice] = 'Bus was successfully added.'
@@ -14,7 +14,7 @@ class BusesController < ApplicationController
   end
 
   def destroy
-    deny_access and return unless current_user.has_role? :master_of_ceremonies
+    deny_access && return unless current_user.has_role? :master_of_ceremonies
     bus = Bus.find_by id: params.require(:id)
     bus.destroy!
     redirect_to :back

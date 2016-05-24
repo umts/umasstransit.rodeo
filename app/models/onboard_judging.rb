@@ -14,6 +14,7 @@ class OnboardJudging < ActiveRecord::Base
 
   private
 
+  # rubocop:disable Metrics/AbcSize
   def set_score
     score = 50
     score -= missed_turn_signals
@@ -29,4 +30,5 @@ class OnboardJudging < ActiveRecord::Base
     end
     assign_attributes score: score
   end
+  # rubocop:enable Metrics/AbcSize
 end

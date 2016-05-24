@@ -15,12 +15,10 @@ class Maneuver < ActiveRecord::Base
   end
 
   def next_participant(number = nil)
-    if number.present?
-      participant = participants.where('number > ?', number).first
-    end
+    participant = participants.find_by('number > ?', number) if number.present?
     unless participant.present?
-      participant = Participant.numbered.order(:number).find do |participant|
-        !participant.has_completed? self
+      participant = Participant.numbered.order(:number).find do |p|
+        !p.has_completed? self
       end
     end
     participant

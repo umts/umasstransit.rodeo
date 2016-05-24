@@ -2,10 +2,15 @@ class QuizScoresController < ApplicationController
   before_action :find_score, only: :update
 
   def create
-    deny_access and return unless current_user.has_role? :quiz_scorer
-    score = QuizScore.create! score_params
-    redirect_to quiz_scores_path, notice: 'Quiz score was saved.'
-    PrivatePub.publish_to '/scoreboard', score
+    deny_access && return unless current_user.has_role? :quiz_scorer
+    score = QuizScore.new score_params
+    if score.save
+      redirect_to quiz_scores_path, notice: 'Quiz score was saved.'
+      PrivatePub.publish_to '/scoreboard', score
+    else
+      flash[:error] = 'Invalid Score'
+      redirect_to :back
+    end
   end
 
   def index
@@ -19,10 +24,14 @@ class QuizScoresController < ApplicationController
   end
 
   def update
-    deny_access and return unless current_user.has_role? :quiz_scorer
-    @score.update! score_params
-    redirect_to quiz_scores_path, notice: 'Quiz score was saved.'
-    PrivatePub.publish_to '/scoreboard', @score
+    deny_access && return unless current_user.has_role? :quiz_scorer
+    if @score.update score_params
+      redirect_to quiz_scores_path, notice: 'Quiz score was saved.'
+      PrivatePub.publish_to '/scoreboard', @score
+    else
+      flash[:error] = 'Invalid Score'
+      redirect_to :back
+    end
   end
 
   private

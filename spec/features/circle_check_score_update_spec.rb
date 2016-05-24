@@ -37,3 +37,7 @@ describe 'updating a circle check score' do
     end
   end
 end
+
+RSpec.describe CircleCheckScore, type: :model do
+  pending "add a test for invaild score updates #{__FILE__}"
+end
