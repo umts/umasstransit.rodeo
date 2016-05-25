@@ -1,7 +1,10 @@
 class Participant < ActiveRecord::Base
   has_paper_trail
 
-  SORT_ORDERS = %i(total_score maneuver_score participant_name participant_number)
+  SORT_ORDERS = %i(total_score
+                   maneuver_score
+                   participant_name
+                   participant_number).freeze
 
   belongs_to :bus
   has_many :maneuver_participants, dependent: :destroy
@@ -43,7 +46,7 @@ class Participant < ActiveRecord::Base
     if last.present?
       "#{first} (#{last})"
     else
-      "#{first}"
+      first.to_s
     end
   end
 
@@ -60,6 +63,7 @@ class Participant < ActiveRecord::Base
     last_number + 1
   end
 
+  # rubocop:disable Metrics/CyclomaticComplexity
   def self.scoreboard_order(sort_order = nil)
     if sort_order
       raise ArgumentError unless SORT_ORDERS.include? sort_order
@@ -68,15 +72,18 @@ class Participant < ActiveRecord::Base
     when :total_score, nil
       numbered.includes(:maneuver_participants).sort_by(&:total_score).reverse
     when :maneuver_score
-      numbered.includes(:maneuver_participants).sort_by(&:maneuver_score).reverse
+      numbered.includes(:maneuver_participants)
+              .sort_by(&:maneuver_score).reverse
     when :participant_name
       unscoped.numbered.order :name
     when :participant_number
       numbered.order :number
     end
   end
+  # rubocop:enable Metrics/CyclomaticComplexity
 
   def self.top_20
-    numbered.includes(:maneuver_participants).sort_by(&:total_score).reverse.first 20
+    numbered.includes(:maneuver_participants)
+            .sort_by(&:total_score).reverse.first 20
   end
 end

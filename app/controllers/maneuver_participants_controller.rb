@@ -35,7 +35,7 @@ class ManeuverParticipantsController < ApplicationController
     attrs[:distances_achieved] = parse_distance_targets
     @record.update! attrs
     redirect_to :back,
-      notice: 'Maneuver score has been saved.'
+                notice: 'Maneuver score has been saved.'
     PrivatePub.publish_to '/scoreboard', @record
   end
 
@@ -58,7 +58,7 @@ class ManeuverParticipantsController < ApplicationController
 
   def parse_distance_targets
     distances_achieved = {}
-    params.select do |key, value|
+    params.select do |key, _value|
       key.starts_with?('target')
     end.each do |key, value|
       target = DistanceTarget.find_by id: key.split('_').last.to_i

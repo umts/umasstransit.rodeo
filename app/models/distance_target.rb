@@ -3,7 +3,7 @@ class DistanceTarget < ActiveRecord::Base
 
   validates :x, :y, :direction, :intervals,
             :multiplier, :maneuver, :name, :minimum,
-    presence: true
+            presence: true
 
   def index
     maneuver.distance_targets.order(:id).index self
