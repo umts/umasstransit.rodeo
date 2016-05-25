@@ -4,6 +4,11 @@ class OnboardJudging < ActiveRecord::Base
   belongs_to :participant
   validates :participant, uniqueness: true
   validates :score, :minutes_elapsed, :seconds_elapsed, presence: true
+  validates :minutes_elapsed, numericality: {
+    greater_than_or_equal_to: 0 }
+  validates :seconds_elapsed, numericality: {
+    less_than_or_equal_to: 59,
+    greater_than_or_equal_to: 0 }
 
   before_validation :set_score
 
