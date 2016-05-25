@@ -38,7 +38,3 @@ describe 'updating a quiz score' do
     end
   end
 end
-
-RSpec.describe QuizScore, type: :model do
-  pending "add a test for invaild score updates #{__FILE__}"
-end

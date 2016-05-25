@@ -8,7 +8,7 @@ class QuizScoresController < ApplicationController
       redirect_to quiz_scores_path, notice: 'Quiz score was saved.'
       PrivatePub.publish_to '/scoreboard', score
     else
-      flash[:error] = 'Invalid Score'
+      flash[:errors] = score.errors.full_messages
       redirect_to :back
     end
   end
@@ -29,7 +29,7 @@ class QuizScoresController < ApplicationController
       redirect_to quiz_scores_path, notice: 'Quiz score was saved.'
       PrivatePub.publish_to '/scoreboard', @score
     else
-      flash[:error] = 'Invalid Score'
+      flash[:errors] = score.errors.full_messages
       redirect_to :back
     end
   end

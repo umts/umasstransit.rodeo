@@ -8,7 +8,7 @@ class CircleCheckScoresController < ApplicationController
       redirect_to circle_check_scores_path, notice: 'Score was saved.'
       PrivatePub.publish_to '/scoreboard', score
     else
-      flash[:error] = 'Invalid Score'
+      flash[:errors] = score.errors.full_messages
       redirect_to :back
     end
   end
@@ -28,7 +28,7 @@ class CircleCheckScoresController < ApplicationController
       redirect_to circle_check_scores_path, notice: 'Score was saved.'
       PrivatePub.publish_to '/scoreboard', @score
     else
-      flash[:error] = 'Invalid Score'
+      flash[:errors] = @score.errors.full_messages
       redirect_to :back
     end
   end
