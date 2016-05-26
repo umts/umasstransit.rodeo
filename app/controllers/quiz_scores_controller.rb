@@ -6,7 +6,7 @@ class QuizScoresController < ApplicationController
     score = QuizScore.new score_params
     if score.save
       redirect_to quiz_scores_path, notice: 'Quiz score was saved.'
-      PrivatePub.publish_to '/scoreboard', score
+      update_scoreboard with: score
     else
       flash[:errors] = score.errors.full_messages
       redirect_to :back
@@ -27,7 +27,7 @@ class QuizScoresController < ApplicationController
     deny_access && return unless current_user.has_role? :quiz_scorer
     if @score.update score_params
       redirect_to quiz_scores_path, notice: 'Quiz score was saved.'
-      PrivatePub.publish_to '/scoreboard', @score
+      update_scoreboard with: @score
     else
       flash[:errors] = @score.errors.full_messages
       redirect_to :back

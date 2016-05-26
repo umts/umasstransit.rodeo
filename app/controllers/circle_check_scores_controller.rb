@@ -6,7 +6,7 @@ class CircleCheckScoresController < ApplicationController
     score = CircleCheckScore.new score_params
     if score.save
       redirect_to circle_check_scores_path, notice: 'Score was saved.'
-      PrivatePub.publish_to '/scoreboard', score
+      update_scoreboard with: score
     else
       flash[:errors] = score.errors.full_messages
       redirect_to :back
@@ -26,7 +26,7 @@ class CircleCheckScoresController < ApplicationController
     deny_access && return unless current_user.has_role? :circle_check_scorer
     if @score.update score_params
       redirect_to circle_check_scores_path, notice: 'Score was saved.'
-      PrivatePub.publish_to '/scoreboard', @score
+      update_scoreboard with: @score
     else
       flash[:errors] = @score.errors.full_messages
       redirect_to :back

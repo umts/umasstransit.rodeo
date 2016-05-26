@@ -9,4 +9,8 @@ class ApplicationController < ActionController::Base
     flash[:notice] = 'You are not authorized to make that action.'
     redirect_to :back
   end
+
+  def update_scoreboard(score)
+    PrivatePub.publish_to '/scoreboard', score unless Rails.env.test?
+  end
 end

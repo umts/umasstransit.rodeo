@@ -8,7 +8,7 @@ class ParticipantsController < ApplicationController
                          bus_id: params.require(:bus_id)
     redirect_to participants_path,
                 notice: 'Participant has been added to the queue.'
-    PrivatePub.publish_to '/scoreboard', @participant
+    update_scoreboard with: @participant
   end
 
   def create
@@ -17,7 +17,7 @@ class ParticipantsController < ApplicationController
     if participant.save
       redirect_to participants_path
       flash[:notice] = 'Participant was successfully created.'
-      PrivatePub.publish_to '/scoreboard', participant
+      update_scoreboard with: participant
     else
       redirect_to participants_path
       flash[:errors] = participant.errors.full_messages
@@ -28,7 +28,7 @@ class ParticipantsController < ApplicationController
     @participant.destroy!
     redirect_to participants_path,
                 notice: 'Participant has been removed.'
-    PrivatePub.publish_to '/scoreboard', removed: @participant
+    update_scoreboard with: @participant
   end
 
   def index
@@ -62,7 +62,7 @@ class ParticipantsController < ApplicationController
     @participant.update! user_params
     redirect_to participants_path,
                 notice: 'Participant has been updated.'
-    PrivatePub.publish_to '/scoreboard', @participant
+    update_scoreboard with: @participant
   end
 
   def welcome
