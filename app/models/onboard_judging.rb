@@ -11,7 +11,7 @@ class OnboardJudging < ActiveRecord::Base
   SCORE_COLUMNS = %w(
     missed_turn_signals missed_horn_sounds missed_flashers abrupt_turns
     times_moved_with_door_open unannounced_stops sudden_stops sudden_starts
-  )
+  ).freeze
 
   before_validation :initialize_score_attributes
   before_validation :set_score
@@ -27,7 +27,7 @@ class OnboardJudging < ActiveRecord::Base
     SCORE_COLUMNS.select do |column_name|
       attributes[column_name].nil?
     end.each do |column_name|
-      write_attribute column_name, 0
+      self[column_name] = 0
     end
   end
 

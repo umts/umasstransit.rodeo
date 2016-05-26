@@ -20,4 +20,12 @@ describe 'recording a maneuver score' do
     visit maneuver_participant_path(ManeuverParticipant.last)
     expect(page).to have_text "recorded by #{judge.name}"
   end
+  #   it 'updates' do
+  #     click_on 'Save & next'
+  #     when_current_user_is :admin
+  #     visit maneuver_participant_path(id: participant.id)
+  #     fill_in
+  #     expect { click_on 'Save & next' }
+  #       .to be {}
+  #   end
 end
