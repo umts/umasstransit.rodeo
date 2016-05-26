@@ -11,6 +11,8 @@ class ApplicationController < ActionController::Base
   end
 
   def update_scoreboard(score)
-    PrivatePub.publish_to '/scoreboard', score unless Rails.env.test?
+    unless Rails.env.test?
+      PrivatePub.publish_to '/scoreboard', score
+    end
   end
 end
