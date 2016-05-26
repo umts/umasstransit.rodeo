@@ -19,8 +19,8 @@ describe 'scoring appears properly' do
     expect(page).to have_text circle_check_score.score
   end
   it 'when participant has maneuver scores' do
-    maneuver_participant = create :maneuver_participant, :perfect_score
-    participant.update maneuver_participants: [maneuver_participant]
+    maneuver_participant = create :maneuver_participant, :perfect_score,
+                                  participant: participant
     visit scoreboard_participants_url
     expect(page).to have_text maneuver_participant.score
   end
