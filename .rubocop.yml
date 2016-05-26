@@ -9,6 +9,7 @@ AllCops:
     - 'db/**/*'
     - 'vendor/**/*'
 
+
 # Relax complexity testing to codeclimate standards (roughly).
 Metrics/AbcSize:
   Max: 20

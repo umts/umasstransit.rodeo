@@ -2,10 +2,11 @@ class OnboardJudgingsController < ApplicationController
   before_action :find_record, only: %i(show update)
 
   def create
+    deny_access && return unless current_user.has_role? :judge
     record = OnboardJudging.create! params.require(:onboard_judging).permit!
     redirect_to select_participant_onboard_judgings_path,
                 notice: 'Onboard score has been saved.'
-    PrivatePub.publish_to '/scoreboard', record
+    update_scoreboard with: record
   end
 
   def new
@@ -23,10 +24,11 @@ class OnboardJudgingsController < ApplicationController
   end
 
   def update
+    deny_access && return unless current_user.has_role? :judge
     @record.update params.require(:onboard_judging).permit!
     redirect_to select_participant_onboard_judgings_path,
                 notice: 'Onboard score has been saved.'
-    PrivatePub.publish_to '/scoreboard', @record
+    update_scoreboard with: @record
   end
 
   private

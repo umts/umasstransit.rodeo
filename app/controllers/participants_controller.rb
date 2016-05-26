@@ -8,15 +8,16 @@ class ParticipantsController < ApplicationController
                          bus_id: params.require(:bus_id)
     redirect_to participants_path,
                 notice: 'Participant has been added to the queue.'
-    PrivatePub.publish_to '/scoreboard', @participant
+    update_scoreboard with: @participant
   end
 
   def create
+    deny_access && return unless current_user.has_role? :master_of_ceremonies
     participant = Participant.new user_params
     if participant.save
       redirect_to participants_path
       flash[:notice] = 'Participant was successfully created.'
-      PrivatePub.publish_to '/scoreboard', participant
+      update_scoreboard with: participant
     else
       redirect_to participants_path
       flash[:errors] = participant.errors.full_messages
@@ -27,7 +28,7 @@ class ParticipantsController < ApplicationController
     @participant.destroy!
     redirect_to participants_path,
                 notice: 'Participant has been removed.'
-    PrivatePub.publish_to '/scoreboard', removed: @participant
+    update_scoreboard with: @participant
   end
 
   def index
@@ -57,10 +58,11 @@ class ParticipantsController < ApplicationController
   end
 
   def update
+    deny_access && return unless current_user.has_role? :master_of_ceremonies
     @participant.update! user_params
     redirect_to participants_path,
                 notice: 'Participant has been updated.'
-    PrivatePub.publish_to '/scoreboard', @participant
+    update_scoreboard with: @participant
   end
 
   def welcome

@@ -25,7 +25,7 @@ describe 'adding a bus' do
       visit buses_url
       fill_in 'bus_number', with: 'Big Yellow Bus'
       click_on 'Add'
-      expect(page).to have_text 'Big Yellow Bus'
+      expect(page).not_to have_text 'Big Yellow Bus'
     end
   end
   context 'with a number not filled in' do
