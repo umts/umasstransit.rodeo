@@ -9,7 +9,7 @@ AllCops:
     - 'db/**/*'
     - 'vendor/**/*'
 
-# CAn't see any reason why this i better.
+# Can't see any reason why this is better.
 Rails/ReadWriteAttribute:
   Enabled: false
 
