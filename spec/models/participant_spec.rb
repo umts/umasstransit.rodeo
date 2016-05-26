@@ -20,19 +20,4 @@ describe Participant do
       end
     end
   end
-  #   describe 'total_score' do
-  #     it 'should equal maneuver score' do
-  #       participant = create :participant, :total_score
-  #       expect(participant.total_score).to eql participant.maneuver_score
-  #       binding.pry
-  #     end
-  #     it 'should increase by onboard judging score' do
-  #     end
-  #
-  #     it 'should increase by circle check score' do
-  #     end
-  #
-  #     it 'should increase by quiz score' do
-  #     end
-  #   end
 end

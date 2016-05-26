@@ -57,11 +57,10 @@ describe 'adding a score' do
     it 'will not accept positive number greater than total points' do
       when_current_user_is :admin
       visit circle_check_scores_url
-      input = find_field 'circle_check_score_total_defects'
-      out_of_range = input.value.to_i + 1
-      fill_in 'circle_check_score_defects_found', with: out_of_range.to_s
+      fill_in 'circle_check_score_defects_found', with: 5
+      fill_in 'circle_check_score_total_defects', with: 4
       click_on 'Save score'
-      expected = "Defects found must be less than or equal to #{input.value}"
+      expected = 'Defects found must be less than or equal to 4'
       expect(page).to have_text expected
     end
   end
