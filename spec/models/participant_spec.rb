@@ -21,26 +21,26 @@ describe Participant do
     end
   end
   describe 'total score' do
-    it 'should be zero' do
+    it 'should be zero when initialized' do
       expect(participant.total_score).to eql 0
     end
-    it 'should increase by 40 from quiz score' do
-      quiz_score = create :quiz_score, points_achieved: 80, total_points: 100
+    it 'should increase by quiz score' do
+      quiz_score = create :quiz_score
       expect { participant.update quiz_score: quiz_score }
         .to change { participant.total_score }
-        .by(40)
+        .by(quiz_score.score)
     end
-    it 'should increase by 50 from circle check score' do
-      circle_check_score = create :circle_check_score, total_defects: 5, defects_found: 5
+    it 'should increase by circle check score' do
+      circle_check_score = create :circle_check_score
       expect { participant.update circle_check_score: circle_check_score }
         .to change { participant.total_score }
-        .by(50)
+        .by(circle_check_score.score)
     end
-    it 'should increase by 50 from onboard judging score' do
+    it 'should increase by onboard judging score' do
       onboard_judging = create :onboard_judging
       expect { participant.update onboard_judging: onboard_judging }
         .to change { participant.total_score }
-        .by(50)
+        .by(onboard_judging.score)
     end
   end
 end
