@@ -4,7 +4,7 @@ class QuizScoresController < ApplicationController
   def create
     score = QuizScore.create! score_params
     redirect_to quiz_scores_path, notice: 'Quiz score was saved.'
-    PrivatePub.publish_to '/scoreboard', score
+    update_scoreboard with: score
   end
 
   def index
@@ -20,7 +20,7 @@ class QuizScoresController < ApplicationController
   def update
     @score.update! score_params
     redirect_to quiz_scores_path, notice: 'Quiz score was saved.'
-    PrivatePub.publish_to '/scoreboard', @score
+    update_scoreboard with: @score
   end
 
   private

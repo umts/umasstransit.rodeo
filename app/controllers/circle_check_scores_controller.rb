@@ -4,7 +4,7 @@ class CircleCheckScoresController < ApplicationController
   def create
     score = CircleCheckScore.create! score_params
     redirect_to circle_check_scores_path, notice: 'Score was saved.'
-    PrivatePub.publish_to '/scoreboard', score
+    update_scoreboard with: score
   end
 
   def index
@@ -19,7 +19,7 @@ class CircleCheckScoresController < ApplicationController
   def update
     @score.update! score_params
     redirect_to circle_check_scores_path, notice: 'Score was saved.'
-    PrivatePub.publish_to '/scoreboard', @score
+    update_scoreboard with: @score
   end
 
   private
