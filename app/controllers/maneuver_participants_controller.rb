@@ -13,7 +13,7 @@ class ManeuverParticipantsController < ApplicationController
       attrs[:distances_achieved] = parse_distance_targets
       record = ManeuverParticipant.create! attrs
     end
-    redirect_to next_participant_maneuver_path(maneuver)
+    redirect_to next_participant_maneuver_path(@maneuver)
     update_scoreboard with: record
   end
 
