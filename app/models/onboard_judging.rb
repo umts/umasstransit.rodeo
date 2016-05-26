@@ -27,7 +27,7 @@ class OnboardJudging < ActiveRecord::Base
     SCORE_COLUMNS.select do |column_name|
       attributes[column_name].nil?
     end.each do |column_name|
-      self[column_name] = 0
+      write_attribute column_name, 0
     end
   end
 

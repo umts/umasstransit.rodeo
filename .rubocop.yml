@@ -9,6 +9,10 @@ AllCops:
     - 'db/**/*'
     - 'vendor/**/*'
 
+# CAn't see any reason why this i better.
+Rails/ReadWriteAttribute:
+  Enabled: false
+
 
 # Relax complexity testing to codeclimate standards (roughly).
 Metrics/AbcSize:
