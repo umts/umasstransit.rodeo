@@ -36,7 +36,7 @@ describe 'updating a maneuver score' do
   end
 end
 
-describe 'parsing from string to integer' do
+describe 'updating obstacles and distance targets' do
   let!(:maneuver) { create :maneuver }
   let!(:obstacle) { create :obstacle, maneuver: maneuver }
   let!(:distance_target) { create :distance_target, maneuver: maneuver }
@@ -44,20 +44,18 @@ describe 'parsing from string to integer' do
     create :maneuver_participant,
            maneuver: maneuver
   end
-  it 'with obstacles' do
+  it 'updates obstacles hit with 1' do
     when_current_user_is :admin
     visit maneuver_participant_path(maneuver_participant.id)
-    # binding.pry
     fill_in "obstacle_#{obstacle.id}", with: '1'
     click_on 'Save score'
     input = find_field "obstacle_#{obstacle.id}"
     expect(input.value).to eql '1'
   end
 
-  it 'with distance targets' do
+  it 'updates distance from target with 1' do
     when_current_user_is :admin
     visit maneuver_participant_path(maneuver_participant.id)
-    # binding.pry
     fill_in "target_#{distance_target.id}", with: '1'
     click_on 'Save score'
     input = find_field "target_#{distance_target.id}"
