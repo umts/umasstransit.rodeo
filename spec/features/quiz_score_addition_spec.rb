@@ -1,10 +1,14 @@
 require 'rails_helper'
 
 describe 'adding a quiz score' do
-  before :each do
-    create :participant
+  let!(:participant) { create :participant, name: 'blah,' }
+  it'shows user name' do
+    when_current_user_is :admin
+    visit quiz_scores_url
+    fill_in 'quiz_score_points_achieved', with: '2'
+    click_on 'Save score'
+    expect(page).to have_text participant.name.to_s
   end
-
   context 'with judge privilege' do
     it 'will not add the quiz score' do
       when_current_user_is :judge

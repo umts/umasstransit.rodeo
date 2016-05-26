@@ -2,9 +2,15 @@ FactoryGirl.define do
   factory :maneuver_participant do
     maneuver
     participant
-    speed_achieved false
-    made_additional_stops false
-    completed_as_designed true
     reversed_direction 2
+  end
+
+  trait :perfect_score do
+    maneuver
+    participant
+    reversed_direction 0
+    speed_achieved true
+    completed_as_designed true
+    made_additional_stops false
   end
 end

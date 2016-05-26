@@ -4,7 +4,7 @@ describe OnboardJudging do
   describe 'score' do
     context 'negative onboard judging' do
       let(:onboard_judging) { create :onboard_judging, minutes_elapsed: 11 }
-      it 'score should be negative' do
+      it 'allows negative scores' do
         expect(onboard_judging.score).to be < 0
       end
     end
