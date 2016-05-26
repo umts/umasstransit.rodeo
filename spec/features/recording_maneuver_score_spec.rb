@@ -9,7 +9,7 @@ describe 'recording a maneuver score' do
     visit new_maneuver_participant_path(maneuver: maneuver.name,
                                         participant: participant.number)
   end
-  it 'works' do
+  it 'increases maneuver participant count by one' do
     expect { click_on 'Save & next' }
       .to change { ManeuverParticipant.count }
       .by 1
@@ -26,7 +26,7 @@ describe 'updating a maneuver score' do
   let!(:maneuver_participant) do
     create :maneuver_participant, :perfect_score
   end
-  it 'works' do
+  it 'updates the value' do
     when_current_user_is :admin
     visit maneuver_participant_path(maneuver_participant.id)
     fill_in 'reversed_direction', with: '1'
@@ -36,7 +36,7 @@ describe 'updating a maneuver score' do
   end
 end
 
-describe 'parsing' do
+describe 'parsing from string to integer' do
   let!(:maneuver) { create :maneuver }
   let!(:obstacle) { create :obstacle, maneuver: maneuver }
   let!(:distance_target) { create :distance_target, maneuver: maneuver }
@@ -44,7 +44,7 @@ describe 'parsing' do
     create :maneuver_participant,
            maneuver: maneuver
   end
-  it 'obstacles' do
+  it 'with obstacles' do
     when_current_user_is :admin
     visit maneuver_participant_path(maneuver_participant.id)
     # binding.pry
@@ -54,7 +54,7 @@ describe 'parsing' do
     expect(input.value).to eql '1'
   end
 
-  it 'distance target' do
+  it 'with distance targets' do
     when_current_user_is :admin
     visit maneuver_participant_path(maneuver_participant.id)
     # binding.pry
