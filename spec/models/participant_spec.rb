@@ -1,9 +1,10 @@
 require 'rails_helper'
 
 describe Participant do
+  let!(:participant) { create :participant }
+  let!(:maneuver) { create :maneuver }
+  let!(:maneuver_participant) { create :maneuver_participant }
   describe 'has_completed?' do
-    let(:participant) { create :participant }
-    let(:maneuver) { create :maneuver }
     context 'participant has completed maneuver' do
       before :each do
         create :maneuver_participant, maneuver: maneuver,

@@ -3,4 +3,8 @@ class User < ActiveRecord::Base
 
   devise :database_authenticatable
   validates :name, :email, presence: true, uniqueness: true
+
+  def has_role?(role)
+    admin? || send(role)
+  end
 end

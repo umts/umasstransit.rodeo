@@ -1,11 +1,12 @@
 class ManeuverParticipantsController < ApplicationController
   before_action :find_record, only: %i(show update)
+  before_action :find_maneuver_and_participant, only: :create
 
   def create
-    maneuver = Maneuver.find_by id: params.require(:maneuver_id)
-    participant = Participant.find_by id: params.require(:participant_id)
-    unless participant.has_completed? maneuver
-      attrs = { maneuver: maneuver, participant: participant }
+    deny_access && return unless current_user.has_role? :judge
+
+    unless @participant.has_completed? @maneuver
+      attrs = { maneuver: @maneuver, participant: @participant }
       attrs.merge! params.permit(:reversed_direction, :speed_achieved,
                                  :made_additional_stops, :completed_as_designed)
       attrs[:obstacles_hit] = parse_obstacles
@@ -29,6 +30,7 @@ class ManeuverParticipantsController < ApplicationController
   end
 
   def update
+    deny_access && return unless current_user.has_role? :judge
     attrs = params.permit(:reversed_direction, :speed_achieved,
                           :made_additional_stops, :completed_as_designed)
     attrs[:obstacles_hit] = parse_obstacles
@@ -40,6 +42,11 @@ class ManeuverParticipantsController < ApplicationController
   end
 
   private
+
+  def find_maneuver_and_participant
+    @maneuver = Maneuver.find_by id: params.require(:maneuver_id)
+    @participant = Participant.find_by id: params.require(:participant_id)
+  end
 
   def find_record
     @record = ManeuverParticipant.find_by id: params.require(:id)

@@ -2,9 +2,15 @@ class QuizScoresController < ApplicationController
   before_action :find_score, only: :update
 
   def create
-    score = QuizScore.create! score_params
-    redirect_to quiz_scores_path, notice: 'Quiz score was saved.'
-    update_scoreboard with: score
+    deny_access && return unless current_user.has_role? :quiz_scorer
+    score = QuizScore.new score_params
+    if score.save
+      redirect_to quiz_scores_path, notice: 'Quiz score was saved.'
+      update_scoreboard with: score
+    else
+      flash[:errors] = score.errors.full_messages
+      redirect_to :back
+    end
   end
 
   def index
@@ -18,9 +24,14 @@ class QuizScoresController < ApplicationController
   end
 
   def update
-    @score.update! score_params
-    redirect_to quiz_scores_path, notice: 'Quiz score was saved.'
-    update_scoreboard with: @score
+    deny_access && return unless current_user.has_role? :quiz_scorer
+    if @score.update score_params
+      redirect_to quiz_scores_path, notice: 'Quiz score was saved.'
+      update_scoreboard with: @score
+    else
+      flash[:errors] = @score.errors.full_messages
+      redirect_to :back
+    end
   end
 
   private
