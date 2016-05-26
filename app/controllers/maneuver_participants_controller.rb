@@ -13,7 +13,7 @@ class ManeuverParticipantsController < ApplicationController
       record = ManeuverParticipant.create! attrs
     end
     redirect_to next_participant_maneuver_path(maneuver)
-    PrivatePub.publish_to '/scoreboard', record
+    update_scoreboard with: record
   end
 
   def new
@@ -36,7 +36,7 @@ class ManeuverParticipantsController < ApplicationController
     @record.update! attrs
     redirect_to :back,
                 notice: 'Maneuver score has been saved.'
-    PrivatePub.publish_to '/scoreboard', @record
+    update_scoreboard with: @record
   end
 
   private
