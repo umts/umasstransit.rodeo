@@ -61,8 +61,7 @@ describe ManeuverParticipant do
     let!(:record_2)  { create :maneuver_participant, maneuver: maneuver }
     it 'finds previous participant' do
       actual = record_2.participant.number
-      expected = record_1.participant.id
-      expect(maneuver.previous_participant(actual).id).to be expected
+      expect(maneuver.previous_participant(actual)).to eql record_1.participant
     end
     it 'finds previous participant with no argument' do
       expect(maneuver.previous_participant.id).to be record_2.participant.id
@@ -75,8 +74,7 @@ describe ManeuverParticipant do
     let!(:record_2)  { create :maneuver_participant, maneuver: maneuver }
     it 'finds the next participant' do
       actual = record_1.participant.number
-      expected = record_2.participant.id
-      expect(maneuver.next_participant(actual).id).to be expected
+      expect(maneuver.next_participant(actual)).to eql record_2.participant
     end
   end
 end

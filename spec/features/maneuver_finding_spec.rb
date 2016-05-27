@@ -17,16 +17,14 @@ describe 'finding a participant' do
   context 'finds the previous' do
     it 'at first participant gets first participant' do
       when_current_user_is :admin
-      visit maneuver_participant_path(maneuver.maneuver_participants
-        .find_by(id: record_1.id))
+      visit maneuver_participant_path(record_1.id)
       click_link 'Previous participant'
       expects = 'This is the first participant who completed this maneuver.'
       expect(page).to have_text expects
     end
     it 'at non-first participant redirects to previous' do
       when_current_user_is :admin
-      visit maneuver_participant_path(maneuver.maneuver_participants
-        .find_by(id: record_2.id))
+      visit maneuver_participant_path(record_2.id)
       click_link 'Previous participant'
       expect(page).to have_text record_1.participant.name
     end
@@ -34,15 +32,13 @@ describe 'finding a participant' do
   context 'finds the next' do
     it 'at non-last participant gets next' do
       when_current_user_is :admin
-      visit maneuver_participant_path(maneuver.maneuver_participants
-        .find_by(id: record_1.id))
+      visit maneuver_participant_path(record_1.id)
       click_link 'Next participant'
       expect(page).to have_text record_2.participant.name
     end
     it 'at last participant redirects to notice' do
       when_current_user_is :admin
-      visit maneuver_participant_path(maneuver.maneuver_participants
-        .find_by(id: record_3.id))
+      visit maneuver_participant_path(record_3.id)
       click_link 'Next participant'
       expects = 'There are no more participants in the queue for this maneuver.'
       expect(page).to have_text expects
@@ -50,8 +46,7 @@ describe 'finding a participant' do
     it 'at last completed participant redirects to new maneuver' do
       create :participant
       when_current_user_is :admin
-      visit maneuver_participant_path(maneuver.maneuver_participants
-        .find_by(id: record_3.id))
+      visit maneuver_participant_path(record_3.id)
       click_link 'Next participant'
       expect(current_path).to eql new_maneuver_participant_path
     end
