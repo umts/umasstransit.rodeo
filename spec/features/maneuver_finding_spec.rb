@@ -20,7 +20,8 @@ describe 'finding a participant' do
       visit maneuver_participant_path(maneuver.maneuver_participants
         .find_by(id: record_1.id))
       click_link 'Previous participant'
-      expect(page).to have_text record_1.participant.name
+      expects = 'This is the first participant who completed this maneuver.'
+      expect(page).to have_text expects
     end
     it 'at non-first participant redirects to previous' do
       when_current_user_is :admin
