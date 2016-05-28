@@ -57,8 +57,8 @@ describe ManeuverParticipant do
 
   context 'previous participant' do
     let!(:maneuver) { create :maneuver }
-    let!(:record_1)  { create :maneuver_participant, maneuver: maneuver }
-    let!(:record_2)  { create :maneuver_participant, maneuver: maneuver }
+    let!(:record_1) { create :maneuver_participant, maneuver: maneuver }
+    let!(:record_2) { create :maneuver_participant, maneuver: maneuver }
     it 'finds previous participant' do
       actual = record_2.participant.number
       expected = record_1.participant.id
@@ -71,8 +71,8 @@ describe ManeuverParticipant do
 
   context 'next participant' do
     let!(:maneuver) { create :maneuver }
-    let!(:record_1)  { create :maneuver_participant, maneuver: maneuver }
-    let!(:record_2)  { create :maneuver_participant, maneuver: maneuver }
+    let!(:record_1) { create :maneuver_participant, maneuver: maneuver }
+    let!(:record_2) { create :maneuver_participant, maneuver: maneuver }
     it 'finds the next participant' do
       actual = record_1.participant.number
       expected = record_2.participant.id
