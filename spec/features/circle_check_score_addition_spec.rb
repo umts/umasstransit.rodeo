@@ -35,14 +35,15 @@ describe 'adding a circle check score' do
       expect(page).not_to have_text 'Score was saved.'
     end
   end
-end
-
-describe 'adding a score' do
-  before :each do
-    create :participant
+  context 'with blank fields' do
+    it 'will not add a circle check score' do
+      when_current_user_is :admin
+      visit circle_check_scores_url
+      click_on 'Save score'
+      expect(page).to have_text "Defects found can't be blank"
+    end
   end
-
-  context 'when out of range circle check score' do
+  context 'when out of range' do
     it 'will not accept negative number' do
       when_current_user_is :admin
       visit circle_check_scores_url
@@ -52,8 +53,7 @@ describe 'adding a score' do
       expect(page).to have_text expected
     end
   end
-
-  context 'when out of range circle check score' do
+  context 'when out of range' do
     it 'will not accept positive number greater than total points' do
       when_current_user_is :admin
       visit circle_check_scores_url
