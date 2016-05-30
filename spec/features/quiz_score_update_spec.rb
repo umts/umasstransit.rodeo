@@ -17,7 +17,7 @@ describe 'updating a quiz score' do
     end
   end
 
-  context 'with quiz_scorer privilege' do
+  context 'with quiz scorer privilege' do
     it 'updates quiz score' do
       when_current_user_is :quiz_scorer
       visit quiz_scores_url
