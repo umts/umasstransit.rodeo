@@ -14,4 +14,13 @@ describe DistanceTarget do
       end
     end
   end
+  describe 'index' do
+    it 'returns index of distance target' do
+      maneuver = create :maneuver
+      target_1 = create :distance_target, maneuver: maneuver
+      target_2 = create :distance_target, maneuver: maneuver
+      expect(target_1.index).to eql 0
+      expect(target_2.index).to eql 1
+    end
+  end
 end
