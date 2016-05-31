@@ -14,9 +14,7 @@ class ManeuverParticipant < ActiveRecord::Base
 
   def creator
     user_id = versions.find_by(event: 'create').whodunnit
-    if user_id
-      User.find_by id: user_id
-    end
+    User.find_by id: user_id if user_id
   end
 
   def self.scoreboard_grouping
@@ -29,6 +27,7 @@ class ManeuverParticipant < ActiveRecord::Base
 
   private
 
+  # rubocop:disable Metrics/AbcSize
   def set_score
     score = 50
     obstacles_hit.each do |point_value, count|
@@ -46,4 +45,5 @@ class ManeuverParticipant < ActiveRecord::Base
     score = [0, [score, 50].min].max
     assign_attributes score: score
   end
+  # rubocop:enable Metrics/AbcSize
 end

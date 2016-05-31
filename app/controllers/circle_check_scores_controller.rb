@@ -2,28 +2,42 @@ class CircleCheckScoresController < ApplicationController
   before_action :find_score, only: :update
 
   def create
-    score = CircleCheckScore.create! score_params
-    redirect_to circle_check_scores_path, notice: 'Score was saved.'
-    PrivatePub.publish_to '/scoreboard', score
+    deny_access && return unless current_user.has_role? :circle_check_scorer
+    score = CircleCheckScore.new score_params
+    if score.save
+      redirect_to circle_check_scores_path, notice: 'Score was saved.'
+      update_scoreboard with: score
+    else
+      flash[:errors] = score.errors.full_messages
+      redirect_to :back
+    end
   end
 
   def index
-    sorted = Participant.unscoped.includes(:circle_check_score).order(:name).group_by do |participant|
+    sorted = Participant.unscoped.includes(:circle_check_score).order(:name)
+    sorted = sorted.group_by do |participant|
       participant.circle_check_score.present?
     end
-    @scored, @unscored = sorted[true], sorted[false]
+    @scored = sorted[true]
+    @unscored = sorted[false]
   end
 
   def update
-    @score.update! score_params
-    redirect_to circle_check_scores_path, notice: 'Score was saved.'
-    PrivatePub.publish_to '/scoreboard', @score
+    deny_access && return unless current_user.has_role? :circle_check_scorer
+    if @score.update score_params
+      redirect_to circle_check_scores_path, notice: 'Score was saved.'
+      update_scoreboard with: @score
+    else
+      flash[:errors] = @score.errors.full_messages
+      redirect_to :back
+    end
   end
 
   private
 
   def score_params
-    params.require(:circle_check_score).permit(:participant_id, :defects_found, :total_defects)
+    params.require(:circle_check_score)
+          .permit(:participant_id, :defects_found, :total_defects)
   end
 
   def find_score

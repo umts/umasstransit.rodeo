@@ -1,19 +1,20 @@
 class ManeuverParticipantsController < ApplicationController
   before_action :find_record, only: %i(show update)
+  before_action :find_maneuver_and_participant, only: :create
 
   def create
-    maneuver = Maneuver.find_by id: params.require(:maneuver_id)
-    participant = Participant.find_by id: params.require(:participant_id)
-    unless participant.has_completed? maneuver
-      attrs = { maneuver: maneuver, participant: participant }
+    deny_access && return unless current_user.has_role? :judge
+
+    unless @participant.has_completed? @maneuver
+      attrs = { maneuver: @maneuver, participant: @participant }
       attrs.merge! params.permit(:reversed_direction, :speed_achieved,
                                  :made_additional_stops, :completed_as_designed)
       attrs[:obstacles_hit] = parse_obstacles
       attrs[:distances_achieved] = parse_distance_targets
       record = ManeuverParticipant.create! attrs
     end
-    redirect_to next_participant_maneuver_path(maneuver)
-    PrivatePub.publish_to '/scoreboard', record
+    redirect_to next_participant_maneuver_path(@maneuver)
+    update_scoreboard with: record
   end
 
   def new
@@ -29,17 +30,23 @@ class ManeuverParticipantsController < ApplicationController
   end
 
   def update
+    deny_access && return unless current_user.has_role? :judge
     attrs = params.permit(:reversed_direction, :speed_achieved,
                           :made_additional_stops, :completed_as_designed)
     attrs[:obstacles_hit] = parse_obstacles
     attrs[:distances_achieved] = parse_distance_targets
     @record.update! attrs
     redirect_to :back,
-      notice: 'Maneuver score has been saved.'
-    PrivatePub.publish_to '/scoreboard', @record
+                notice: 'Maneuver score has been saved.'
+    update_scoreboard with: @record
   end
 
   private
+
+  def find_maneuver_and_participant
+    @maneuver = Maneuver.find_by id: params.require(:maneuver_id)
+    @participant = Participant.find_by id: params.require(:participant_id)
+  end
 
   def find_record
     @record = ManeuverParticipant.find_by id: params.require(:id)
@@ -58,7 +65,7 @@ class ManeuverParticipantsController < ApplicationController
 
   def parse_distance_targets
     distances_achieved = {}
-    params.select do |key, value|
+    params.select do |key, _value|
       key.starts_with?('target')
     end.each do |key, value|
       target = DistanceTarget.find_by id: key.split('_').last.to_i
