@@ -33,23 +33,35 @@ describe ManeuverParticipant do
     end
 
     it 'lowers by the sum of each point value multiplied by count' do
-      expect { record.update obstacles_hit: { 1 => 1 } }
+      point_value = 1
+      count = 1
+      expect { record.update obstacles_hit: { point_value => count } }
         .to change { record.score }
         .by(-1)
     end
 
     context 'lowers by the positive difference' do
       it 'between each distance and the minimum multiplied by the multiplier' do
-        expect { record.update distances_achieved: { [0, 1] => 1 } }
-          .to change { record.score }
+        minimum = 0
+        distance = 1
+        multiplier = 1
+        expect do
+          record.update distances_achieved: {
+            [minimum, multiplier] => distance }
+        end.to change { record.score }
           .by(-1)
       end
     end
 
-    context 'lowers by negative difference' do
+    context 'lowers by 0 for negative difference' do
       it 'between each distance and the minimum multiplied by the multiplier' do
-        expect { record.update distances_achieved: { [1, 1] => 0 } }
-          .to change { record.score }
+        minimum = 1
+        distance = 1
+        multiplier = 3
+        expect do
+          record.update distances_achieved: {
+            [minimum, multiplier] => distance }
+        end.to change { record.score }
           .by(0)
       end
     end
