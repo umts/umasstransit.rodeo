@@ -25,6 +25,7 @@ class ParticipantsController < ApplicationController
   end
 
   def destroy
+    deny_access && return unless current_user.has_role? :master_of_ceremonies
     @participant.destroy!
     redirect_to participants_path,
                 notice: 'Participant has been removed.'
