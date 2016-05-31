@@ -25,4 +25,3 @@ describe 'scoring appears properly' do
     expect(page).to have_text maneuver_participant.score
   end
 end
-
