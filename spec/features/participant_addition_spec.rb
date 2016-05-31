@@ -33,9 +33,7 @@ describe 'adding a participant' do
       when_current_user_is :admin
       create :participant, name: 'Foo Bar'
       visit participants_url
-      within('tr:nth-child(2)') do
-        fill_in :participant_name, with: 'Foo Bar'
-      end
+      fill_in 'Name', with: 'Foo Bar'
       click_on 'Add'
       expect(page).to have_text 'Name has already been taken'
     end
