@@ -25,6 +25,7 @@ describe 'scoring appears properly' do
     expect(page).to have_text maneuver_participant.score
   end
 end
+<<<<<<< HEAD
 
 describe 'sorting functions properly' do
   let!(:participant) { create :participant }
@@ -51,3 +52,5 @@ describe 'sorting functions properly' do
     expect(find('tr:nth-child(2)')).to have_text participant.name.to_s
   end
 end
+=======
+>>>>>>> ce7f6fdcbd5dac4086e4606f7634e2bca477ea47
