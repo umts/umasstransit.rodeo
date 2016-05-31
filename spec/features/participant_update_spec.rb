@@ -43,13 +43,6 @@ describe 'updating a participant' do
       participant = create :participant, name: 'Foo Bar'
       when_current_user_is :judge
       visit participants_url
-<<<<<<< HEAD
-      binding.pry
-      within ('tr:nth-child(3)') do
-=======
-      form = find "form#edit_participant_#{participant.id}"
-      within form do
->>>>>>> ce7f6fdcbd5dac4086e4606f7634e2bca477ea47
         fill_in :participant_name, with: 'Akiva Green'
         click_on 'Save'
       end
