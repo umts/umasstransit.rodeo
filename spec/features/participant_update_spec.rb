@@ -43,6 +43,8 @@ describe 'updating a participant' do
       participant = create :participant, name: 'Foo Bar'
       when_current_user_is :judge
       visit participants_url
+      form = find "form#edit_participant_#{participant.id}"
+      within form do
         fill_in :participant_name, with: 'Akiva Green'
         click_on 'Save'
       end
