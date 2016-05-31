@@ -30,6 +30,7 @@ describe 'updating a participant' do
       create :participant, name: 'Foo Bar'
       when_current_user_is :judge
       visit participants_url
+      binding.pry
       within ('tr:nth-child(3)') do
         fill_in :participant_name, with: 'Akiva Green'
       end

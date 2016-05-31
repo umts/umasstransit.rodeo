@@ -31,23 +31,23 @@ describe 'sorting functions properly' do
   let!(:maneuver_score) { create :maneuver_participant, :perfect_score, reversed_direction: 1, participant: participant }
   let!(:participant_2) { create :participant }
   let!(:maneuver_score_2) { create :maneuver_participant, :perfect_score, participant: participant_2 }
-  it 'by default' do 
+  it 'by default' do
     visit scoreboard_participants_url
-    expect(find('tr:nth-child(2)')).to have_text "#{participant_2.name}"
+    expect(find('tr:nth-child(2)')).to have_text participant_2.name.to_s
   end
-  it 'by maneuver score' do 
+  it 'by maneuver score' do
     visit scoreboard_participants_url
     click_button 'Maneuver score'
-    expect(find('tr:nth-child(2)')).to have_text "#{participant_2.name}"
+    expect(find('tr:nth-child(2)')).to have_text participant_2.name.to_s
   end
   it 'by participant name' do
     visit scoreboard_participants_url
     click_button 'Participant name'
-    expect(find('tr:nth-child(2)')).to have_text "#{participant.name}"
+    expect(find('tr:nth-child(2)')).to have_text participant.name.to_s
   end
-  it 'by participant number' do 
+  it 'by participant number' do
     visit scoreboard_participants_url
     click_button 'Participant number'
-    expect(find('tr:nth-child(2)')).to have_text "#{participant.name}"
+    expect(find('tr:nth-child(2)')).to have_text participant.name.to_s
   end
 end
