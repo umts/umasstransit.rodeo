@@ -1,6 +1,6 @@
 require 'rails_helper'
-describe 'maneuver' do
-  context 'previous participant' do
+describe Maneuver do
+  describe 'previous participant' do
     let!(:maneuver) { create :maneuver }
     let!(:record_1) { create :maneuver_participant, maneuver: maneuver }
     let!(:record_2) { create :maneuver_participant, maneuver: maneuver }
@@ -12,8 +12,7 @@ describe 'maneuver' do
       expect(maneuver.previous_participant.id).to be record_2.participant.id
     end
   end
-
-  context 'next participant' do
+  describe 'next participant' do
     let!(:maneuver) { create :maneuver }
     let!(:record_1) { create :maneuver_participant, maneuver: maneuver }
     let!(:record_2) { create :maneuver_participant, maneuver: maneuver }
@@ -22,4 +21,14 @@ describe 'maneuver' do
       expect(maneuver.next_participant(actual)).to eql record_2.participant
     end
   end
+  describe 'image path' do
+    it 'returns a path with maneuver name' do
+      maneuver = create :maneuver, name: 'Foo'
+      expect(maneuver.image_path).to eql 'maneuvers/Foo.png'
+    end
+  end
+  describe 'grouped_obstacles' do 
+    it 'returns an array of obstacles' do 
+      
+    end
 end
