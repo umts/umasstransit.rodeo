@@ -32,7 +32,7 @@ describe Maneuver do
       it 'returns an array of obstacles' do
         maneuver = create :maneuver
         obstacle_1 = create :obstacle, maneuver: maneuver
-        obstacle_2 = create :obstacle, maneuver: maneuver 
+        obstacle_2 = create :obstacle, maneuver: maneuver
         expected = { [obstacle_1.point_value, obstacle_1.obstacle_type] =>
                     [obstacle_1, obstacle_2] }
         expect(maneuver.grouped_obstacles).to eql expected
@@ -45,7 +45,7 @@ describe Maneuver do
         obstacle_2 = create :obstacle, maneuver: maneuver, point_value: 4
         expected = { [obstacle_1.point_value, obstacle_1.obstacle_type] =>
                     [obstacle_1],
-                    [obstacle_2.point_value, obstacle_2.obstacle_type] =>
+                     [obstacle_2.point_value, obstacle_2.obstacle_type] =>
                     [obstacle_2] }
         expect(maneuver.grouped_obstacles).to eql expected
       end
