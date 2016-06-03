@@ -35,4 +35,9 @@ Rails.application.routes.draw do
   end
 
   resources :quiz_scores, only: %i(create index update)
+
+  namespace :admin do 
+    resources :users, only: %i(destroy index update)
+  end
+
 end

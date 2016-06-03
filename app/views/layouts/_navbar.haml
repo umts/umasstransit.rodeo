@@ -19,8 +19,12 @@
           %button.btn.btn-default.navbar-btn{type: :button} Participants
         = link_to buses_path do
           %button.btn.btn-default.navbar-btn{type: :button} Buses
+        = link_to admin_users_path do
+          %button.btn.btn-default.navbar-btn{type: :button} Roles
       = link_to destroy_user_session_path, method: :delete do
         %button.btn.btn-default.navbar-btn.navbar-right.logout{type: :button} Logout
     - else
       = link_to new_user_session_path do
         %button.btn.btn-default.navbar-btn.navbar-right.login{type: :button} Log in
+      = link_to new_user_registration_path do 
+        %button.btn.btn-default.navbar-btn.navbar-right.login{type: :button} Sign up

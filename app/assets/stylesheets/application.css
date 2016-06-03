@@ -26,3 +26,7 @@ p.errors{
   border-radius: 6px;
   text-align: center;
 }
+
+.btn-primary.delete{
+  background-color: #b73434;
+}
