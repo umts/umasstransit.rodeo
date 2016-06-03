@@ -32,7 +32,7 @@ describe 'adding a circle check score' do
       visit circle_check_scores_url
       fill_in 'circle_check_score_defects_found', with: '4'
       click_on 'Save score'
-      expect(page).not_to have_text 'Score was saved.'
+      expect(page).to have_text 'You are not authorized to make that action.'
     end
   end
   context 'with blank fields' do
