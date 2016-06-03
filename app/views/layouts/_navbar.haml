@@ -6,15 +6,16 @@
       = link_to scoreboard_participants_path do
         %button.btn.btn-default.navbar-btn{type: :button} Scoreboard
     - if user_signed_in?
-      = link_to maneuvers_path do
-        %button.btn.btn-default.navbar-btn{type: :button} Maneuvers
-      - if current_user.circle_check_scorer? || current_user.admin?
+      - if current_user.admin? || current_user.judge?
+        = link_to maneuvers_path do
+          %button.btn.btn-default.navbar-btn{type: :button} Maneuvers
+      - if current_user.admin? || current_user.circle_check_scorer?
         = link_to circle_check_scores_path do
           %button.btn.btn-default.navbar-btn{type: :button} Circle Check
-      - if current_user.quiz_scorer? || current_user.admin?
+      - if current_user.admin? || current_user.quiz_scorer?
         = link_to quiz_scores_path do
           %button.btn.btn-default.navbar-btn{type: :button} Quiz
-      - if current_user.master_of_ceremonies? || current_user.admin?
+      - if current_user.admin? || current_user.master_of_ceremonies?
         = link_to participants_path do
           %button.btn.btn-default.navbar-btn{type: :button} Participants
         = link_to buses_path do
