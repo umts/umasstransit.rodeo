@@ -1,7 +1,7 @@
 require 'rails_helper'
 describe DistanceTarget do
   describe 'interval_type' do
-    context 'when interval type is 0' do
+    context 'when interval attribute is 0' do
       it 'returns inches' do
         target = create :distance_target, intervals: 0
         expect(target.interval_type).to eql 'inches'

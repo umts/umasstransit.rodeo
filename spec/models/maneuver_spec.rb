@@ -9,7 +9,7 @@ describe Maneuver do
       expect(maneuver.previous_participant(actual)).to eql record_1.participant
     end
     it 'finds previous participant with no argument' do
-      expect(maneuver.previous_participant.id).to be record_2.participant.id
+      expect(maneuver.previous_participant).to eql record_2.participant
     end
   end
   describe 'next participant' do
@@ -29,7 +29,7 @@ describe Maneuver do
   end
   describe 'grouped_obstacles' do
     context 'with the same point values' do
-      it 'returns an array of obstacles' do
+      it 'returns a hash of obstacles' do
         maneuver = create :maneuver
         obstacle_1 = create :obstacle, maneuver: maneuver
         obstacle_2 = create :obstacle, maneuver: maneuver
@@ -39,7 +39,7 @@ describe Maneuver do
       end
     end
     context 'with different point values' do
-      it 'returns an array of obstacles' do
+      it 'returns a hash of obstacles' do
         maneuver = create :maneuver
         obstacle_1 = create :obstacle, maneuver: maneuver, point_value: 2
         obstacle_2 = create :obstacle, maneuver: maneuver, point_value: 4
