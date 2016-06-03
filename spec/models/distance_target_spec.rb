@@ -7,7 +7,7 @@ describe DistanceTarget do
         expect(target.interval_type).to eql 'inches'
       end
     end
-    context 'when interval type is non-zero' do
+    context 'when interval attribute is non-zero' do
       it 'returns marks' do
         target = create :distance_target, intervals: 1
         expect(target.interval_type).to eql 'marks'
