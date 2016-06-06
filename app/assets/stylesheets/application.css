@@ -31,9 +31,8 @@ p.errors{
   background-color: #b73434;
 }
 
-table.users.roles, th.roles {
+.users.roles, th.roles {
   text-align: center;
-  vertical-align: center;
 }
 
 td.left, th.left {
