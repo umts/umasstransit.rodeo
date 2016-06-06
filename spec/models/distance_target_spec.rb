@@ -15,7 +15,7 @@ describe DistanceTarget do
     end
   end
   describe 'index' do
-    it 'returns index of distance target' do
+    it 'returns index of distance target relative to itself' do
       maneuver = create :maneuver
       target_1 = create :distance_target, maneuver: maneuver
       target_2 = create :distance_target, maneuver: maneuver
