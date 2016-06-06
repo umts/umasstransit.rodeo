@@ -105,8 +105,8 @@ describe 'scoreboard order' do
   context 'maneuver score' do 
     it 'sorts participants by maneuver score' do 
       per = create :maneuver_participant, :perfect_score
-      per_2 = create :maneuver_participant, reversed_direction: 1
-      per_3 = create :maneuver_participant, reversed_direction: 2
+      per_2 = create :maneuver_participant, :perfect_score, reversed_direction: 1
+      per_3 = create :maneuver_participant, :perfect_score, reversed_direction: 2
       p_1 = per.participant
       p_2 = per_2.participant
       p_3 = per_3.participant
