@@ -31,12 +31,10 @@ describe Maneuver do
     context 'with the same point values and types' do
       it 'returns a hash of obstacles' do
         maneuver = create :maneuver
-        obstacle_1 = create :obstacle, maneuver: maneuver,
-                                       point_value: 4,
-                                       obstacle_type: 'Pivot cone'
+        obstacle_1 = create :obstacle, maneuver: maneuver
         obstacle_2 = create :obstacle, maneuver: maneuver,
-                               point_value: obstacle_1.point_value,
-                               obstacle_type: obstacle_1.obstacle_type
+                                       point_value: obstacle_1.point_value,
+                                       obstacle_type: obstacle_1.obstacle_type
         expected = { [obstacle_1.point_value, obstacle_1.obstacle_type] =>
                     [obstacle_1, obstacle_2] }
         expect(maneuver.grouped_obstacles).to eql expected
@@ -46,11 +44,10 @@ describe Maneuver do
       it 'returns a hash of obstacles' do
         maneuver = create :maneuver
         obstacle_1 = create :obstacle, maneuver: maneuver,
-                                       point_value: 2,
-                                       obstacle_type: 'Pivot cone'
+                                       point_value: 2
         obstacle_2 = create :obstacle, maneuver: maneuver,
-                               point_value: 4 , #diffrent than obstacle 1
-                               obstacle_type: obstacle_1.obstacle_type
+                                       point_value: 4, # diffrent than obstacle1
+                                       obstacle_type: obstacle_1.obstacle_type
         expected = { [obstacle_1.point_value, obstacle_1.obstacle_type] =>
                     [obstacle_1],
                      [obstacle_2.point_value, obstacle_2.obstacle_type] =>
