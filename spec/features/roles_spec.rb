@@ -6,7 +6,7 @@ describe 'assigning roles' do
       admin = create :user, admin: true
       login_as admin
       visit admin_users_url
-      binding.pry
+      #binding.pry
       check 'user_master_of_ceremonies'
       click_on 'Save'
       expect(page).to have_text 'User has been updated.'
