@@ -45,7 +45,8 @@ describe Participant do
   end
   describe 'maneuver_score' do
     it 'returns the maneuver score' do
-      expect(participant.maneuver_score).to eql 0
+      maneuver_partip = create :maneuver_participant, :perfect_score
+      expect(maneuver_partip.participant.maneuver_score).to eql 50
     end
   end
   describe 'display_information' do
@@ -75,8 +76,10 @@ describe Participant do
     end
     context 'displays three options' do
       it 'splits up options' do
-        exp = participant.name.to_s + ' (' + participant.bus.number +
-              ', #' + participant.number.to_s + ')'
+        name = participant.name
+        bus_number = participant.bus.number
+        number = participant.number.to_s
+        exp =  name + ' (' + bus_number + ', #' + number + ')'
         expect(participant.display_information(:name, :bus, :number)).to eql exp
       end
     end
@@ -92,50 +95,52 @@ end
 describe 'scoreboard order' do
   context 'total score' do
     it 'sorts participants by total score' do
-      per = create :onboard_judging, :perfect
-      per_2 = create :onboard_judging, minutes_elapsed: 8
-      per_3 = create :onboard_judging, minutes_elapsed: 9
-      p_1 = per.participant
-      p_2 = per_2.participant
-      p_3 = per_3.participant
-      expected = [p_1, p_2, p_3]
+      onboard_judge_1 = create :onboard_judging, :perfect
+      onboard_judge_2 = create :onboard_judging, minutes_elapsed: 8
+      onboard_judge_3 = create :onboard_judging, minutes_elapsed: 9
+      participant_1 = onboard_judge_1.participant
+      participant_2 = onboard_judge_2.participant
+      participant_3 = onboard_judge_3.participant
+      expected = [participant_1, participant_2, participant_3]
       expect(Participant.scoreboard_order(:total_score)).to eql expected
     end
   end
-  context 'maneuver score' do 
-    it 'sorts participants by maneuver score' do 
-      per = create :maneuver_participant, :perfect_score
-      per_2 = create :maneuver_participant, :perfect_score, reversed_direction: 1
-      per_3 = create :maneuver_participant, :perfect_score, reversed_direction: 2
-      p_1 = per.participant
-      p_2 = per_2.participant
-      p_3 = per_3.participant
-      expected = [p_1, p_2, p_3]
+  context 'maneuver score' do
+    it 'sorts participants by maneuver score' do
+      maneuver_partip_1 = create :maneuver_participant, :perfect_score
+      maneuver_partip_2 = create :maneuver_participant,
+                                 :perfect_score, reversed_direction: 1
+      maneuver_partip_3 = create :maneuver_participant,
+                                 :perfect_score, reversed_direction: 2
+      participant_1 = maneuver_partip_1.participant
+      participant_2 = maneuver_partip_2.participant
+      participant_3 = maneuver_partip_3.participant
+      expected = [participant_1, participant_2, participant_3]
       expect(Participant.scoreboard_order(:maneuver_score)).to eql expected
     end
   end
-  context 'participant_name' do 
+  context 'participant_name' do
     it 'sorts participants by participant name' do
-      p_1 = create :participant, name: 'Akiva'
-      p_2 = create :participant, name: 'Arta'
-      p_3 = create :participant, name: 'Molly'
-      expected = [p_1, p_2, p_3]
+      participant_1 = create :participant, name: 'Akiva'
+      participant_2 = create :participant, name: 'Arta'
+      participant_3 = create :participant, name: 'Molly'
+      expected = [participant_1, participant_2, participant_3]
       expect(Participant.scoreboard_order(:participant_name)).to eq expected
     end
   end
   context 'participant_number' do
-    it 'sorts participants by participant number' do 
-      p_1 = create :participant
-      p_2 = create :participant
-      p_3 = create :participant
-      expected = [p_1, p_2, p_3]
+    it 'sorts participants by participant number' do
+      participant_1 = create :participant
+      participant_2 = create :participant
+      participant_3 = create :participant
+      expected = [participant_1, participant_2, participant_3]
       expect(Participant.scoreboard_order(:participant_number)).to eq expected
     end
   end
 end
 
-describe 'top_20' do 
-  context'doesnt include last person' do
+describe 'top_20' do
+  context'doesnt include anyone after 20th person' do
     it 'holds 20 people' do
       21.times { create :participant }
       partip_array = Participant.top_20

@@ -35,8 +35,8 @@ describe Maneuver do
                                        point_value: 4,
                                        obstacle_type: 'Pivot cone'
         obstacle_2 = create :obstacle, maneuver: maneuver,
-                                       point_value: 4,
-                                       obstacle_type: 'Pivot cone'
+                               point_value: obstacle_1.point_value,
+                               obstacle_type: obstacle_1.obstacle_type
         expected = { [obstacle_1.point_value, obstacle_1.obstacle_type] =>
                     [obstacle_1, obstacle_2] }
         expect(maneuver.grouped_obstacles).to eql expected
@@ -49,8 +49,8 @@ describe Maneuver do
                                        point_value: 2,
                                        obstacle_type: 'Pivot cone'
         obstacle_2 = create :obstacle, maneuver: maneuver,
-                                       point_value: 4,
-                                       obstacle_type: 'Pivot cone'
+                               point_value: 4 , #diffrent than obstacle 1
+                               obstacle_type: obstacle_1.obstacle_type
         expected = { [obstacle_1.point_value, obstacle_1.obstacle_type] =>
                     [obstacle_1],
                      [obstacle_2.point_value, obstacle_2.obstacle_type] =>
