@@ -31,6 +31,13 @@ p.errors{
   background-color: #b73434;
 }
 
-td.roles, th.roles {
-    text-align: center;
+table.users.roles, th.roles {
+  text-align: center;
+  vertical-align: center;
+  align: center;
+}
+
+td.left, th.left {
+  text-align: left;
+  align: left;
 }

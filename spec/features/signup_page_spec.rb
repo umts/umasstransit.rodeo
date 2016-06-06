@@ -2,10 +2,9 @@ require 'rails_helper'
 
 describe 'signing up' do
   context 'a invalid user' do
-    it 'does not creae the user' do
+    it 'does not create the user' do
       visit new_user_registration_url
       fill_in 'user_name', with: 'Foo Bar'
-      fill_in 'user_email', with: 'foo@invalid'
       fill_in 'user_password', with: 'password'
       fill_in 'user_password_confirmation', with: 'password'
       expect do

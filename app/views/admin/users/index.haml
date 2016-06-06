@@ -1,7 +1,7 @@
 .users
-  %table.users
+  %table.users.roles
     %tr
-      %th Name
+      %th.left Name
       %th.roles Admin
       %th.roles Master of Ceremonies
       %th.roles Judge
@@ -10,12 +10,12 @@
     - @users.each do |user|
       %tr
         = form_for user, url: admin_user_path(user), method: :put do |f|
-          %td= user.name
-          %td.roles= f.check_box :admin
-          %td.roles= f.check_box :master_of_ceremonies
-          %td.roles= f.check_box :judge
-          %td.roles= f.check_box :quiz_scorer
-          %td.roles= f.check_box :circle_check_scorer
+          %td.left= user.name
+          %td= f.check_box :admin
+          %td= f.check_box :master_of_ceremonies
+          %td= f.check_box :judge
+          %td= f.check_box :quiz_scorer
+          %td= f.check_box :circle_check_scorer
           %td
             .actions= f.submit 'Save', class: 'btn btn-primary'
         %td
