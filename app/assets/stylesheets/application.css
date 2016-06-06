@@ -34,10 +34,8 @@ p.errors{
 table.users.roles, th.roles {
   text-align: center;
   vertical-align: center;
-  align: center;
 }
 
 td.left, th.left {
   text-align: left;
-  align: left;
 }
