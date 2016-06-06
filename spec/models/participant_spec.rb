@@ -102,8 +102,8 @@ describe 'scoreboard order' do
       expect(Participant.scoreboard_order(:total_score)).to eql expected
     end
   end
-  context 'maneuver score' do 
-    it 'sorts participants by maneuver score' do 
+  context 'maneuver score' do
+    it 'sorts participants by maneuver score' do
       per = create :maneuver_participant, :perfect_score
       per_2 = create :maneuver_participant, :perfect_score, reversed_direction: 1
       per_3 = create :maneuver_participant, :perfect_score, reversed_direction: 2
@@ -114,7 +114,7 @@ describe 'scoreboard order' do
       expect(Participant.scoreboard_order(:maneuver_score)).to eql expected
     end
   end
-  context 'participant_name' do 
+  context 'participant_name' do
     it 'sorts participants by participant name' do
       p_1 = create :participant, name: 'Akiva'
       p_2 = create :participant, name: 'Arta'
@@ -124,7 +124,7 @@ describe 'scoreboard order' do
     end
   end
   context 'participant_number' do
-    it 'sorts participants by participant number' do 
+    it 'sorts participants by participant number' do
       p_1 = create :participant
       p_2 = create :participant
       p_3 = create :participant
@@ -134,7 +134,7 @@ describe 'scoreboard order' do
   end
 end
 
-describe 'top_20' do 
+describe 'top_20' do
   context'doesnt include last person' do
     it 'holds 20 people' do
       21.times { create :participant }
