@@ -1,11 +1,11 @@
-require 'rails_helper' 
+require 'rails_helper'
 
-describe Admin::UsersController do 
+describe Admin::UsersController do
   include Devise::TestHelpers
-  describe 'update' do 
-    context 'bad PUT #UPDATE' do 
-      it 'will not update name or email' do 
-        request.env["HTTP_REFERER"] = admin_users_url
+  describe 'update' do
+    context 'bad PUT #UPDATE' do
+      it 'will not update name or email' do
+        request.env['HTTP_REFERER'] = admin_users_url
         user = create :user, admin: true
         sign_in user
         attrs = FactoryGirl.attributes_for(:user, name: '')
