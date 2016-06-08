@@ -146,7 +146,7 @@ describe 'top_20' do
       create :maneuver_participant, :perfect_score,
              reversed_direction: 2
       top_20 = Participant.top_20
-      expect !top_20.include?(Participant.last)
+      expect(top_20).not_to include Participant.last
     end
   end
   context 'including anyone in top 20' do
@@ -155,7 +155,7 @@ describe 'top_20' do
       create :maneuver_participant, :perfect_score,
              reversed_direction: 2
       top_20 = Participant.top_20
-      expect top_20.include?(Participant.first)
+      expect(top_20).to include Participant.first
     end
   end
 end
