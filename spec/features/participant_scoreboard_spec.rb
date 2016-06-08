@@ -24,4 +24,8 @@ describe 'scoring appears properly' do
     visit scoreboard_participants_url
     expect(page).to have_text maneuver_participant.score
   end
+  it 'shows m-dash when participant has no scores' do
+    visit scoreboard_participants_url
+    expect(page).to have_text '—'
+  end
 end

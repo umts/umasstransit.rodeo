@@ -2,11 +2,23 @@ require 'rails_helper'
 
 describe 'signing up' do
   context 'a invalid user' do
-    it 'does not create the user' do
+    it 'does not create the user with no email' do
       visit new_user_registration_url
       fill_in 'user_name', with: 'Foo Bar'
       fill_in 'user_password', with: 'password'
       fill_in 'user_password_confirmation', with: 'password'
+      expect do
+        within('.actions') do
+          click_on 'Sign up'
+        end
+      end
+        .to change { User.count }
+        .by 0
+    end
+    it 'does not create the user with no password' do
+      visit new_user_registration_url
+      fill_in 'user_name', with: 'Foo Bar'
+      fill_in 'user_email', with: 'foo@valid.com'
       expect do
         within('.actions') do
           click_on 'Sign up'

@@ -140,11 +140,22 @@ describe 'scoreboard order' do
 end
 
 describe 'top_20' do
-  context'doesnt include anyone after 20th person' do
-    it 'holds 20 people' do
-      21.times { create :participant }
-      partip_array = Participant.top_20
-      expect !partip_array.include?(Participant.last)
+  context 'excluding anyone not in top 20' do
+    it 'exludes participant with 21st highest score' do
+      20.times { create :maneuver_participant, :perfect_score }
+      create :maneuver_participant, :perfect_score,
+             reversed_direction: 2
+      top_20 = Participant.top_20
+      expect(top_20).not_to include Participant.last
+    end
+  end
+  context 'including anyone in top 20' do
+    it 'includes participant with highest score' do
+      20.times { create :maneuver_participant, :perfect_score }
+      create :maneuver_participant, :perfect_score,
+             reversed_direction: 2
+      top_20 = Participant.top_20
+      expect(top_20).to include Participant.first
     end
   end
 end

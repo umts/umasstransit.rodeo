@@ -25,6 +25,17 @@ describe 'updating a participant' do
       expect(page).to have_text 'Participant has been added to the queue.'
     end
   end
+  context 'will not assign a duplicate number' do
+    it 'does not update a participant' do
+      create :participant, number: 1
+      create :participant, number: 2
+      when_current_user_is :admin
+      visit participants_url
+      fill_in 'participant_number', with: '2', match: :first
+      click_on 'Save', match: :first
+      expect(page).to have_text 'Please choose a unique participant number.'
+    end
+  end
   context 'with admin privilege' do
     it 'updates a participant' do
       participant = create :participant, name: 'Foo Bar'
