@@ -12,10 +12,11 @@
     - if @minimum_password_length
       %em
         (#{@minimum_password_length} characters minimum)
-    = f.password_field :password, autocomplete: "off", class: 'form-control'
+    = f.password_field :password, autocomplete: "off", class: 'form-control', id: 'txtNewPassword'
   .field
     = f.label :password_confirmation
-    = f.password_field :password_confirmation, autocomplete: "off", class: 'form-control'
+    = f.password_field :password_confirmation, autocomplete: "off", class: 'form-control', id: 'txtConfirmPassword', onChange: "checkPasswordMatch()"
+  #divCheckPasswordMatch.registrationFormAlert
   .actions
-    = f.submit "Sign up"
+    = f.submit "Sign up", id: 'btnSignUp'
 = render "devise/shared/links"
