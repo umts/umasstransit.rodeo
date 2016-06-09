@@ -1,13 +1,15 @@
 function checkPasswordMatch() {
     var password = $("#txtNewPassword").val();
     var confirmPassword = $("#txtConfirmPassword").val();
+    var noMatch = "Passwords do not match!".fontcolor('red');
+    var yesMatch = "Passwords match.".fontcolor('green');
 
     if (password != confirmPassword){
-      $("#divCheckPasswordMatch").html("Passwords do not match!");
+      $("#divCheckPasswordMatch").html(noMatch);
       document.getElementById("btnSignUp").disabled = true;
     }
     else{
-      $("#divCheckPasswordMatch").html("Passwords match.");
+      $("#divCheckPasswordMatch").html(yesMatch);
       document.getElementById("btnSignUp").disabled = false;
     }
 };
