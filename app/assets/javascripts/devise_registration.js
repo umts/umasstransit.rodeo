@@ -12,6 +12,11 @@ function checkPasswordMatch() {
       $("#divCheckPasswordMatch").html(yesMatch);
       document.getElementById("btnSignUp").disabled = false;
     }
+
+    if (password.length < 8){
+      $("#divCheckPasswordMatch").html("Password is too short".fontcolor('red'));
+      document.getElementById("btnSignUp").disabled = true;
+    }
 };
 $(document).ready(function () {
    $("#txtConfirmPassword").keyup(checkPasswordMatch);
