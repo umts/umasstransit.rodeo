@@ -5,8 +5,8 @@ describe 'signing up' do
     it 'does not create the user' do
       visit new_user_registration_url
       fill_in 'user_name', with: 'Foo Bar'
-      fill_in 'user_password', with: 'password'
-      fill_in 'user_password_confirmation', with: 'password'
+      fill_in 'txtNewPassword', with: 'password'
+      fill_in 'txtConfirmPassword', with: 'password'
       expect do
         within('.actions') do
           click_on 'Sign up'
@@ -21,8 +21,8 @@ describe 'signing up' do
       visit new_user_registration_url
       fill_in 'user_name', with: 'Foo Bar'
       fill_in 'user_email', with: 'foo@valid.com'
-      fill_in 'user_password', with: 'password'
-      fill_in 'user_password_confirmation', with: 'password'
+      fill_in 'txtNewPassword', with: 'password'
+      fill_in 'txtConfirmPassword', with: 'password'
       expect do
         within('.actions') do
           click_on 'Sign up'
