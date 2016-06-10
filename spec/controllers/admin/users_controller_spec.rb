@@ -1,7 +1,7 @@
 require 'rails_helper'
+require 'spec_helper'
 
-describe Admin::UsersController do
-  include Devise::TestHelpers
+describe Admin::UsersController, type: :controller do
   describe 'update' do
     context 'bad PUT #UPDATE' do
       it 'will not update name or email' do

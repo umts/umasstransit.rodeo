@@ -30,14 +30,14 @@ describe 'signing up' do
       create :participant
       login_as user
       visit root_path
-      expect do
-        within('nav').to have_text 'Scoreboard'
-        within('nav').not_to have_text 'Maneuver'
-        within('nav').not_to have_text 'Circle Check'
-        within('nav').not_to have_text 'Quiz'
-        within('nav').not_to have_text 'Participants'
-        within('nav').not_to have_text 'Buses'
-        within('nav').not_to have_text 'Roles'
+      within 'nav' do
+        current_scope.has_text? 'Scoreboard'
+        current_scope.has_text? 'Maneuver'
+        current_scope.has_text? 'Circle Check'
+        current_scope.has_text? 'Quiz'
+        current_scope.has_text? 'Participants'
+        current_scope.has_text? 'Buses'
+        current_scope.has_text? 'Roles'
       end
     end
   end

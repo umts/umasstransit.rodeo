@@ -147,8 +147,8 @@ unless Rails.env.production? || ENV['SKIP_PARTICIPANTS']
                             email: 'dave@example.com',
                             password: 'password',
                             admin: true
-  FactoryGirl.create :user, name: 'John Doe',
-                            email: 'jdoe@example.com',
+  FactoryGirl.create :user, name: 'Jake Brians',
+                            email: 'jbox@example.com',
                             password: 'password',
                             master_of_ceremonies: true
 end
