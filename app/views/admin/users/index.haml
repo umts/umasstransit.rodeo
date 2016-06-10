@@ -1,0 +1,22 @@
+.users
+  %table.users.roles
+    %tr
+      %th.left Name
+      %th.roles Admin
+      %th.roles Master of Ceremonies
+      %th.roles Judge
+      %th.roles Quiz Scorer
+      %th.roles Circle Check Scorer
+    - @users.each do |user|
+      %tr
+        = form_for user, url: admin_user_path(user), method: :put do |f|
+          %td.left= user.name
+          %td= f.check_box :admin
+          %td= f.check_box :master_of_ceremonies
+          %td= f.check_box :judge
+          %td= f.check_box :quiz_scorer
+          %td= f.check_box :circle_check_scorer
+          %td
+            .actions= f.submit 'Save', class: 'btn btn-primary'
+        %td
+          .actions= button_to 'Remove', admin_user_path(user), method: :delete, class: 'btn btn-primary delete'
