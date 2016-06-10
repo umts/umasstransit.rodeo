@@ -8,7 +8,7 @@ describe Admin::UsersController do
         request.env['HTTP_REFERER'] = admin_users_url
         user = create :user, admin: true
         sign_in user
-        attrs = FactoryGirl.attributes_for(:user, name: '')
+        attrs = { name: '' }
         put :update, id: user, user: attrs
         user.reload
         expected = ["Name can't be blank"]
