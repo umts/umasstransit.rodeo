@@ -39,13 +39,13 @@ describe 'signing up' do
       login_as user
       visit root_path
       within 'nav' do
-        expect(page).to have_text 'Scoreboard'
-        expect(page).not_to have_text 'Maneuver'
-        expect(page).not_to have_text 'Circle Check'
-        expect(page).not_to have_text 'Quiz'
-        expect(page).not_to have_text 'Participants'
-        expect(page).not_to have_text 'Buses'
-        expect(page).not_to have_text 'Roles'
+        current_scope.has_text? 'Scoreboard'
+        current_scope.has_text? 'Maneuver'
+        current_scope.has_text? 'Circle Check'
+        current_scope.has_text? 'Quiz'
+        current_scope.has_text? 'Participants'
+        current_scope.has_text? 'Buses'
+        current_scope.has_text? 'Roles'
       end
     end
   end

@@ -1,7 +1,7 @@
 require 'rails_helper'
+require 'spec_helper'
 
-describe Admin::UsersController do
-  include Devise::TestHelpers
+describe Admin::UsersController, type: :controller do
   describe 'update' do
     context 'bad PUT #UPDATE' do
       it 'will not update name or email' do
@@ -12,7 +12,7 @@ describe Admin::UsersController do
         put :update, id: user, user: attrs
         user.reload
         expected = ["Name can't be blank"]
-        expect(response).to redirect_to(:admin_users)
+        expect(response).to redirect_to admin_users_url
         expect(flash[:errors]).to match(expected)
       end
     end

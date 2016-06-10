@@ -1,14 +1,13 @@
 require 'rails_helper'
 
 describe FayeController do
-  include Devise::TestHelpers
   before :each do
-    user = create :user, admin: true
-    sign_in user
+    current_user = create :user, :admin
+    sign_in current_user
   end
   context 'post #test' do
     it 'posts to faye test' do
-      expect(PrivatePub).to receive(:publish_to).with('/test', anything)
+      expect(PrivatePub).to receive(:publish_to).with('/test', {})
       post :test
     end
   end
