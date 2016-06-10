@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160406145940) do
+ActiveRecord::Schema.define(version: 20160606180732) do
 
   create_table "buses", force: :cascade do |t|
     t.string   "number",     limit: 255
@@ -141,5 +141,8 @@ ActiveRecord::Schema.define(version: 20160406145940) do
   end
 
   add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id", using: :btree
+
+  add_index "views", ["email"], name: "index_views_on_email", unique: true, using: :btree
+  add_index "views", ["reset_password_token"], name: "index_views_on_reset_password_token", unique: true, using: :btree
 
 end
