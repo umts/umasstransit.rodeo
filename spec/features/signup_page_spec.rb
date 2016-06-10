@@ -8,7 +8,7 @@ describe 'signing up' do
       fill_in 'user_password', with: 'password'
       fill_in 'user_password_confirmation', with: 'password'
       expect do
-        within('.actions'){ click_on 'Sign up' }
+        within('.actions') { click_on 'Sign up' }
       end.to change { User.count }.by 0
     end
   end
@@ -20,7 +20,7 @@ describe 'signing up' do
       fill_in 'user_password', with: 'password'
       fill_in 'user_password_confirmation', with: 'password'
       expect do
-        within('.actions'){ click_on 'Sign up' }
+        within('.actions') { click_on 'Sign up' }
       end.to change { User.count }.by 1
     end
   end
