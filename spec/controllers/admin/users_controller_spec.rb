@@ -1,7 +1,6 @@
 require 'rails_helper'
-require 'spec_helper'
 
-describe Admin::UsersController, type: :controller do
+describe Admin::UsersController do
   describe 'update' do
     context 'bad PUT #UPDATE' do
       it 'will not update name or email' do

@@ -31,13 +31,13 @@ describe 'signing up' do
       login_as user
       visit root_path
       within 'nav' do
-        current_scope.has_text? 'Scoreboard'
-        current_scope.has_text? 'Maneuver'
-        current_scope.has_text? 'Circle Check'
-        current_scope.has_text? 'Quiz'
-        current_scope.has_text? 'Participants'
-        current_scope.has_text? 'Buses'
-        current_scope.has_text? 'Roles'
+        expect(current_scope).to have_text 'Scoreboard'
+        expect(current_scope).to_not have_text 'Maneuver'
+        expect(current_scope).to_not have_text 'Circle Check'
+        expect(current_scope).to_not have_text 'Quiz'
+        expect(current_scope).to_not have_text 'Participants'
+        expect(current_scope).to_not have_text 'Buses'
+        expect(current_scope).to_not have_text  'Roles'
       end
     end
   end
