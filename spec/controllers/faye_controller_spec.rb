@@ -7,7 +7,7 @@ describe FayeController do
   end
   context 'post #test' do
     it 'posts to faye test' do
-      expect(PrivatePub).to receive(:publish_to).with('/test', {})
+      expect(PrivatePub).to receive(:publish_to).with '/test', {}
       post :test
     end
   end
