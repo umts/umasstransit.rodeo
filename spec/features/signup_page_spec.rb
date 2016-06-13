@@ -32,12 +32,12 @@ describe 'signing up' do
       visit root_path
       within 'nav' do
         expect(current_scope).to have_text 'Scoreboard'
-        expect(current_scope).to_not have_text 'Maneuver'
-        expect(current_scope).to_not have_text 'Circle Check'
-        expect(current_scope).to_not have_text 'Quiz'
-        expect(current_scope).to_not have_text 'Participants'
-        expect(current_scope).to_not have_text 'Buses'
-        expect(current_scope).to_not have_text  'Roles'
+        expect(current_scope).not_to have_text 'Maneuver'
+        expect(current_scope).not_to have_text 'Circle Check'
+        expect(current_scope).not_to have_text 'Quiz'
+        expect(current_scope).not_to have_text 'Participants'
+        expect(current_scope).not_to have_text 'Buses'
+        expect(current_scope).not_to have_text 'Roles'
       end
     end
   end

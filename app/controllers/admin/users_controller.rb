@@ -17,9 +17,6 @@ class Admin::UsersController < ApplicationController
     if @user.update user_params
       redirect_to admin_users_path,
                   notice: 'User has been updated.'
-    else
-      flash[:errors] = @user.errors.full_messages
-      redirect_to :back
     end
   end
 
@@ -30,7 +27,7 @@ class Admin::UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit :name, :email, :admin,
+    params.require(:user).permit :admin,
                                  :quiz_scorer, :circle_check_scorer,
                                  :master_of_ceremonies, :judge
   end
