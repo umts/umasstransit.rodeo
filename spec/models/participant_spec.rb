@@ -141,7 +141,7 @@ end
 
 describe 'top_20' do
   context 'excluding anyone not in top 20' do
-    it 'exludes participant with 21st highest score' do
+    it 'excludes participant with 21st highest score' do
       20.times { create :maneuver_participant, :perfect_score }
       create :maneuver_participant, :perfect_score,
              reversed_direction: 2
