@@ -9,19 +9,15 @@ describe 'signing up' do
       fill_in 'user_password_confirmation', with: 'password'
       expect do
         within('.actions') { click_on 'Sign up' }
-      end.to change { User.count }.by 0
+      end.not_to change { User.count }
     end
     it 'does not create the user with no password' do
       visit new_user_registration_url
       fill_in 'user_name', with: 'Foo Bar'
       fill_in 'user_email', with: 'foo@valid.com'
       expect do
-        within('.actions') do
-          click_on 'Sign up'
-        end
-      end
-        .to change { User.count }
-        .by 0
+        within('.actions') { click_on 'Sign up' }
+      end.not_to change { User.count }
     end
   end
   context 'a valid user' do
