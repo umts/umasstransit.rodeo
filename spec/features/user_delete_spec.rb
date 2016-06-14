@@ -3,8 +3,8 @@ require 'rails_helper'
 describe 'deleting a user' do
   context 'with admin privilege' do
     it 'deletes user' do
-      create :user, name: 'Adam'
-      admin = create :user, name: 'Bob', admin: true
+      create :user
+      admin = create :user, admin: true
       login_as admin
       visit admin_users_url
       click_on 'Remove', match: :first
@@ -13,9 +13,8 @@ describe 'deleting a user' do
   end
   context 'with master of ceremonies privilege' do
     it 'will not delete a user' do
-      create :user, name: 'Adam'
-      master_of_ceremonies = create :user, name: 'Bob',
-                                           master_of_ceremonies: true
+      create :user
+      master_of_ceremonies = create :user, master_of_ceremonies: true
       login_as master_of_ceremonies
       visit admin_users_url
       click_on 'Remove', match: :first

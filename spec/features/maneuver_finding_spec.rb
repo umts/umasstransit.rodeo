@@ -35,7 +35,7 @@ describe 'finding a participant' do
   end
   context 'finds the next' do
     context 'when called on non-last participant' do
-      it 'rediects to the next participant' do
+      it 'redirects to the next participant' do
         when_current_user_is :admin
         visit maneuver_participant_path(record_1.id)
         click_link 'Next participant'
