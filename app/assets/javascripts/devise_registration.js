@@ -6,16 +6,14 @@ function checkPasswordMatch() {
 
     if (password != confirmPassword){
       $("#divCheckPasswordMatch").html(noMatch);
-      document.getElementById("btnSignUp").disabled = true;
     }
     else{
       $("#divCheckPasswordMatch").html(yesMatch);
-      document.getElementById("btnSignUp").disabled = false;
     }
-
-    if (password.length < 8){
+    var minLength = $('#txtNewPassword').attr('min');
+    if (password.length < minLength){
       $("#divCheckPasswordMatch").html("Password is too short".fontcolor('red'));
-      document.getElementById("btnSignUp").disabled = true;
+      $("#btnSignUp").prop('disabled', true);
     }
 };
 $(document).ready(function () {

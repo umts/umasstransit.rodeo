@@ -40,13 +40,18 @@ a.navbar-brand img{
 
 /* Dropdown Content (Hidden by Default) */
 .dropdown-content {
-  display: none;
+  display: block;
   position: absolute;
   background-color: #f9f9f9;
   min-width: 100%;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   border-radius: 10px;
   text-align: center;
+}
+
+/* Show the dropdown menu (use JS to remove this class from the .dropdown-content container when the user clicks on the dropdown button) */
+.dropdown-content.hidden {
+  display:none;
 }
 
 /* Links inside the dropdown */
@@ -64,6 +69,3 @@ a.navbar-brand img{
   background-color: #f1f1f1;
   text-decoration: none;
 }
-
-/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
-.show {display:block;}
