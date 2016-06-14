@@ -9,14 +9,14 @@
       = f.hidden_field :participant_id, value: @participant.id
       %h2 Time elapsed:
       .field
-        = f.number_field :minutes_elapsed, value: @record.minutes_elapsed, min: 0
+        = f.number_field :minutes_elapsed, value: @record.minutes_elapsed, min: 0, required: true
         minutes
         %button.btn.btn-primary.increment{type: :button,
           data: { field: :onboard_judging_minutes_elapsed, type: 'minus' } }-
         %button.btn.btn-primary.increment{type: :button,
           data: { field: :onboard_judging_minutes_elapsed, type: 'plus' } }+
       .field
-        = f.number_field :seconds_elapsed, value: @record.seconds_elapsed, min: 0, max: 59
+        = f.number_field :seconds_elapsed, value: @record.seconds_elapsed, min: 0, max: 59, required: true
         seconds
         %button.btn.btn-primary.increment{type: :button, disabled: @record.seconds_elapsed.zero?,
           data: { field: :onboard_judging_seconds_elapsed, type: 'minus' } }-

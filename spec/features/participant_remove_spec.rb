@@ -1,3 +1,4 @@
+require 'rails_helper'
 describe 'removing a participant' do
   before :each do
     create :participant

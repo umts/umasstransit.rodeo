@@ -12,9 +12,11 @@ class Participant < ActiveRecord::Base
   has_one :circle_check_score, dependent: :destroy
   has_one :quiz_score, dependent: :destroy
   has_one :onboard_judging, dependent: :destroy
-
+  validates :number, uniqueness: true
   validates :name, presence: true, uniqueness: true
   validates :bus, presence: true, if: -> { number.present? }
+  validates :number, numericality: { greater_than_or_equal_to: 0 },
+                     allow_blank: true
 
   default_scope { order :number }
 
