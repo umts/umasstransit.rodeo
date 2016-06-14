@@ -120,7 +120,7 @@ FactoryGirl.create :distance_target, intervals: 0, multiplier: 1, minimum: 6,
 unless Rails.env.production? || ENV['SKIP_PARTICIPANTS']
   bus = FactoryGirl.create :bus
   35.times do |i|
-    p = FactoryGirl.create :participant, name: FFaker::Name.name, number: i, bus: bus
+    p = FactoryGirl.create :participant, name: FFaker::Name.name, bus: bus
     maneuvers.each do |_name, m|
       mp = ManeuverParticipant.new participant: p, maneuver: m, reversed_direction: 0, completed_as_designed: true
       unless m.name.include?('Passenger') || rand(4) == 3
