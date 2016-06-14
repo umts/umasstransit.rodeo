@@ -16,7 +16,7 @@ class Participant < ActiveRecord::Base
   validates :name, presence: true, uniqueness: true
   validates :bus, presence: true, if: -> { number.present? }
   validates :number, numericality: { greater_than_or_equal_to: 0 },
-                     if: -> { number.present? }
+                     allow_blank: true
 
   default_scope { order :number }
 

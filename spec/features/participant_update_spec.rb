@@ -31,7 +31,7 @@ describe 'updating a participant' do
       create :participant, number: 2
       when_current_user_is :admin
       visit participants_url
-      fill_in 'participant_number', with: '2', match: :first
+      fill_in 'participant_number', with: 2, match: :first
       click_on 'Save', match: :first
       expect(page).to have_text 'Please choose a unique participant number.'
     end

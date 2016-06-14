@@ -64,9 +64,6 @@ class ParticipantsController < ApplicationController
       redirect_to participants_path,
                   notice: 'Participant has been updated.'
       update_scoreboard with: @participant
-    else
-      redirect_to participants_path
-      flash[:errors] = @participant.errors.full_messages
     end
   end
 

@@ -36,7 +36,7 @@ describe 'updating a circle check score' do
       expect(page).not_to have_text 'Score was saved.'
     end
   end
-  context 'when out of range circle check score' do
+  context 'out of range circle check score' do
     it 'will not accept negative number' do
       when_current_user_is :admin
       visit circle_check_scores_url
@@ -46,7 +46,7 @@ describe 'updating a circle check score' do
       expect(page).to have_text expected
     end
   end
-  context 'when updating with blank field' do
+  context 'updating with blank field' do
     it 'will not accept a blank field' do
       when_current_user_is :admin
       visit circle_check_scores_url
@@ -56,7 +56,7 @@ describe 'updating a circle check score' do
       expect(page).to have_text expected
     end
   end
-  context 'when out of range circle check score' do
+  context 'out of range circle check score' do
     it 'will not accept positive number greater than total points' do
       when_current_user_is :admin
       visit circle_check_scores_url
