@@ -16,5 +16,5 @@ function checkPasswordMatch() {
     }
 };
 $(document).ready(function(){
-   $("#txtConfirmPassword").keyup(checkPasswordMatch);
+   $("#user_password_confirmation").keyup(checkPasswordMatch);
 });
