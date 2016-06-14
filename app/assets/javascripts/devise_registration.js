@@ -9,12 +9,10 @@ function checkPasswordMatch() {
     }
     else{
       $("#divCheckPasswordMatch").html(yesMatch);
-      $("#btnSignUp").prop('disabled', false);
     }
     var minLength = $('#user_password').attr('min');
     if (password.length < minLength){
       $("#divCheckPasswordMatch").html("Password is too short".fontcolor('red'));
-      $("#btnSignUp").prop('disabled', true);
     }
 };
 $(document).ready(function(){
