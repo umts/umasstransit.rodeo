@@ -22,8 +22,12 @@
           %button.btn.btn-default.navbar-btn{type: :button} Buses
         = link_to admin_users_path do
           %button.btn.btn-default.navbar-btn{type: :button} Roles
-      = link_to destroy_user_session_path, method: :delete do
-        %button.btn.btn-default.navbar-btn.navbar-right.logout{type: :button} Logout
+      .dropdown
+        %button.btn.navbar-btn.dropbtn
+          = current_user.name
+        .dropdown-content.hidden
+          %a= link_to 'Edit Account', edit_user_registration_path
+          %a= link_to 'Logout', destroy_user_session_path, method: :delete    
     - else
       = link_to new_user_session_path do
         %button.btn.btn-default.navbar-btn.navbar-right.login{type: :button} Log in

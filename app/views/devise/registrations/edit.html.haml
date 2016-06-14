@@ -13,11 +13,12 @@
     = f.label :password
     %i (leave blank if you don't want to change it)
     %br/
-    = f.password_field :password, autocomplete: "off"
+    = f.password_field :password, autocomplete: "off", id: 'user_password', min: Devise.password_length.min
   .field
     = f.label :password_confirmation
     %br/
-    = f.password_field :password_confirmation, autocomplete: "off"
+    = f.password_field :password_confirmation, autocomplete: "off", id: 'user_password_confirmation'
+  #divCheckPasswordMatch.registrationFormAlert
   .field
     = f.label :current_password
     %i (we need your current password to confirm your changes)

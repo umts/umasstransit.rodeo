@@ -14,3 +14,61 @@ a.navbar-brand img{
   background-color: #cce7ef;
   margin-right: 10px;
 }
+
+/* CSS written by w3schools, can be found at
+    http://www.w3schools.com/css/css_dropdowns.asp */
+
+.dropbtn {
+  background-color: #4683b9;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  min-width: 160px;
+}
+
+/* Dropdown button on hover & focus */
+.dropbtn:hover, .dropbtn:focus {
+  background-color: #3f76a6; 
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+  float: right;
+  min-width: 160px;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: block;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 100%;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  border-radius: 10px;
+  text-align: center;
+}
+
+/* Show the dropdown menu (use JS to remove this class from the .dropdown-content container when the user clicks on the dropdown button) */
+.dropdown-content.hidden {
+  display:none;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 8px 16px;
+  text-decoration: none;
+  display: block;
+  font-size: 25px;
+  border-radius: 10px;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+  text-decoration: none;
+}
