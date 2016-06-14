@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-gem 'airbrake', '~> 5.2'
 gem 'coffee-rails'
 gem 'certified'
 gem 'devise'
