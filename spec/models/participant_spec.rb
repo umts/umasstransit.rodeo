@@ -138,7 +138,6 @@ describe 'scoreboard order' do
     end
   end
 end
-
 describe 'top_20' do
   context 'excluding anyone not in top 20' do
     it 'excludes participant with 21st highest score' do

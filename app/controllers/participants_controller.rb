@@ -60,10 +60,11 @@ class ParticipantsController < ApplicationController
 
   def update
     deny_access && return unless current_user.has_role? :master_of_ceremonies
-    @participant.update! user_params
-    redirect_to participants_path,
-                notice: 'Participant has been updated.'
-    update_scoreboard with: @participant
+    if @participant.update user_params
+      redirect_to participants_path,
+                  notice: 'Participant has been updated.'
+      update_scoreboard with: @participant
+    end
   end
 
   def welcome

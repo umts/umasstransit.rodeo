@@ -26,7 +26,7 @@
                 = participant.display_information(:name, :number)
                 = f.hidden_field :participant_id, value: participant.id
               %td= f.number_field :defects_found, placeholder: 'Enter a score...', class: 'form-control'
-              %td= f.number_field :total_defects, value: CircleCheckScore::TOTAL_DEFECTS_DEFAULT, class: 'form-control'
+              %td= f.number_field :total_defects, value: participant.circle_check_score.total_defects || CircleCheckScore::TOTAL_DEFECTS_DEFAULT, class: 'form-control'
               %td= f.submit 'Save score', class: 'btn btn-primary'
   - else
     No participants have been created yet.

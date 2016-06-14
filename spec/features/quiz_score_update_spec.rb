@@ -66,4 +66,14 @@ describe 'updating a score' do
       expect(page).to have_text expected
     end
   end
+  context'when blank field quiz score' do
+    it 'will not accept blank number' do
+      when_current_user_is :admin
+      visit quiz_scores_url
+      fill_in 'quiz_score_points_achieved', with: ''
+      click_on 'Save score'
+      expected = "Points achieved can't be blank"
+      expect(page).to have_text expected
+    end
+  end
 end
