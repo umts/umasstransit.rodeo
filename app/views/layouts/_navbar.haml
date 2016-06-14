@@ -23,7 +23,7 @@
         = link_to admin_users_path do
           %button.btn.btn-default.navbar-btn{type: :button} Roles
       .dropdown
-        %button.btn.navbar-btn.dropbtn{:onclick => "dropdownMenu()"}
+        %button.btn.navbar-btn.dropbtn
           = current_user.name
         .dropdown-content.hidden
           %a= link_to 'Edit Account', edit_user_registration_path

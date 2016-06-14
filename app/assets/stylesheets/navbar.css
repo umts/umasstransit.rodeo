@@ -3,7 +3,7 @@
 }
 
 .navbar button{
-  font-size: 29px;
+  font-size: 30px;
 }
 
 a.navbar-brand img{
@@ -14,6 +14,9 @@ a.navbar-brand img{
   background-color: #cce7ef;
   margin-right: 10px;
 }
+
+/* CSS written by w3schools, can be found at
+    http://www.w3schools.com/css/css_dropdowns.asp */
 
 .dropbtn {
   background-color: #4683b9;
