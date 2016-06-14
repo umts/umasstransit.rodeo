@@ -1,9 +1,5 @@
 Rails.application.routes.draw do
   devise_for :users
-  as :user do
-    get 'users/edit', to: 'devise/registrations#edit', as: :edit_user_registration
-    put 'users', to: 'devise/registrations#update', as: :user_registration           
-  end
 
   root 'participants#welcome'
 
@@ -39,4 +35,9 @@ Rails.application.routes.draw do
   end
 
   resources :quiz_scores, only: %i(create index update)
+
+  namespace :admin do 
+    resources :users, only: %i(destroy index update)
+  end
+
 end

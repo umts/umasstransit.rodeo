@@ -26,7 +26,7 @@
         = number_field_tag "target_#{target.id}",
           @record.distances_achieved[[target.minimum, target.multiplier]],
           min: 0
-        %button.btn.btn-primary.increment{type: :button,
+        %button.btn.btn-primary.increment{type: :button, 
           data: { field: "target_#{target.id}",
                   type: 'minus' } }-
         %button.btn.btn-primary.increment{type: :button,
