@@ -26,3 +26,15 @@ p.errors{
   border-radius: 6px;
   text-align: center;
 }
+
+.btn-primary.delete{
+  background-color: #b73434;
+}
+
+.users.roles, th.roles {
+  text-align: center;
+}
+
+td.left, th.left {
+  text-align: left;
+}
