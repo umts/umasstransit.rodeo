@@ -31,7 +31,7 @@
             - else
               &mdash;
       %td
-        - record = participant.onboard_judging
+        - record = @onboard_judgings[participant.id]
         - if record.present?
           - if @can_edit_scores
             = link_to record.score, record
@@ -45,8 +45,9 @@
             &mdash;
       %td= participant.maneuver_score
       %td
-        - if participant.circle_check_score.present?
-          = participant.circle_check_score.score
+        - record = @circle_check_scores[participant.id]
+        - if record.present?
+          = record.score
         - else
           - if @can_edit_scores
             = link_to circle_check_scores_path do
@@ -54,8 +55,9 @@
           - else
             &mdash;
       %td
-        - if participant.quiz_score.present?
-          = participant.quiz_score.score
+        - record = @quiz_scores[participant.id]
+        - if record.present?
+          = record.score
         - else 
           - if @can_edit_scores
             = link_to quiz_scores_path do
