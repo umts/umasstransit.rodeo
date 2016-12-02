@@ -15,8 +15,8 @@ describe 'requesting a login' do
     click_on 'Send request'
 
     expect(page.current_url).to eql root_url
-    expect(page).to have_text 'Request sent. You can log in once \
-                              your request has been approved.'
+    expect(page).to have_text "Request sent. You can log in once \
+                              your request has been approved."
   end
 
   it 'gives you a helpful message if you try to log in before being approved' do
@@ -25,7 +25,7 @@ describe 'requesting a login' do
     fill_in 'Email', with: user.email
     fill_in 'Password', with: 'password'
     within('.actions') { click_on 'Log in' }
-    expect(page).to have_text 'Your account must be approved by \
-                              an administrator before you can log in.'
+    expect(page).to have_text "Your account must be approved by \
+                              an administrator before you can log in."
   end
 end
