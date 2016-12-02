@@ -1,0 +1,16 @@
+%h1 Manage Users
+- if @users.present?
+  .users
+    %table.users.manage
+      %thead
+        %tr
+          %th Name
+          %th Email
+          %th
+      - @users.each do |user|
+        %tr
+          %td= user.name
+          %td= user.email
+          %td= button_to 'Approve', approve_admin_user_path(user), class: 'btn btn-primary'
+- else
+  No users with pending approval.

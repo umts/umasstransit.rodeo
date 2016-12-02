@@ -6,6 +6,12 @@ class User < ActiveRecord::Base
   validates :email, format: /\A[^@]+@([^@\.]+\.)+[^@\.]+\z/
   validates :encrypted_password, presence: true
 
+  scope :unapproved, -> { where.not approved: true }
+
+  def approve!
+    update! approved: true
+  end
+
   def has_role?(role)
     admin? || send(role)
   end

@@ -1,5 +1,11 @@
 class Admin::UsersController < ApplicationController
-  before_action :find_user, except: :index
+  before_action :find_user, except: %i(index manage)
+
+  def approve
+    @user.approve!
+    redirect_to manage_admin_users_path,
+                notice: "#{@user.name} has been approved."
+  end
 
   def destroy
     deny_access && return unless current_user.has_role? :admin
@@ -10,6 +16,10 @@ class Admin::UsersController < ApplicationController
 
   def index
     @users = User.order(:name)
+  end
+
+  def manage
+    @users = User.unapproved.order :name
   end
 
   def update
