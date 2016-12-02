@@ -10,6 +10,10 @@
     = render partial: 'layouts/navbar'
     #main-panel.panel.panel-default
       .panel-body
+        - if flash[:error].present?
+          %p.error= flash[:error]
+        - if flash[:alert].present?
+          %p.alert= flash[:alert]
         - if flash[:notice].present?
           %p.notice= flash[:notice]
         - if flash[:errors].present?

@@ -11,19 +11,12 @@
     If you have signed up to judge the roadeo:
     %ul
       %li
-        You should receive an email with your password before the day of the roadeo.
-        %ul
-          %li Be sure to log in with the email where you received the password.
-          %li
-            Please
-            - if user_signed_in?
-              = link_to 'change your password', edit_user_registration_path
-            - else
-              change your password
-            as soon as possible.
-          %li If you forget your password, a member of IT staff will be on hand at the roadeo to reset it.
+        Click
+        = link_to 'here', new_user_registration_path
+        to request a login.
       %li
-        = link_to 'Log in', new_user_session_path
+        Once your request has been approved,
+        = link_to 'log in', new_user_session_path
         to record maneuver scores.
       %li Enjoy the roadeo!
   .attributions

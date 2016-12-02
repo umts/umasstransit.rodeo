@@ -20,7 +20,14 @@ p.notice{
   text-align: center;
 }
 
-p.errors{
+p.alert{
+  background-color: #e8cc59;
+  border: 3px solid #63520d;
+  border-radius: 6px;
+  text-align: center;
+}
+
+p.error, p.errors{
   background-color: #e8b5b5;
   border: 3px solid #d16b6b;
   border-radius: 6px;
