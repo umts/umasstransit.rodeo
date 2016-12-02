@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160606180732) do
+ActiveRecord::Schema.define(version: 20161202151543) do
 
   create_table "buses", force: :cascade do |t|
     t.string   "number",     limit: 255
@@ -126,6 +126,7 @@ ActiveRecord::Schema.define(version: 20160606180732) do
     t.boolean  "circle_check_scorer",                default: false, null: false
     t.boolean  "master_of_ceremonies",               default: false, null: false
     t.boolean  "admin",                              default: false, null: false
+    t.boolean  "approved",                           default: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
@@ -142,5 +143,4 @@ ActiveRecord::Schema.define(version: 20160606180732) do
 
   add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id", using: :btree
 
- 
 end
