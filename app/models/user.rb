@@ -17,13 +17,11 @@ class User < ActiveRecord::Base
   end
 
   # Require admins to approve users once they register.
-  def active_for_authentication
+  def active_for_authentication?
     super && approved?
   end
 
   def inactive_message
-    if !approved then :not_approved
-    else super
-    end
+    approved? ? super : :not_approved
   end
 end
