@@ -1,5 +1,6 @@
 class ParticipantsController < ApplicationController
   before_action :find_user, only: %i(assign_number destroy update)
+  before_action :scoreboard_data, only: %i(scoreboard scoreboard_partial)
   skip_before_action :authenticate_user!,
                      only: %i(scoreboard scoreboard_partial welcome)
 
@@ -39,22 +40,7 @@ class ParticipantsController < ApplicationController
     @buses = Bus.order :number
   end
 
-  def scoreboard
-    @can_edit_scores = current_user.try :admin?
-    @participants = Participant.scoreboard_order
-    @top_20 = @participants.first 20
-    @maneuvers = Maneuver.order :sequence_number
-    @scores = ManeuverParticipant.scoreboard_grouping
-  end
-
   def scoreboard_partial
-    params.require :sort_order
-    sort_order = params.fetch(:sort_order).to_sym
-    @can_edit_scores = current_user.try :admin?
-    @participants = Participant.scoreboard_order sort_order
-    @top_20 = Participant.top_20
-    @maneuvers = Maneuver.order :sequence_number
-    @scores = ManeuverParticipant.scoreboard_grouping
     render partial: 'scoreboard_partial'
   end
 
@@ -67,9 +53,6 @@ class ParticipantsController < ApplicationController
     end
   end
 
-  def welcome
-  end
-
   private
 
   def find_user
@@ -78,5 +61,18 @@ class ParticipantsController < ApplicationController
 
   def user_params
     params.require(:participant).permit :name, :number, :bus_id
+  end
+
+  def scoreboard_data
+    params.permit :sort_order
+    sort_order = params[:sort_order].try :to_sym
+    @participants = Participant.scoreboard_order sort_order
+    @can_edit_scores = current_user.try :admin?
+    @maneuvers = Maneuver.order :sequence_number
+    @scores = ManeuverParticipant.scoreboard_grouping
+    @onboard_judgings = OnboardJudging.group(:participant_id)
+    @circle_check_scores = CircleCheckScore.group(:participant_id)
+    @quiz_scores = QuizScore.group(:participant_id)
+    @top_20 = Participant.top_20
   end
 end

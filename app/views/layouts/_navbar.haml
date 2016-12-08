@@ -20,8 +20,11 @@
           %button.btn.btn-default.navbar-btn{type: :button} Participants
         = link_to buses_path do
           %button.btn.btn-default.navbar-btn{type: :button} Buses
-        = link_to admin_users_path do
-          %button.btn.btn-default.navbar-btn{type: :button} Roles
+        - if current_user.admin?
+          = link_to admin_users_path do
+            %button.btn.btn-default.navbar-btn{type: :button} Roles
+          = link_to manage_admin_users_path do
+            %button.btn.btn-default.navbar-btn{type: :button} Manage Users
       .dropdown
         %button.btn.navbar-btn.dropbtn
           = current_user.name
@@ -33,4 +36,4 @@
       = link_to new_user_session_path do
         %button.btn.btn-default.navbar-btn.navbar-right.login{type: :button} Log in
       = link_to new_user_registration_path do 
-        %button.btn.btn-default.navbar-btn.navbar-right.login{type: :button} Sign up
+        %button.btn.btn-default.navbar-btn.navbar-right.login{type: :button} Request a login

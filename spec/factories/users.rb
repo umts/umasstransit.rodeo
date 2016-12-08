@@ -3,6 +3,8 @@ FactoryGirl.define do
     sequence(:name) { |n| "User#{n}" }
     sequence(:email) { |n| "user#{n}@example.com" }
     password 'password'
+    password_confirmation 'password'
+    approved true
   end
 
   trait :admin do
@@ -23,5 +25,15 @@ FactoryGirl.define do
 
   trait :master_of_ceremonies do
     master_of_ceremonies true
+  end
+
+  # Not strictly necessary since this is also the factory value,
+  # but this is implemented for clarity of tests.
+  trait :approved do
+    approved true
+  end
+
+  trait :unapproved do
+    approved false
   end
 end
