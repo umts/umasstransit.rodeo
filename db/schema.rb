@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161202151543) do
+ActiveRecord::Schema.define(version: 20170418203633) do
 
   create_table "buses", force: :cascade do |t|
     t.string   "number",     limit: 255
@@ -56,11 +56,13 @@ ActiveRecord::Schema.define(version: 20161202151543) do
 
   create_table "maneuvers", force: :cascade do |t|
     t.string   "name",                    limit: 255
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.datetime "created_at",                                          null: false
+    t.datetime "updated_at",                                          null: false
     t.integer  "sequence_number",         limit: 4
     t.integer  "speed_target",            limit: 4
     t.boolean  "counts_additional_stops"
+    t.boolean  "counts_reverses",                     default: false
+    t.integer  "reverse_points",          limit: 4
   end
 
   create_table "obstacles", force: :cascade do |t|
