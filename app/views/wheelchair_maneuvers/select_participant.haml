@@ -1,0 +1,26 @@
+.select-participant
+  %h1 Loading / Unloading 10-23
+  %h3 Select participant:
+  %hr
+
+  %table.select-participant
+    %tr
+      %th Participant
+      %th Has been judged?
+      %th
+    - @participants.each do |participant|
+      %tr
+        %td= participant.display_information(:name, :number)
+        - if participant.wheelchair_maneuver.present?
+          %td.present-icon
+            %span.glyphicon.glyphicon-ok
+          %td
+            = link_to participant.wheelchair_maneuver do
+              %button.btn.btn-primary Review
+        - else
+          %td.present-icon
+            %span.glyphicon.glyphicon-remove
+          %td
+            = link_to new_wheelchair_maneuver_path(participant: participant.number) do
+              %button.btn.btn-primary Judge
+
