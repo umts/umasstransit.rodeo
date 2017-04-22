@@ -3,7 +3,7 @@ require 'ffaker'
 
 exit if Rails.env.test?
 
-man_names = ['Backwards Serpentine', 'Judgement Stop', 'Left Turn',
+man_names = ['Backwards Serpentine', 'Rear Judgement Stop', 'Left Turn',
   'Diminishing Clearance', 'Right Turn', 'Offset Alley']
 
 maneuvers = {}
@@ -21,11 +21,13 @@ maneuvers['Backwards Serpentine'].update_attributes(counts_reverses: true,
                                                     reverse_points: 5)
 
 # 2 Judgement stop
-FactoryGirl.create :obstacle, point_value: 50, obstacle_type: '18" marker',
-  maneuver: maneuvers['Judgement Stop']
+3.times do 
+  FactoryGirl.create :obstacle, point_value: 50, obstacle_type: 'cone',
+    maneuver: maneuvers['Rear Judgement Stop']
+end
 
-FactoryGirl.create :distance_target, intervals: 0, multiplier: 50, minimum: 12,
-  maneuver: maneuvers['Judgement Stop'], name: 'marker cone to front of van'
+FactoryGirl.create :distance_target, intervals: 0, multiplier: 50, minimum: 18,
+  maneuver: maneuvers['Rear Judgement Stop'], name: 'any of the cones to back of van'
 
 # 3 Left Turn
 ([10] * 5 << 25).each do |obst_point|
@@ -40,13 +42,16 @@ maneuvers['Left Turn'].update_attributes(counts_reverses: true,
   FactoryGirl.create :obstacle, point_value: obst_point, obstacle_type: 'ball',
     maneuver: maneuvers['Diminishing Clearance']
 end
-maneuvers['Diminishing Clearance'].update_attributes(speed_target: 10)
+maneuvers['Diminishing Clearance'].update_attributes(speed_target: 10,
+                                                     counts_reverses: false)
 
 # 5 Right turn
 ([10] * 5 << 25).each do |obst_point|
   FactoryGirl.create :obstacle, point_value: obst_point, obstacle_type: 'cone',
     maneuver: maneuvers['Right Turn']
 end
+maneuvers['Right Turn'].update_attributes(counts_reverses: true,
+                                          reverse_points: 15)
 
 # 6 Offset Alley
 ([10] * 16).each do |obst_point|
@@ -77,8 +82,12 @@ unless Rails.env.production? || ENV['SKIP_PARTICIPANTS']
     CircleCheckScore.create! participant: p, total_defects: 5, defects_found: rand(5)
     QuizScore.create! participant: p, total_points: 100, points_achieved: rand(100)
     OnboardJudging.create! participant: p, minutes_elapsed: (6 + rand(3)), seconds_elapsed: rand(59),
-      missed_turn_signals: 0, missed_flashers: rand(1), missed_horn_sounds: rand(1), times_moved_with_door_open: 0,
-      unannounced_stops: 0, sudden_stops: 0, sudden_starts: 0, abrupt_turns: 0
+      missed_turn_signals: rand(2), sudden_stops: rand(3), sudden_starts: rand(4), abrupt_turns: rand(3)
+    WheelchairManeuver.create! participant: p, first_ask_to_touch: [true,false].sample,
+      first_check_brakes_on: [true, false].sample, offer_seatbelt: [true, false].sample,
+      securement: [true, false].sample, ask_if_ready: [true, false].sample, remove_restraints: [true, false].sample,
+      check_brakes_off: [true, false].sample, second_ask_to_touch: [true, false].sample,
+      second_check_brakes_on: [true, false].sample, ask_if_all_set_on_lift: [true, false].sample
   end
   15.times { FactoryGirl.create :participant, name: FFaker::Name.name }
 
