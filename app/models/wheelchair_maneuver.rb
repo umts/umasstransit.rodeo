@@ -22,6 +22,7 @@ class WheelchairManeuver < ActiveRecord::Base
     }
   }
   POINT_VALUES = {
+    # points to remove if participant did NOT do the thing
     first_ask_to_touch: 10,
     first_check_brakes_on: 15,
     offer_seatbelt: 15,
@@ -37,7 +38,7 @@ class WheelchairManeuver < ActiveRecord::Base
   def set_score
     score = 200
     POINT_VALUES.each do |key, value|
-      if self.send(key) == true
+      if self.send(key) == false
         score -= value
       end
     end
