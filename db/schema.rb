@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170418203633) do
+ActiveRecord::Schema.define(version: 20170421173435) do
 
   create_table "buses", force: :cascade do |t|
     t.string   "number",     limit: 255
@@ -76,21 +76,17 @@ ActiveRecord::Schema.define(version: 20170418203633) do
   end
 
   create_table "onboard_judgings", force: :cascade do |t|
-    t.integer  "participant_id",             limit: 4
-    t.integer  "score",                      limit: 4
-    t.integer  "seconds_elapsed",            limit: 4
-    t.integer  "missed_turn_signals",        limit: 4
-    t.integer  "missed_horn_sounds",         limit: 4
-    t.integer  "missed_flashers",            limit: 4
-    t.integer  "times_moved_with_door_open", limit: 4
-    t.integer  "unannounced_stops",          limit: 4
-    t.integer  "sudden_stops",               limit: 4
-    t.integer  "abrupt_turns",               limit: 4
+    t.integer  "participant_id",      limit: 4
+    t.integer  "score",               limit: 4
+    t.integer  "seconds_elapsed",     limit: 4
+    t.integer  "missed_turn_signals", limit: 4
+    t.integer  "sudden_stops",        limit: 4
+    t.integer  "abrupt_turns",        limit: 4
     t.boolean  "speeding"
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
-    t.integer  "minutes_elapsed",            limit: 4
-    t.integer  "sudden_starts",              limit: 4
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.integer  "minutes_elapsed",     limit: 4
+    t.integer  "sudden_starts",       limit: 4
   end
 
   create_table "participants", force: :cascade do |t|
@@ -144,5 +140,20 @@ ActiveRecord::Schema.define(version: 20170418203633) do
   end
 
   add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id", using: :btree
+
+  create_table "wheelchair_maneuvers", force: :cascade do |t|
+    t.boolean "first_ask_to_touch"
+    t.boolean "first_check_brakes_on"
+    t.boolean "offer_seatbelt"
+    t.boolean "securement"
+    t.boolean "ask_if_ready"
+    t.boolean "remove_restraints"
+    t.boolean "check_brakes_off"
+    t.boolean "second_ask_to_touch"
+    t.boolean "second_check_brakes_on"
+    t.boolean "ask_if_all_set_on_lift"
+    t.integer "participant_id",         limit: 4
+    t.integer "score",                  limit: 4
+  end
 
 end
