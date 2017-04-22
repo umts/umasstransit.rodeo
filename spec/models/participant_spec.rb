@@ -96,8 +96,8 @@ describe 'scoreboard order' do
   context 'total score' do
     it 'sorts participants by total score' do
       onboard_judge_1 = create :onboard_judging, :perfect
-      onboard_judge_2 = create :onboard_judging, minutes_elapsed: 8
-      onboard_judge_3 = create :onboard_judging, minutes_elapsed: 9
+      onboard_judge_2 = create :onboard_judging, minutes_elapsed: 11
+      onboard_judge_3 = create :onboard_judging, minutes_elapsed: 12
       participant_1 = onboard_judge_1.participant
       participant_2 = onboard_judge_2.participant
       participant_3 = onboard_judge_3.participant
@@ -109,9 +109,9 @@ describe 'scoreboard order' do
     it 'sorts participants by maneuver score' do
       maneuver_partip_1 = create :maneuver_participant, :perfect_score
       maneuver_partip_2 = create :maneuver_participant,
-                                 :perfect_score, reversed_direction: 1
+                                 :perfect_score, obstacles_hit: {10 => 1}
       maneuver_partip_3 = create :maneuver_participant,
-                                 :perfect_score, reversed_direction: 2
+                                 :perfect_score, obstacles_hit: {25 => 1}
       participant_1 = maneuver_partip_1.participant
       participant_2 = maneuver_partip_2.participant
       participant_3 = maneuver_partip_3.participant
