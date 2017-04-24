@@ -9,8 +9,8 @@ class OnboardJudging < ActiveRecord::Base
   validates :seconds_elapsed, inclusion: { in: 0..59 }
 
   SCORE_COLUMNS = %w(
-    missed_turn_signals missed_horn_sounds missed_flashers abrupt_turns
-    times_moved_with_door_open unannounced_stops sudden_stops sudden_starts
+    missed_turn_signals abrupt_turns
+    sudden_stops sudden_starts
   ).freeze
 
   before_validation :initialize_score_attributes
@@ -34,16 +34,13 @@ class OnboardJudging < ActiveRecord::Base
   # rubocop:disable Metrics/AbcSize
   def set_score
     score = 50
-    score -= missed_turn_signals
-    score -= 3 * missed_horn_sounds
-    score -= 3 * missed_flashers
-    score -= 3 * times_moved_with_door_open
-    score -= 10 * unannounced_stops
-    score -= sudden_stops
-    score -= sudden_starts
-    score -= abrupt_turns
-    if minutes_elapsed >= 7
-      score -= 60 * (minutes_elapsed - 7) + seconds_elapsed
+    score -= 20 * sudden_stops
+    score -= 20 * sudden_starts
+    score -= 20 * abrupt_turns
+    score -= 20 * missed_turn_signals
+    total_seconds_elapsed = (minutes_elapsed * 60) + seconds_elapsed
+    if total_seconds_elapsed > 630
+      score -= total_seconds_elapsed - 630 * 1
     end
     assign_attributes score: score
   end

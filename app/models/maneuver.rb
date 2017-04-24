@@ -5,6 +5,9 @@ class Maneuver < ActiveRecord::Base
   has_many :distance_targets
 
   validates :name, :sequence_number, presence: true, uniqueness: true
+  validates_presence_of :reverse_points,
+    if: Proc.new { |m| m.counts_reverses == true },
+    message: 'Reverses have to count for something!'
 
   def grouped_obstacles
     obstacles.group_by { |o| [o.point_value, o.obstacle_type] }

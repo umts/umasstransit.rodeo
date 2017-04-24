@@ -3,6 +3,7 @@
     %th Participant
     - @maneuvers.each do |maneuver|
       %th= maneuver.name
+    %th Loading/Unloading 10-23
     %th Onboard Judging
     %th Maneuvers total
     %th Circle Check
@@ -30,6 +31,19 @@
                 &mdash;
             - else
               &mdash;
+      %td
+        - record = @wheelchair_maneuvers[participant.id]
+        - if record.present?
+          - if @can_edit_scores
+            = link_to record.score, record
+          - else
+            = record.score
+        - else
+          - if @can_edit_scores
+            = link_to new_wheelchair_maneuver_path(participant: participant.number) do
+              &mdash;
+          - else
+            &mdash;
       %td
         - record = @onboard_judgings[participant.id]
         - if record.present?

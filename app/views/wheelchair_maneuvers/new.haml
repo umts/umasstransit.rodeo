@@ -1,0 +1,20 @@
+.scoring
+  %h1 Loading / Unloading 10-23
+  %h3 Participant #{@participant.display_information(:number, :name)}
+  %hr
+  = form_tag wheelchair_maneuvers_path do
+    = fields_for :wheelchair_maneuver do |f|
+      = f.hidden_field :participant_id, value: @participant.id
+      %h2 Loading:
+      Did the participant:
+      - WheelchairManeuver::CHECKS[:loading].each_pair do |attribute, prompt|
+        .field
+          = f.label prompt
+          = f.check_box "#{attribute}"
+      %h2 Unloading:
+      Did the participant:
+      - WheelchairManeuver::CHECKS[:offloading].each_pair do |attribute, prompt|
+        .field
+          = f.label prompt
+          = f.check_box "#{attribute}"
+      = submit_tag 'Save', class: 'btn btn-primary-submit'

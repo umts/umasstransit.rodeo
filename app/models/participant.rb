@@ -12,6 +12,7 @@ class Participant < ActiveRecord::Base
   has_one :circle_check_score, dependent: :destroy
   has_one :quiz_score, dependent: :destroy
   has_one :onboard_judging, dependent: :destroy
+  has_one :wheelchair_maneuver, dependent: :destroy
   validates :number, uniqueness: true
   validates :name, presence: true, uniqueness: true
   validates :bus, presence: true, if: -> { number.present? }
@@ -57,6 +58,7 @@ class Participant < ActiveRecord::Base
     total += onboard_judging.score if onboard_judging.present?
     total += circle_check_score.score if circle_check_score.present?
     total += quiz_score.score if quiz_score.present?
+    total += wheelchair_maneuver.score if wheelchair_maneuver.present?
     total
   end
 

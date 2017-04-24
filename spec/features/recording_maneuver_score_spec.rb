@@ -27,6 +27,8 @@ describe 'updating a maneuver score' do
     create :maneuver_participant, :perfect_score
   end
   it 'updates the value' do
+    maneuver_participant.maneuver.update_attributes(counts_reverses: true,
+                                                    reverse_points: 5)
     when_current_user_is :admin
     visit maneuver_participant_path(maneuver_participant.id)
     fill_in 'reversed_direction', with: '1'

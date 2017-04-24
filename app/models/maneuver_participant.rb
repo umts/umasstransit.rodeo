@@ -10,7 +10,7 @@ class ManeuverParticipant < ActiveRecord::Base
 
   before_validation :set_score
 
-  validates :maneuver, :participant, :score, :reversed_direction, presence: true
+  validates :maneuver, :participant, :score, presence: true
 
   def creator
     user_id = versions.find_by(event: 'create').whodunnit
@@ -30,14 +30,20 @@ class ManeuverParticipant < ActiveRecord::Base
   # rubocop:disable Metrics/AbcSize
   def set_score
     score = 50
-    obstacles_hit.each do |point_value, count|
-      score -= point_value * count
+    if obstacles_hit.present?
+      obstacles_hit.each do |point_value, count|
+        score -= point_value * count
+      end
     end
-    distances_achieved.each do |(minimum, multiplier), distance|
-      # if distance is less than minimum, don't add anything
-      score -= [0, (distance - minimum)].max * multiplier
+    if distances_achieved.present?
+      distances_achieved.each do |(minimum, multiplier), distance|
+        # if distance is less than minimum, don't add anything
+        score -= [0, (distance - minimum)].max * multiplier
+      end
     end
-    score -= reversed_direction * 10
+    if maneuver.counts_reverses? && maneuver.reverse_points.present?
+      score -= reversed_direction * maneuver.reverse_points
+    end
     score -= 25 if maneuver.speed_target.present? && !speed_achieved?
     score -= 25 if maneuver.counts_additional_stops? && made_additional_stops?
     score -= 50 unless completed_as_designed?
