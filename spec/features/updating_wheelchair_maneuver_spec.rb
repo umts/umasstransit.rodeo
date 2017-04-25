@@ -8,7 +8,7 @@ describe 'updating wheelchair maneuver' do
       click_link 'Review'
       check 'wheelchair_maneuver_offer_seatbelt'
       click_on 'Save'
-      expect(page).to have_text 'Onboard score has been saved.'
+      expect(page.find('.notice')).to have_text 'Onboard score has been saved.'
     end
   end
 
@@ -23,7 +23,7 @@ describe 'updating wheelchair maneuver' do
       click_link 'Review'
       check 'wheelchair_maneuver_offer_seatbelt'
       click_on 'Save'
-      expect(page).to have_text 'Onboard score has been saved.'
+      expect(page.find('.notice')).to have_text 'Onboard score has been saved.'
     end
   end
 
@@ -38,7 +38,7 @@ describe 'updating wheelchair maneuver' do
       click_link 'Review'
       check 'wheelchair_maneuver_offer_seatbelt'
       click_on 'Save'
-      expect(page).to have_text 'You are not authorized to make that action.'
+      expect(page.find('.notice')).to have_text 'You are not authorized to make that action.'
     end
   end
 end
