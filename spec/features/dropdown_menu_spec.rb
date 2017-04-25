@@ -6,7 +6,7 @@ describe 'signing out a user' do
     login_as user
     visit root_url
     click_on 'Logout'
-    expect(page).to have_text 'Signed out successfully.'
+    expect(page.find('.notice')).to have_text 'Signed out successfully.'
   end
 end
 
