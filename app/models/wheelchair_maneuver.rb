@@ -2,7 +2,7 @@ class WheelchairManeuver < ActiveRecord::Base
   has_paper_trail
 
   belongs_to :participant
-  validates :participant, uniqueness: true
+  validates :participant, presence: true, uniqueness: true
   before_validation :set_score
 
   CHECKS = { 
@@ -37,8 +37,8 @@ class WheelchairManeuver < ActiveRecord::Base
 
   def set_score
     score = 200
-    POINT_VALUES.each do |key, value|
-      if self.send(key) == false
+    POINT_VALUES.each_pair do |key, value|
+      if self.send(key).blank?
         score -= value
       end
     end
