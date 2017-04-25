@@ -37,9 +37,9 @@ class WheelchairManeuver < ActiveRecord::Base
 
   def set_score
     score = 200
-    POINT_VALUES.each_pair do |key, value|
-      if self.send(key).blank?
-        score -= value
+    POINT_VALUES.each_pair do |attribute, point_value|
+      unless self.send(attribute)
+        score -= point_value
       end
     end
     assign_attributes score: score
