@@ -32,7 +32,7 @@ describe 'recording a wheelchair maneuver score' do
       visit new_onboard_judging_path(participant: participant.number)
       expect { click_on 'Save' }
         .not_to change { WheelchairManeuver.count }
-      expect(page).to have_text 'You are not authorized to make that action.'
+      expect(page.find('.notice')).to have_text 'You are not authorized to make that action.'
     end
   end
 end
