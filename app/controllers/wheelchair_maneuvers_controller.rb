@@ -24,8 +24,7 @@ class WheelchairManeuversController < ApplicationController
 
   def update
     deny_access && return unless current_user.has_role? :judge
-    number_wrong = params[:checks].values.map(&:to_i).select(&:zero?).count
-    @record.update number_wrong: number_wrong
+    @record.update params.require(:wheelchair_maneuver).permit!
     redirect_to select_participant_wheelchair_maneuvers_path,
                 notice: 'Onboard score has been saved.'
     update_scoreboard with: @record
