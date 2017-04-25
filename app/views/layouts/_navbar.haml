@@ -24,7 +24,11 @@
           = link_to admin_users_path do
             %button.btn.btn-default.navbar-btn{type: :button} Roles
           = link_to manage_admin_users_path do
-            %button.btn.btn-default.navbar-btn{type: :button} Manage Users
+            %button.btn.btn-default.navbar-btn{type: :button} 
+              Manage Users
+              - unless User.where(approved: false).count.zero?
+                %span.badge
+                  = User.where(approved: false).count
       .dropdown
         %button.btn.navbar-btn.dropbtn
           = current_user.name
