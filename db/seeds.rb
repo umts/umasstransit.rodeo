@@ -62,8 +62,11 @@ maneuvers['Offset Alley'].update_attributes(counts_reverses: true,
                                             reverse_points: 10)
 
 unless Rails.env.production? || ENV['SKIP_PARTICIPANTS']
+  def random_boolean
+    [true, false].sample
+  end
   bus = FactoryGirl.create :bus
-  35.times do |i|
+  10.times do |i|
     p = FactoryGirl.create :participant, name: FFaker::Name.name, bus: bus
     maneuvers.each do |_name, m|
       mp = ManeuverParticipant.new participant: p, maneuver: m, reversed_direction: 0, completed_as_designed: true
@@ -83,11 +86,11 @@ unless Rails.env.production? || ENV['SKIP_PARTICIPANTS']
     QuizScore.create! participant: p, total_points: 100, points_achieved: rand(100)
     OnboardJudging.create! participant: p, minutes_elapsed: (6 + rand(3)), seconds_elapsed: rand(59),
       missed_turn_signals: rand(2), sudden_stops: rand(3), sudden_starts: rand(4), abrupt_turns: rand(3)
-    WheelchairManeuver.create! participant: p, first_ask_to_touch: [true,false].sample,
-      first_check_brakes_on: [true, false].sample, offer_seatbelt: [true, false].sample,
-      securement: [true, false].sample, ask_if_ready: [true, false].sample, remove_restraints: [true, false].sample,
-      check_brakes_off: [true, false].sample, second_ask_to_touch: [true, false].sample,
-      second_check_brakes_on: [true, false].sample, ask_if_all_set_on_lift: [true, false].sample
+    WheelchairManeuver.create! participant: p, first_ask_to_touch: random_boolean,
+      first_check_brakes_on: random_boolean, offer_seatbelt: random_boolean,
+      securement: random_boolean, ask_if_ready: random_boolean, remove_restraints: random_boolean,
+      check_brakes_off: random_boolean, second_ask_to_touch: random_boolean,
+      second_check_brakes_on: random_boolean, ask_if_all_set_on_lift: random_boolean
   end
   15.times { FactoryGirl.create :participant, name: FFaker::Name.name }
 

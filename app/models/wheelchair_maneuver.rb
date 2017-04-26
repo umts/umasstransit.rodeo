@@ -22,7 +22,9 @@ class WheelchairManeuver < ActiveRecord::Base
     }
   }
   POINT_VALUES = {
-    # points to remove if participant did NOT do the thing
+    # points to remove if participant did NOT complete the action that
+    # the attribute suggests. For example, if participant did not
+    # ask to touch the wheelchair, remove 10 points.
     first_ask_to_touch: 10,
     first_check_brakes_on: 15,
     offer_seatbelt: 15,
