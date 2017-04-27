@@ -5,7 +5,7 @@ default: &default
 
 production:
   <<: *default
-  database: umasstransit_rodeo_production
+  database: umasstransit_st_rodeo_production
 
 development:
   <<: *default
