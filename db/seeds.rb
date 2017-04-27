@@ -143,8 +143,8 @@ unless Rails.env.production? || ENV['SKIP_PARTICIPANTS']
   end
   15.times { FactoryGirl.create :participant, name: FFaker::Name.name }
 
-  FactoryGirl.create :user, name: 'David Faulkenberry',
-                            email: 'dave@example.com',
+  FactoryGirl.create :user, name: 'Karin Eichelman',
+                            email: 'karin@example.com',
                             password: 'password',
                             admin: true
   FactoryGirl.create :user, name: 'Jake Brians',
