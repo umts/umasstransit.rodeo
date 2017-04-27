@@ -10,9 +10,10 @@ set :deploy_to, '/srv/st-rodeo/'
 
 set :linked_files, fetch(:linked_files, []).push(
   'config/database.yml',
-  'config/application.yml'
+  'config/faye.yml'
 )
 
 set :linked_dirs, fetch(:linked_dirs, []).push(
-  'log'
+  'log',
+  'tmp/pids'
 )

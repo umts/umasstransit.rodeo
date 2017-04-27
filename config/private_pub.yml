@@ -5,5 +5,5 @@ test:
   server: "http://localhost:9292/faye"
   secret_token: "secret"
 production:
-  server: "https://2016.umasstransit.rodeo:9292/faye"
+  server: "https://st.umasstransit.rodeo:9293/faye"
   secret_token: "5150ca272a68bbc9d50b0e379d4032806534e90f482cec4787d0359d9faab224"
