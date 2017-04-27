@@ -9,9 +9,11 @@ set :repo_url, 'git@github.com:umts/umasstransit.rodeo.git'
 set :deploy_to, '/srv/bus-rodeo/'
 
 set :linked_files, fetch(:linked_files, []).push(
-  'config/database.yml'
+  'config/database.yml',
+  'config/faye.yml'
 )
 
 set :linked_dirs, fetch(:linked_dirs, []).push(
-  'log'
+  'log',
+  'tmp/pids'
 )
