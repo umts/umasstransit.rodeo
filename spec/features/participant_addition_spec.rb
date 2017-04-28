@@ -38,26 +38,26 @@ describe 'adding a participant' do
       expect(page).to have_text 'Name has already been taken'
     end
   end
-  context 'with a unique number and bus number' do
+  context 'with a unique number and vehicle number' do
     it 'will add a participant' do
-      create :bus, number: 'Big Yellow Bus'
+      create :vehicle, number: 'Big Yellow Vehicle'
       when_current_user_is :admin
       visit participants_url
       fill_in 'participant_name', with: 'Foo Bar'
       fill_in 'participant_number', with: '1'
-      select('Big Yellow Bus', from: 'participant_bus_id')
+      select('Big Yellow Vehicle', from: 'participant_vehicle_id')
       click_on 'Add'
       expect(page).to have_text 'Participant was successfully created.'
     end
   end
-  context 'with a unique number and no bus number' do
+  context 'with a unique number and no vehicle number' do
     it 'will not add a participant' do
       when_current_user_is :admin
       visit participants_url
       fill_in 'participant_name', with: 'Foo Bar'
       fill_in 'participant_number', with: '1'
       click_on 'Add'
-      expect(page).to have_text "Bus can't be blank"
+      expect(page).to have_text "Vehicle can't be blank"
     end
   end
   context 'with blank fields' do

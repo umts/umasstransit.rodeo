@@ -6,7 +6,7 @@ class Participant < ActiveRecord::Base
                    participant_name
                    participant_number).freeze
 
-  belongs_to :bus
+  belongs_to :vehicle
   has_many :maneuver_participants, dependent: :destroy
   has_many :maneuvers, through: :maneuver_participants
   has_one :circle_check_score, dependent: :destroy
@@ -15,7 +15,7 @@ class Participant < ActiveRecord::Base
   has_one :wheelchair_maneuver, dependent: :destroy
   validates :number, uniqueness: true
   validates :name, presence: true, uniqueness: true
-  validates :bus, presence: true, if: -> { number.present? }
+  validates :vehicle, presence: true, if: -> { number.present? }
   validates :number, numericality: { greater_than_or_equal_to: 0 },
                      allow_blank: true
 
@@ -36,8 +36,8 @@ class Participant < ActiveRecord::Base
     # option can be any symbol with a corresponding method on Participant.
     result = options.map do |option|
       case option
-      when :bus
-        bus.try :number
+      when :vehicle
+        vehicle.try :number
       when :number
         number.try(:to_s).try :prepend, '#'
       else

@@ -14,13 +14,13 @@ describe 'updating a participant' do
       expect(page).to have_text 'Participant has been updated.'
     end
     it 'will assign a number' do
-      create :bus, number: 'Big Yellow Bus'
+      create :vehicle, number: 'Big Yellow Vehicle'
       when_current_user_is :master_of_ceremonies
       visit participants_url
       fill_in 'participant_name', with: 'Foo Bar'
       click_on 'Add'
       select 'Foo Bar', from: 'id'
-      select 'Big Yellow Bus', from: 'bus_id'
+      select 'Big Yellow Vehicle', from: 'vehicle_id'
       click_on 'Add to maneuver queue'
       expect(page).to have_text 'Participant has been added to the queue.'
     end

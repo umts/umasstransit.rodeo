@@ -30,7 +30,7 @@ FactoryGirl.create :distance_target, intervals: 0, multiplier: 50, minimum: 18,
   maneuver: maneuvers['Rear Judgement Stop'], name: 'any of the cones to back of van'
 
 # 3 Left Turn
-([10] * 5 << 25).each do |obst_point|
+([10] * 19 << 25).each do |obst_point|
   FactoryGirl.create :obstacle, point_value: obst_point, obstacle_type: 'cone',
     maneuver: maneuvers['Left Turn']
 end
@@ -46,7 +46,7 @@ maneuvers['Diminishing Clearance'].update_attributes(speed_target: 10,
                                                      counts_reverses: false)
 
 # 5 Right turn
-([10] * 5 << 25).each do |obst_point|
+([10] * 19 << 25).each do |obst_point|
   FactoryGirl.create :obstacle, point_value: obst_point, obstacle_type: 'cone',
     maneuver: maneuvers['Right Turn']
 end
@@ -65,9 +65,9 @@ unless Rails.env.production? || ENV['SKIP_PARTICIPANTS']
   def random_boolean
     [true, false].sample
   end
-  bus = FactoryGirl.create :bus
+  vehicle = FactoryGirl.create :vehicle
   10.times do |i|
-    p = FactoryGirl.create :participant, name: FFaker::Name.name, bus: bus
+    p = FactoryGirl.create :participant, name: FFaker::Name.name, vehicle: vehicle
     maneuvers.each do |_name, m|
       mp = ManeuverParticipant.new participant: p, maneuver: m, reversed_direction: 0, completed_as_designed: true
       unless m.name.include?('Passenger') || rand(4) == 3

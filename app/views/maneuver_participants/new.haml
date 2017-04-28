@@ -1,6 +1,6 @@
 .scoring
   %h1 Judging #{@maneuver.name}
-  %h3 #{@participant.display_information(:name, :number, :bus)}
+  %h3 #{@participant.display_information(:name, :number, :vehicle)}
   %hr
 
   = form_tag maneuver_participants_path, id: 'score_form' do

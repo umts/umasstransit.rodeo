@@ -1,6 +1,6 @@
 .scoring
   %h1 Judging #{@maneuver.name}
-  %h3 Participant #{@participant.display_information(:number, :name, :bus)}
+  %h3 Participant #{@participant.display_information(:number, :name, :vehicle)}
   - if current_user.admin? && @record.creator.present?
     %h3 Score recorded by #{@record.creator.name}
   %hr

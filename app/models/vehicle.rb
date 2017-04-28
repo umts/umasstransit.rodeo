@@ -1,4 +1,4 @@
-class Bus < ActiveRecord::Base
+class Vehicle < ActiveRecord::Base
   has_many :participants
 
   validates :number, uniqueness: true, presence: true

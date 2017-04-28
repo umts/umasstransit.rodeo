@@ -6,7 +6,7 @@ class ParticipantsController < ApplicationController
 
   def assign_number
     @participant.update! number: params.require(:number),
-                         bus_id: params.require(:bus_id)
+                         vehicle_id: params.require(:vehicle_id)
     redirect_to participants_path,
                 notice: 'Participant has been added to the queue.'
     update_scoreboard with: @participant
@@ -37,7 +37,7 @@ class ParticipantsController < ApplicationController
     @participants = Participant.order(:created_at).reverse
     @unassigned = Participant.not_numbered.order :name
     @next_number = Participant.next_number
-    @buses = Bus.order :number
+    @vehicles = Vehicle.order :number
   end
 
   def scoreboard_partial
@@ -60,7 +60,7 @@ class ParticipantsController < ApplicationController
   end
 
   def user_params
-    params.require(:participant).permit :name, :number, :bus_id
+    params.require(:participant).permit :name, :number, :vehicle_id
   end
 
   def scoreboard_data

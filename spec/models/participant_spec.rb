@@ -51,10 +51,10 @@ describe Participant do
   end
   describe 'display_information' do
     let!(:participant) { create :participant }
-    context 'displays bus information' do
+    context 'displays vehicle information' do
       it 'returns valid string' do
-        expected = participant.bus.number
-        expect(participant.display_information(:bus)).to eql expected
+        expected = participant.vehicle.number
+        expect(participant.display_information(:vehicle)).to eql expected
       end
     end
     context 'displays participant information' do
@@ -77,10 +77,10 @@ describe Participant do
     context 'displays three options' do
       it 'splits up options' do
         name = participant.name
-        bus_number = participant.bus.number
+        vehicle_number = participant.vehicle.number
         number = participant.number.to_s
-        exp =  name + ' (' + bus_number + ', #' + number + ')'
-        expect(participant.display_information(:name, :bus, :number)).to eql exp
+        exp =  name + ' (' + vehicle_number + ', #' + number + ')'
+        expect(participant.display_information(:name, :vehicle, :number)).to eql exp
       end
     end
   end

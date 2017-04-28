@@ -1,0 +1,14 @@
+%h1 Add new vehicle
+%table.vehicles
+  %tr
+    %th Number
+    %th
+  = form_for Vehicle.new do |f|
+    %tr
+      %td= f.text_field :number, placeholder: 'Vehicle number', class: 'form-control'
+      %td= f.submit 'Add', class: 'btn btn-primary'
+  - @vehicles.each do |vehicle|
+    %tr
+      %td= vehicle.number
+      %td= button_to 'Remove', vehicle_path(vehicle), method: :delete, class: 'btn btn-primary delete'
+

@@ -7,9 +7,9 @@
         = select_tag :id,
           options_from_collection_for_select(@unassigned, :id, :name),
           class: 'form-control'
-        = select_tag :bus_id,
-          options_from_collection_for_select(@buses, :id, :number),
-          class: 'form-control', include_blank: 'Bus number', required: true
+        = select_tag :vehicle_id,
+          options_from_collection_for_select(@vehicles, :id, :number),
+          class: 'form-control', include_blank: 'Vehicle number', required: true
         = number_field_tag :number, @next_number, min: @next_number
         %button.btn.btn-primary.increment{type: :button, disabled: true,
           data: { field: :number,
@@ -31,12 +31,12 @@
     %tr
       %th Name
       %th Number
-      %th Bus
+      %th Vehicle
     = form_for Participant.new do |f|
       %tr
         %td= f.text_field :name, placeholder: 'Name', class: 'form-control'
         %td= f.number_field :number, class: 'form-control'
-        %td= f.collection_select :bus_id, @buses, :id, :number,
+        %td= f.collection_select :vehicle_id, @vehicles, :id, :number,
           {include_blank: true}, {class: 'form-control'}
         %td= f.submit 'Add', class: 'btn btn-primary'
     - @participants.each do |participant|
@@ -46,7 +46,7 @@
             class: 'form-control', required: true
           %td= f.number_field :number, value: participant.number,
             class: 'form-control'
-          %td= f.collection_select :bus_id, @buses, :id, :number,
-            {value: participant.try(:bus_id), include_blank: true}, { class: 'form-control' }
+          %td= f.collection_select :vehicle_id, @vehicles, :id, :number,
+            {value: participant.try(:vehicle_id), include_blank: true}, { class: 'form-control' }
           %td= f.submit 'Save', class: 'btn btn-primary'
         %td= button_to 'Remove', participant_path(participant), method: :delete, class: 'btn btn-primary delete'
