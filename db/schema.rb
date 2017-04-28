@@ -11,13 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170421173435) do
-
-  create_table "buses", force: :cascade do |t|
-    t.string   "number",     limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-  end
+ActiveRecord::Schema.define(version: 20170428151328) do
 
   create_table "circle_check_scores", force: :cascade do |t|
     t.integer  "total_defects",  limit: 4
@@ -94,7 +88,7 @@ ActiveRecord::Schema.define(version: 20170421173435) do
     t.integer  "number",     limit: 4
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
-    t.integer  "bus_id",     limit: 4
+    t.integer  "vehicle_id", limit: 4
   end
 
   create_table "quiz_scores", force: :cascade do |t|
@@ -129,6 +123,12 @@ ActiveRecord::Schema.define(version: 20170421173435) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+
+  create_table "vehicles", force: :cascade do |t|
+    t.string   "number",     limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
 
   create_table "versions", force: :cascade do |t|
     t.string   "item_type",  limit: 255,   null: false
