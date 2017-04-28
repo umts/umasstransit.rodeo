@@ -6,7 +6,7 @@ set :repo_url, 'git@github.com:umts/umasstransit.rodeo.git'
 
 
 # Default deploy_to directory is /var/www/my_app_name
-set :deploy_to, '/srv/bus-rodeo/'
+set :deploy_to, '/srv/rodeo/'
 
 set :linked_files, fetch(:linked_files, []).push(
   'config/database.yml',
