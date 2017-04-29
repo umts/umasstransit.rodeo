@@ -31,7 +31,7 @@
             - else
               &mdash;
       %td
-        - record = @onboard_judgings[participant.id]
+        - record = participant.onboard_judging
         - if record.present?
           - if @can_edit_scores
             = link_to record.score, record
