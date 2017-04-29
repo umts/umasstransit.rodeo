@@ -70,8 +70,6 @@ class ParticipantsController < ApplicationController
     @can_edit_scores = current_user.try :admin?
     @maneuvers = Maneuver.order :sequence_number
     @scores = ManeuverParticipant.scoreboard_grouping
-    @onboard_judgings = OnboardJudging.group(:participant_id)
-    @wheelchair_maneuvers = WheelchairManeuver.group(:participant_id)
     @circle_check_scores = CircleCheckScore.group(:participant_id)
     @quiz_scores = QuizScore.group(:participant_id)
     @top_20 = Participant.top_20

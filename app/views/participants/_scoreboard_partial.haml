@@ -32,7 +32,7 @@
             - else
               &mdash;
       %td
-        - record = @wheelchair_maneuvers[participant.id]
+        - record = participant.wheelchair_maneuver
         - if record.present?
           - if @can_edit_scores
             = link_to record.score, record
@@ -45,7 +45,7 @@
           - else
             &mdash;
       %td
-        - record = @onboard_judgings[participant.id]
+        - record = participant.onboard_judging
         - if record.present?
           - if @can_edit_scores
             = link_to record.score, record
