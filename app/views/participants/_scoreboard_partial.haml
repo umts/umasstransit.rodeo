@@ -45,7 +45,7 @@
             &mdash;
       %td= participant.maneuver_score
       %td
-        - record = @circle_check_scores[participant.id]
+        - record = participant.circle_check_score
         - if record.present?
           = record.score
         - else
@@ -55,7 +55,7 @@
           - else
             &mdash;
       %td
-        - record = @quiz_scores[participant.id]
+        - record = participant.quiz_score
         - if record.present?
           = record.score
         - else 
