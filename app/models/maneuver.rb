@@ -7,7 +7,7 @@ class Maneuver < ActiveRecord::Base
   validates :name, :sequence_number, presence: true, uniqueness: true
 
   def grouped_obstacles
-    obstacles.group_by { |o| [o.point_value, o.obstacle_type] }
+    obstacles.order(:id).group_by { |o| [o.point_value, o.obstacle_type] }
   end
 
   def image_path
