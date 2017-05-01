@@ -35,7 +35,7 @@ describe ManeuverParticipant do
     it 'lowers by the sum of each point value multiplied by count' do
       point_value = 1
       count = 1
-      expect { record.update obstacles_hit: { point_value => count } }
+      expect { record.update obstacles_hit: { 1 => [point_value, count] } }
         .to change { record.score }
         .by(-1)
     end

@@ -58,7 +58,9 @@ class ManeuverParticipantsController < ApplicationController
       key.starts_with?('obstacle') && value.to_i != 0
     end.each do |key, value|
       obstacle = Obstacle.find_by id: key.split('_').last.to_i
-      obstacles_hit[obstacle.point_value] = value.to_i if obstacle.present?
+      if obstacle.present?
+        obstacles_hit[obstacle.id] = [obstacle.point_value, value.to_i] 
+      end
     end
     obstacles_hit
   end

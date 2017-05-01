@@ -30,8 +30,9 @@ class ManeuverParticipant < ActiveRecord::Base
   # rubocop:disable Metrics/AbcSize
   def set_score
     score = 50
-    obstacles_hit.each do |point_value, count|
-      score -= point_value * count
+    obstacles_hit.each do |_obstacle_id, values_array|
+      # values array is [point_value, times hit]
+      score -= values_array.first * values_array.last
     end
     distances_achieved.each do |(minimum, multiplier), distance|
       # if distance is less than minimum, don't add anything

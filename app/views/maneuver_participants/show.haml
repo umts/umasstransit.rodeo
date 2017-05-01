@@ -12,7 +12,7 @@
       .field
         = label_tag "#{point_value}-point #{type.pluralize} touched"
         = number_field_tag "obstacle_#{obstacles.first.id}", 
-                            @record.obstacles_hit[point_value] || 0,
+          @record.obstacles_hit[obstacles.first.id].try(:[],1) || 0,
                             min: 0, max: obstacles.count
         %button.btn.btn-primary.increment{type: :button,
           data: { field: "obstacle_#{obstacles.first.id}",
