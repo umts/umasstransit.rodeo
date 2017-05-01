@@ -11,8 +11,12 @@
     - @maneuver.grouped_obstacles.each do |(point_value, type), obstacles|
       .field
         = label_tag "#{point_value}-point #{type.pluralize} touched"
+        - if @record.obstacles_hit.values.first.is_a? Integer
+          - value = @record.obstacles_hit[point_value] || 0
+        - else
+          - value = @record.obstacles_hit[obstacles.first.id].try(:[],1) || 0
         = number_field_tag "obstacle_#{obstacles.first.id}", 
-          @record.obstacles_hit[obstacles.first.id].try(:[],1) || 0,
+                            value,
                             min: 0, max: obstacles.count
         %button.btn.btn-primary.increment{type: :button,
           data: { field: "obstacle_#{obstacles.first.id}",
