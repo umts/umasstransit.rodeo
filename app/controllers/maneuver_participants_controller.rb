@@ -20,6 +20,10 @@ class ManeuverParticipantsController < ApplicationController
   def new
     @maneuver = Maneuver.find_by name: params.require(:maneuver)
     @participant = Participant.find_by number: params.require(:participant)
+    if @participant.has_completed? @maneuver
+      redirect_to ManeuverParticipant.find_by(maneuver: @maneuver,
+                                              participant: @participant)
+    end
     @record = ManeuverParticipant.new maneuver: @maneuver,
                                       participant: @participant
   end
