@@ -44,6 +44,7 @@ group :development, :test do
   gem 'mocha'
   gem 'pry-byebug'
   gem 'rack_session_access'
+  gem 'rb-readline', require: false
   gem 'rspec-rails'
   gem 'simplecov'
   gem 'timecop'
