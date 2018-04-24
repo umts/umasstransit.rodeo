@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :distance_target do
     name 'Pivot cone'
     x 0
