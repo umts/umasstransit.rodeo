@@ -6,10 +6,12 @@ describe ManeuverParticipant do
       expect(record.score).to be(50)
     end
 
-    it 'lowers by 10 for each reverse direction' do
+    it 'lowers by reverse points multiplied by number of times reversed' do
+      record.maneuver.update! counts_reverses: true,
+        reverse_points: 5
       expect { record.update reversed_direction: 1 }
         .to change { record.score }
-        .by(-10)
+        .by(-5)
     end
 
     it 'lowers by 25 when speed target is not reached' do

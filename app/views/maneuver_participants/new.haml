@@ -27,11 +27,9 @@
           data: { field: "target_#{target.id}",
           type: 'plus' } }+
     .field
-      - if @maneuver.name.include? 'Reverse'
-        = label_tag 'Extra reverses'
-      - else
-        = label_tag 'Reverses'
-      = number_field_tag :reversed_direction, 0, min: 0
+      - if @maneuver.counts_reverses?
+        = label_tag 'Reversed Direction'
+        = number_field_tag :reversed_direction, 0, min: 0
       %button.btn.btn-primary.increment{type: :button, disabled: true,
         data: { field: :reversed_direction, type: 'minus' } }-
       %button.btn.btn-primary.increment{type: :button,

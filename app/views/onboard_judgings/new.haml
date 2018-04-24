@@ -7,14 +7,14 @@
       = f.hidden_field :participant_id, value: @participant.id
       %h2 Time elapsed:
       .field
-        = f.number_field :minutes_elapsed, value: 7, min: 0
+        = f.number_field :minutes_elapsed, value: 10, min: 0
         minutes
         %button.btn.btn-primary.increment{type: :button,
           data: { field: :onboard_judging_minutes_elapsed, type: 'minus' } }-
         %button.btn.btn-primary.increment{type: :button,
           data: { field: :onboard_judging_minutes_elapsed, type: 'plus' } }+
       .field
-        = f.number_field :seconds_elapsed, value: 0, min: 0, max: 59
+        = f.number_field :seconds_elapsed, value: 30, min: 0, max: 59
         seconds
         %button.btn.btn-primary.increment{type: :button, disabled: true,
           data: { field: :onboard_judging_seconds_elapsed, type: 'minus' } }-
@@ -31,44 +31,8 @@
         %button.btn.btn-primary.increment{type: :button,
           data: { field: :onboard_judging_missed_turn_signals,
                   type: 'plus' } }+
-      .field
-        = f.label 'Missed horn sounds'
-        = f.number_field :missed_horn_sounds, value: 0, min: 0
-        %button.btn.btn-primary.increment{type: :button, disabled: true,
-          data: { field: :onboard_judging_missed_horn_sounds,
-                  type: 'minus' } }-
-        %button.btn.btn-primary.increment{type: :button,
-          data: { field: :onboard_judging_missed_horn_sounds,
-                  type: 'plus' } }+
-      .field
-        = f.label 'Missed flashers'
-        = f.number_field :missed_flashers, value: 0, min: 0
-        %button.btn.btn-primary.increment{type: :button, disabled: true,
-          data: { field: :onboard_judging_missed_flashers,
-                  type: 'minus' } }-
-        %button.btn.btn-primary.increment{type: :button,
-          data: { field: :onboard_judging_missed_flashers,
-                  type: 'plus' } }+
-      .field
-        = f.label 'Times moved w/ door open'
-        = f.number_field :times_moved_with_door_open, value: 0, min: 0
-        %button.btn.btn-primary.increment{type: :button, disabled: true,
-          data: { field: :onboard_judging_times_moved_with_door_open,
-                  type: 'minus' } }-
-        %button.btn.btn-primary.increment{type: :button,
-          data: { field: :onboard_judging_times_moved_with_door_open,
-                  type: 'plus' } }+
       %h2 Smoothness of Operation
       %hr
-      .field
-        = f.label 'Unannounced PAX stops'
-        = f.number_field :unannounced_stops, value: 0, min: 0, max: 2
-        %button.btn.btn-primary.increment{type: :button, disabled: true,
-          data: { field: :onboard_judging_unannounced_stops,
-                  type: 'minus' } }-
-        %button.btn.btn-primary.increment{type: :button,
-          data: { field: :onboard_judging_unannounced_stops,
-                  type: 'plus' } }+
       .field
         = f.label 'Sudden stops'
         = f.number_field :sudden_stops, value: 0, min: 0
