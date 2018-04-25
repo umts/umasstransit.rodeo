@@ -143,7 +143,7 @@ describe 'top_20' do
     it 'excludes participant with 21st highest score' do
       20.times { create :maneuver_participant, :perfect_score }
       imperfect_score = create :maneuver_participant, :perfect_score,
-                               reversed_direction: 2
+                               obstacles_hit: {10 => 2}
       top_20 = Participant.top_20
       expect(top_20).not_to include imperfect_score.participant
     end
