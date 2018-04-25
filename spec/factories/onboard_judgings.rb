@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :onboard_judging do
     participant
     seconds_elapsed 0

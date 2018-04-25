@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :maneuver_participant do
     maneuver
     participant

@@ -13,6 +13,12 @@ AllCops:
 Rails/ReadWriteAttribute:
   Enabled: false
 
+# `.describe` blocks are often pretty long,
+# but I think that's fine
+Metrics/BlockLength:
+  Enabled: true
+  Exclude:
+    - spec/**/*
 
 # Relax complexity testing to codeclimate standards (roughly).
 Metrics/AbcSize:
