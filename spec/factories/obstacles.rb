@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :obstacle do
     x 0
     y 0
