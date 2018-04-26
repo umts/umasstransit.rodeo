@@ -5,8 +5,8 @@ default: &default
 
 development:
   <<: *default
-  database: umasstransit_rodeo_development
+  database: umasstransit_st_rodeo_development
 
 test:
   <<: *default
-  database: umasstransit_rodeo_test
+  database: umasstransit_st_rodeo_test
