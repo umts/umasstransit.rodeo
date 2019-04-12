@@ -1,4 +1,4 @@
-class ManeuverParticipant < ActiveRecord::Base
+class ManeuverParticipant < ApplicationRecord
   has_paper_trail
 
   belongs_to :maneuver

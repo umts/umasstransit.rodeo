@@ -1,4 +1,4 @@
-class DistanceTarget < ActiveRecord::Base
+class DistanceTarget < ApplicationRecord
   belongs_to :maneuver
 
   validates :x, :y, :direction, :intervals,

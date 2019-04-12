@@ -1,4 +1,4 @@
-class Participant < ActiveRecord::Base
+class Participant < ApplicationRecord
   has_paper_trail
 
   SORT_ORDERS = %i(total_score

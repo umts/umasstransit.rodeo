@@ -1,4 +1,4 @@
-class CircleCheckScore < ActiveRecord::Base
+class CircleCheckScore < ApplicationRecord
   belongs_to :participant
 
   validates :participant, :total_defects, :defects_found, presence: true

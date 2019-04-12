@@ -1,4 +1,4 @@
-class OnboardJudging < ActiveRecord::Base
+class OnboardJudging < ApplicationRecord
   has_paper_trail
 
   belongs_to :participant

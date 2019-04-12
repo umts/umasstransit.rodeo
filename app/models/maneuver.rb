@@ -1,4 +1,4 @@
-class Maneuver < ActiveRecord::Base
+class Maneuver < ApplicationRecord
   has_many :maneuver_participants
   has_many :participants, through: :maneuver_participants
   has_many :obstacles

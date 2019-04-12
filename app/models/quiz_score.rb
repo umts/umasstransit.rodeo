@@ -1,4 +1,4 @@
-class QuizScore < ActiveRecord::Base
+class QuizScore < ApplicationRecord
   has_paper_trail
 
   belongs_to :participant
