@@ -125,8 +125,8 @@ unless Rails.env.production? || ENV['SKIP_PARTICIPANTS']
       mp = ManeuverParticipant.new participant: p, maneuver: m, reversed_direction: 0, completed_as_designed: true
       unless m.name.include?('Passenger') || rand(4) == 3
         m.obstacles.order('rand()').take(2).each do |obst|
-          mp.obstacles_hit[obst.point_value] ||= 0
-          mp.obstacles_hit[obst.point_value] += 1
+          mp.obstacles_hit[obst.id] ||= [obst.point_value, 0]
+          mp.obstacles_hit[obst.id][1] += 1
         end
       end
       dt = m.distance_targets.order('rand()').first
