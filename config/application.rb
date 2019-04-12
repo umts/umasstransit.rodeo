@@ -14,8 +14,5 @@ module UmasstransitRodeo
     config.encoding = 'utf-8'
     config.time_zone = 'Eastern Time (US & Canada)'
     config.autoload_paths << Rails.root.join('lib')
-    config.filter_parameters += [:password, :secret, :spire, :github]
-    config.assets.paths << "#{Rails}/vendor/assets/fonts"
-    config.active_record.raise_in_transactional_callbacks = true
   end
 end
