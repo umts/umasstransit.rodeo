@@ -37,16 +37,20 @@ group :development do
   gem 'capistrano-passenger', require: false
 end
 
-group :development, :test do
-  gem 'better_errors'
-  gem 'binding_of_caller'
+group :test do
   gem 'capybara'
   gem 'codeclimate-test-reporter', '~> 1.0'
   gem 'mocha'
-  gem 'pry-byebug'
   gem 'rack_session_access'
-  gem 'rb-readline', require: false
+  gem 'rails-controller-testing'
   gem 'rspec-rails'
   gem 'simplecov'
   gem 'timecop'
+end
+
+group :development, :test do
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'pry-byebug'
+  gem 'rb-readline', require: false
 end

@@ -216,6 +216,10 @@ GEM
     rails-assets-codedance--jquery.areyousure (1.9.0)
       rails-assets-jquery (>= 1.4.2)
     rails-assets-jquery (3.4.0)
+    rails-controller-testing (1.0.4)
+      actionpack (>= 5.0.1.x)
+      actionview (>= 5.0.1.x)
+      activesupport (>= 5.0.1.x)
     rails-dom-testing (2.0.3)
       activesupport (>= 4.2.0)
       nokogiri (>= 1.6)
@@ -355,6 +359,7 @@ DEPENDENCIES
   rails (~> 5.0.7)
   rails-assets-bootstrap!
   rails-assets-codedance--jquery.areyousure!
+  rails-controller-testing
   rb-readline
   rspec-rails
   rubocop
