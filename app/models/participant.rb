@@ -6,7 +6,7 @@ class Participant < ApplicationRecord
                    participant_name
                    participant_number).freeze
 
-  belongs_to :bus
+  belongs_to :bus, optional: true
   has_many :maneuver_participants, dependent: :destroy
   has_many :maneuvers, through: :maneuver_participants
   has_one :circle_check_score, dependent: :destroy
