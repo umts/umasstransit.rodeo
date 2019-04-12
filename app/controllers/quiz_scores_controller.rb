@@ -9,7 +9,7 @@ class QuizScoresController < ApplicationController
       update_scoreboard with: score
     else
       flash[:errors] = score.errors.full_messages
-      redirect_to :back
+      redirect_back fallback_location: quiz_scores_path
     end
   end
 
@@ -30,7 +30,7 @@ class QuizScoresController < ApplicationController
       update_scoreboard with: @score
     else
       flash[:errors] = @score.errors.full_messages
-      redirect_to :back
+      redirect_back fallback_location: quiz_scores_path
     end
   end
 

@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
 
   def deny_access
     flash[:notice] = 'You are not authorized to make that action.'
-    redirect_to :back
+    redirect_back fallback_location: root_path
   end
 
   def update_scoreboard(score)

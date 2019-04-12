@@ -6,7 +6,7 @@ class BusesController < ApplicationController
       flash[:notice] = 'Bus was successfully added.'
     else flash[:errors] = bus.errors.full_messages
     end
-    redirect_to :back
+    redirect_back fallback_location: buses_path
   end
 
   def index
@@ -18,7 +18,7 @@ class BusesController < ApplicationController
     bus = Bus.find_by id: params.require(:id)
     bus.destroy!
     flash[:notice] = 'Bus was successfully deleted.'
-    redirect_to :back
+    redirect_back fallback_location: buses_path
   end
 
   private

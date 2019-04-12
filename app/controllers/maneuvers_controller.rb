@@ -28,11 +28,12 @@ class ManeuversController < ApplicationController
     if participant.present?
       record = ManeuverParticipant.find_by maneuver: @maneuver,
                                            participant: participant
-      redirect_to record
-    else redirect_to :back,
-                     notice: 'This is the first participant
-                     who completed this maneuver.'
+    else 
+      flash[:notice] = 'This is the first participant who completed this maneuver.'
+      record = ManeuverParticipant.find_by maneuver: @maneuver,
+                                           participant: params[:relative_to]
     end
+    redirect_to record
   end
 
   private

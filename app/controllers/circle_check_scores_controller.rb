@@ -9,7 +9,7 @@ class CircleCheckScoresController < ApplicationController
       update_scoreboard with: score
     else
       flash[:errors] = score.errors.full_messages
-      redirect_to :back
+      redirect_back fallback_location: circle_check_scores_path
     end
   end
 
@@ -29,7 +29,7 @@ class CircleCheckScoresController < ApplicationController
       update_scoreboard with: @score
     else
       flash[:errors] = @score.errors.full_messages
-      redirect_to :back
+      redirect_back fallback_location: circle_check_scores_path
     end
   end
 
