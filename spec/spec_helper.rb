@@ -1,11 +1,7 @@
-require 'factory_bot_rails'
+require 'factory_bot'
 require 'simplecov'
 
 SimpleCov.start 'rails'
-SimpleCov.start do
-  add_filter '/config/'
-  add_filter '/spec/'
-end
 
 RSpec.configure do |config|
   config.before :all do

@@ -1,7 +1,9 @@
 ENV['RAILS_ENV'] ||= 'test'
+require File.expand_path('../config/environment', __dir__)
+
 require 'spec_helper'
+
 require 'factory_bot_rails'
-require File.expand_path('../../config/environment', __FILE__)
 require 'rspec/rails'
 require 'capybara/rails'
 require 'rack_session_access/capybara'
