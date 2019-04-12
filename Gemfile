@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem 'coffee-rails'
 gem 'certified'
-gem 'devise', '~> 4.0.0'
+gem 'devise', '~> 4.6'
 gem 'factory_bot_rails'
 gem 'ffaker'
 gem 'haml'
