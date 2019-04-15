@@ -2,7 +2,7 @@ dist: xenial
 services:
   - mysql
 language: ruby
-rvm: 2.3.0
+rvm: 2.6.1
 env: CODECLIMATE_REPO_TOKEN=b1b9b856c0aa49c7733aedea0b460b1c118c2ff1296db77bdcf762e6e8ff91c5
 before_script:
   - cp config/database.yml.example config/database.yml

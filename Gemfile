@@ -51,7 +51,7 @@ group :test do
 end
 
 group :development, :test do
-  gem 'better_errors'
+  gem 'better_errors', '< 2.3' #Remove the constraint if upgrading Rails to >= 5.1
   gem 'binding_of_caller'
   gem 'pry-byebug'
   gem 'rb-readline', require: false
