@@ -9,8 +9,7 @@ describe 'recording an onboard judging score' do
       when_current_user_is judge
       visit new_onboard_judging_path(participant: participant.number)
       expect { click_on 'Save' }
-        .to(change { OnboardJudging.count })
-        .by 1
+        .to change { OnboardJudging.count }.by 1
       expect(OnboardJudging.last.creator).to eql judge
     end
   end
@@ -21,8 +20,7 @@ describe 'recording an onboard judging score' do
       when_current_user_is admin
       visit new_onboard_judging_path(participant: participant.number)
       expect { click_on 'Save' }
-        .to(change { OnboardJudging.count })
-        .by 1
+        .to change { OnboardJudging.count }.by 1
       expect(OnboardJudging.last.creator).to eql admin
     end
   end
