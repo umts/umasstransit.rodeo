@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class ManeuverParticipantsController < ApplicationController
-  before_action :find_record, only: %i(show update)
+  before_action :find_record, only: %i[show update]
   before_action :find_maneuver_and_participant, only: :create
 
   def create
@@ -63,7 +65,7 @@ class ManeuverParticipantsController < ApplicationController
     end.each do |key, value|
       obstacle = Obstacle.find_by id: key.split('_').last.to_i
       if obstacle.present?
-        obstacles_hit[obstacle.id] = [obstacle.point_value, value.to_i] 
+        obstacles_hit[obstacle.id] = [obstacle.point_value, value.to_i]
       end
     end
     obstacles_hit

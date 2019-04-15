@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 class Maneuver < ApplicationRecord
-  has_many :maneuver_participants
+  has_many :maneuver_participants, dependent: :restrict_with_error
   has_many :participants, through: :maneuver_participants
-  has_many :obstacles
-  has_many :distance_targets
+  has_many :obstacles, dependent: :destroy
+  has_many :distance_targets, dependent: :destroy
 
   validates :name, :sequence_number, presence: true, uniqueness: true
 
@@ -16,7 +18,7 @@ class Maneuver < ApplicationRecord
 
   def next_participant(number = nil)
     participant = participants.find_by('number > ?', number) if number.present?
-    unless participant.present?
+    if participant.blank?
       participant = Participant.numbered.order(:number).find do |p|
         !p.has_completed? self
       end

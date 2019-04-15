@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 class ParticipantsController < ApplicationController
-  before_action :find_user, only: %i(assign_number destroy update)
-  before_action :scoreboard_data, only: %i(scoreboard scoreboard_partial)
+  before_action :find_user, only: %i[assign_number destroy update]
+  before_action :scoreboard_data, only: %i[scoreboard scoreboard_partial]
   skip_before_action :authenticate_user!,
-                     only: %i(scoreboard scoreboard_partial welcome)
+                     only: %i[scoreboard scoreboard_partial welcome]
 
   def assign_number
     @participant.update! number: params.require(:number),
@@ -16,13 +18,12 @@ class ParticipantsController < ApplicationController
     deny_access && return unless current_user.has_role? :master_of_ceremonies
     participant = Participant.new user_params
     if participant.save
-      redirect_to participants_path
       flash[:notice] = 'Participant was successfully created.'
       update_scoreboard with: participant
     else
-      redirect_to participants_path
       flash[:errors] = participant.errors.full_messages
     end
+    redirect_to participants_path
   end
 
   def destroy
@@ -40,6 +41,8 @@ class ParticipantsController < ApplicationController
     @buses = Bus.order :number
   end
 
+  def scoreboard; end
+
   def scoreboard_partial
     render partial: 'scoreboard_partial'
   end
@@ -52,6 +55,8 @@ class ParticipantsController < ApplicationController
       update_scoreboard with: @participant
     end
   end
+
+  def welcome; end
 
   private
 

@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 module NonManeuverScoreController
   extend ActiveSupport::Concern
 
   included do
-    before_action :require_scorer_role, only: [:create, :update]
+    before_action :require_scorer_role, only: %i[create update]
     before_action :find_score, only: :update
   end
 
@@ -40,13 +42,13 @@ module NonManeuverScoreController
   end
 
   def change_failed(errors)
-      flash[:errors] = errors
-      redirect_back fallback_location: { action: 'index'}
+    flash[:errors] = errors
+    redirect_back fallback_location: { action: 'index' }
   end
 
   def change_succeeded
-      redirect_to({action: 'index'}, notice: "#{score_name} was saved.")
-      update_scoreboard with: @score
+    redirect_to({ action: 'index' }, notice: "#{score_name} was saved.")
+    update_scoreboard with: @score
   end
 
   def score_name

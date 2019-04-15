@@ -34,15 +34,6 @@ Metrics/ClassLength:
 Style/Documentation:
   Enabled: false
 
-# Don't tell me not to write Hash.new. I wrote it
-# because I want it.
-Style/EmptyLiteral:
-  Enabled: false
-
-# I just don't understand this one, frankly.
-Style/FrozenStringLiteralComment:
-  Enabled: false
-
 Style/GuardClause:
   MinBodyLength: 10
 
@@ -56,9 +47,5 @@ Style/NestedParenthesizedCalls:
   Enabled: false
 
 # I like my method names.
-Style/PredicateName:
-  Enabled: false
-
-# Don't prefer fail to raise.
-Style/SignalException:
+Naming/PredicateName:
   Enabled: false

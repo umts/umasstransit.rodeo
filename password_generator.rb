@@ -1,4 +1,6 @@
-ANIMALS = %w(
+# frozen_string_literal: true
+
+ANIMALS = %w[
   Allig@tor
   Bi$on
   Cheet@h
@@ -18,6 +20,6 @@ ANIMALS = %w(
   Sn@ke
   Tortoi$e
   Wea$el
-).freeze
+].freeze
 
 puts [ANIMALS.sample, rand(1000).to_s.rjust(3, '0')].join '_'

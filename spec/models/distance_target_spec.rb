@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 describe DistanceTarget do
   describe 'interval_type' do
@@ -17,10 +19,10 @@ describe DistanceTarget do
   describe 'index' do
     it 'returns index of distance target relative to itself' do
       maneuver = create :maneuver
-      target_1 = create :distance_target, maneuver: maneuver
-      target_2 = create :distance_target, maneuver: maneuver
-      expect(target_1.index).to eql 0
-      expect(target_2.index).to eql 1
+      target1 = create :distance_target, maneuver: maneuver
+      target2 = create :distance_target, maneuver: maneuver
+      expect(target1.index).to eql 0
+      expect(target2.index).to eql 1
     end
   end
 end

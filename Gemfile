@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 
-gem 'coffee-rails'
 gem 'certified'
+gem 'coffee-rails'
 gem 'devise', '~> 4.6'
 gem 'factory_bot_rails'
 gem 'ffaker'
@@ -31,10 +33,10 @@ end
 
 group :development do
   gem 'capistrano', '~> 3.4.0', require: false
-  gem 'capistrano-pending', require: false
   gem 'capistrano-bundler', require: false
-  gem 'capistrano-rails', require: false
   gem 'capistrano-passenger', require: false
+  gem 'capistrano-pending', require: false
+  gem 'capistrano-rails', require: false
 end
 
 group :test do

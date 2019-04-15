@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe 'signing up' do
@@ -9,7 +11,7 @@ describe 'signing up' do
       fill_in 'user_password_confirmation', with: 'password'
       expect do
         within('.actions') { click_on 'Send request' }
-      end.not_to change { User.count }
+      end.not_to(change { User.count })
     end
     it 'does not create the user with no password' do
       visit new_user_registration_url
@@ -17,7 +19,7 @@ describe 'signing up' do
       fill_in 'user_email', with: 'foo@valid.com'
       expect do
         within('.actions') { click_on 'Send request' }
-      end.not_to change { User.count }
+      end.not_to(change { User.count })
     end
   end
   context 'a valid user' do

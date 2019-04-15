@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class QuizScore < ApplicationRecord
   has_paper_trail
 
@@ -7,7 +9,8 @@ class QuizScore < ApplicationRecord
   validates :participant, uniqueness: true
   validates :points_achieved, numericality: {
     less_than_or_equal_to: :total_points,
-    greater_than_or_equal_to: 0 }
+    greater_than_or_equal_to: 0
+  }
 
   TOTAL_POINTS_DEFAULT = 100
 

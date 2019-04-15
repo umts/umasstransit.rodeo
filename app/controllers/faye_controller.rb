@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class FayeController < ApplicationController
   def test
     if request.get?

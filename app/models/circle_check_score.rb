@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CircleCheckScore < ApplicationRecord
   belongs_to :participant
 
@@ -5,7 +7,8 @@ class CircleCheckScore < ApplicationRecord
   validates :participant, uniqueness: true
   validates :defects_found, numericality: {
     less_than_or_equal_to: :total_defects,
-    greater_than_or_equal_to: 0 }
+    greater_than_or_equal_to: 0
+  }
 
   TOTAL_DEFECTS_DEFAULT = 5
 

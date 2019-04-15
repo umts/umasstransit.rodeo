@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class DistanceTarget < ApplicationRecord
   belongs_to :maneuver
 

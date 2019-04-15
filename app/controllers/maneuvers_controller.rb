@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class ManeuversController < ApplicationController
-  before_action :find_maneuver, only: %i(next_participant previous_participant)
+  before_action :find_maneuver, only: %i[next_participant previous_participant]
 
   def index
     @maneuvers = Maneuver.order :sequence_number
@@ -15,7 +17,8 @@ class ManeuversController < ApplicationController
       else
         redirect_to(
           new_maneuver_participant_path maneuver: @maneuver.name,
-                                        participant: participant.number)
+                                        participant: participant.number
+        )
       end
     else redirect_to maneuvers_path,
                      notice: 'There are no more participants in the queue for
@@ -28,8 +31,9 @@ class ManeuversController < ApplicationController
     if participant.present?
       record = ManeuverParticipant.find_by maneuver: @maneuver,
                                            participant: participant
-    else 
-      flash[:notice] = 'This is the first participant who completed this maneuver.'
+    else
+      flash[:notice] =
+        'This is the first participant who completed this maneuver.'
       record = ManeuverParticipant.find_by maneuver: @maneuver,
                                            participant: params[:relative_to]
     end

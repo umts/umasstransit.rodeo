@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 describe ManeuverParticipant do
   describe 'score' do
@@ -47,7 +49,8 @@ describe ManeuverParticipant do
         multiplier = 1
         expect do
           record.update distances_achieved: {
-            [minimum, multiplier] => distance }
+            [minimum, multiplier] => distance
+          }
         end.to change { record.score }
           .by(-1)
       end
@@ -60,7 +63,8 @@ describe ManeuverParticipant do
         multiplier = 3
         expect do
           record.update distances_achieved: {
-            [minimum, multiplier] => distance }
+            [minimum, multiplier] => distance
+          }
         end.to change { record.score }
           .by(0)
       end

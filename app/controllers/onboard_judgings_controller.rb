@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class OnboardJudgingsController < ApplicationController
-  before_action :find_record, only: %i(show update)
+  before_action :find_record, only: %i[show update]
 
   def create
     deny_access && return unless current_user.has_role? :judge

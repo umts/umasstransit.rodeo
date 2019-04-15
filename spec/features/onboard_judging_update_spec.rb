@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 describe 'updating onboard judging' do
   context 'with judge privilege' do
