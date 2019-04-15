@@ -15,11 +15,11 @@ table.select-participant td.present-icon{
   text-align: center;
 }
 
-.glyphicon-ok{
+.select-participant .fa-check{
   color: green;
 }
 
-.glyphicon-remove{
+.select-participant .fa-times{
   color: red;
 }
 

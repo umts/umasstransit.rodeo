@@ -7,6 +7,7 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.8.1",
     "jquery.are-you-sure": "^1.9.0"
   }
 }

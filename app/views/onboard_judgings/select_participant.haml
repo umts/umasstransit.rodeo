@@ -13,13 +13,13 @@
         %td= participant.display_information(:name, :number)
         - if participant.onboard_judging.present?
           %td.present-icon
-            %span.glyphicon.glyphicon-ok
+            %i.fas.fa-check
           %td
             = link_to participant.onboard_judging do
               %button.btn.btn-primary Review
         - else
           %td.present-icon
-            %span.glyphicon.glyphicon-remove
+            %i.fas.fa-times
           %td
             = link_to new_onboard_judging_path(participant: participant.number) do
               %button.btn.btn-primary Judge
