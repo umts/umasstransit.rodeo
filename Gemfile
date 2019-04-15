@@ -2,6 +2,7 @@
 
 source 'https://rubygems.org'
 
+gem 'bootstrap', '~> 4.3.1'
 gem 'certified'
 gem 'coffee-rails'
 gem 'devise', '~> 4.6'
@@ -21,11 +22,6 @@ gem 'spring'
 gem 'thin'
 gem 'uglifier'
 gem 'underscore-rails'
-
-source 'https://rails-assets.org' do
-  gem 'rails-assets-bootstrap'
-  gem 'rails-assets-codedance--jquery.areyousure'
-end
 
 group :production do
   gem 'exception_notification'

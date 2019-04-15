@@ -1,0 +1,12 @@
+{
+  "name": "umasstransit.rodeo",
+  "version": "0.0.1",
+  "description": "UMass Transit Roadeo app",
+  "repository": "git@github.com:umts/umasstransit.rodeo.git",
+  "author": "UMass Transit",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "jquery.are-you-sure": "^1.9.0"
+  }
+}

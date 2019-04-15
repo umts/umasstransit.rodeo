@@ -1,8 +1,9 @@
 /*
  *= require_tree .
  *= require_self
- *= require bootstrap
  */
+
+@import "bootstrap";
 
 body{
   background-color: lightblue !important;
