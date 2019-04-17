@@ -10,7 +10,10 @@ $(document).ready(function(){
   });
 
   $('.scoreboard').on('click', 'button.fullscreen', function(){
-    $('.scoreboard-content').get(0).webkitRequestFullscreen();
+    var scoreboard = $('.scoreboard-content').get(0);
+    if (scoreboard.requestFullscreen) {
+      scoreboard.requestFullscreen();
+    }
   });
 });
 
