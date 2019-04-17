@@ -13,8 +13,3 @@ $(document).ready(function(){
     $('.scoreboard-content').get(0).webkitRequestFullscreen();
   });
 });
-
-PrivatePub.subscribe('/scoreboard', function(){
-  var order = $('button.scoreboard-order.btn-primary').data('order');
-  $('.scoreboard-content').load('/participants/scoreboard_partial?sort_order=' + order);
-});

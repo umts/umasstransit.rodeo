@@ -13,6 +13,5 @@
       %span.glyphicon.glyphicon-resize-full
     = image_tag 'loading.gif', class: 'scoreboard-sort-loading hidden'
     .scoreboard-content= render partial: 'scoreboard_partial'
-    = subscribe_to '/scoreboard'
   - else
     No participants yet.

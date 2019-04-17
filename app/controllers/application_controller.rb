@@ -14,7 +14,6 @@ class ApplicationController < ActionController::Base
   end
 
   def update_scoreboard(score)
-    PrivatePub.publish_to '/scoreboard', score unless Rails.env.test?
   end
 
   def configure_permitted_parameters
