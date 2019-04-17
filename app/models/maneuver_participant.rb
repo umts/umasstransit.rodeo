@@ -1,4 +1,6 @@
-class ManeuverParticipant < ActiveRecord::Base
+# frozen_string_literal: true
+
+class ManeuverParticipant < ApplicationRecord
   has_paper_trail
 
   belongs_to :maneuver

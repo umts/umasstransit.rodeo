@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe 'adding a circle check score' do
@@ -10,7 +12,7 @@ describe 'adding a circle check score' do
       visit circle_check_scores_url
       fill_in 'circle_check_score_defects_found', with: '4'
       click_on 'Save score'
-      expect(page).to have_text 'Score was saved.'
+      expect(page).to have_text 'Circle check score was saved.'
       input = find_field :circle_check_score_defects_found
       expect(input.value).to eql '4'
     end
@@ -21,7 +23,7 @@ describe 'adding a circle check score' do
       visit circle_check_scores_url
       fill_in 'circle_check_score_defects_found', with: '4'
       click_on 'Save score'
-      expect(page).to have_text 'Score was saved.'
+      expect(page).to have_text 'Circle check score was saved.'
       input = find_field :circle_check_score_defects_found
       expect(input.value).to eql '4'
     end

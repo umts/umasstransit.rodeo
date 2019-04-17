@@ -1,12 +1,14 @@
-class Participant < ActiveRecord::Base
+# frozen_string_literal: true
+
+class Participant < ApplicationRecord
   has_paper_trail
 
-  SORT_ORDERS = %i(total_score
+  SORT_ORDERS = %i[total_score
                    maneuver_score
                    participant_name
-                   participant_number).freeze
+                   participant_number].freeze
 
-  belongs_to :bus
+  belongs_to :bus, optional: true
   has_many :maneuver_participants, dependent: :destroy
   has_many :maneuvers, through: :maneuver_participants
   has_one :circle_check_score, dependent: :destroy
@@ -61,7 +63,7 @@ class Participant < ActiveRecord::Base
   end
 
   def self.next_number
-    last_number = numbered.pluck(:number).sort.last || 0
+    last_number = numbered.pluck(:number).max || 0
     last_number + 1
   end
 

@@ -1,4 +1,6 @@
-class DistanceTarget < ActiveRecord::Base
+# frozen_string_literal: true
+
+class DistanceTarget < ApplicationRecord
   belongs_to :maneuver
 
   validates :x, :y, :direction, :intervals,

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe 'updating a quiz score' do
@@ -43,7 +45,7 @@ describe 'updating a score' do
   before :each do
     create :quiz_score
   end
-  context'when out of range quiz score' do
+  context 'when out of range quiz score' do
     it 'will not accept negative number' do
       when_current_user_is :admin
       visit quiz_scores_url
@@ -54,7 +56,7 @@ describe 'updating a score' do
     end
   end
 
-  context'when out of range quiz score' do
+  context 'when out of range quiz score' do
     it 'will not accept positive number greater than total points' do
       when_current_user_is :admin
       visit quiz_scores_url
@@ -66,7 +68,7 @@ describe 'updating a score' do
       expect(page).to have_text expected
     end
   end
-  context'when blank field quiz score' do
+  context 'when blank field quiz score' do
     it 'will not accept blank number' do
       when_current_user_is :admin
       visit quiz_scores_url

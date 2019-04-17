@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe 'adding a quiz score' do
@@ -48,7 +50,7 @@ describe 'adding a quiz score' do
       expect(page).to have_text "Points achieved can't be blank"
     end
   end
-  context'when out of range' do
+  context 'when out of range' do
     it 'will not accept negative number' do
       when_current_user_is :admin
       visit quiz_scores_url

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :authenticate_user!
@@ -8,7 +10,7 @@ class ApplicationController < ActionController::Base
 
   def deny_access
     flash[:notice] = 'You are not authorized to make that action.'
-    redirect_to :back
+    redirect_back fallback_location: root_path
   end
 
   def update_scoreboard(score)
@@ -16,6 +18,6 @@ class ApplicationController < ActionController::Base
   end
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.for(:sign_up) << :name
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
   end
 end

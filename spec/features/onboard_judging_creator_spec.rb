@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 describe 'recording an onboard judging score' do
   context 'with judge privilege' do
@@ -7,8 +9,7 @@ describe 'recording an onboard judging score' do
       when_current_user_is judge
       visit new_onboard_judging_path(participant: participant.number)
       expect { click_on 'Save' }
-        .to change { OnboardJudging.count }
-        .by 1
+        .to change { OnboardJudging.count }.by 1
       expect(OnboardJudging.last.creator).to eql judge
     end
   end
@@ -19,8 +20,7 @@ describe 'recording an onboard judging score' do
       when_current_user_is admin
       visit new_onboard_judging_path(participant: participant.number)
       expect { click_on 'Save' }
-        .to change { OnboardJudging.count }
-        .by 1
+        .to change { OnboardJudging.count }.by 1
       expect(OnboardJudging.last.creator).to eql admin
     end
   end
@@ -31,7 +31,7 @@ describe 'recording an onboard judging score' do
       when_current_user_is quiz_scorer
       visit new_onboard_judging_path(participant: participant.number)
       expect { click_on 'Save' }
-        .not_to change { OnboardJudging.count }
+        .not_to(change { OnboardJudging.count })
       expect(page).to have_text 'You are not authorized to make that action.'
     end
   end

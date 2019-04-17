@@ -1,4 +1,6 @@
-class User < ActiveRecord::Base
+# frozen_string_literal: true
+
+class User < ApplicationRecord
   has_paper_trail
 
   devise :database_authenticatable, :registerable, :validatable

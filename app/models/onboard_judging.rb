@@ -1,17 +1,20 @@
-class OnboardJudging < ActiveRecord::Base
+# frozen_string_literal: true
+
+class OnboardJudging < ApplicationRecord
   has_paper_trail
 
   belongs_to :participant
   validates :participant, uniqueness: true
   validates :score, :minutes_elapsed, :seconds_elapsed, presence: true
   validates :minutes_elapsed, numericality: {
-    greater_than_or_equal_to: 0 }
+    greater_than_or_equal_to: 0
+  }
   validates :seconds_elapsed, inclusion: { in: 0..59 }
 
-  SCORE_COLUMNS = %w(
+  SCORE_COLUMNS = %w[
     missed_turn_signals missed_horn_sounds missed_flashers abrupt_turns
     times_moved_with_door_open unannounced_stops sudden_stops sudden_starts
-  ).freeze
+  ].freeze
 
   before_validation :initialize_score_attributes
   before_validation :set_score
