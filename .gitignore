@@ -25,3 +25,4 @@
 /coverage/.resultset.*
 
 /node_modules
+spec/examples.txt
