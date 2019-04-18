@@ -15,12 +15,10 @@ module ScoreboardHelper
       else
         record.score
       end
+    elsif @can_edit_scores
+      link_to '&mdash;'.html_safe, new
     else
-      if @can_edit_scores
-        link_to '&mdash;'.html_safe, new
-      else
-        '&mdash;'.html_safe
-      end
+      '&mdash;'.html_safe
     end
   end
 end
