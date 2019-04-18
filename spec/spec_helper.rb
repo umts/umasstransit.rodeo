@@ -2,14 +2,16 @@
 
 require 'factory_bot'
 require 'simplecov'
-Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
+
+Dir[Pathname(__dir__).join('support', '**', '*.rb')].each { |f| require f }
 
 SimpleCov.start 'rails'
 
 RSpec.configure do |config|
   config.filter_run :focus
   config.run_all_when_everything_filtered = true
-  config.example_status_persistence_file_path = Rails.root.join('spec', 'examples.txt')
+  config.example_status_persistence_file_path =
+    Pathname(__dir__).join('examples.txt')
 
   config.default_formatter = 'doc' if config.files_to_run.one?
 

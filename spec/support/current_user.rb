@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Sets current user based on two acceptable values:
 # 1. a symbol name of a user factory trait;
 # 2. a specific instance of User.
