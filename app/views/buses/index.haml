@@ -1,4 +1,3 @@
-%h1 Add new bus
 %table.buses
   %tr
     %th Number
@@ -10,5 +9,4 @@
   - @buses.each do |bus|
     %tr
       %td= bus.number
-      %td= button_to 'Remove', bus_path(bus), method: :delete, class: 'btn btn-primary delete'
-
+      %td= button_to 'Remove', bus_path(bus), method: :delete, class: 'btn btn-danger'

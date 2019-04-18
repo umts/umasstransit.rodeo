@@ -2,15 +2,6 @@
   font-size: 50px;
 }
 
-table.select-participant th{
-  text-align: center;
-  padding: 5px;
-}
-
-table.select-participant td{
-  padding: 5px;
-}
-
 table.select-participant td.present-icon{
   text-align: center;
 }

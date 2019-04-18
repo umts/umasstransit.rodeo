@@ -24,7 +24,7 @@
   %h1 Participants
   %hr
 
-  .uniqueness-warning
+  .uniqueness-warning.alert.alert-warning
     Please choose a unique participant number.
 
   %table.participants
@@ -49,4 +49,4 @@
           %td= f.collection_select :bus_id, @buses, :id, :number,
             {value: participant.try(:bus_id), include_blank: true}, { class: 'form-control' }
           %td= f.submit 'Save', class: 'btn btn-primary'
-        %td= button_to 'Remove', participant_path(participant), method: :delete, class: 'btn btn-primary delete'
+        %td= button_to 'Remove', participant_path(participant), method: :delete, class: 'btn btn-danger'

@@ -24,16 +24,12 @@
 }
 
 .scoring input[type=number]{
-  border: 1px solid lightgrey;
-  border-radius: 5px;
   height: 120px;
   padding-left: 10px;
   width: 100px;
 }
 
 .scoring select{
-  border: 1px solid lightgrey;
-  border-radius: 5px;
   display: inline;
   font-size: 30px;
   height: 60px;
