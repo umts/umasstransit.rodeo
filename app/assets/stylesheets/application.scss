@@ -1,11 +1,10 @@
-/*
- *= require_tree .
- *= require_self
- */
-
 $body-bg: lightblue;
-@import "bootstrap";
+$font-size-base: 2rem;
 
-body{
-  font-size: 400% !important;
-}
+@import "bootstrap";
+@import "font-awesome-custom";
+@import "faye_test";
+@import "navbar";
+@import "scoreboard";
+@import "scoring";
+@import "select_participant";
