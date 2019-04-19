@@ -10,15 +10,17 @@ module ScoreboardHelper
 
   def score_cell(record, new:, edit: nil)
     if record.present?
-      if edit.present? && @can_edit_scores
-        link_to record.score, edit
-      else
-        record.score
-      end
-    elsif @can_edit_scores
-      link_to '&mdash;'.html_safe, new
+      conditional_link record.score, edit, (edit.present? && @can_edit_scores)
     else
-      '&mdash;'.html_safe
+      conditional_link '&mdash;'.html_safe, new, @can_edit_scores
+    end
+  end
+
+  def conditional_link(text, url, conditional)
+    if conditional
+      link_to text, url
+    else
+      text
     end
   end
 end
