@@ -8,14 +8,19 @@ img.scoreboard-sort-loading{
   overflow: scroll;
 }
 
-.scoreboard-content:not(:-wekbit-full-screen) {
+.scoreboard-content {
   margin-top: 10px;
 }
 
-.scoreboard-content:-webkit-full-screen {
+.scoreboard-content:fullscreen {
+  margin-top: 0;
   border-radius: 6px;
   padding: 5px;
   width: 98%;
+}
+
+.scoreboard-content::backdrop {
+  background-color: lightblue;
 }
 
 table.scoreboard{
