@@ -20,9 +20,5 @@ img.scoreboard-sort-loading{
 }
 
 .scoreboard-content::backdrop {
-  background-color: lightblue;
-}
-
-table.scoreboard{
-  font-size: small;
+  background-color: $body-bg;
 }
