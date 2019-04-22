@@ -9,7 +9,7 @@
     - @maneuver.grouped_obstacles.each do |(point_value, type), obstacles|
       .field
         = label_tag "#{point_value}-point #{type.pluralize} touched"
-        = number_field_tag_with_buttons "obstacle_#{obstacles.first.id}", 0, min: 0, max: obstacles.count
+        = number_field_tag_with_buttons "obstacle_#{obstacles.first.id}", 0, in: 0..obstacles.count
     - @maneuver.distance_targets.each do |target|
       .field
         = label_tag "#{target.interval_type} from #{target.name}"
