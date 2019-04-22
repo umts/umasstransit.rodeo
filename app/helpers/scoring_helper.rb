@@ -2,7 +2,7 @@
 
 module ScoringHelper
   def number_field_tag_with_buttons(name, value = nil, options = {})
-    if range = (options.delete(:in) || options.delete(:within))
+    if (range = options.delete(:in) || options.delete(:within))
       options.update(min: range.min, max: range.max)
     end
     value ||= options[:value]
@@ -14,7 +14,7 @@ module ScoringHelper
   end
 
   def increment_button(target_field, value, type, options)
-    types = {:+ => ['plus', :max], :- => ['minus', :min]}
+    types = { :+ => ['plus', :max], :- => ['minus', :min] }
     disabled = (options[types[type][1]] && value == options[types[type][1]])
 
     button_tag types,
