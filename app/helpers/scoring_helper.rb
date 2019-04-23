@@ -17,7 +17,7 @@ module ScoringHelper
     types = { :+ => ['plus', :max], :- => ['minus', :min] }
     disabled = (options[types[type][1]] && value == options[types[type][1]])
 
-    button_tag types,
+    button_tag type,
                class: 'btn btn-primary increment',
                type: :button,
                data: { field: sanitize_to_id(target_field),
