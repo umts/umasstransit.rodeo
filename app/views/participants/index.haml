@@ -10,13 +10,7 @@
         = select_tag :bus_id,
           options_from_collection_for_select(@buses, :id, :number),
           class: 'form-control', include_blank: 'Bus number', required: true
-        = number_field_tag :number, @next_number, min: @next_number
-        %button.btn.btn-primary.increment{type: :button, disabled: true,
-          data: { field: :number,
-                  type: 'minus' } }-
-        %button.btn.btn-primary.increment{type: :button,
-          data: { field: :number,
-                  type: 'plus' } }+
+        = number_field_tag_with_buttons :number, @next_number, min: @next_number
         = submit_tag 'Add to maneuver queue', class: 'btn btn-primary'
   - else
     No participants to add to the maneuvers queue.
