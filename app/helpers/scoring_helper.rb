@@ -6,7 +6,7 @@ module ScoringHelper
       options.update(min: range.min, max: range.max)
     end
     value ||= options[:value]
-    content_tag 'span', class: 'number-buttons' do
+    content_tag 'div', class: 'input-group input-group-lg' do
       concat number_field_tag name, value, options
       concat increment_button name, value, :-, options
       concat increment_button name, value, :+, options
@@ -17,8 +17,8 @@ module ScoringHelper
     types = { :+ => ['plus', :max], :- => ['minus', :min] }
     disabled = (options[types[type][1]] && value == options[types[type][1]])
 
-    button_tag types,
-               class: 'btn btn-primary increment',
+    button_tag type,
+               class: 'btn btn-primary increment input-group-append',
                type: :button,
                data: { field: sanitize_to_id(target_field),
                        type: types[type][0] },

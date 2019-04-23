@@ -9,7 +9,7 @@
     = hidden_field_tag :maneuver_id, @maneuver.id
     = hidden_field_tag :participant_id, @participant.id
     - @maneuver.grouped_obstacles.each do |(point_value, type), obstacles|
-      .field
+      .form-group
         = label_tag "#{point_value}-point #{type.pluralize} touched"
         - if @record.obstacles_hit.values.first.is_a? Integer
           - value = @record.obstacles_hit[point_value] || 0
@@ -17,30 +17,31 @@
           - value = @record.obstacles_hit[obstacles.first.id].try(:[],1) || 0
         = number_field_tag_with_buttons "obstacle_#{obstacles.first.id}", value, in: 0..obstacles.count
     - @maneuver.distance_targets.each do |target|
-      .field
+      .form-group
         = label_tag "#{target.interval_type} from #{target.name}"
         = number_field_tag_with_buttons "target_#{target.id}",
           @record.distances_achieved[[target.minimum, target.multiplier]],
           min: 0
-    .field
+    .form-group
       - if @maneuver.name.include? 'Reverse'
         = label_tag 'Extra reverses'
       - else
         = label_tag 'Reverses'
       = number_field_tag_with_buttons :reversed_direction, @record.reversed_direction, min: 0
     - if @maneuver.speed_target.present?
-      .field
+      .form-group
         = label_tag "Achieved #{@maneuver.speed_target} mph"
         = check_box_tag :speed_achieved, true, @record.speed_achieved?
     - if @maneuver.counts_additional_stops?
-      .field
+      .form-group
         = label_tag 'Extra stops?'
         = check_box_tag :made_additional_stops, true, @record.made_additional_stops?
-    .field
+    .form-group
       = label_tag 'Completed as designed?'
       = check_box_tag :completed_as_designed, true, @record.completed_as_designed?
-    = submit_tag 'Save score', class: 'btn btn-primary submit'
-    = link_to previous_participant_maneuver_path(@maneuver, relative_to: @participant.number) do
-      %button.btn.btn-secondary.actions{type: :button} Previous participant
-    = link_to next_participant_maneuver_path(@maneuver, relative_to: @participant.number) do
-      %button.btn.btn-secondary.actions{type: :button} Next participant
+    .form-group
+      = submit_tag 'Save score', class: 'btn btn-primary submit'
+      = link_to previous_participant_maneuver_path(@maneuver, relative_to: @participant.number) do
+        %button.btn.btn-secondary.actions{type: :button} Previous participant
+      = link_to next_participant_maneuver_path(@maneuver, relative_to: @participant.number) do
+        %button.btn.btn-secondary.actions{type: :button} Next participant
