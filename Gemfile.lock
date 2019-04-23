@@ -303,6 +303,7 @@ GEM
     sshkit (1.18.2)
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
+    strscan (1.0.0)
     temple (0.8.1)
     thin (1.7.2)
       daemons (~> 1.0, >= 1.0.9)
@@ -365,6 +366,7 @@ DEPENDENCIES
   sassc-rails
   simplecov
   spring
+  strscan
   thin
   timecop
   uglifier
