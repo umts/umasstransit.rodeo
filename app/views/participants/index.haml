@@ -2,16 +2,15 @@
   - if @unassigned.present?
     %h1 Add participant to maneuvers queue
     %hr
-    = form_tag assign_number_participants_path, class: 'scoring' do
-      .form-horizontal
-        = select_tag :id,
-          options_from_collection_for_select(@unassigned, :id, :name),
-          class: 'form-control'
-        = select_tag :bus_id,
-          options_from_collection_for_select(@buses, :id, :number),
-          class: 'form-control', include_blank: 'Bus number', required: true
-        = number_field_tag_with_buttons :number, @next_number, min: @next_number
-        = submit_tag 'Add to maneuver queue', class: 'btn btn-primary'
+    = form_tag assign_number_participants_path, class: 'scoring form-inline' do
+      = select_tag :id,
+        options_from_collection_for_select(@unassigned, :id, :name),
+        class: 'form-control mr-3 mb-3 mb-sm-0'
+      = select_tag :bus_id,
+        options_from_collection_for_select(@buses, :id, :number),
+        class: 'form-control mr-3 mb-3 mb-sm-0', include_blank: 'Bus number', required: true
+      = number_field_tag_with_buttons :number, @next_number, min: @next_number
+      = submit_tag 'Add to maneuver queue', class: 'btn btn-primary ml-3 mt-3 mt-sm-0'
   - else
     No participants to add to the maneuvers queue.
 
