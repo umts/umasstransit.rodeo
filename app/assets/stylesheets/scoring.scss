@@ -6,4 +6,22 @@
   .btn.increment {
     width: 2.5rem;
   }
+
+  input[type=checkbox] {
+    display: none;
+
+    & + .pseudo-checkbox {
+      @extend %fa-icon;
+      @extend .far;
+
+      &::after {
+        display: block;
+        content: fa-content($fa-var-square);
+      }
+    }
+
+    &:checked + .pseudo-checkbox::after {
+      content: fa-content($fa-var-check-square);
+    }
+  }
 }
