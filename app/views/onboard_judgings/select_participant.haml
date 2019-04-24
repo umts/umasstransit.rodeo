@@ -1,24 +1,25 @@
-.select-participant
-  %h1 Onboard Judging
-  %hr
+%h1 Onboard Judging
+%hr
 
-  %table.select-participant
+%table.select-participant.table
+  %thead.thead-dark
     %tr
       %th Participant
-      %th Has been judged?
+      %th.text-center Has been judged?
       %th
+  %tbody
     - @participants.each do |participant|
       %tr
         %td= participant.display_information(:name, :number)
         - if participant.onboard_judging.present?
-          %td.present-icon
+          %td.text-center
             %i.fas.fa-check
-          %td
+          %td.text-right
             = link_to participant.onboard_judging do
               %button.btn.btn-primary Review
         - else
-          %td.present-icon
+          %td.text-center
             %i.fas.fa-times
-          %td
+          %td.text-right
             = link_to new_onboard_judging_path(participant: participant.number) do
               %button.btn.btn-primary Judge

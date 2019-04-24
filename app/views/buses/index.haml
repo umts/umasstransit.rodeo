@@ -1,12 +1,14 @@
-%table
-  %tr
-    %th Number
-    %th
-  = form_for Bus.new do |f|
+%table.table
+  %thead.thead-dark
     %tr
-      %td= f.text_field :number, placeholder: 'Bus number', class: 'form-control'
-      %td= f.submit 'Add', class: 'btn btn-primary'
-  - @buses.each do |bus|
-    %tr
-      %td= bus.number
-      %td= button_to 'Remove', bus_path(bus), method: :delete, class: 'btn btn-danger'
+      %th Number
+      %th
+  %tbody
+    = form_for Bus.new do |f|
+      %tr
+        %td= f.text_field :number, placeholder: 'Bus number', class: 'form-control'
+        %td= f.submit 'Add', class: 'btn btn-primary'
+    - @buses.each do |bus|
+      %tr
+        %td= bus.number
+        %td= button_to 'Remove', bus_path(bus), method: :delete, class: 'btn btn-danger'

@@ -1,11 +1,9 @@
 table.select-participant{
-  td.present-icon{
-    text-align: center;
-  }
-  .fa-check{
+  i.fa-check{
     color: green;
   }
-  .fa-times{
+
+  i.fa-times{
     color: red;
   }
 }

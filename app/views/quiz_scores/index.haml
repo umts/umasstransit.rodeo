@@ -1,32 +1,34 @@
-.quiz_scores
-  %h1 Quiz Scores
-  %hr
-  - if @unscored.present? || @scored.present?
-    %table
-      %tr
-        %th Participant
-        %th Points achieved
-        %th Total points
-        %th
-      - if @unscored.present?
-        - @unscored.each do |participant|
-          = form_for QuizScore.new(participant: participant), class: 'form-inline' do |f|
-            %tr
-              %td
-                = participant.display_information(:name, :number)
-                = f.hidden_field :participant_id, value: participant.id
-              %td= f.number_field :points_achieved, placeholder: 'Enter a score...', step: 0.1, class: 'form-control'
-              %td= f.number_field :total_points, value: QuizScore::TOTAL_POINTS_DEFAULT, class: 'form-control'
-              %td= f.submit 'Save score', class: 'btn btn-primary'
-      - if @scored.present?
-        - @scored.each do |participant|
-          = form_for participant.quiz_score, class: 'form-inline' do |f|
-            %tr
-              %td
-                = participant.display_information(:name, :number)
-                = f.hidden_field :participant_id, value: participant.id
-              %td= f.number_field :points_achieved, placeholder: 'Enter a score...', step: 0.1, class: 'form-control'
-              %td= f.number_field :total_points, value: participant.quiz_score.total_points || QuizScore::TOTAL_POINTS_DEFAULT, class: 'form-control'
-              %td= f.submit 'Save score', class: 'btn btn-primary'
-  - else
-    No participants have been created yet.
+%h1 Quiz Scores
+%hr
+- if @unscored.present? || @scored.present?
+  .table-responsive
+    %table.table
+      %thead.thead-dark
+        %tr
+          %th Participant
+          %th Points achieved
+          %th Total points
+          %th
+      %tbody
+        - if @unscored.present?
+          - @unscored.each do |participant|
+            = form_for QuizScore.new(participant: participant), class: 'form-inline' do |f|
+              %tr
+                %td
+                  = participant.display_information(:name, :number)
+                  = f.hidden_field :participant_id, value: participant.id
+                %td= f.number_field :points_achieved, placeholder: 'Enter a score...', step: 0.1, class: 'form-control'
+                %td= f.number_field :total_points, value: QuizScore::TOTAL_POINTS_DEFAULT, class: 'form-control'
+                %td= f.submit 'Save score', class: 'btn btn-primary'
+        - if @scored.present?
+          - @scored.each do |participant|
+            = form_for participant.quiz_score, class: 'form-inline' do |f|
+              %tr
+                %td
+                  = participant.display_information(:name, :number)
+                  = f.hidden_field :participant_id, value: participant.id
+                %td= f.number_field :points_achieved, placeholder: 'Enter a score...', step: 0.1, class: 'form-control'
+                %td= f.number_field :total_points, value: participant.quiz_score.total_points || QuizScore::TOTAL_POINTS_DEFAULT, class: 'form-control'
+                %td= f.submit 'Save score', class: 'btn btn-primary'
+- else
+  No participants have been created yet.

@@ -37,7 +37,7 @@
               %button.mx-3.btn.btn-outline-primary{type: :button}
                 Manage Users
                 - unless User.where(approved: false).count.zero?
-                  %span.badge
+                  %span.badge.badge-warning
                     = User.where(approved: false).count
       .dropdown
         %button.btn.nav-item.dropdown-toggle{data: {toggle: 'dropdown'}}
