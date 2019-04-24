@@ -23,13 +23,16 @@
     - if @maneuver.speed_target.present?
       .field
         = label_tag "Achieved #{@maneuver.speed_target} mph"
+        = hidden_field_tag :speed_acheived, false
         = check_box_tag :speed_achieved, true, true
     - if @maneuver.counts_additional_stops?
       .field
         = label_tag 'Extra stops?'
+        = hidden_field_tag :made_additional_stops, false
         = check_box_tag :made_additional_stops, true, false
     .field
       = label_tag 'Completed as designed?'
+      = hidden_field_tag :completed_as_designed, false
       = check_box_tag :completed_as_designed, true, true
     = submit_tag 'Save & next', class: 'btn btn-primary submit'
     = link_to previous_participant_maneuver_path(@maneuver) do
