@@ -26,4 +26,12 @@
       content: fa-content($fa-var-check-square);
     }
   }
+
+  fieldset {
+    border: 1px solid $secondary;
+  }
+
+  legend {
+    width: auto;
+  }
 }
