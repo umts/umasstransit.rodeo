@@ -1,6 +1,14 @@
 # frozen_string_literal: true
 
 module ScoringHelper
+  def giant_check_box_tag(name, value = '1', checked = false, options = {})
+    classes = options.delete(:class).to_s.split(' ')
+    classes << 'checkbox-big'
+    classes = classes.join(' ')
+    concat check_box_tag name, value, checked, options.merge(class: classes)
+    content_tag 'div', '', class: 'pseudo-checkbox'
+  end
+
   def number_field_tag_with_buttons(name, value = nil, options = {})
     if (range = options.delete(:in) || options.delete(:within))
       options.update(min: range.min, max: range.max)

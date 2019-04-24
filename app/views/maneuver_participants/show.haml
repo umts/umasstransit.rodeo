@@ -31,14 +31,14 @@
     - if @maneuver.speed_target.present?
       .form-group
         = label_tag "Achieved #{@maneuver.speed_target} mph"
-        = check_box_tag :speed_achieved, true, @record.speed_achieved?
+        = giant_check_box_tag :speed_achieved, true, @record.speed_achieved?
     - if @maneuver.counts_additional_stops?
       .form-group
         = label_tag 'Extra stops?'
-        = check_box_tag :made_additional_stops, true, @record.made_additional_stops?
+        = giant_check_box_tag :made_additional_stops, true, @record.made_additional_stops?
     .form-group
       = label_tag 'Completed as designed?'
-      = check_box_tag :completed_as_designed, true, @record.completed_as_designed?
+      = giant_check_box_tag :completed_as_designed, true, @record.completed_as_designed?
     .form-group
       = submit_tag 'Save score', class: 'btn btn-primary submit'
       = link_to previous_participant_maneuver_path(@maneuver, relative_to: @participant.number) do
