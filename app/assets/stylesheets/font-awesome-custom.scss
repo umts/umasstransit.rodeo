@@ -1,6 +1,10 @@
 $fa-font-path: "@fortawesome/fontawesome-free/webfonts/";
 @import "@fortawesome/fontawesome-free/scss/fontawesome";
 
+/* This is a copy of @fortawesome/fontawesome-free/scss/{regular,solid,free}
+ * with the `url()`s replaced with `font-url()`s to make them work with
+ *  sprockets.
+ */
 @font-face {
   font-family: 'Font Awesome 5 Free';
   font-style: normal;

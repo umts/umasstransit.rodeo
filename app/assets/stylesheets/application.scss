@@ -1,48 +1,10 @@
-/*
- *= require_tree .
- *= require_self
- */
+$body-bg: lightblue;
 
 @import "bootstrap";
-
-body{
-  background-color: lightblue !important;
-  font-size: 400% !important;
-}
-
-#main-panel{
-  margin: 15px;
-}
-
-p.notice{
-  background-color: #b5e8ce;
-  border: 3px solid #7ad6a7;
-  border-radius: 6px;
-  text-align: center;
-}
-
-p.alert{
-  background-color: #e8cc59;
-  border: 3px solid #63520d;
-  border-radius: 6px;
-  text-align: center;
-}
-
-p.error, p.errors{
-  background-color: #e8b5b5;
-  border: 3px solid #d16b6b;
-  border-radius: 6px;
-  text-align: center;
-}
-
-.btn-primary.delete{
-  background-color: #b73434;
-}
-
-.users.roles, th.roles {
-  text-align: center;
-}
-
-td.left, th.left {
-  text-align: left;
-}
+@import "font-awesome-custom";
+@import "faye_test";
+@import "navbar";
+@import "participants";
+@import "scoreboard";
+@import "scoring";
+@import "select_participant";
