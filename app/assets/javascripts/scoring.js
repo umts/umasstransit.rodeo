@@ -1,5 +1,6 @@
 $(document).ready(function(){
   $('#score_form').areYouSure();
+
   $('.scoring').on('click', 'button.increment', function(){
     $(this).siblings('button.increment').prop('disabled', false);
     var field_name = $(this).data('field');
@@ -15,5 +16,10 @@ $(document).ready(function(){
       if(min && value === parseInt(min)) $(this).prop('disabled', true);
       if(max && value === parseInt(max)) $(this).prop('disabled', true);
     }
+  });
+
+  $('.scoring').on('click', '.pseudo-checkbox', function(){
+    var cb = $(this).siblings('input[type=checkbox]');
+    cb.prop('checked', !cb.prop('checked'));
   });
 });

@@ -2,6 +2,7 @@
 
 source 'https://rubygems.org'
 
+gem 'bootstrap', '~> 4.3.1'
 gem 'certified'
 gem 'coffee-rails'
 gem 'devise', '~> 4.6'
@@ -23,11 +24,6 @@ gem 'thin'
 gem 'uglifier'
 gem 'underscore-rails'
 
-source 'https://rails-assets.org' do
-  gem 'rails-assets-bootstrap'
-  gem 'rails-assets-codedance--jquery.areyousure'
-end
-
 group :production do
   gem 'exception_notification'
 end
@@ -38,6 +34,7 @@ group :development do
   gem 'capistrano-passenger', require: false
   gem 'capistrano-pending', require: false
   gem 'capistrano-rails', require: false
+  gem 'capistrano-yarn', require: false
 end
 
 group :test do
