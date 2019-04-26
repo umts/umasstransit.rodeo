@@ -11,7 +11,7 @@ class User < ApplicationRecord
   scope :unapproved, -> { where.not approved: true }
 
   def approve!
-    update! approved: true
+    update! approved: true, judge: true
   end
 
   def has_role?(role)
