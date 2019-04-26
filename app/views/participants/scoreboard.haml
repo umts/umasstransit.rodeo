@@ -9,9 +9,9 @@
         %button.btn.scoreboard-order{type: :button,
           data: { order: sort_order},
           class: sort_order_button_class(sort_order, @sort_order) }= sort_order.to_s.humanize
-    %button.btn.btn-primary.pull-right.fullscreen
-      %span.glyphicon.glyphicon-resize-full
-    = image_tag 'loading.gif', class: 'scoreboard-sort-loading hidden'
+    %button.btn.btn-primary.fullscreen
+      %i.fas.fa-expand
+    = image_tag 'loading.gif', class: 'scoreboard-sort-loading d-none'
     .scoreboard-content= render partial: 'scoreboard_partial'
   - else
     No participants yet.

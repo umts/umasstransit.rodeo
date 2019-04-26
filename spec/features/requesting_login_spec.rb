@@ -27,7 +27,7 @@ describe 'requesting a login' do
     visit new_user_session_url
     fill_in 'Email', with: user.email
     fill_in 'Password', with: 'password'
-    within('.actions') { click_on 'Log in' }
+    within('form') { click_on 'Log in' }
     expect(page).to have_text(
       'Your account must be approved by an administrator before you can log in.'
     )

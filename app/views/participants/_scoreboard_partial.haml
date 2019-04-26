@@ -1,67 +1,34 @@
-%table.scoreboard
-  %tr
-    %th Participant
-    - @maneuvers.each do |maneuver|
-      %th= maneuver.name
-    %th Onboard Judging
-    %th Maneuvers total
-    %th Circle Check
-    %th Quiz
-    %th Total score
-  - @participants.each do |participant|
-    - scores = @scores[participant.id]
+%table.scoreboard.table.table-bordered.table-striped.table-sm.text-center
+  %thead.thead-light
     %tr
-      %td
-        - if @top_20.include? participant
-          = participant.display_information(:name, :number)
-        - else
-          = participant.display_information(:number)
+      %th Participant
       - @maneuvers.each do |maneuver|
+        %th= maneuver.name
+      %th Onboard Judging
+      %th Maneuvers total
+      %th Circle Check
+      %th Quiz
+      %th Total score
+  %tbody
+    - @participants.each do |participant|
+      - scores = @scores[participant.id]
+      %tr
         %td
-          - record = scores.try(:[], maneuver.id).try :first
-          - if record.present?
-            - if @can_edit_scores
-              = link_to record.score, record
-            - else
-              = record.score
+          - if @top_20.include? participant
+            = participant.display_information(:name, :number)
           - else
-            - if @can_edit_scores
-              = link_to new_maneuver_participant_path(maneuver: maneuver.name, participant: participant.number) do
-                &mdash;
-            - else
-              &mdash;
-      %td
-        - record = participant.onboard_judging
-        - if record.present?
-          - if @can_edit_scores
-            = link_to record.score, record
-          - else
-            = record.score
-        - else
-          - if @can_edit_scores
-            = link_to new_onboard_judging_path(participant: participant.number) do
-              &mdash;
-          - else
-            &mdash;
-      %td= participant.maneuver_score
-      %td
-        - record = participant.circle_check_score
-        - if record.present?
-          = record.score
-        - else
-          - if @can_edit_scores
-            = link_to circle_check_scores_path do
-              &mdash;
-          - else
-            &mdash;
-      %td
-        - record = participant.quiz_score
-        - if record.present?
-          = record.score
-        - else 
-          - if @can_edit_scores
-            = link_to quiz_scores_path do
-              &mdash;
-          - else
-            &mdash;
-      %td= participant.total_score
+            = participant.display_information(:number)
+        - @maneuvers.each do |maneuver|
+          %td
+            - record = scores.try(:[], maneuver.id).try :first
+            = score_cell record,
+              new: new_maneuver_participant_path(maneuver: maneuver.name, participant: participant.number),
+              edit: url_for(record)
+        %td
+          = score_cell participant.onboard_judging,
+            new: new_onboard_judging_path(participant: participant.number),
+            edit: url_for(participant.onboard_judging)
+        %td= participant.maneuver_score
+        %td= score_cell participant.circle_check_score, new: circle_check_scores_path
+        %td= score_cell participant.quiz_score, new: quiz_scores_path
+        %td= participant.total_score

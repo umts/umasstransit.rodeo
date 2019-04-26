@@ -10,7 +10,7 @@ describe 'signing up' do
       fill_in 'user_password', with: 'password'
       fill_in 'user_password_confirmation', with: 'password'
       expect do
-        within('.actions') { click_on 'Send request' }
+        within('form') { click_on 'Send request' }
       end.not_to(change { User.count })
     end
     it 'does not create the user with no password' do
@@ -18,7 +18,7 @@ describe 'signing up' do
       fill_in 'user_name', with: 'Foo Bar'
       fill_in 'user_email', with: 'foo@valid.com'
       expect do
-        within('.actions') { click_on 'Send request' }
+        within('form') { click_on 'Send request' }
       end.not_to(change { User.count })
     end
   end
@@ -30,7 +30,7 @@ describe 'signing up' do
       fill_in 'user_password', with: 'password'
       fill_in 'user_password_confirmation', with: 'password'
       expect do
-        within('.actions') { click_on 'Send request' }
+        within('form') { click_on 'Send request' }
       end.to change { User.count }.by 1
     end
   end

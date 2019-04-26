@@ -1,0 +1,24 @@
+img.scoreboard-sort-loading{
+  height: 30px;
+  padding: 3px;
+}
+
+.scoreboard-content {
+  max-height: calc(100vh - 230px);
+  overflow: scroll;
+}
+
+.scoreboard-content {
+  margin-top: 10px;
+}
+
+.scoreboard-content:fullscreen {
+  margin-top: 0;
+  border-radius: 6px;
+  padding: 5px;
+  width: 98%;
+}
+
+.scoreboard-content::backdrop {
+  background-color: $body-bg;
+}

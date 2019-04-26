@@ -2,6 +2,7 @@
 
 source 'https://rubygems.org'
 
+gem 'bootstrap', '~> 4.3.1'
 gem 'certified'
 gem 'coffee-rails'
 gem 'devise', '~> 4.6'
@@ -17,14 +18,10 @@ gem 'rails', '~> 5.0.7'
 gem 'rubocop'
 gem 'sassc-rails'
 gem 'spring'
+gem 'strscan'
 gem 'thin'
 gem 'uglifier'
 gem 'underscore-rails'
-
-source 'https://rails-assets.org' do
-  gem 'rails-assets-bootstrap'
-  gem 'rails-assets-codedance--jquery.areyousure'
-end
 
 group :production do
   gem 'exception_notification'
@@ -36,6 +33,7 @@ group :development do
   gem 'capistrano-passenger', require: false
   gem 'capistrano-pending', require: false
   gem 'capistrano-rails', require: false
+  gem 'capistrano-yarn', require: false
 end
 
 group :test do
@@ -50,7 +48,8 @@ group :test do
 end
 
 group :development, :test do
-  gem 'better_errors'
+  # Remove this constraint if upgrading Rails to >= 5.1
+  gem 'better_errors', '< 2.3'
   gem 'binding_of_caller'
   gem 'pry-byebug'
   gem 'rb-readline', require: false

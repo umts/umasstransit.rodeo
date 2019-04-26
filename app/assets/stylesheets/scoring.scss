@@ -1,0 +1,37 @@
+.scoring {
+  input[type=number] {
+    width: 4em;
+  }
+
+  .btn.increment {
+    width: 2.5rem;
+  }
+
+  input[type=checkbox].checkbox-big {
+    display: none;
+
+    & + .pseudo-checkbox {
+      @extend %fa-icon;
+      @extend .fas;
+
+      &::after {
+        display: block;
+        font-size: 2.5rem;
+        color: $primary;
+        content: fa-content($fa-var-square);
+      }
+    }
+
+    &:checked + .pseudo-checkbox::after {
+      content: fa-content($fa-var-check-square);
+    }
+  }
+
+  fieldset {
+    border: 1px solid $secondary;
+  }
+
+  legend {
+    width: auto;
+  }
+}

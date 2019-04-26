@@ -4,98 +4,43 @@
   - if current_user.admin? && @record.creator.present?
     %h3 Score recorded by #{@record.creator.name}
   %hr
-  = form_tag onboard_judging_path(@record), method: :put do
-    = fields_for :onboard_judging do |f|
-      = f.hidden_field :participant_id, value: @participant.id
-      %h2 Time elapsed:
-      .field
-        = f.number_field :minutes_elapsed, value: @record.minutes_elapsed, min: 0, required: true
+  = form_for @record, builder: AppFormBuilder do |f|
+    = f.hidden_field :participant_id, value: @participant.id
+    %fieldset.form-group
+      %legend Time elapsed:
+      .form-group
+        = f.number_field_with_buttons :minutes_elapsed, value: @record.minutes_elapsed, min: 0, required: true
         minutes
-        %button.btn.btn-primary.increment{type: :button,
-          data: { field: :onboard_judging_minutes_elapsed, type: 'minus' } }-
-        %button.btn.btn-primary.increment{type: :button,
-          data: { field: :onboard_judging_minutes_elapsed, type: 'plus' } }+
-      .field
-        = f.number_field :seconds_elapsed, value: @record.seconds_elapsed, min: 0, max: 59, required: true
+      .form-group
+        = f.number_field_with_buttons :seconds_elapsed, value: @record.seconds_elapsed, in: 0...60, required: true
         seconds
-        %button.btn.btn-primary.increment{type: :button, disabled: @record.seconds_elapsed.zero?,
-          data: { field: :onboard_judging_seconds_elapsed, type: 'minus' } }-
-        %button.btn.btn-primary.increment{type: :button,
-          data: { field: :onboard_judging_seconds_elapsed, type: 'plus' } }+
-      %h2 Safety Habits
-      %hr
-      .field
+    %fieldset.form-group
+      %legend Safety Habits
+      .form-group
         = f.label 'Missed turn signals'
-        = f.number_field :missed_turn_signals, value: @record.missed_turn_signals, min: 0
-        %button.btn.btn-primary.increment{type: :button, disabled: @record.missed_turn_signals.zero?,
-          data: { field: :onboard_judging_missed_turn_signals,
-                  type: 'minus' } }-
-        %button.btn.btn-primary.increment{type: :button,
-          data: { field: :onboard_judging_missed_turn_signals,
-                  type: 'plus' } }+
-      .field
+        = f.number_field_with_buttons :missed_turn_signals, value: @record.missed_turn_signals, min: 0
+      .form-group
         = f.label 'Missed horn sounds'
-        = f.number_field :missed_horn_sounds, value: @record.missed_horn_sounds, min: 0
-        %button.btn.btn-primary.increment{type: :button, disabled: @record.missed_horn_sounds.zero?,
-          data: { field: :onboard_judging_missed_turn_signals,
-                  type: 'minus' } }-
-        %button.btn.btn-primary.increment{type: :button,
-          data: { field: :onboard_judging_missed_turn_signals,
-                  type: 'plus' } }+
-      .field
+        = f.number_field_with_buttons :missed_horn_sounds, value: @record.missed_horn_sounds, min: 0
+      .form-group
         = f.label 'Missed flashers'
-        = f.number_field :missed_flashers, value: @record.missed_flashers, min: 0
-        %button.btn.btn-primary.increment{type: :button, disabled: @record.missed_flashers.zero?,
-          data: { field: :onboard_judging_missed_flashers,
-                  type: 'minus' } }-
-        %button.btn.btn-primary.increment{type: :button,
-          data: { field: :onboard_judging_missed_flashers,
-                  type: 'plus' } }+
-      .field
+        = f.number_field_with_buttons :missed_flashers, value: @record.missed_flashers, min: 0
+      .form-group
         = f.label 'Times moved w/ door open'
-        = f.number_field :times_moved_with_door_open, value: @record.times_moved_with_door_open, min: 0
-        %button.btn.btn-primary.increment{type: :button, disabled: @record.times_moved_with_door_open.zero?,
-          data: { field: :onboard_judging_times_moved_with_door_open,
-                  type: 'minus' } }-
-        %button.btn.btn-primary.increment{type: :button,
-          data: { field: :onboard_judging_times_moved_with_door_open,
-                  type: 'plus' } }+
-      %h2 Smoothness of Operation
-      %hr
-      .field
+        = f.number_field_with_buttons :times_moved_with_door_open, value: @record.times_moved_with_door_open, min: 0
+    %fieldset.form-group
+      %legend Smoothness of Operation
+      .form-group
         = f.label 'Unannounced PAX stops'
-        = f.number_field :unannounced_stops, value: @record.unannounced_stops, min: 0, max: 2
-        %button.btn.btn-primary.increment{type: :button, disabled: @record.unannounced_stops.zero?,
-          data: { field: :onboard_judging_unannounced_stops,
-                  type: 'minus' } }-
-        %button.btn.btn-primary.increment{type: :button,
-          data: { field: :onboard_judging_unannounced_stops,
-                  type: 'plus' } }+
-      .field
+        = f.number_field_with_buttons :unannounced_stops, value: @record.unannounced_stops, in: 0..2
+      .form-group
         = f.label 'Sudden stops'
-        = f.number_field :sudden_stops, value: @record.sudden_stops, min: 0
-        %button.btn.btn-primary.increment{type: :button, disabled: @record.sudden_stops.zero?,
-          data: { field: :onboard_judging_sudden_stops,
-                  type: 'minus' } }-
-        %button.btn.btn-primary.increment{type: :button,
-          data: { field: :onboard_judging_sudden_stops,
-                  type: 'plus' } }+
-      .field
+        = f.number_field_with_buttons :sudden_stops, value: @record.sudden_stops, min: 0
+      .form-group
         = f.label 'Sudden starts'
-        = f.number_field :sudden_starts, value: @record.sudden_starts, min: 0
-        %button.btn.btn-primary.increment{type: :button, disabled: @record.sudden_starts.zero?,
-          data: { field: :onboard_judging_sudden_starts,
-                  type: 'minus' } }-
-        %button.btn.btn-primary.increment{type: :button,
-          data: { field: :onboard_judging_sudden_starts,
-                  type: 'plus' } }+
-      .field
+        = f.number_field_with_buttons :sudden_starts, value: @record.sudden_starts, min: 0
+      .form-group
         = f.label 'Abrupt turns'
-        = f.number_field :abrupt_turns, value: @record.abrupt_turns, min: 0
-        %button.btn.btn-primary.increment{type: :button, disabled: @record.abrupt_turns.zero?,
-          data: { field: :onboard_judging_abrupt_turns,
-                  type: 'minus' } }-
-        %button.btn.btn-primary.increment{type: :button,
-          data: { field: :onboard_judging_abrupt_turns,
-                  type: 'plus' } }+
-    = submit_tag 'Save', class: 'btn btn-primary submit'
+        = f.number_field_with_buttons :abrupt_turns, value: @record.abrupt_turns, min: 0
+    .form-group
+      = submit_tag 'Save', class: 'btn btn-primary submit'

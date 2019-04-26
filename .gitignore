@@ -23,3 +23,6 @@
 /coverage/index.html
 /coverage/assets/*
 /coverage/.resultset.*
+
+/node_modules
+spec/examples.txt
