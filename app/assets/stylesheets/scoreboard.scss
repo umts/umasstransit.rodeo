@@ -4,7 +4,7 @@ img.scoreboard-sort-loading{
 }
 
 .scoreboard-content {
-  max-height: 75vh;
+  max-height: calc(100vh - 230px);
   overflow: scroll;
 }
 
