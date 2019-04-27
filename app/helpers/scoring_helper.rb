@@ -2,8 +2,11 @@
 
 module ScoringHelper
   def giant_check_box_tag(name, value = '1', checked = false, options = {})
-    content_tag 'div', class: 'd-inline-block btn-group-toggle checkbox', data: {toggle: 'buttons'} do
-      content_tag 'label', class: "btn btn-primary #{checked ? 'active' : ''}" do
+    content_tag 'div', class: 'd-inline-block btn-group-toggle checkbox',
+                       data: { toggle: 'buttons' } do
+      label_class = 'btn btn-primary'
+      label_class += ' active' if checked
+      content_tag 'label', class: label_class do
         concat check_box_tag name, value, checked, options
         concat content_tag 'i', nil
       end
@@ -23,7 +26,10 @@ module ScoringHelper
   end
 
   def increment_button(target_field, value, type, options)
-    types = { :+ => ['plus', :max, 'fa-plus'], :- => ['minus', :min, 'fa-minus'] }
+    types = {
+      :+ => ['plus', :max, 'fa-plus'],
+      :- => ['minus', :min, 'fa-minus']
+    }
     disabled = (options[types[type][1]] && value == options[types[type][1]])
 
     button_tag(class: 'btn btn-primary increment input-group-append',
