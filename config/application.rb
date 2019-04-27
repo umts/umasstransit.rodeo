@@ -14,6 +14,7 @@ module UmasstransitRodeo
     config.encoding = 'utf-8'
     config.time_zone = 'Eastern Time (US & Canada)'
     config.autoload_paths << Rails.root.join('lib')
+    config.eager_load_paths << Rails.root.join('lib')
     config.assets.paths << Rails.root.join('node_modules')
   end
 end
