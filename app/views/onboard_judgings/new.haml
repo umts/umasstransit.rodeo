@@ -2,7 +2,7 @@
   %h1 Onboard Judging
   %h3 Participant #{@participant.display_information(:number, :name)}
   %hr
-  = form_for OnboardJudging.new, builder: AppFormBuilder do |f|
+  = form_for OnboardJudging.new do |f|
     = f.hidden_field :participant_id, value: @participant.id
     %fieldset.form-group
       %legend Time Elapsed
