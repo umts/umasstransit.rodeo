@@ -17,9 +17,4 @@ $(document).ready(function(){
       if(max && value === parseInt(max)) $(this).prop('disabled', true);
     }
   });
-
-  $('.scoring').on('click', '.pseudo-checkbox', function(){
-    var cb = $(this).siblings('input[type=checkbox]');
-    cb.prop('checked', !cb.prop('checked'));
-  });
 });

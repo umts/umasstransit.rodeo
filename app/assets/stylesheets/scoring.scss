@@ -5,25 +5,23 @@
 
   .btn.increment {
     width: 2.5rem;
+    i {
+      line-height: $line-height-base;
+    }
   }
 
-  input[type=checkbox].checkbox-big {
-    display: none;
-
-    & + .pseudo-checkbox {
+  .btn-group-toggle.checkbox .btn {
+    i {
       @extend %fa-icon;
       @extend .fas;
 
-      &::after {
-        display: block;
-        font-size: 2.5rem;
-        color: $primary;
-        content: fa-content($fa-var-square);
+      &::before {
+        content: fa-content($fa-var-circle);
       }
     }
 
-    &:checked + .pseudo-checkbox::after {
-      content: fa-content($fa-var-check-square);
+    &.active i::before {
+      content: fa-content($fa-var-check-circle);
     }
   }
 
