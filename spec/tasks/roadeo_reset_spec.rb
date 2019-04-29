@@ -35,7 +35,7 @@ describe 'rake roadeo:reset' do
     it 'does not destroy anything' do
       [Bus, Participant, CircleCheckScore, QuizScore,
        OnboardJudging, ManeuverParticipant, User].each do |model|
-        expect { task.execute }.not_to change { model.count }
+        expect { task.execute }.not_to(change { model.count })
       end
     end
   end

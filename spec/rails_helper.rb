@@ -18,7 +18,7 @@ RSpec.configure do |config|
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.include Warden::Test::Helpers, type: :feature
 
-  config.define_derived_metadata(:file_path => %r{/spec/tasks/}) do |metadata|
+  config.define_derived_metadata(file_path: %r{/spec/tasks/}) do |metadata|
     metadata[:type] = :task
   end
   config.include TaskExampleGroup, type: :task
