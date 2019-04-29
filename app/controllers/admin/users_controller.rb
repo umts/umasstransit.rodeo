@@ -18,10 +18,12 @@ module Admin
     end
 
     def index
+      @page_title = 'User Roles'
       @users = User.order(:name)
     end
 
     def manage
+      @page_title = 'Manage Users'
       @users = User.unapproved.order :name
     end
 

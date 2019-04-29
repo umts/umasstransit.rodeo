@@ -22,6 +22,9 @@ class ManeuverParticipantsController < ApplicationController
   def new
     @maneuver = Maneuver.find_by name: params.require(:maneuver)
     @participant = Participant.find_by number: params.require(:participant)
+    @page_title = "Judging #{@maneuver.name}"
+    @page_subtitle = @participant.display_information(:name, :number, :bus)
+
     if @participant.has_completed? @maneuver
       redirect_to ManeuverParticipant.find_by(maneuver: @maneuver,
                                               participant: @participant)
@@ -33,6 +36,8 @@ class ManeuverParticipantsController < ApplicationController
   def show
     @maneuver = @record.maneuver
     @participant = @record.participant
+    @page_title = "Judging #{@maneuver.name}"
+    @page_subtitle = @participant.display_information(:name, :number, :bus)
   end
 
   def update

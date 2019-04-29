@@ -1,4 +1,4 @@
-%h2 Log in
+= render 'shared/title', title: 'Log In'
 = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
   .form-group
     = f.label :email

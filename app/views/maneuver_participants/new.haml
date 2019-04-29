@@ -1,8 +1,4 @@
 .scoring
-  %h1 Judging #{@maneuver.name}
-  %h3 #{@participant.display_information(:name, :number, :bus)}
-  %hr
-
   = form_tag maneuver_participants_path, id: 'score_form' do
     = hidden_field_tag :maneuver_id, @maneuver.id
     = hidden_field_tag :participant_id, @participant.id
