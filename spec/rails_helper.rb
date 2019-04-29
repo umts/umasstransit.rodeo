@@ -17,5 +17,14 @@ RSpec.configure do |config|
 
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.include Warden::Test::Helpers, type: :feature
-  config.before(:suite) { Warden.test_mode! }
+
+  config.define_derived_metadata(:file_path => %r{/spec/tasks/}) do |metadata|
+    metadata[:type] = :task
+  end
+  config.include TaskExampleGroup, type: :task
+
+  config.before(:suite) do
+    Warden.test_mode!
+    Rails.application.load_tasks
+  end
 end
