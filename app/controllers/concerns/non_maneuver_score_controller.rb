@@ -18,6 +18,7 @@ module NonManeuverScoreController
   end
 
   def index
+    @page_title = score_name.pluralize.titleize
     @participants = Participant.includes(score_sym).order :number
     sorted = Participant.unscoped.includes(score_sym).order(:name)
     sorted = sorted.group_by do |participant|
