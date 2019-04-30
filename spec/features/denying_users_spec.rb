@@ -11,6 +11,6 @@ describe 'denying a user' do
     expect(current_path).to eq manage_admin_users_path
     expect(page).to have_text 'User has been removed'
     expect(page).to have_text 'No users with pending approval'
-    expect(User.find_by_id user).to be nil
+    expect(User.find_by id: user).to be nil
   end
 end
