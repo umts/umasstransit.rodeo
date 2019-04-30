@@ -1,8 +1,4 @@
 .scoring
-  %h1 Judging #{@maneuver.name}
-  %h3 #{@participant.display_information(:name, :number, :bus)}
-  %hr
-
   = form_tag maneuver_participants_path, id: 'score_form' do
     = hidden_field_tag :maneuver_id, @maneuver.id
     = hidden_field_tag :participant_id, @participant.id
@@ -37,4 +33,6 @@
     .form-group
       = submit_tag 'Save & next', class: 'btn btn-primary submit'
       = link_to previous_participant_maneuver_path(@maneuver) do
-        %button.btn.btn-secondary.actions{type: :button} Previous participant
+        %button.btn.btn-secondary.actions{type: :button}
+          %i.fas.fa-arrow-left
+          %span.d-none.d-sm-inline Previous participant

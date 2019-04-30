@@ -4,7 +4,7 @@
   - if current_user.admin? && @record.creator.present?
     %h3 Score recorded by #{@record.creator.name}
   %hr
-  = form_for @record, builder: AppFormBuilder do |f|
+  = form_for @record do |f|
     = f.hidden_field :participant_id, value: @participant.id
     %fieldset.form-group
       %legend Time elapsed:

@@ -4,6 +4,7 @@ class ManeuversController < ApplicationController
   before_action :find_maneuver, only: %i[next_participant previous_participant]
 
   def index
+    @page_title = 'Select a Maneuver'
     @maneuvers = Maneuver.order :sequence_number
   end
 

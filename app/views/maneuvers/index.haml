@@ -1,6 +1,3 @@
-%h1 Which maneuver are you judging?
-%hr
-
 %ul.list-group.maneuvers
   - @maneuvers.each do |maneuver|
     %li.list-group-item= link_to maneuver.name, next_participant_maneuver_path(maneuver)

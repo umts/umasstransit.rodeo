@@ -3,25 +3,23 @@
   %head
     %meta{charset: 'utf-8'}
     %meta{name: 'viewport', content: 'width=device-width, initial-scale=1.0'}
-    %title UMTS Roadeo
+    %title= [@page_title, 'UMTS Roadeo'].compact.join(' — ')
     = favicon_link_tag 'favicon.png'
     = stylesheet_link_tag 'application.css', media: 'all'
     = javascript_include_tag 'application.js'
     = csrf_meta_tags
   %body
     .container-fluid
-      = render partial: 'layouts/navbar'
+      = render 'layouts/navbar'
       - if flash[:error].present?
-        .row
-          .col.alert.alert-danger= flash[:error]
+        .alert.alert-danger= flash[:error]
       - if flash[:errors].present?
         - flash[:errors].each do |error|
-          .row
-            .col.alert.alert-danger= error
+          .alert.alert-danger= error
       - if flash[:alert].present?
-        .row
-          .col.alert.alert-warning= flash[:alert]
+        .alert.alert-warning= flash[:alert]
       - if flash[:notice].present?
-        .row
-          .col.alert.alert-success= flash[:notice]
+        .alert.alert-success= flash[:notice]
+      - if @page_title.present?
+        = render 'shared/title', title: @page_title, subtitle: @page_subtitle
       = yield
