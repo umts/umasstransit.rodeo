@@ -2,15 +2,15 @@
 
 require 'rails_helper'
 
-describe 'approving a user' do
+describe 'denying a user' do
   let!(:user) { create :user, :unapproved }
   it 'works' do
     when_current_user_is :admin
     visit manage_admin_users_path
-    click_on 'Approve'
+    click_on 'Deny'
     expect(current_path).to eq manage_admin_users_path
-    expect(page).to have_text "#{user.name} has been approved."
+    expect(page).to have_text 'User has been removed'
     expect(page).to have_text 'No users with pending approval'
-    expect(user.reload).to be_approved
+    expect(User.find_by_id user).to be nil
   end
 end
