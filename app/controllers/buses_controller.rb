@@ -12,6 +12,7 @@ class BusesController < ApplicationController
   end
 
   def index
+    @page_title = 'Buses'
     @buses = Bus.order :number
   end
 
