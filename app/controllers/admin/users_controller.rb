@@ -13,8 +13,8 @@ module Admin
     def destroy
       deny_access && return unless current_user.has_role? :admin
       @user.destroy!
-      redirect_to admin_users_path,
-                  notice: 'User has been removed.'
+      redirect_back fallback_location: admin_users_path,
+                    notice: 'User has been removed.'
     end
 
     def index
