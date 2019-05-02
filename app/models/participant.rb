@@ -28,6 +28,15 @@ class Participant < ApplicationRecord
   after_save :update_scoreboard
   after_destroy :update_scoreboard
 
+  def as_json(options = {})
+    display_name = if top_20?
+                     display_information(:name, :number)
+                   else
+                     display_information(:number)
+                   end
+    super(options).merge(display_name: display_name)
+  end
+
   def has_completed?(maneuver)
     maneuvers.include? maneuver
   end
@@ -63,6 +72,10 @@ class Participant < ApplicationRecord
     total += circle_check_score.score if circle_check_score.present?
     total += quiz_score.score if quiz_score.present?
     total
+  end
+
+  def top_20?
+    Participant.top_20.include? self
   end
 
   def self.next_number

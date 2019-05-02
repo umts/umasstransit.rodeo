@@ -5,14 +5,16 @@ class ManeuverParticipant < ApplicationRecord
 
   belongs_to :maneuver
   belongs_to :participant
-  validates :maneuver, uniqueness: { scope: :participant }
 
   serialize :obstacles_hit, Hash
   serialize :distances_achieved, Hash
 
-  before_validation :set_score
-
+  validates :maneuver, uniqueness: { scope: :participant }
   validates :maneuver, :participant, :score, :reversed_direction, presence: true
+
+  before_validation :set_score
+  after_create :update_scoreboard
+  after_update :update_scoreboard
 
   def creator
     user_id = versions.find_by(event: 'create').whodunnit
@@ -49,4 +51,8 @@ class ManeuverParticipant < ApplicationRecord
     assign_attributes score: score
   end
   # rubocop:enable Metrics/AbcSize
+  
+  def update_scoreboard
+    ScoreboardService.update with: self
+  end
 end
