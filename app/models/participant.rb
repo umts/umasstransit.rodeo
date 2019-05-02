@@ -14,7 +14,7 @@ class Participant < ApplicationRecord
   has_one :circle_check_score, dependent: :destroy
   has_one :quiz_score, dependent: :destroy
   has_one :onboard_judging, dependent: :destroy
-  validates :number, uniqueness: true
+  validates :number, uniqueness: true, if: -> { number.present? }
   validates :name, presence: true, uniqueness: true
   validates :bus, presence: true, if: -> { number.present? }
   validates :number, numericality: { greater_than_or_equal_to: 0 },
@@ -24,6 +24,9 @@ class Participant < ApplicationRecord
 
   scope :numbered, -> { where.not number: nil }
   scope :not_numbered, -> { where number: nil }
+
+  after_save :update_scoreboard
+  after_destroy :update_scoreboard
 
   def has_completed?(maneuver)
     maneuvers.include? maneuver
@@ -89,5 +92,19 @@ class Participant < ApplicationRecord
   def self.top_20
     numbered.includes(:maneuver_participants)
             .sort_by(&:total_score).reverse.first 20
+  end
+
+  private
+
+  def update_scoreboard
+    if destroyed?
+      ScoreboardService.update with: self, type: :remove
+    elsif number_changed? && changes[:number][0].blank?  #Number _used_ to be blank
+      ScoreboardService.update with: self, type: :add
+    elsif number_changed? && number.blank?               #Number _is now_ blank
+      ScoreboardService.update with: self, type: :remove
+    elsif number?                                        #Changed in some other way
+      ScoreboardService.update with: self
+    end
   end
 end

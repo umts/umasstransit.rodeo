@@ -13,7 +13,7 @@
     - @participants.each do |participant|
       - scores = @scores[participant.id]
       %tr
-        %td
+        %td.participant{ data: { participant_id: participant.id } }
           - if @top_20.include? participant
             = participant.display_information(:name, :number)
           - else

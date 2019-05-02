@@ -11,7 +11,6 @@ class ParticipantsController < ApplicationController
                          bus_id: params.require(:bus_id)
     redirect_to participants_path,
                 notice: 'Participant has been added to the queue.'
-    update_scoreboard with: @participant
   end
 
   def create
@@ -19,7 +18,6 @@ class ParticipantsController < ApplicationController
     participant = Participant.new user_params
     if participant.save
       flash[:notice] = 'Participant was successfully created.'
-      update_scoreboard with: participant
     else
       flash[:errors] = participant.errors.full_messages
     end
@@ -31,7 +29,6 @@ class ParticipantsController < ApplicationController
     @participant.destroy!
     redirect_to participants_path,
                 notice: 'Participant has been removed.'
-    update_scoreboard with: @participant
   end
 
   def index
@@ -52,7 +49,6 @@ class ParticipantsController < ApplicationController
     if @participant.update user_params
       redirect_to participants_path,
                   notice: 'Participant has been updated.'
-      update_scoreboard with: @participant
     end
   end
 

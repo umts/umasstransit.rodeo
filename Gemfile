@@ -10,17 +10,18 @@ gem 'factory_bot_rails'
 gem 'ffaker'
 gem 'haml'
 gem 'haml-rails'
+gem 'irb'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'mysql2', '~> 0.5.2'
 gem 'openssl'
 gem 'paper_trail'
+gem 'puma'
 gem 'rails', '~> 5.0.7'
+gem 'redis', '~> 3.0'
 gem 'rubocop'
 gem 'sassc-rails'
-gem 'spring'
 gem 'strscan'
-gem 'thin'
 gem 'uglifier'
 gem 'underscore-rails'
 
@@ -35,6 +36,9 @@ group :development do
   gem 'capistrano-pending', require: false
   gem 'capistrano-rails', require: false
   gem 'capistrano-yarn', require: false
+  gem 'listen', '~> 3.0.5'
+  gem 'spring'
+  gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
 group :test do
