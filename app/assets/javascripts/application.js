@@ -3,4 +3,5 @@
 //= require underscore
 //= require bootstrap
 //= require jquery.are-you-sure
-//= require_tree .
+//= stub cable
+//= require_directory .
