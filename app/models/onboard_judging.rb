@@ -11,13 +11,15 @@ class OnboardJudging < ApplicationRecord
   }
   validates :seconds_elapsed, inclusion: { in: 0..59 }
 
+  before_validation :initialize_score_attributes
+  before_validation :set_score
+  after_create :update_scoreboard
+  after_update :update_scoreboard
+
   SCORE_COLUMNS = %w[
     missed_turn_signals missed_horn_sounds missed_flashers abrupt_turns
     times_moved_with_door_open unannounced_stops sudden_stops sudden_starts
   ].freeze
-
-  before_validation :initialize_score_attributes
-  before_validation :set_score
 
   def creator
     user_id = versions.find_by(event: 'create').whodunnit
@@ -51,4 +53,8 @@ class OnboardJudging < ApplicationRecord
     assign_attributes score: score
   end
   # rubocop:enable Metrics/AbcSize
+
+  def update_scoreboard
+    ScoreboardService.update with: self
+  end
 end
