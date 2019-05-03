@@ -34,7 +34,14 @@ class Participant < ApplicationRecord
                    else
                      display_information(:number)
                    end
-    super(options).merge(display_name: display_name)
+    super(options).merge(
+      display_name: display_name,
+      onboard_score: onboard_judging.try(:score),
+      maneuver_score: maneuver_score,
+      circle_check_score: circle_check_score.try(:score),
+      quiz_score: quiz_score.try(:score),
+      total_score: total_score
+    )
   end
 
   def has_completed?(maneuver)

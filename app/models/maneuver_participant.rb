@@ -51,7 +51,7 @@ class ManeuverParticipant < ApplicationRecord
     assign_attributes score: score
   end
   # rubocop:enable Metrics/AbcSize
-  
+
   def update_scoreboard
     ScoreboardService.update with: self
   end
