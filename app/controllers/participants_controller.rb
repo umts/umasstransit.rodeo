@@ -38,7 +38,9 @@ class ParticipantsController < ApplicationController
     @buses = Bus.order :number
   end
 
-  def scoreboard; end
+  def scoreboard
+    @page_title = 'Scoreboard'
+  end
 
   def scoreboard_partial
     render partial: 'scoreboard_partial'
@@ -52,7 +54,9 @@ class ParticipantsController < ApplicationController
     end
   end
 
-  def welcome; end
+  def welcome
+    @page_title = 'Welcome'
+  end
 
   private
 

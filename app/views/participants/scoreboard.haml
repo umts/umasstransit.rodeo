@@ -1,8 +1,5 @@
-.scoreboard
-  - if @participants.present?
-    %h1 Scoreboard
-    %hr
-
+- if @participants.present?
+  .scoreboard
     = label_tag 'Sort by:'
     .scoreboard-sorting.btn-group
       - Participant::SORT_ORDERS.each do |sort_order|
@@ -13,6 +10,6 @@
       %i.fas.fa-expand
     = image_tag 'loading.gif', class: 'scoreboard-sort-loading d-none'
     .scoreboard-content= render partial: 'scoreboard_partial'
-  - else
-    No participants yet.
-= javascript_include_tag 'cable.js'
+  = javascript_include_tag 'cable.js'
+- else
+  No participants yet.
