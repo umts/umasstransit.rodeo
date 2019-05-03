@@ -12,11 +12,13 @@ module ScoreboardService
         update_onboard_judging with
       when Participant
         update_participant with, type
+      when QuizScore
+        update_quiz_score with
       end
     end
 
     def update_circle_check_score(ccs)
-      CircleCheckScoreChannel.broadcast_to 'update', ccs
+      CircleCheckScoresChannel.broadcast_to 'update', ccs
     end
 
     def update_maneuver_participant(mp)
@@ -30,6 +32,10 @@ module ScoreboardService
     def update_participant(participant, type)
       ParticipantsChannel.broadcast_to type,
         { event: type, participant: participant }
+    end
+
+    def update_quiz_score(qs)
+      QuizScoresChannel.broadcast_to 'update', qs
     end
   end
 end
