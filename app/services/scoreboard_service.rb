@@ -4,6 +4,8 @@ module ScoreboardService
   class << self
     def update(with:, type: :update)
       case with
+      when CircleCheckScore
+        update_circle_check_score with
       when ManeuverParticipant
         update_maneuver_participant with
       when OnboardJudging
@@ -11,6 +13,10 @@ module ScoreboardService
       when Participant
         update_participant with, type
       end
+    end
+
+    def update_circle_check_score(ccs)
+      CircleCheckScoreChannel.broadcast_to 'update', ccs
     end
 
     def update_maneuver_participant(mp)

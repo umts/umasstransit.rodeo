@@ -49,7 +49,6 @@ module NonManeuverScoreController
 
   def change_succeeded
     redirect_to({ action: 'index' }, notice: "#{score_name} was saved.")
-    update_scoreboard with: @score
   end
 
   def score_name
