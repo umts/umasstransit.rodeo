@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class ManeuverParticipant < ApplicationRecord
+  include ScoreboardPublisher
+
   has_paper_trail
 
   belongs_to :maneuver
@@ -13,8 +15,6 @@ class ManeuverParticipant < ApplicationRecord
   validates :maneuver, :participant, :score, :reversed_direction, presence: true
 
   before_validation :set_score
-  after_create :update_scoreboard
-  after_update :update_scoreboard
 
   def creator
     user_id = versions.find_by(event: 'create').whodunnit
@@ -51,8 +51,4 @@ class ManeuverParticipant < ApplicationRecord
     assign_attributes score: score
   end
   # rubocop:enable Metrics/AbcSize
-
-  def update_scoreboard
-    ScoreboardService.update with: self
-  end
 end

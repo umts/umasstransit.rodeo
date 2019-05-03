@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class OnboardJudging < ApplicationRecord
+  include ScoreboardPublisher
+
   has_paper_trail
 
   belongs_to :participant
@@ -13,8 +15,6 @@ class OnboardJudging < ApplicationRecord
 
   before_validation :initialize_score_attributes
   before_validation :set_score
-  after_create :update_scoreboard
-  after_update :update_scoreboard
 
   SCORE_COLUMNS = %w[
     missed_turn_signals missed_horn_sounds missed_flashers abrupt_turns
@@ -53,8 +53,4 @@ class OnboardJudging < ApplicationRecord
     assign_attributes score: score
   end
   # rubocop:enable Metrics/AbcSize
-
-  def update_scoreboard
-    ScoreboardService.update with: self
-  end
 end
