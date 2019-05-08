@@ -30,6 +30,9 @@ group :production do
 end
 
 group :development do
+  # Remove this constraint if upgrading Rails to >= 5.1
+  gem 'better_errors', '< 2.3'
+  gem 'binding_of_caller'
   gem 'capistrano', '~> 3.4.0', require: false
   gem 'capistrano-bundler', require: false
   gem 'capistrano-passenger', require: false
@@ -42,9 +45,9 @@ group :development do
 end
 
 group :test do
+  gem 'action-cable-testing'
   gem 'capybara'
   gem 'codeclimate-test-reporter', '~> 1.0'
-  gem 'mocha'
   gem 'rack_session_access'
   gem 'rails-controller-testing'
   gem 'rspec-rails'
@@ -53,9 +56,6 @@ group :test do
 end
 
 group :development, :test do
-  # Remove this constraint if upgrading Rails to >= 5.1
-  gem 'better_errors', '< 2.3'
-  gem 'binding_of_caller'
   gem 'pry-byebug'
   gem 'rb-readline', require: false
 end
