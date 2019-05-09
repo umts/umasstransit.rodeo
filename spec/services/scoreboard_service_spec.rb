@@ -5,7 +5,7 @@ require 'rails_helper'
 describe ScoreboardService do
   describe '.update' do
     %i[circle_check_score maneuver_participant
-       onboard_judging quiz_score].each do |model|
+       onboard_judging participant quiz_score].each do |model|
       let!(model) { create model }
     end
 
@@ -28,6 +28,13 @@ describe ScoreboardService do
     end
 
     it 'broadcasts Participants to the correct channel' do
+      expect { ScoreboardService.update with: participant }
+        .to have_broadcasted_to('participants:update')
+        .from_channel(ParticipantsChannel)
+
+      expect { ScoreboardService.update with: participant, type: :wibble }
+        .to have_broadcasted_to('participants:wibble')
+        .from_channel(ParticipantsChannel)
     end
   end
 end

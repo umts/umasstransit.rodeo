@@ -7,7 +7,5 @@ class ParticipantsChannel < ApplicationCable::Channel
     stream_from 'participants:remove'
   end
 
-  def unsubscribed
-    # Any cleanup needed when channel is unsubscribed
-  end
+  def unsubscribed; end
 end
