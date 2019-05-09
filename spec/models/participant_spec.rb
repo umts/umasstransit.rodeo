@@ -4,6 +4,45 @@ require 'rails_helper'
 
 describe Participant do
   let!(:participant) { create :participant }
+
+  describe 'update_scoreboard' do
+    it 'tells the scoreboard to add on create with number' do
+      expect(ScoreboardService).to receive(:update)
+        .with(with: instance_of(Participant), type: :add)
+      create :participant
+    end
+
+    it 'does not tell the scoreboard to add on create without number' do
+      expect(ScoreboardService).not_to receive(:update)
+      create :participant, number: nil
+    end
+
+    it 'tells the scoreboard to add when number is set' do
+      new_participant = create :participant, number: nil
+      expect(ScoreboardService).to receive(:update)
+        .with(with: new_participant, type: :add)
+      new_participant.update(number: 999)
+    end
+
+    it 'tells the scoreboard to update on update' do
+      expect(ScoreboardService).to receive(:update)
+        .with(with: participant)
+      participant.update(name: 'Padington Bear')
+    end
+
+    it 'tells the scoreboard to remove on destroy' do
+      expect(ScoreboardService).to receive(:update)
+        .with(with: participant, type: :remove)
+      participant.destroy
+    end
+
+    it 'tells the scoreboard to remove when number is un-set' do
+      expect(ScoreboardService).to receive(:update)
+        .with(with: participant, type: :remove)
+      participant.update(number: nil)
+    end
+  end
+
   describe 'has_completed?' do
     let!(:maneuver) { create :maneuver }
     let!(:maneuver_participant) { create :maneuver_participant }
@@ -22,6 +61,7 @@ describe Participant do
       end
     end
   end
+
   describe 'total_score' do
     it 'initializes to zero' do
       expect(participant.total_score).to eql 0
@@ -45,37 +85,44 @@ describe Participant do
         .by(onboard_judging.score)
     end
   end
+
   describe 'maneuver_score' do
     it 'returns the maneuver score' do
       maneuver_partip = create :maneuver_participant, :perfect_score
       expect(maneuver_partip.participant.maneuver_score).to eql 50
     end
   end
+
   describe 'display_information' do
     let!(:participant) { create :participant }
+
     context 'displays bus information' do
       it 'returns valid string' do
         expected = participant.bus.number
         expect(participant.display_information(:bus)).to eql expected
       end
     end
+
     context 'displays participant information' do
       it 'returns valid string' do
         expect(participant.display_information(:name)).to eql participant.name
       end
     end
+
     context 'displays number information' do
       it 'returns valid string' do
         expected = '#' + participant.number.to_s
         expect(participant.display_information(:number)).to eql expected
       end
     end
+
     context 'displays name' do
       it 'shows name' do
         participant.update! name: 'Person'
         expect(participant.display_information(:name)).to eql 'Person'
       end
     end
+
     context 'displays three options' do
       it 'splits up options' do
         name = participant.name
@@ -86,6 +133,7 @@ describe Participant do
       end
     end
   end
+
   describe 'next_number' do
     it 'returns the last non-nil participant number' do
       create :participant
@@ -94,6 +142,7 @@ describe Participant do
     end
   end
 end
+
 describe 'scoreboard order' do
   context 'total score' do
     it 'sorts participants by total score' do
@@ -107,6 +156,7 @@ describe 'scoreboard order' do
       expect(Participant.scoreboard_order(:total_score)).to eql expected
     end
   end
+
   context 'maneuver score' do
     it 'sorts participants by maneuver score' do
       maneuver_partip1 = create :maneuver_participant, :perfect_score
@@ -121,6 +171,7 @@ describe 'scoreboard order' do
       expect(Participant.scoreboard_order(:maneuver_score)).to eql expected
     end
   end
+
   context 'participant_name' do
     it 'sorts participants by participant name' do
       participant1 = create :participant, name: 'Akiva'
@@ -130,6 +181,7 @@ describe 'scoreboard order' do
       expect(Participant.scoreboard_order(:participant_name)).to eq expected
     end
   end
+
   context 'participant_number' do
     it 'sorts participants by participant number' do
       participant1 = create :participant
@@ -140,6 +192,7 @@ describe 'scoreboard order' do
     end
   end
 end
+
 describe 'top_20' do
   context 'excluding anyone not in top 20' do
     it 'excludes participant with 21st highest score' do
@@ -150,6 +203,7 @@ describe 'top_20' do
       expect(top20).not_to include imperfect_score.participant
     end
   end
+
   context 'including anyone in top 20' do
     it 'includes participant with highest score' do
       top_score = create :maneuver_participant, :perfect_score

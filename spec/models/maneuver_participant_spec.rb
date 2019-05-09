@@ -1,7 +1,11 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
+require_relative 'concerns/scoreboard_publisher.rb'
+
 describe ManeuverParticipant do
+  it_behaves_like 'a scoreboard publisher'
+
   describe 'score' do
     let!(:record) { create :maneuver_participant, :perfect_score }
     it'should be a perfect score' do
