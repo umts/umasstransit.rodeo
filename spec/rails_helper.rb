@@ -5,10 +5,11 @@ require File.expand_path('../config/environment', __dir__)
 
 require 'spec_helper'
 
-require 'factory_bot_rails'
-require 'rspec/rails'
+require 'action_cable/testing/rspec'
 require 'capybara/rails'
+require 'factory_bot_rails'
 require 'rack_session_access/capybara'
+require 'rspec/rails'
 
 ActiveRecord::Migration.maintain_test_schema!
 RSpec.configure do |config|

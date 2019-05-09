@@ -11,6 +11,8 @@ module ScoreboardService
       end
     end
 
+    private
+
     def update_object(object)
       channels[object.class].broadcast_to 'update', object
     end
@@ -19,8 +21,6 @@ module ScoreboardService
       ParticipantsChannel.broadcast_to type,
         { event: type, participant: participant }
     end
-
-    private
 
     def channels
       {
