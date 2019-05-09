@@ -5,10 +5,9 @@ class OnboardJudgingsController < ApplicationController
 
   def create
     deny_access && return unless current_user.has_role? :judge
-    record = OnboardJudging.create! params.require(:onboard_judging).permit!
+    OnboardJudging.create! params.require(:onboard_judging).permit!
     redirect_to select_participant_onboard_judgings_path,
                 notice: 'Onboard score has been saved.'
-    update_scoreboard with: record
   end
 
   def new
@@ -30,7 +29,6 @@ class OnboardJudgingsController < ApplicationController
     @record.update params.require(:onboard_judging).permit!
     redirect_to select_participant_onboard_judgings_path,
                 notice: 'Onboard score has been saved.'
-    update_scoreboard with: @record
   end
 
   private

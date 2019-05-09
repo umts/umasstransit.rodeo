@@ -19,7 +19,7 @@ module ScoreboardService
 
     def update_participant(participant, type)
       ParticipantsChannel.broadcast_to type,
-        { event: type, participant: participant }
+                                       event: type, participant: participant
     end
 
     def channels

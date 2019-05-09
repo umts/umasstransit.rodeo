@@ -116,14 +116,22 @@ class Participant < ApplicationRecord
 
   private
 
+  def number_changed_from_blank?
+    number_changed? && changes[:number][0].blank?
+  end
+
+  def number_changed_to_blank?
+    number_changed? && number.blank?
+  end
+
   def update_scoreboard
     if destroyed?
       ScoreboardService.update with: self, type: :remove
-    elsif number_changed? && changes[:number][0].blank?  #Number _used_ to be blank
+    elsif number_changed_from_blank?
       ScoreboardService.update with: self, type: :add
-    elsif number_changed? && number.blank?               #Number _is now_ blank
+    elsif number_changed_to_blank?
       ScoreboardService.update with: self, type: :remove
-    elsif number?                                        #Changed in some other way
+    elsif number?
       ScoreboardService.update with: self
     end
   end

@@ -13,7 +13,7 @@ class ManeuverParticipantsController < ApplicationController
                                  :made_additional_stops, :completed_as_designed)
       attrs[:obstacles_hit] = parse_obstacles
       attrs[:distances_achieved] = parse_distance_targets
-      record = ManeuverParticipant.create! attrs
+      ManeuverParticipant.create! attrs
     end
     redirect_to next_participant_maneuver_path(@maneuver)
   end

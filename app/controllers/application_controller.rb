@@ -17,9 +17,6 @@ class ApplicationController < ActionController::Base
     redirect_back fallback_location: root_path
   end
 
-  def update_scoreboard(score)
-  end
-
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
   end
