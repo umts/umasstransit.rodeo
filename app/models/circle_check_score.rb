@@ -14,6 +14,10 @@ class CircleCheckScore < ApplicationRecord
 
   TOTAL_DEFECTS_DEFAULT = 5
 
+  def as_json(options = {})
+    super(options).merge(score: score)
+  end
+
   def score
     (50 / total_defects) * defects_found
   end
