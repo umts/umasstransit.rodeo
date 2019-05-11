@@ -29,16 +29,13 @@ class ManeuversController < ApplicationController
 
   def previous_participant
     participant = @maneuver.previous_participant(params[:relative_to])
-    if participant.present?
-      record = ManeuverParticipant.find_by maneuver: @maneuver,
-                                           participant: participant
-    else
+    if participant.blank?
+      participant = Participant.find_by(number: params[:relative_to])
       flash[:notice] =
         'This is the first participant who completed this maneuver.'
-      record = ManeuverParticipant.find_by maneuver: @maneuver,
-                                           participant: params[:relative_to]
     end
-    redirect_to record
+    redirect_to ManeuverParticipant.find_by maneuver: @maneuver,
+                                            participant: participant
   end
 
   private
