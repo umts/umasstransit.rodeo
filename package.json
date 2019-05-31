@@ -8,6 +8,7 @@
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.8.1",
-    "jquery.are-you-sure": "^1.9.0"
+    "jquery.are-you-sure": "^1.9.0",
+    "tablesorter": "^2.31.1"
   }
 }

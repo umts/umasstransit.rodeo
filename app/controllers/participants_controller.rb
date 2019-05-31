@@ -70,8 +70,8 @@ class ParticipantsController < ApplicationController
 
   def scoreboard_data
     params.permit :sort_order
-    sort_order = params[:sort_order].try :to_sym
-    @participants = Participant.scoreboard_order sort_order
+    @sort_order = params[:sort_order].try :to_sym
+    @participants = Participant.scoreboard_order @sort_order
     @can_edit_scores = current_user.try :admin?
     @maneuvers = Maneuver.order :sequence_number
     @scores = ManeuverParticipant.scoreboard_grouping

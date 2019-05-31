@@ -49,7 +49,8 @@ class Participant < ApplicationRecord
   end
 
   def maneuver_score
-    maneuver_participants.sum :score
+    score = maneuver_participants.sum :score
+    score + onboard_judging.try(:score).to_i
   end
 
   def display_information(*options)
@@ -75,7 +76,6 @@ class Participant < ApplicationRecord
 
   def total_score
     total = maneuver_score
-    total += onboard_judging.score if onboard_judging.present?
     total += circle_check_score.score if circle_check_score.present?
     total += quiz_score.score if quiz_score.present?
     total

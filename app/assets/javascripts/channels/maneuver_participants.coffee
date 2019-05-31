@@ -6,5 +6,3 @@ App.manuever_participants = App.cable.subscriptions.create "ManeuverParticipants
       a.text(data.score)
     else
       cell.text(data.score)
-    updateManeuverTotal(data.participant_id)
-    updateTotal(data.participant_id)
