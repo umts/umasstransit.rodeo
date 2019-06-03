@@ -6,3 +6,5 @@ App.manuever_participants = App.cable.subscriptions.create "ManeuverParticipants
       a.text(data.score)
     else
       cell.text(data.score)
+    cell.attr('data-text', data.score).attr('data-score', data.score)
+    $("table.scoreboard").trigger("recalculate")

@@ -2,10 +2,13 @@ App.participants = App.cable.subscriptions.create "ParticipantsChannel",
   connected: ->
   disconnected: ->
   received: (data) ->
-    switch data.type
+    switch data.event
       when 'add'
         console.log({'add': data})
       when 'update'
-        console.log({'update': data})
-      when 'removed'
-        console.log({'removed': data})
+        cell = $("tr[data-participant-id=#{data.participant.id}] td.participant")
+        cell.text(data.participant.display_name).attr('data-text', data.participant.number)
+      when 'remove'
+        row = $("tr[data-participant-id=#{data.participant.id}]")
+        row.remove()
+    $('table.scoreboard').trigger('update')
