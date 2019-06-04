@@ -7,6 +7,7 @@ env: CODECLIMATE_REPO_TOKEN=b1b9b856c0aa49c7733aedea0b460b1c118c2ff1296db77bdcf7
 before_script:
   - cp config/database.yml.example config/database.yml
   - bundle exec rake db:reset
+  - yarn install
 script:
   - bundle exec rspec
   - bundle exec codeclimate-test-reporter
