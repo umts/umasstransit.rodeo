@@ -2,7 +2,23 @@
   .scoreboard
     %button.btn.btn-primary.fullscreen
       %i.fas.fa-expand
-    .scoreboard-content= render partial: 'scoreboard_partial'
+    .scoreboard-content
+      %table.scoreboard.table.table-bordered.table-striped.table-sm.text-center{data: {sortList: sort_list(@sort_order)}}
+        %thead.thead-light
+          %tr
+            %th{data: {sortInitialOrder: 'asc'}} Participant
+            - @maneuvers.each do |maneuver|
+              %th= maneuver.name
+            %th Onboard Judging
+            %th Maneuvers total
+            %th Circle Check
+            %th Quiz
+            %th Total score
+        %tbody
+          = render @participants
+      %table#template.d-none
+        %tbody
+          = render Participant.new(id: 0, number: 0)
   = javascript_include_tag 'cable.js'
 - else
   No participants yet.

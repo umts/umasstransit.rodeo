@@ -26,7 +26,6 @@ Rails.application.routes.draw do
     collection do
       post :assign_number
       get :scoreboard
-      get :scoreboard_partial
       get :welcome
     end
   end
