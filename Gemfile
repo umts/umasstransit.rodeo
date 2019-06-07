@@ -18,7 +18,6 @@ gem 'openssl'
 gem 'paper_trail'
 gem 'puma'
 gem 'rails', '~> 5.0.7'
-gem 'redis', '~> 3.0'
 gem 'rubocop'
 gem 'sassc-rails'
 gem 'strscan'
@@ -27,6 +26,7 @@ gem 'underscore-rails'
 
 group :production do
   gem 'exception_notification'
+  gem 'redis', '~> 3.0'
 end
 
 group :development do
