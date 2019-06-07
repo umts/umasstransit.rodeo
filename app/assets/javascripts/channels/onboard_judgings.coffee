@@ -1,5 +1,8 @@
-App.onboard_judgings = App.cable.subscriptions.create "OnboardJudgingsChannel",
-  received: (data) ->
-    cell = $("tr[data-participant-id=#{data.participant_id}] td.onboard-judging")
-    cell.text(data.score).attr('data-text', data.score).attr('data-score', data.score)
-    $("table.scoreboard").trigger("recalculate")
+App.onboard_judgings =
+  App.cable.subscriptions.create "OnboardJudgingsChannel",
+    received: (data) ->
+      participant = data.participant_id
+      score = data.score
+      cell = $("tr[data-participant-id=#{participant}] td.onboard-judging")
+      cell.text(score).attr('data-text', score).attr('data-score', score)
+      $("table.scoreboard").trigger("recalculate")

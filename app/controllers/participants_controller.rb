@@ -2,8 +2,7 @@
 
 class ParticipantsController < ApplicationController
   before_action :find_user, only: %i[assign_number destroy update]
-  skip_before_action :authenticate_user!,
-                     only: %i[scoreboard scoreboard_partial welcome]
+  skip_before_action :authenticate_user!, only: %i[scoreboard welcome]
 
   def assign_number
     @participant.update! number: params.require(:number),

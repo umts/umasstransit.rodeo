@@ -7,8 +7,6 @@ module ScoreboardHelper
       [[Maneuver.count + 5, 1]]
     when :maneuver_score
       [[Maneuver.count + 2, 1]]
-    when :participant_name
-      #TODO
     when :participant_number
       [[0, 0]]
     end
