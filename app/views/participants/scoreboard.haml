@@ -3,7 +3,8 @@
     %button.btn.btn-primary.fullscreen
       %i.fas.fa-expand
     .scoreboard-content
-      %table.scoreboard.table.table-bordered.table-striped.table-sm.text-center{data: {sortList: sort_list(@sort_order)}}
+      - table_classes = %w[scoreboard table table-bordered table-striped table-sm text-center]
+      %table{class: table_classes, data: {sortList: sort_list(@sort_order)}}
         %thead.thead-light
           %tr
             %th{data: {sortInitialOrder: 'asc'}} Participant

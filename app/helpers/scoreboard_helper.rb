@@ -2,6 +2,10 @@
 
 module ScoreboardHelper
   def sort_list(sort_order)
+    # [[column_index, (0 = asc, 1 = desc)]]
+    #
+    # Name | Man1 | Man2 | ... | ManN  | OJ | Mans | CC | Quiz | Total
+    # 0    |      |      |     | count | +1 | +2   | +3 | +4   | +5
     case sort_order
     when :total_score, nil
       [[Maneuver.count + 5, 1]]
