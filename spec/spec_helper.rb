@@ -5,7 +5,9 @@ require 'simplecov'
 
 Dir[Pathname(__dir__).join('support', '**', '*.rb')].each { |f| require f }
 
-SimpleCov.start 'rails'
+SimpleCov.start 'rails' do
+  add_group 'Channels', 'app/channels'
+end
 
 RSpec.configure do |config|
   config.filter_run :focus

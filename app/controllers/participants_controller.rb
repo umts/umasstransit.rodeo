@@ -2,16 +2,13 @@
 
 class ParticipantsController < ApplicationController
   before_action :find_user, only: %i[assign_number destroy update]
-  before_action :scoreboard_data, only: %i[scoreboard scoreboard_partial]
-  skip_before_action :authenticate_user!,
-                     only: %i[scoreboard scoreboard_partial welcome]
+  skip_before_action :authenticate_user!, only: %i[scoreboard welcome]
 
   def assign_number
     @participant.update! number: params.require(:number),
                          bus_id: params.require(:bus_id)
     redirect_to participants_path,
                 notice: 'Participant has been added to the queue.'
-    update_scoreboard with: @participant
   end
 
   def create
@@ -19,7 +16,6 @@ class ParticipantsController < ApplicationController
     participant = Participant.new user_params
     if participant.save
       flash[:notice] = 'Participant was successfully created.'
-      update_scoreboard with: participant
     else
       flash[:errors] = participant.errors.full_messages
     end
@@ -31,7 +27,6 @@ class ParticipantsController < ApplicationController
     @participant.destroy!
     redirect_to participants_path,
                 notice: 'Participant has been removed.'
-    update_scoreboard with: @participant
   end
 
   def index
@@ -41,10 +36,15 @@ class ParticipantsController < ApplicationController
     @buses = Bus.order :number
   end
 
-  def scoreboard; end
-
-  def scoreboard_partial
-    render partial: 'scoreboard_partial'
+  def scoreboard
+    params.permit :sort_order
+    @page_title = 'Scoreboard'
+    @sort_order = params[:sort_order].try :to_sym
+    @participants = Participant.scoreboard_order @sort_order
+    @can_edit_scores = current_user.try :admin?
+    @maneuvers = Maneuver.order :sequence_number
+    @scores = ManeuverParticipant.scoreboard_grouping
+    @top_20 = Participant.top_20
   end
 
   def update
@@ -52,11 +52,12 @@ class ParticipantsController < ApplicationController
     if @participant.update user_params
       redirect_to participants_path,
                   notice: 'Participant has been updated.'
-      update_scoreboard with: @participant
     end
   end
 
-  def welcome; end
+  def welcome
+    @page_title = 'Welcome'
+  end
 
   private
 
@@ -66,15 +67,5 @@ class ParticipantsController < ApplicationController
 
   def user_params
     params.require(:participant).permit :name, :number, :bus_id
-  end
-
-  def scoreboard_data
-    params.permit :sort_order
-    sort_order = params[:sort_order].try :to_sym
-    @participants = Participant.scoreboard_order sort_order
-    @can_edit_scores = current_user.try :admin?
-    @maneuvers = Maneuver.order :sequence_number
-    @scores = ManeuverParticipant.scoreboard_grouping
-    @top_20 = Participant.top_20
   end
 end

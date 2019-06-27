@@ -1,8 +1,11 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
+require_relative 'concerns/scoreboard_publisher.rb'
 
 describe CircleCheckScore do
+  it_behaves_like 'a scoreboard publisher'
+
   let(:participant) { create :participant }
   describe 'score' do
     it 'has the correct value' do

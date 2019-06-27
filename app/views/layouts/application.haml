@@ -6,8 +6,8 @@
     %title= [@page_title, 'UMTS Roadeo'].compact.join(' — ')
     = favicon_link_tag 'favicon.png'
     = stylesheet_link_tag 'application.css', media: 'all'
-    = javascript_include_tag 'application.js'
     = csrf_meta_tags
+    = action_cable_meta_tag
   %body
     .container-fluid
       = render 'layouts/navbar'
@@ -23,3 +23,4 @@
       - if @page_title.present?
         = render 'shared/title', title: @page_title, subtitle: @page_subtitle
       = yield
+    = javascript_include_tag 'application.js'

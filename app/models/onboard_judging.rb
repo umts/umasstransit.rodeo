@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class OnboardJudging < ApplicationRecord
+  include ScoreboardPublisher
+
   has_paper_trail
 
   belongs_to :participant
@@ -11,13 +13,13 @@ class OnboardJudging < ApplicationRecord
   }
   validates :seconds_elapsed, inclusion: { in: 0..59 }
 
+  before_validation :initialize_score_attributes
+  before_validation :set_score
+
   SCORE_COLUMNS = %w[
     missed_turn_signals missed_horn_sounds missed_flashers abrupt_turns
     times_moved_with_door_open unannounced_stops sudden_stops sudden_starts
   ].freeze
-
-  before_validation :initialize_score_attributes
-  before_validation :set_score
 
   def creator
     user_id = versions.find_by(event: 'create').whodunnit

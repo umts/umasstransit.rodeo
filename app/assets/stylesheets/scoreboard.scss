@@ -1,24 +1,23 @@
-img.scoreboard-sort-loading{
-  height: 30px;
-  padding: 3px;
-}
-
-.scoreboard-content {
-  max-height: calc(100vh - 230px);
-  overflow: scroll;
-}
-
 .scoreboard-content {
   margin-top: 10px;
-}
+  max-height: calc(100vh - 230px);
+  overflow: scroll;
 
-.scoreboard-content:fullscreen {
-  margin-top: 0;
-  border-radius: 6px;
-  padding: 5px;
-  width: 98%;
-}
+  &::backdrop {
+    background-color: $body-bg;
+  }
 
-.scoreboard-content::backdrop {
-  background-color: $body-bg;
+  .table thead th {
+    vertical-align: middle;
+
+    .header-label {
+      width: calc(100% - 1.5em);
+      display: inline-block;
+    }
+    .header-icon {
+      width: 1.5em;
+      display: inline-block;
+      text-align: right;
+    }
+  }
 }

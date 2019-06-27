@@ -1,11 +1,25 @@
 # frozen_string_literal: true
 
 module ScoreboardHelper
-  def sort_order_button_class(button_order, current_order)
-    if button_order == current_order then 'btn-primary'
-    elsif button_order == :total_score && current_order.nil? then 'btn-primary'
-    else 'btn-secondary'
+  def sort_list(sort_order)
+    # [[column_index, (0 = asc, 1 = desc)]]
+    #
+    # Name | Man1 | Man2 | ... | ManN  | OJ | Mans | CC | Quiz | Total
+    # 0    |      |      |     | count | +1 | +2   | +3 | +4   | +5
+    case sort_order
+    when :total_score, nil
+      [[Maneuver.count + 5, 1]]
+    when :maneuver_score
+      [[Maneuver.count + 2, 1]]
+    when :participant_number
+      [[0, 0]]
     end
+  end
+
+  def score_data(record)
+    return { text: -9999, score: 0 } if record.blank?
+
+    { text: record.score, score: record.score }
   end
 
   def score_cell(record, new:, edit: nil)

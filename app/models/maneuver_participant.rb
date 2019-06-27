@@ -1,18 +1,20 @@
 # frozen_string_literal: true
 
 class ManeuverParticipant < ApplicationRecord
+  include ScoreboardPublisher
+
   has_paper_trail
 
   belongs_to :maneuver
   belongs_to :participant
-  validates :maneuver, uniqueness: { scope: :participant }
 
   serialize :obstacles_hit, Hash
   serialize :distances_achieved, Hash
 
-  before_validation :set_score
-
+  validates :maneuver, uniqueness: { scope: :participant }
   validates :maneuver, :participant, :score, :reversed_direction, presence: true
+
+  before_validation :set_score
 
   def creator
     user_id = versions.find_by(event: 'create').whodunnit

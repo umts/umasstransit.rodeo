@@ -1,8 +1,11 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
+require_relative 'concerns/scoreboard_publisher.rb'
 
 describe OnboardJudging do
+  it_behaves_like 'a scoreboard publisher'
+
   describe 'score' do
     context 'negative onboard judging' do
       let(:onboard_judging) { create :onboard_judging, minutes_elapsed: 11 }
