@@ -117,11 +117,11 @@ class Participant < ApplicationRecord
   private
 
   def number_changed_from_blank?
-    number_changed? && changes[:number][0].blank?
+    saved_change_to_number? && saved_changes[:number][0].blank?
   end
 
   def number_changed_to_blank?
-    number_changed? && number.blank?
+    saved_change_to_number? && number.blank?
   end
 
   def update_scoreboard
