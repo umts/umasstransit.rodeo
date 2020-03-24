@@ -4,7 +4,7 @@ require 'rails_helper'
 
 describe 'adding a quiz score' do
   let!(:participant) { create :participant }
-  it'shows user name' do
+  it 'shows user name' do
     when_current_user_is :admin
     visit quiz_scores_url
     fill_in 'quiz_score_points_achieved', with: '2'

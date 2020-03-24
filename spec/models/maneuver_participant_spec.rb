@@ -8,7 +8,7 @@ describe ManeuverParticipant do
 
   describe 'score' do
     let!(:record) { create :maneuver_participant, :perfect_score }
-    it'should be a perfect score' do
+    it 'should be a perfect score' do
       expect(record.score).to be(50)
     end
 
