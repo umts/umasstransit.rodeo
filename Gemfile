@@ -49,6 +49,7 @@ group :test do
   gem 'rspec-rails'
   gem 'simplecov'
   gem 'timecop'
+  gem 'webdrivers'
 end
 
 group :development, :test do
