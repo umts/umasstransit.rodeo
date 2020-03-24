@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-shared_examples 'they are not allowed to edit' do
+RSpec.shared_examples 'they are not allowed to edit' do
   it 'shows participants and scores' do
     expect(page).to have_text mp.participant.name
     expect(row).to have_text mp.score
@@ -12,7 +12,7 @@ shared_examples 'they are not allowed to edit' do
   end
 end
 
-describe 'viewing the scoreboard' do
+RSpec.describe 'viewing the scoreboard' do
   let(:mp) { create :maneuver_participant }
   let!(:participant) { mp.participant }
   let(:row) { find('tr', text: participant.name) }

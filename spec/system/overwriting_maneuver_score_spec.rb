@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'overwriting a maneuver score' do
+RSpec.describe 'overwriting a maneuver score' do
   let(:record) { create :maneuver_participant }
   context 'accessing the new page for an existing score' do
     before :each do

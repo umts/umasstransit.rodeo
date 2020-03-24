@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'adding a quiz score' do
+RSpec.describe 'adding a quiz score' do
   let!(:participant) { create :participant }
   it 'shows user name' do
     when_current_user_is :admin

@@ -13,6 +13,7 @@ require 'rspec/rails'
 
 ActiveRecord::Migration.maintain_test_schema!
 RSpec.configure do |config|
+  config.disable_monkey_patching!
   config.infer_spec_type_from_file_location!
   config.use_transactional_fixtures = true
 

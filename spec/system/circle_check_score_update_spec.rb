@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'updating a circle check score' do
+RSpec.describe 'updating a circle check score' do
   before :each do
     create :circle_check_score, total_defects: 5, defects_found: 3
   end

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Bus do
+RSpec.describe Bus do
   describe 'simple validations' do
     it 'prevents buses from having the same number' do
       create :bus, number: 'Yellow Bus'

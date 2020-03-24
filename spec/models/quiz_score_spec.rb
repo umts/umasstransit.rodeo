@@ -3,7 +3,7 @@
 require 'rails_helper'
 require_relative 'concerns/scoreboard_publisher.rb'
 
-describe QuizScore do
+RSpec.describe QuizScore do
   it_behaves_like 'a scoreboard publisher'
 
   let(:participant) { create :participant }

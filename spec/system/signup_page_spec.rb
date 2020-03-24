@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'signing up' do
+RSpec.describe 'signing up' do
   context 'a invalid user' do
     it 'does not create the user with no email' do
       visit new_user_registration_url

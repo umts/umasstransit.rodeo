@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe ApplicationCable::Connection do
+RSpec.describe ApplicationCable::Connection do
   it 'allows anonymous connections' do
     expect { connect '/cable' }.not_to raise_error
   end

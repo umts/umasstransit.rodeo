@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'adding a participant' do
+RSpec.describe 'adding a participant' do
   context 'with master of ceremonies privilege' do
     it 'adds a participant' do
       when_current_user_is :master_of_ceremonies

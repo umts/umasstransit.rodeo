@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'updating a quiz score' do
+RSpec.describe 'updating a quiz score' do
   before :each do
     create :quiz_score, points_achieved: 50, total_points: 100
   end
@@ -41,7 +41,7 @@ describe 'updating a quiz score' do
   end
 end
 
-describe 'updating a score' do
+RSpec.describe 'updating a score' do
   before :each do
     create :quiz_score
   end

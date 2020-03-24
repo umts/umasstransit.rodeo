@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'adding a bus' do
+RSpec.describe 'adding a bus' do
   context 'with admin privilege' do
     it 'adds the bus' do
       when_current_user_is :admin

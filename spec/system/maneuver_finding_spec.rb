@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'finding a participant' do
+RSpec.describe 'finding a participant' do
   let!(:maneuver) { create :maneuver }
   let!(:record_1) do
     create :maneuver_participant,

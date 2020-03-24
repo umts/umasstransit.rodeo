@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-describe 'updating onboard judging' do
+
+RSpec.describe 'updating onboard judging' do
   context 'with judge privilege' do
     let!(:onboard_judging) { create :onboard_judging, :perfect }
     it 'updates onboard judging' do

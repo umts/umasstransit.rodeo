@@ -3,7 +3,7 @@
 require 'rails_helper'
 require_relative 'concerns/scoreboard_publisher.rb'
 
-describe ManeuverParticipant do
+RSpec.describe ManeuverParticipant do
   it_behaves_like 'a scoreboard publisher'
 
   describe 'score' do

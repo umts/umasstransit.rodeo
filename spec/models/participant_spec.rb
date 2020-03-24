@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Participant do
+RSpec.describe Participant do
   let!(:participant) { create :participant }
 
   describe 'update_scoreboard' do
@@ -143,7 +143,7 @@ describe Participant do
   end
 end
 
-describe 'scoreboard order' do
+RSpec.describe 'scoreboard order' do
   context 'total score' do
     it 'sorts participants by total score' do
       onboard_judge1 = create :onboard_judging, :perfect
@@ -193,7 +193,7 @@ describe 'scoreboard order' do
   end
 end
 
-describe 'top_20' do
+RSpec.describe 'top_20' do
   context 'excluding anyone not in top 20' do
     it 'excludes participant with 21st highest score' do
       20.times { create :maneuver_participant, :perfect_score }

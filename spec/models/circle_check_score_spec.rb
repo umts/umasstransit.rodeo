@@ -3,7 +3,7 @@
 require 'rails_helper'
 require_relative 'concerns/scoreboard_publisher.rb'
 
-describe CircleCheckScore do
+RSpec.describe CircleCheckScore do
   it_behaves_like 'a scoreboard publisher'
 
   let(:participant) { create :participant }

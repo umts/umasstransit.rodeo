@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'scoring appears properly' do
+RSpec.describe 'scoring appears properly' do
   let!(:participant) { create :participant }
   it 'when participant is intialized' do
     visit scoreboard_participants_url

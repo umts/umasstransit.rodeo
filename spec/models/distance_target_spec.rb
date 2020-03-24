@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-describe DistanceTarget do
+
+RSpec.describe DistanceTarget do
   describe 'interval_type' do
     context 'when interval attribute is 0' do
       it 'returns inches' do

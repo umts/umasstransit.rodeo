@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'updating a participant' do
+RSpec.describe 'updating a participant' do
   context 'with master of ceremonies privilege' do
     it 'updates a participant' do
       participant = create :participant, name: 'Foo Bar'

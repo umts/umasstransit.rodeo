@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'requesting a login' do
+RSpec.describe 'requesting a login' do
   it 'works as expected' do
     when_current_user_is nil
     visit welcome_participants_url

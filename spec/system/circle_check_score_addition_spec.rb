@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'adding a circle check score' do
+RSpec.describe 'adding a circle check score' do
   before :each do
     create :participant
   end

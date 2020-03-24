@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'deleting a bus' do
+RSpec.describe 'deleting a bus' do
   let!(:bus) { create :bus }
   context 'with admin privilege' do
     it 'deletes a bus' do
