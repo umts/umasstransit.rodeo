@@ -43,7 +43,7 @@ RSpec.describe Participant do
     end
   end
 
-  describe 'has_completed?' do
+  describe 'completed?' do
     let!(:maneuver) { create :maneuver }
     let!(:maneuver_participant) { create :maneuver_participant }
     context 'participant has completed maneuver' do
@@ -52,12 +52,12 @@ RSpec.describe Participant do
                                       participant: participant
       end
       it 'returns true' do
-        expect(participant.has_completed?(maneuver)).to be true
+        expect(participant.completed?(maneuver)).to be true
       end
     end
     context 'participant has not completed manuever' do
       it 'returns false' do
-        expect(participant.has_completed?(maneuver)).to be false
+        expect(participant.completed?(maneuver)).to be false
       end
     end
   end
@@ -193,14 +193,13 @@ RSpec.describe 'scoreboard order' do
   end
 end
 
-RSpec.describe 'top_20' do
+RSpec.describe 'name_shown' do
   context 'excluding anyone not in top 20' do
     it 'excludes participant with 21st highest score' do
       20.times { create :maneuver_participant, :perfect_score }
       imperfect_score = create :maneuver_participant, :perfect_score,
                                reversed_direction: 2
-      top20 = Participant.top_20
-      expect(top20).not_to include imperfect_score.participant
+      expect(Participant.name_shown).not_to include imperfect_score.participant
     end
   end
 
@@ -208,8 +207,7 @@ RSpec.describe 'top_20' do
     it 'includes participant with highest score' do
       top_score = create :maneuver_participant, :perfect_score
       19.times { create :maneuver_participant, :perfect_score }
-      top20 = Participant.top_20
-      expect(top20).to include top_score.participant
+      expect(Participant.name_shown).to include top_score.participant
     end
   end
 end

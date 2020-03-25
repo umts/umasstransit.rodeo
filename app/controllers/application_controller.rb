@@ -12,12 +12,16 @@ class ApplicationController < ActionController::Base
 
   private
 
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
+  end
+
   def deny_access
     flash[:notice] = 'You are not authorized to make that action.'
     redirect_back fallback_location: root_path
   end
 
-  def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
+  def require_role(role)
+    (deny_access && return) unless current_user.role?(role)
   end
 end

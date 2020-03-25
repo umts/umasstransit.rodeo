@@ -3,6 +3,7 @@
 module Admin
   class UsersController < ApplicationController
     before_action :find_user, except: %i[index manage]
+    before_action(only: %i[destroy update]) { require_role :admin }
 
     def approve
       @user.approve!
@@ -11,7 +12,6 @@ module Admin
     end
 
     def destroy
-      deny_access && return unless current_user.has_role? :admin
       @user.destroy!
       redirect_back fallback_location: admin_users_path,
                     notice: 'User has been removed.'
@@ -28,11 +28,9 @@ module Admin
     end
 
     def update
-      deny_access && return unless current_user.has_role? :admin
-      if @user.update user_params
-        redirect_to admin_users_path,
-                    notice: 'User has been updated.'
-      end
+      return unless @user.update user_params
+
+      redirect_to admin_users_path, notice: 'User has been updated.'
     end
 
     private

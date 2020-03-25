@@ -14,7 +14,7 @@ class User < ApplicationRecord
     update! approved: true, judge: true
   end
 
-  def has_role?(role)
+  def role?(role)
     admin? || send(role)
   end
 

@@ -1,7 +1,7 @@
 - scores = @scores[participant.id]
 %tr{data: {participant_id: participant.id}}
   %td.participant{data: {text: participant.number}}
-    - if participant.display_name?
+    - if participant.show_name?
       = participant.display_information(:name, :number)
     - else
       = participant.display_information(:number)

@@ -3,6 +3,9 @@
 class ParticipantsController < ApplicationController
   before_action :find_user, only: %i[assign_number destroy update]
   skip_before_action :authenticate_user!, only: %i[scoreboard welcome]
+  before_action except: %i[index scoreboard welcome] do
+    require_role :master_of_ceremonies
+  end
 
   def assign_number
     @participant.update! number: params.require(:number),
@@ -12,7 +15,6 @@ class ParticipantsController < ApplicationController
   end
 
   def create
-    deny_access && return unless current_user.has_role? :master_of_ceremonies
     participant = Participant.new user_params
     if participant.save
       flash[:notice] = 'Participant was successfully created.'
@@ -23,7 +25,6 @@ class ParticipantsController < ApplicationController
   end
 
   def destroy
-    deny_access && return unless current_user.has_role? :master_of_ceremonies
     @participant.destroy!
     redirect_to participants_path,
                 notice: 'Participant has been removed.'
@@ -47,11 +48,9 @@ class ParticipantsController < ApplicationController
   end
 
   def update
-    deny_access && return unless current_user.has_role? :master_of_ceremonies
-    if @participant.update user_params
-      redirect_to participants_path,
-                  notice: 'Participant has been updated.'
-    end
+    return unless @participant.update user_params
+
+    redirect_to participants_path, notice: 'Participant has been updated.'
   end
 
   def welcome

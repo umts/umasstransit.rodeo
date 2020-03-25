@@ -20,7 +20,7 @@ class Maneuver < ApplicationRecord
     participant = participants.find_by('number > ?', number) if number.present?
     if participant.blank?
       participant = Participant.numbered.order(:number).find do |p|
-        !p.has_completed? self
+        !p.completed? self
       end
     end
     participant

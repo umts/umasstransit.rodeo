@@ -44,7 +44,7 @@ class Participant < ApplicationRecord
     )
   end
 
-  def has_completed?(maneuver)
+  def completed?(maneuver)
     maneuvers.include? maneuver
   end
 
