@@ -22,11 +22,11 @@ module ScoreboardHelper
     { text: record.score, score: record.score }
   end
 
-  def score_cell(record, new:, edit: nil)
+  def score_cell(record, new:, edit: nil, allowed: false)
     if record.present?
-      link_to_if (edit.present? && @can_edit_scores), record.score, edit
+      link_to_if (allowed && edit.present?), record.score, edit
     else
-      link_to_if @can_edit_scores, '&mdash;'.html_safe, new
+      link_to_if allowed, '&mdash;'.html_safe, new
     end
   end
 end

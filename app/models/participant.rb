@@ -29,7 +29,7 @@ class Participant < ApplicationRecord
   after_destroy :update_scoreboard
 
   def as_json(options = {})
-    display_name = if top_20?
+    display_name = if show_name?
                      display_information(:name, :number)
                    else
                      display_information(:number)
@@ -81,8 +81,8 @@ class Participant < ApplicationRecord
     total
   end
 
-  def top_20?
-    Participant.top_20.include? self
+  def show_name?
+    Participant.name_shown.include? self
   end
 
   def self.next_number
@@ -109,9 +109,8 @@ class Participant < ApplicationRecord
   end
   # rubocop:enable Metrics/CyclomaticComplexity
 
-  def self.top_20
-    numbered.includes(:maneuver_participants)
-            .sort_by(&:total_score).reverse.first 20
+  def self.name_shown
+    scoreboard_order(:total_score).first(20)
   end
 
   private

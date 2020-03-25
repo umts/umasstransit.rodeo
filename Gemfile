@@ -2,8 +2,8 @@
 
 source 'https://rubygems.org'
 
-gem 'bootstrap', '~> 4.3.1'
 gem 'bootsnap'
+gem 'bootstrap', '~> 4.3.1'
 gem 'certified'
 gem 'coffee-rails'
 gem 'devise', '~> 4.6'

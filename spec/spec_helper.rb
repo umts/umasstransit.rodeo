@@ -3,7 +3,7 @@
 require 'factory_bot'
 require 'simplecov'
 
-Dir[Pathname(__dir__).join('support', '**', '*.rb')].sort.each{ |f| require f }
+Dir[Pathname(__dir__).join('support', '**', '*.rb')].sort.each { |f| require f }
 
 SimpleCov.start 'rails' do
   add_group 'Channels', 'app/channels'
