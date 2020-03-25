@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-describe Maneuver do
+
+RSpec.describe Maneuver do
   describe 'previous participant' do
     let!(:maneuver) { create :maneuver }
     let!(:record1) { create :maneuver_participant, maneuver: maneuver }

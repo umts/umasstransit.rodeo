@@ -3,12 +3,12 @@
 require 'rails_helper'
 require_relative 'concerns/scoreboard_publisher.rb'
 
-describe ManeuverParticipant do
+RSpec.describe ManeuverParticipant do
   it_behaves_like 'a scoreboard publisher'
 
   describe 'score' do
     let!(:record) { create :maneuver_participant, :perfect_score }
-    it'should be a perfect score' do
+    it 'should be a perfect score' do
       expect(record.score).to be(50)
     end
 

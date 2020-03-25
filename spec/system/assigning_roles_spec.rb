@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'assigning roles' do
+RSpec.describe 'assigning roles' do
   context 'with admin privilege' do
     it 'assigns one role to user' do
       when_current_user_is :admin

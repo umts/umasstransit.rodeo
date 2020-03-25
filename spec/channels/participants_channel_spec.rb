@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe ParticipantsChannel do
+RSpec.describe ParticipantsChannel do
   it 'streams from "add"' do
     subscribe
     expect(subscription).to be_confirmed

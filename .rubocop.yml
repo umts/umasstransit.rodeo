@@ -1,3 +1,4 @@
+require: rubocop-rails
 Rails:
   Enabled: true
 
@@ -6,46 +7,27 @@ AllCops:
   Exclude:
     - 'bin/**/*'
     - 'config/**/*'
-    - 'db/**/*'
+    - 'db/migrate/*'
+    - 'db/schema.rb'
     - 'vendor/**/*'
 
-# Can't see any reason why this is better.
-Rails/ReadWriteAttribute:
-  Enabled: false
-
-# `.describe` blocks are often pretty long,
-# but I think that's fine
+Metrics/AbcSize:
+  Max: 20
 Metrics/BlockLength:
   Enabled: true
   Exclude:
+    - db/seeds.rb
     - spec/**/*
-
-# Relax complexity testing to codeclimate standards (roughly).
-Metrics/AbcSize:
-  Max: 20
-Metrics/MethodLength:
-  Max: 20
 Metrics/ClassLength:
   Max: 150
+Metrics/MethodLength:
+  Max: 20
 
-# Don't worry about documentation for now.
-# In particular, this fails for things like
-# controller files, which seems unnecessary.
 Style/Documentation:
   Enabled: false
-
-Style/GuardClause:
-  MinBodyLength: 10
-
-# I think multiline block chains are beautiful.
-Style/MultilineBlockChain:
-  Enabled: false
-
-# I think this cop disagrees with nested calls
-# which are perfectly clear.
-Style/NestedParenthesizedCalls:
-  Enabled: false
-
-# I like my method names.
-Naming/PredicateName:
-  Enabled: false
+Style/HashEachMethods:
+  Enabled: true
+Style/HashTransformKeys:
+  Enabled: true
+Style/HashTransformValues:
+  Enabled: true

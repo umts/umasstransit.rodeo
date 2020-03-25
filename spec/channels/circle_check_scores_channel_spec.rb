@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe CircleCheckScoresChannel do
+RSpec.describe CircleCheckScoresChannel do
   it 'streams from "update"' do
     subscribe
     expect(subscription).to be_confirmed

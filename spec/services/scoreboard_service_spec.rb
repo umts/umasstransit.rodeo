@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe ScoreboardService do
+RSpec.describe ScoreboardService do
   describe '.update' do
     %i[circle_check_score maneuver_participant
        onboard_judging participant quiz_score].each do |model|

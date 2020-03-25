@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'deleting a user' do
+RSpec.describe 'deleting a user' do
   context 'with admin privilege' do
     it 'deletes user' do
       create :user

@@ -11,15 +11,14 @@ class ManeuversController < ApplicationController
   def next_participant
     participant = @maneuver.next_participant(params[:relative_to])
     if participant.present?
-      if participant.has_completed? @maneuver
+      if participant.completed? @maneuver
         record = ManeuverParticipant.find_by maneuver: @maneuver,
                                              participant: participant
         redirect_to record
       else
-        redirect_to(
-          new_maneuver_participant_path maneuver: @maneuver.name,
-                                        participant: participant.number
-        )
+        new_mp = new_maneuver_participant_path maneuver: @maneuver.name,
+                                               participant: participant.number
+        redirect_to new_mp
       end
     else redirect_to maneuvers_path,
                      notice: 'There are no more participants in the queue for

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'recording a maneuver score' do
+RSpec.describe 'recording a maneuver score' do
   let!(:judge) { create :user, :judge }
   let!(:maneuver) { create :maneuver }
   let!(:participant) { create :participant }
@@ -24,7 +24,7 @@ describe 'recording a maneuver score' do
   end
 end
 
-describe 'updating a maneuver score' do
+RSpec.describe 'updating a maneuver score' do
   let!(:maneuver_participant) do
     create :maneuver_participant, :perfect_score
   end
@@ -38,7 +38,7 @@ describe 'updating a maneuver score' do
   end
 end
 
-describe 'updating obstacles and distance targets' do
+RSpec.describe 'updating obstacles and distance targets' do
   let!(:maneuver) { create :maneuver }
   let!(:obstacle) { create :obstacle, maneuver: maneuver }
   let!(:distance_target) { create :distance_target, maneuver: maneuver }

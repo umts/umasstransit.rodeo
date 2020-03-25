@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-describe 'recording an onboard judging score' do
+
+RSpec.describe 'recording an onboard judging score' do
   context 'with judge privilege' do
     let(:judge) { create :user, :judge }
     let(:participant) { create :participant }

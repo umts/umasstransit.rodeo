@@ -4,7 +4,7 @@ module NonManeuverScoreController
   extend ActiveSupport::Concern
 
   included do
-    before_action :require_scorer_role, only: %i[create update]
+    before_action(only: %i[create update]) { require_role scorer_role }
     before_action :find_score, only: :update
   end
 
@@ -57,9 +57,5 @@ module NonManeuverScoreController
 
   def score_sym
     score_type.model_name.element.to_sym
-  end
-
-  def require_scorer_role
-    deny_access && return unless current_user.has_role? scorer_role
   end
 end

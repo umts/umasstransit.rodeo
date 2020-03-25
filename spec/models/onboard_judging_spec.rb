@@ -3,7 +3,7 @@
 require 'rails_helper'
 require_relative 'concerns/scoreboard_publisher.rb'
 
-describe OnboardJudging do
+RSpec.describe OnboardJudging do
   it_behaves_like 'a scoreboard publisher'
 
   describe 'score' do

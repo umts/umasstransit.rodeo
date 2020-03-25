@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe ManeuverParticipantsChannel do
+RSpec.describe ManeuverParticipantsChannel do
   it 'streams from "update"' do
     subscribe
     expect(subscription).to be_confirmed

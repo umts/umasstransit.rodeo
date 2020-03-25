@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe QuizScoresChannel do
+RSpec.describe QuizScoresChannel do
   it 'streams from "update"' do
     subscribe
     expect(subscription).to be_confirmed

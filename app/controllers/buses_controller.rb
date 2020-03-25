@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
 class BusesController < ApplicationController
+  before_action(except: :index) { require_role :master_of_ceremonies }
+
   def create
-    deny_access && return unless current_user.has_role? :master_of_ceremonies
     bus = Bus.new bus_params
     if bus.save
       flash[:notice] = 'Bus was successfully added.'
@@ -17,7 +18,6 @@ class BusesController < ApplicationController
   end
 
   def destroy
-    deny_access && return unless current_user.has_role? :master_of_ceremonies
     bus = Bus.find_by id: params.require(:id)
     bus.destroy!
     flash[:notice] = 'Bus was successfully deleted.'

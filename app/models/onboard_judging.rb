@@ -29,10 +29,8 @@ class OnboardJudging < ApplicationRecord
   private
 
   def initialize_score_attributes
-    SCORE_COLUMNS.select do |column_name|
-      attributes[column_name].nil?
-    end.each do |column_name|
-      write_attribute column_name, 0
+    SCORE_COLUMNS.each do |column_name|
+      self[column_name] ||= 0
     end
   end
 

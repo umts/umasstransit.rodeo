@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe OnboardJudgingsChannel do
+RSpec.describe OnboardJudgingsChannel do
   it 'streams from "update"' do
     subscribe
     expect(subscription).to be_confirmed

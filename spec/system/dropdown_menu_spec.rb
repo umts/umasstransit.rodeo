@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'signing out a user' do
+RSpec.describe 'signing out a user' do
   it 'signs out the user' do
     user = create :user
     login_as user
@@ -12,7 +12,7 @@ describe 'signing out a user' do
   end
 end
 
-describe 'editing a user account' do
+RSpec.describe 'editing a user account' do
   it 'allows the user to edit account information' do
     user = create :user
     login_as user

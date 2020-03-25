@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-shared_examples_for 'a scoreboard publisher' do
+RSpec.shared_examples_for 'a scoreboard publisher' do
   let :factory_name do
     described_class.model_name.element.to_sym
   end

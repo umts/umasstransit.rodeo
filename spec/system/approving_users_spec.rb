@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'approving a user' do
+RSpec.describe 'approving a user' do
   let!(:user) { create :user, :unapproved }
   it 'works' do
     when_current_user_is :admin

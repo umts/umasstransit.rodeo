@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'rake roadeo:reset' do
+RSpec.describe 'rake roadeo:reset' do
   before :all do
     @original_stdout = $stdout
     $stdout = File.new(File::NULL, 'w')
