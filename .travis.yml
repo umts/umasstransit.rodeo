@@ -10,7 +10,8 @@ before_install:
 before_script:
   - cp config/database.yml.example config/database.yml
   - bundle exec rake db:reset
-  - nvm use 14
+  - nvm install 'lts/*'
+  - nvm use 'lts/*'
   - yarn install
 script:
   - bundle exec rspec
