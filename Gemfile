@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 source 'https://rubygems.org'
+ruby IO.read(File.expand_path('.ruby-version', __dir__)).strip
 
 gem 'bootsnap'
 gem 'bootstrap', '~> 4.3.1'
@@ -28,7 +29,7 @@ end
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
-  gem 'capistrano', '~> 3.4.0', require: false
+  gem 'capistrano', '~> 3.14', require: false
   gem 'capistrano-bundler', require: false
   gem 'capistrano-passenger', require: false
   gem 'capistrano-pending', require: false
@@ -47,7 +48,7 @@ group :test do
   gem 'codeclimate-test-reporter', '~> 1.0'
   gem 'rack_session_access'
   gem 'rails-controller-testing'
-  gem 'rspec-rails'
+  gem 'rspec-rails', '~> 3.7'
   gem 'simplecov'
   gem 'timecop'
   gem 'webdrivers'
