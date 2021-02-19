@@ -3,5 +3,5 @@
 class Bus < ApplicationRecord
   has_many :participants, dependent: :nullify
 
-  validates :number, uniqueness: true, presence: true
+  validates :number, uniqueness: { case_sensitive: false }, presence: true
 end
