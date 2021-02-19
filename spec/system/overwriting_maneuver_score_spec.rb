@@ -13,7 +13,7 @@ RSpec.describe 'overwriting a maneuver score' do
       )
     end
     it 'redirects you to the show page' do
-      expect(page.current_url).to eql maneuver_participant_url(record)
+      expect(page).to have_current_path maneuver_participant_path(record)
     end
   end
 end

@@ -7,7 +7,7 @@ RSpec.describe 'updating a participant' do
     it 'updates a participant' do
       participant = create :participant, name: 'Foo Bar'
       when_current_user_is :master_of_ceremonies
-      visit participants_url
+      visit participants_path
       form = find "form#edit_participant_#{participant.id}"
       within form do
         fill_in :participant_name, with: 'Akiva Green'
@@ -18,7 +18,7 @@ RSpec.describe 'updating a participant' do
     it 'will assign a number' do
       create :bus, number: 'Big Yellow Bus'
       when_current_user_is :master_of_ceremonies
-      visit participants_url
+      visit participants_path
       fill_in 'participant_name', with: 'Foo Bar'
       click_on 'Add'
       select 'Foo Bar', from: 'id'
@@ -32,7 +32,7 @@ RSpec.describe 'updating a participant' do
       create :participant, number: 1
       create :participant, number: 2
       when_current_user_is :admin
-      visit participants_url
+      visit participants_path
       fill_in 'participant_number', with: 2, match: :first
       click_on 'Save', match: :first
       expect(page).to have_text 'Please choose a unique participant number.'
@@ -42,7 +42,7 @@ RSpec.describe 'updating a participant' do
     it 'updates a participant' do
       participant = create :participant, name: 'Foo Bar'
       when_current_user_is :admin
-      visit participants_url
+      visit participants_path
       form = find "form#edit_participant_#{participant.id}"
       within form do
         fill_in :participant_name, with: 'Akiva Green'
@@ -55,7 +55,7 @@ RSpec.describe 'updating a participant' do
     it 'does not update a participant' do
       participant = create :participant, name: 'Foo Bar'
       when_current_user_is :judge
-      visit participants_url
+      visit participants_path
       form = find "form#edit_participant_#{participant.id}"
       within form do
         fill_in :participant_name, with: 'Akiva Green'
