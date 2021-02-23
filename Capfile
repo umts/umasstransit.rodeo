@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-%w[setup deploy bundler rails passenger pending yarn].each do |lib|
+%w[setup deploy bundler rails passenger pending].each do |lib|
   require "capistrano/#{lib}"
 end
 
