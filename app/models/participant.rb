@@ -86,8 +86,7 @@ class Participant < ApplicationRecord
   end
 
   def self.next_number
-    last_number = numbered.pluck(:number).max || 0
-    last_number + 1
+    maximum(:number).to_i + 1
   end
 
   # rubocop:disable Metrics/CyclomaticComplexity
