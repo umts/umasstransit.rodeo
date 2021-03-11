@@ -122,12 +122,10 @@ class Participant < ApplicationRecord
   end
 
   def update_scoreboard
-    if destroyed?
+    if destroyed? || number_changed_to_blank?
       ScoreboardService.update with: self, type: :remove
     elsif number_changed_from_blank?
       ScoreboardService.update with: self, type: :add
-    elsif number_changed_to_blank?
-      ScoreboardService.update with: self, type: :remove
     elsif number?
       ScoreboardService.update with: self
     end
