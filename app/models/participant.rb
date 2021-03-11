@@ -25,8 +25,8 @@ class Participant < ApplicationRecord
   scope :numbered, -> { where.not number: nil }
   scope :not_numbered, -> { where number: nil }
 
-  after_save :update_scoreboard
   after_destroy :update_scoreboard
+  after_save :update_scoreboard
 
   def as_json(options = {})
     display_name = if show_name?
@@ -92,15 +92,13 @@ class Participant < ApplicationRecord
 
   # rubocop:disable Metrics/CyclomaticComplexity
   def self.scoreboard_order(sort_order = nil)
-    if sort_order
-      raise ArgumentError unless SORT_ORDERS.include? sort_order
-    end
+    raise ArgumentError if sort_order && SORT_ORDERS.exclude?(sort_order)
+
     case sort_order
     when :total_score, nil
       numbered.includes(:maneuver_participants).sort_by(&:total_score).reverse
     when :maneuver_score
-      numbered.includes(:maneuver_participants)
-              .sort_by(&:maneuver_score).reverse
+      numbered.includes(:maneuver_participants).sort_by(&:maneuver_score).reverse
     when :participant_name
       unscoped.numbered.order :name
     when :participant_number

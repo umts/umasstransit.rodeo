@@ -45,9 +45,7 @@ class OnboardJudging < ApplicationRecord
     score -= sudden_stops
     score -= sudden_starts
     score -= abrupt_turns
-    if minutes_elapsed >= 7
-      score -= 60 * (minutes_elapsed - 7) + seconds_elapsed
-    end
+    score -= 60 * (minutes_elapsed - 7) + seconds_elapsed if minutes_elapsed >= 7
     assign_attributes score: score
   end
   # rubocop:enable Metrics/AbcSize
