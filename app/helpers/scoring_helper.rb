@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 module ScoringHelper
+  # This is good advice generally, but in this case we want the method
+  # signature to be the same as `check_box_tag`.
+  # rubocop:disable Style/OptionalBooleanParameter
   def giant_check_box_tag(name, value = '1', checked = false, options = {})
     tag.div(class: 'd-inline-block btn-group-toggle checkbox',
             data: { toggle: 'buttons' }) do
@@ -10,6 +13,7 @@ module ScoringHelper
       end
     end
   end
+  # rubocop:enable Style/OptionalBooleanParameter
 
   def number_field_tag_with_buttons(name, value = nil, options = {})
     if (range = options.delete(:in) || options.delete(:within))
