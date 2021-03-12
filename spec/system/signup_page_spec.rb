@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe 'signing up' do
   context 'a invalid user' do
     it 'does not create the user with no email' do
-      visit new_user_registration_url
+      visit new_user_registration_path
       fill_in 'user_name', with: 'Foo Bar'
       fill_in 'user_password', with: 'password'
       fill_in 'user_password_confirmation', with: 'password'
@@ -14,7 +14,7 @@ RSpec.describe 'signing up' do
       end.not_to(change { User.count })
     end
     it 'does not create the user with no password' do
-      visit new_user_registration_url
+      visit new_user_registration_path
       fill_in 'user_name', with: 'Foo Bar'
       fill_in 'user_email', with: 'foo@valid.com'
       expect do
@@ -24,7 +24,7 @@ RSpec.describe 'signing up' do
   end
   context 'a valid user' do
     it 'creates the user' do
-      visit new_user_registration_url
+      visit new_user_registration_path
       fill_in 'user_name', with: 'Foo Bar'
       fill_in 'user_email', with: 'foo@valid.com'
       fill_in 'user_password', with: 'password'

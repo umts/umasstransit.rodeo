@@ -6,7 +6,8 @@ class Maneuver < ApplicationRecord
   has_many :obstacles, dependent: :destroy
   has_many :distance_targets, dependent: :destroy
 
-  validates :name, :sequence_number, presence: true, uniqueness: true
+  validates :name, presence: true, uniqueness: { case_sensitive: false }
+  validates :sequence_number, presence: true, uniqueness: true
 
   def grouped_obstacles
     obstacles.order(:id).group_by { |o| [o.point_value, o.obstacle_type] }
