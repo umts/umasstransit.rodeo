@@ -15,7 +15,7 @@ class Participant < ApplicationRecord
   has_one :quiz_score, dependent: :destroy
   has_one :onboard_judging, dependent: :destroy
   validates :number, uniqueness: true, if: -> { number.present? }
-  validates :name, presence: true, uniqueness: true
+  validates :name, presence: true, uniqueness: { case_sensitive: false }
   validates :bus, presence: true, if: -> { number.present? }
   validates :number, numericality: { greater_than_or_equal_to: 0 },
                      allow_blank: true
