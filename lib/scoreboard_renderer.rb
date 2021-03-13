@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ScoreboardRenderer < ParticipantsController
   module ScoreboardRendererHelper
     def javascript_include_tag(*sources)
@@ -28,9 +30,15 @@ class ScoreboardRenderer < ParticipantsController
     end
   end
 
-  def flash; {}; end
+  def flash
+    {}
+  end
 
-  def protect_against_forgery?; false; end
+  def protect_against_forgery?
+    false
+  end
 
-  def user_signed_in?; false; end
+  def user_signed_in?
+    false
+  end
 end
