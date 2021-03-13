@@ -11,9 +11,13 @@ class ScoreboardRenderer < ParticipantsController
       options = sources.extract_options!.merge(debug: false)
       super(*sources, options)
     end
-  end
 
+    def user_signed_in?
+      false
+    end
+  end
   helper ScoreboardRendererHelper
+  skip_forgery_protection
 
   class << self
     def assigns
@@ -33,13 +37,5 @@ class ScoreboardRenderer < ParticipantsController
 
   def flash
     {}
-  end
-
-  def protect_against_forgery?
-    false
-  end
-
-  def user_signed_in?
-    false
   end
 end
