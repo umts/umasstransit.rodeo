@@ -20,6 +20,6 @@
       %table#template.d-none
         %tbody
           = render Participant.new(id: 0, number: 0)
-  = javascript_include_tag 'cable.js'
+  = javascript_include_tag 'cable.js' unless @archiving
 - else
   No participants yet.

@@ -18,9 +18,10 @@ class ScoreboardRenderer < ParticipantsController
   class << self
     def assigns
       {
-        participants: Participant.scoreboard_order(nil),
+        archiving: true,
         can_edit_scores: false,
         maneuvers: Maneuver.order(:sequence_number),
+        participants: Participant.scoreboard_order(nil),
         scores: ManeuverParticipant.scoreboard_grouping
       }
     end

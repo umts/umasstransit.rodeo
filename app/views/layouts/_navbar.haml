@@ -45,9 +45,12 @@
         .dropdown-menu
           = link_to 'Edit Account', edit_user_registration_path, class: 'dropdown-item'
           = link_to 'Logout', destroy_user_session_path, method: :delete, class: 'dropdown-item'
-    - else
+    - elsif !@archiving
       .navbar-nav.ml-auto
         = link_to new_user_session_path do
           %button.mx-3.btn.btn-outline-primary.nav-item.login{type: :button} Log in
         = link_to new_user_registration_path do 
           %button.mx-3.btn.btn-outline-primary.nav-item.login{type: :button} Request a login
+    - else
+      %h1.navbar-text.ml-auto
+        #{Time.now.year} Roadeo Final Results
