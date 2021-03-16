@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'fileutils'
-ARCHIVE = Rails.root.join('archive')
+ARCHIVE = Rails.env.test? ? Pathname(Dir.mktmpdir) : Rails.root.join('archive')
 
 namespace :roadeo do
   desc 'Create a static archive of the Roadeo scoreboard'
