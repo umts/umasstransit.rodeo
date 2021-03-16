@@ -17,5 +17,7 @@ module UmasstransitRodeo
     # the framework and any gems in your application.
     config.encoding = 'utf-8'
     config.time_zone = 'Eastern Time (US & Canada)'
+
+    config.roadeo = config_for(:roadeo)
   end
 end
