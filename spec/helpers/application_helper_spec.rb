@@ -31,7 +31,9 @@ RSpec.describe ApplicationHelper do
 
       context 'with a block given' do
         it 'yields the block' do
-          expect { |b| helper.nav_item(path, role: :admin, &b) }.to yield_control
+          expect do |block|
+            helper.nav_item(path, role: :admin, &block)
+          end.to yield_control
         end
       end
     end
