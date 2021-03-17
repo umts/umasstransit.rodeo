@@ -20,12 +20,12 @@ RSpec.describe ScoreboardRenderer do
     end
 
     it 'has non-debug stylesheets' do
-      stylesheets = css['head link[rel="stylesheet"]'].map{ |s| s['href'] }
+      stylesheets = css['head link[rel="stylesheet"]'].map { |s| s['href'] }
       expect(stylesheets).not_to include(match('debug'))
     end
 
     it 'has non-debug javascript' do
-      js = css['script[src]'].map{ |s| s['src'] }
+      js = css['script[src]'].map { |s| s['src'] }
       expect(js).not_to include(match('debug'))
     end
 
