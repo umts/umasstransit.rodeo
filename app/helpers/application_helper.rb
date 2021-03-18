@@ -12,4 +12,10 @@ module ApplicationHelper
       end
     end
   end
+
+  def title_text(title)
+    org = Rails.configuration.roadeo.organization
+    event = Rails.configuration.roadeo.event_name
+    [title, org, event].compact.join(' — ')
+  end
 end

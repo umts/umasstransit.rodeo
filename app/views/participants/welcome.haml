@@ -1,14 +1,17 @@
+- event = Rails.configuration.roadeo.event_name
 .welcome
-  Welcome to the #{Time.now.year} UMass Transit Bus Roadeo mobile webapp!
+  Welcome to the #{Time.now.year}
+  = Rails.configuration.roadeo.organization
+  #{event} mobile webapp!
   %hr
   - if Participant.any?
     To view the scoreboard, click
     = link_to 'here', scoreboard_participants_path
     or on the button above.
   - else
-    Once the roadeo has begun, you will be able to view the scoreboard here.
+    Once the #{event} has begun, you will be able to view the scoreboard here.
   .login-instructions
-    If you have signed up to judge the roadeo:
+    If you have signed up to judge the #{event}:
     %ul
       %li
         Click
@@ -18,7 +21,7 @@
         Once your request has been approved,
         = link_to 'log in', new_user_session_path
         to record maneuver scores.
-      %li Enjoy the roadeo!
+      %li Enjoy the #{event}!
   .attributions
     = link_to 'This site', 'https://github.com/umts/umasstransit.rodeo'
     designed by
