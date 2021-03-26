@@ -1,0 +1,13 @@
+default: &default
+  organization: 'UMass Transit'
+  event_name: 'Safety Roadeo'
+  background: 'lightblue'
+
+development:
+  <<: *default
+
+test:
+  <<: *default
+
+production:
+  <<: *default
