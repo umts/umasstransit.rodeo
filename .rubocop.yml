@@ -24,5 +24,8 @@ Metrics/ClassLength:
 Metrics/MethodLength:
   Max: 20
 
+RSpec/MessageSpies:
+  EnforcedStyle: receive
+
 Style/Documentation:
   Enabled: false

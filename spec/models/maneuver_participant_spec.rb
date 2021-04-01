@@ -47,31 +47,27 @@ RSpec.describe ManeuverParticipant do
         .by(-1)
     end
 
-    context 'lowers by the positive difference' do
-      it 'between each distance and the minimum multiplied by the multiplier' do
-        minimum = 0
-        distance = 1
-        multiplier = 1
-        expect do
-          record.update distances_achieved: {
-            [minimum, multiplier] => distance
-          }
-        end.to change(record, :score)
-          .by(-1)
+    context 'when the diference between distance and minimum is positive' do
+      let :distances do
+        # [min, multiplier] => distance
+        { [0, 1] => 1 }
+      end
+
+      it 'lowers by that difference multiplied by the multiplier' do
+        expect { record.update(distances_achieved: distances) }
+          .to change(record, :score).by(-1)
       end
     end
 
-    context 'lowers by 0 for negative difference' do
-      it 'between each distance and the minimum multiplied by the multiplier' do
-        minimum = 1
-        distance = 1
-        multiplier = 3
-        expect do
-          record.update distances_achieved: {
-            [minimum, multiplier] => distance
-          }
-        end.to change(record, :score)
-          .by(0)
+    context 'when the difference between distance and minimum is negative' do
+      let :distances do
+        # [min, multiplier] => distance
+        { [2, 3] => 1 }
+      end
+
+      it 'does not reduce the score' do
+        expect { record.update(distances_achieved: distances) }
+          .not_to change(record, :score)
       end
     end
   end

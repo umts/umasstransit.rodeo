@@ -18,14 +18,4 @@ RSpec.describe DistanceTarget do
       end
     end
   end
-
-  describe 'index' do
-    it 'returns index of distance target relative to itself' do
-      maneuver = create :maneuver
-      target1 = create :distance_target, maneuver: maneuver
-      target2 = create :distance_target, maneuver: maneuver
-      expect(target1.index).to be 0
-      expect(target2.index).to be 1
-    end
-  end
 end

@@ -37,32 +37,33 @@ RSpec.describe Maneuver do
   end
 
   describe 'grouped_obstacles' do
+    subject(:call) { maneuver.grouped_obstacles }
+
+    let(:maneuver) { create :maneuver }
+
     context 'with the same point values and types' do
+      let(:obstacle1) do
+        create :obstacle, maneuver: maneuver, point_value: 3, obstacle_type: 'cow'
+      end
+      let!(:obstacle2) { obstacle1.dup.tap(&:save) }
+
       it 'returns a hash of obstacles' do
-        maneuver = create :maneuver
-        obstacle1 = create :obstacle, maneuver: maneuver
-        obstacle2 = create :obstacle, maneuver: maneuver,
-                                      point_value: obstacle1.point_value,
-                                      obstacle_type: obstacle1.obstacle_type
-        expected = { [obstacle1.point_value, obstacle1.obstacle_type] =>
-                    [obstacle1, obstacle2] }
-        expect(maneuver.grouped_obstacles).to eql expected
+        expect(call).to eq({ [3, 'cow'] => [obstacle1, obstacle2] })
       end
     end
 
     context 'with different point values and the same types' do
+      let(:obstacle1) do
+        create :obstacle, maneuver: maneuver, point_value: 2, obstacle_type: 'boulder'
+      end
+      let(:obstacle2) do
+        create :obstacle, maneuver: maneuver, point_value: 4, obstacle_type: 'boulder'
+      end
+
       it 'returns a hash of obstacles' do
-        maneuver = create :maneuver
-        obstacle1 = create :obstacle, maneuver: maneuver,
-                                      point_value: 2
-        obstacle2 = create :obstacle, maneuver: maneuver,
-                                      point_value: 4, # diffrent than obstacle1
-                                      obstacle_type: obstacle1.obstacle_type
-        expected = { [obstacle1.point_value, obstacle1.obstacle_type] =>
-                    [obstacle1],
-                     [obstacle2.point_value, obstacle2.obstacle_type] =>
-                    [obstacle2] }
-        expect(maneuver.grouped_obstacles).to eql expected
+        expected = { [2, 'boulder'] => [obstacle1],
+                     [4, 'boulder'] => [obstacle2] }
+        expect(call).to eq(expected)
       end
     end
   end
