@@ -5,7 +5,7 @@ namespace :roadeo do
   task reset: :environment do
     puts 'This will destroy all participants and scores.'
     print 'Type "YES" if you\'re sure: '
-    input = STDIN.gets.strip
+    input = $stdin.gets.strip
     next unless input == 'YES'
 
     Bus.destroy_all

@@ -111,7 +111,7 @@ RSpec.describe Participant do
 
     context 'displays number information' do
       it 'returns valid string' do
-        expected = '#' + participant.number.to_s
+        expected = "##{participant.number}"
         expect(participant.display_information(:number)).to eql expected
       end
     end
@@ -128,7 +128,7 @@ RSpec.describe Participant do
         name = participant.name
         bus_number = participant.bus.number
         number = participant.number.to_s
-        exp =  name + ' (' + bus_number + ', #' + number + ')'
+        exp =  "#{name} (#{bus_number}, ##{number})"
         expect(participant.display_information(:name, :bus, :number)).to eql exp
       end
     end

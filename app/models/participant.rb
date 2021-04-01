@@ -25,8 +25,8 @@ class Participant < ApplicationRecord
   scope :numbered, -> { where.not number: nil }
   scope :not_numbered, -> { where number: nil }
 
-  after_save :update_scoreboard
   after_destroy :update_scoreboard
+  after_save :update_scoreboard
 
   def as_json(options = {})
     display_name = if show_name?
@@ -86,21 +86,18 @@ class Participant < ApplicationRecord
   end
 
   def self.next_number
-    last_number = numbered.pluck(:number).max || 0
-    last_number + 1
+    maximum(:number).to_i + 1
   end
 
   # rubocop:disable Metrics/CyclomaticComplexity
   def self.scoreboard_order(sort_order = nil)
-    if sort_order
-      raise ArgumentError unless SORT_ORDERS.include? sort_order
-    end
+    raise ArgumentError if sort_order && SORT_ORDERS.exclude?(sort_order)
+
     case sort_order
     when :total_score, nil
       numbered.includes(:maneuver_participants).sort_by(&:total_score).reverse
     when :maneuver_score
-      numbered.includes(:maneuver_participants)
-              .sort_by(&:maneuver_score).reverse
+      numbered.includes(:maneuver_participants).sort_by(&:maneuver_score).reverse
     when :participant_name
       unscoped.numbered.order :name
     when :participant_number
@@ -124,12 +121,10 @@ class Participant < ApplicationRecord
   end
 
   def update_scoreboard
-    if destroyed?
+    if destroyed? || number_changed_to_blank?
       ScoreboardService.update with: self, type: :remove
     elsif number_changed_from_blank?
       ScoreboardService.update with: self, type: :add
-    elsif number_changed_to_blank?
-      ScoreboardService.update with: self, type: :remove
     elsif number?
       ScoreboardService.update with: self
     end
