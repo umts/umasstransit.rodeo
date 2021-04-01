@@ -12,7 +12,7 @@ RSpec.describe 'rake roadeo:reset' do
     $stdout = @original_stdout
   end
 
-  before :each do
+  before do
     create :bus
     participant = create :participant
     create :circle_check_score, participant: participant
@@ -28,7 +28,7 @@ RSpec.describe 'rake roadeo:reset' do
   end
 
   context 'when denied confirmation' do
-    before :each do
+    before do
       allow($stdin).to receive('gets').and_return("No\n")
     end
 
@@ -41,7 +41,7 @@ RSpec.describe 'rake roadeo:reset' do
   end
 
   context 'when granted confirmation' do
-    before :each do
+    before do
       allow($stdin).to receive('gets').and_return("YES\n")
     end
 

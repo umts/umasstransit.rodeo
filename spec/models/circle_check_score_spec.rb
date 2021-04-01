@@ -4,9 +4,10 @@ require 'rails_helper'
 require_relative 'concerns/scoreboard_publisher'
 
 RSpec.describe CircleCheckScore do
+  let(:participant) { create :participant }
+
   it_behaves_like 'a scoreboard publisher'
 
-  let(:participant) { create :participant }
   describe 'score' do
     it 'has the correct value' do
       score = create :circle_check_score, participant: participant

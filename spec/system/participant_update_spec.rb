@@ -15,6 +15,7 @@ RSpec.describe 'updating a participant' do
       end
       expect(page).to have_text 'Participant has been updated.'
     end
+
     it 'will assign a number' do
       create :bus, number: 'Big Yellow Bus'
       when_current_user_is :master_of_ceremonies
@@ -27,6 +28,7 @@ RSpec.describe 'updating a participant' do
       expect(page).to have_text 'Participant has been added to the queue.'
     end
   end
+
   context 'will not assign a duplicate number' do
     it 'does not update a participant' do
       create :participant, number: 1
@@ -38,6 +40,7 @@ RSpec.describe 'updating a participant' do
       expect(page).to have_text 'Please choose a unique participant number.'
     end
   end
+
   context 'with admin privilege' do
     it 'updates a participant' do
       participant = create :participant, name: 'Foo Bar'
@@ -51,6 +54,7 @@ RSpec.describe 'updating a participant' do
       expect(page).to have_text 'Participant has been updated.'
     end
   end
+
   context 'with judge privilege' do
     it 'does not update a participant' do
       participant = create :participant, name: 'Foo Bar'

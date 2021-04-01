@@ -3,9 +3,10 @@
 require 'rails_helper'
 
 RSpec.describe 'adding a circle check score' do
-  before :each do
+  before do
     create :participant
   end
+
   context 'with admin privilege' do
     it 'adds circle check score' do
       when_current_user_is :admin
@@ -17,6 +18,7 @@ RSpec.describe 'adding a circle check score' do
       expect(input.value).to eql '4'
     end
   end
+
   context 'with circle check scorer privilege' do
     it 'adds circle check score' do
       when_current_user_is :circle_check_scorer
@@ -28,6 +30,7 @@ RSpec.describe 'adding a circle check score' do
       expect(input.value).to eql '4'
     end
   end
+
   context 'with judge privilege' do
     it 'will not add a circle check score' do
       when_current_user_is :judge
@@ -37,6 +40,7 @@ RSpec.describe 'adding a circle check score' do
       expect(page).to have_text 'You are not authorized to make that action.'
     end
   end
+
   context 'with blank fields' do
     it 'will not add a circle check score' do
       when_current_user_is :admin
@@ -45,6 +49,7 @@ RSpec.describe 'adding a circle check score' do
       expect(page).to have_text "Defects found can't be blank"
     end
   end
+
   context 'when out of range' do
     it 'will not accept negative number' do
       when_current_user_is :admin
@@ -55,6 +60,7 @@ RSpec.describe 'adding a circle check score' do
       expect(page).to have_text expected
     end
   end
+
   context 'when out of range' do
     it 'will not accept positive number greater than total points' do
       when_current_user_is :admin

@@ -13,6 +13,7 @@ RSpec.describe 'deleting a user' do
       expect(page).to have_text 'User has been removed.'
     end
   end
+
   context 'with master of ceremonies privilege' do
     it 'will not delete a user' do
       create :user
@@ -23,6 +24,7 @@ RSpec.describe 'deleting a user' do
       expect(page).to have_text 'You are not authorized to make that action.'
     end
   end
+
   context 'when deleting current user' do
     it 'deletes user and redirects to sign in' do
       when_current_user_is :admin

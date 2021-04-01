@@ -12,6 +12,7 @@ RSpec.describe 'adding a participant' do
       expect(page).to have_text 'Participant was successfully created.'
     end
   end
+
   context 'with admin privilege' do
     it 'adds a participant' do
       when_current_user_is :admin
@@ -21,6 +22,7 @@ RSpec.describe 'adding a participant' do
       expect(page).to have_text 'Participant was successfully created.'
     end
   end
+
   context 'with judge privilege' do
     it 'does not add a participant' do
       when_current_user_is :judge
@@ -30,6 +32,7 @@ RSpec.describe 'adding a participant' do
       expect(page).to have_text 'You are not authorized to make that action.'
     end
   end
+
   context 'that is a duplicate' do
     it 'will not add a participant' do
       when_current_user_is :admin
@@ -40,6 +43,7 @@ RSpec.describe 'adding a participant' do
       expect(page).to have_text 'Name has already been taken'
     end
   end
+
   context 'with a unique number and bus number' do
     it 'will add a participant' do
       create :bus, number: 'Big Yellow Bus'
@@ -52,6 +56,7 @@ RSpec.describe 'adding a participant' do
       expect(page).to have_text 'Participant was successfully created.'
     end
   end
+
   context 'with a unique number and no bus number' do
     it 'will not add a participant' do
       when_current_user_is :admin
@@ -62,6 +67,7 @@ RSpec.describe 'adding a participant' do
       expect(page).to have_text "Bus can't be blank"
     end
   end
+
   context 'with blank fields' do
     it 'will not add a participant' do
       when_current_user_is :admin

@@ -4,6 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'deleting a bus' do
   let!(:bus) { create :bus }
+
   context 'with admin privilege' do
     it 'deletes a bus' do
       when_current_user_is :admin

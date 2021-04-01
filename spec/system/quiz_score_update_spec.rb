@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'updating a quiz score' do
-  before :each do
+  before do
     create :quiz_score, points_achieved: 50, total_points: 100
   end
 
@@ -30,6 +30,7 @@ RSpec.describe 'updating a quiz score' do
       expect(input.value).to eql '70.0'
     end
   end
+
   context 'with judge privilege' do
     it 'will not update quiz score' do
       when_current_user_is :judge
@@ -42,9 +43,10 @@ RSpec.describe 'updating a quiz score' do
 end
 
 RSpec.describe 'updating a score' do
-  before :each do
+  before do
     create :quiz_score
   end
+
   context 'when out of range quiz score' do
     it 'will not accept negative number' do
       when_current_user_is :admin
@@ -68,6 +70,7 @@ RSpec.describe 'updating a score' do
       expect(page).to have_text expected
     end
   end
+
   context 'when blank field quiz score' do
     it 'will not accept blank number' do
       when_current_user_is :admin

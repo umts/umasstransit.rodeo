@@ -11,6 +11,7 @@ RSpec.describe 'assigning roles' do
       click_on 'Save'
       expect(page).to have_text 'User has been updated.'
     end
+
     it 'assigns multiple roles to user' do
       when_current_user_is :admin
       visit admin_users_path
@@ -20,6 +21,7 @@ RSpec.describe 'assigning roles' do
       expect(page).to have_text 'User has been updated.'
     end
   end
+
   context 'with master of ceremonies privilege' do
     it 'will not assign roles to users' do
       when_current_user_is :master_of_ceremonies

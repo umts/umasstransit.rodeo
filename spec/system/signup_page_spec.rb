@@ -11,17 +11,19 @@ RSpec.describe 'signing up' do
       fill_in 'user_password_confirmation', with: 'password'
       expect do
         within('form') { click_on 'Send request' }
-      end.not_to(change { User.count })
+      end.not_to(change(User, :count))
     end
+
     it 'does not create the user with no password' do
       visit new_user_registration_path
       fill_in 'user_name', with: 'Foo Bar'
       fill_in 'user_email', with: 'foo@valid.com'
       expect do
         within('form') { click_on 'Send request' }
-      end.not_to(change { User.count })
+      end.not_to(change(User, :count))
     end
   end
+
   context 'a valid user' do
     it 'creates the user' do
       visit new_user_registration_path
@@ -31,9 +33,10 @@ RSpec.describe 'signing up' do
       fill_in 'user_password_confirmation', with: 'password'
       expect do
         within('form') { click_on 'Send request' }
-      end.to change { User.count }.by 1
+      end.to change(User, :count).by 1
     end
   end
+
   context 'after signup' do
     it 'allows the user to only view scoreboard' do
       user = create :user

@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'updating a circle check score' do
-  before :each do
+  before do
     create :circle_check_score, total_defects: 5, defects_found: 3
   end
 
@@ -18,6 +18,7 @@ RSpec.describe 'updating a circle check score' do
       expect(input.value).to eql '4'
     end
   end
+
   context 'with circle check scorer privilege' do
     it 'updates circle check score' do
       when_current_user_is :circle_check_scorer
@@ -29,6 +30,7 @@ RSpec.describe 'updating a circle check score' do
       expect(input.value).to eql '4'
     end
   end
+
   context 'with judge privilege' do
     it 'will not update circle check score' do
       when_current_user_is :judge
@@ -38,6 +40,7 @@ RSpec.describe 'updating a circle check score' do
       expect(page).not_to have_text 'Circle check score was saved.'
     end
   end
+
   context 'out of range circle check score' do
     it 'will not accept negative number' do
       when_current_user_is :admin
@@ -48,6 +51,7 @@ RSpec.describe 'updating a circle check score' do
       expect(page).to have_text expected
     end
   end
+
   context 'updating with blank field' do
     it 'will not accept a blank field' do
       when_current_user_is :admin
@@ -58,6 +62,7 @@ RSpec.describe 'updating a circle check score' do
       expect(page).to have_text expected
     end
   end
+
   context 'out of range circle check score' do
     it 'will not accept positive number greater than total points' do
       when_current_user_is :admin

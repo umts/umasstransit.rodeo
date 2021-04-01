@@ -7,6 +7,7 @@ RSpec.shared_examples 'they are not allowed to edit' do
     expect(page).to have_text mp.participant.name
     expect(row).to have_text mp.score
   end
+
   it 'does not provide any links to edit' do
     expect(row).to have_no_link
   end
@@ -18,18 +19,20 @@ RSpec.describe 'viewing the scoreboard' do
   let(:row) { find('tr', text: participant.name) }
 
   context 'while not logged in' do
-    before :each do
+    before do
       when_current_user_is nil
       visit scoreboard_participants_path
     end
+
     include_examples 'they are not allowed to edit'
   end
 
   context 'while not an admin' do
-    before :each do
+    before do
       when_current_user_is :anyone
       visit scoreboard_participants_path
     end
+
     include_examples 'they are not allowed to edit'
   end
 

@@ -46,15 +46,18 @@ RSpec.describe Participant do
   describe 'completed?' do
     let!(:maneuver) { create :maneuver }
     let!(:maneuver_participant) { create :maneuver_participant }
+
     context 'participant has completed maneuver' do
-      before :each do
+      before do
         create :maneuver_participant, maneuver: maneuver,
                                       participant: participant
       end
+
       it 'returns true' do
         expect(participant.completed?(maneuver)).to be true
       end
     end
+
     context 'participant has not completed manuever' do
       it 'returns false' do
         expect(participant.completed?(maneuver)).to be false
@@ -64,24 +67,27 @@ RSpec.describe Participant do
 
   describe 'total_score' do
     it 'initializes to zero' do
-      expect(participant.total_score).to eql 0
+      expect(participant.total_score).to be 0
     end
+
     it 'increases by quiz score' do
       quiz_score = create :quiz_score
       expect { participant.update quiz_score: quiz_score }
-        .to change { participant.total_score }
+        .to change(participant, :total_score)
         .by(quiz_score.score)
     end
+
     it 'increases by circle check score' do
       circle_check_score = create :circle_check_score
       expect { participant.update circle_check_score: circle_check_score }
-        .to change { participant.total_score }
+        .to change(participant, :total_score)
         .by(circle_check_score.score)
     end
+
     it 'increases by onboard judging score' do
       onboard_judging = create :onboard_judging
       expect { participant.update onboard_judging: onboard_judging }
-        .to change { participant.total_score }
+        .to change(participant, :total_score)
         .by(onboard_judging.score)
     end
   end
@@ -89,7 +95,7 @@ RSpec.describe Participant do
   describe 'maneuver_score' do
     it 'returns the maneuver score' do
       maneuver_partip = create :maneuver_participant, :perfect_score
-      expect(maneuver_partip.participant.maneuver_score).to eql 50
+      expect(maneuver_partip.participant.maneuver_score).to be 50
     end
   end
 
@@ -196,7 +202,7 @@ end
 RSpec.describe 'name_shown' do
   context 'excluding anyone not in top 20' do
     it 'excludes participant with 21st highest score' do
-      20.times { create :maneuver_participant, :perfect_score }
+      create_list :maneuver_participant, 20, :perfect_score
       imperfect_score = create :maneuver_participant, :perfect_score,
                                reversed_direction: 2
       expect(Participant.name_shown).not_to include imperfect_score.participant
@@ -206,7 +212,7 @@ RSpec.describe 'name_shown' do
   context 'including anyone in top 20' do
     it 'includes participant with highest score' do
       top_score = create :maneuver_participant, :perfect_score
-      19.times { create :maneuver_participant, :perfect_score }
+      create_list :maneuver_participant, 19, :perfect_score
       expect(Participant.name_shown).to include top_score.participant
     end
   end
