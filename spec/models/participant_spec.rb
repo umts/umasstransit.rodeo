@@ -8,7 +8,7 @@ RSpec.describe Participant do
   describe 'update_scoreboard' do
     it 'tells the scoreboard to add on create with number' do
       expect(ScoreboardService).to receive(:update)
-        .with(with: instance_of(Participant), type: :add)
+        .with(with: instance_of(described_class), type: :add)
       create :participant
     end
 
@@ -144,7 +144,7 @@ RSpec.describe Participant do
     it 'returns the last non-nil participant number' do
       create :participant
       last_participant = create :participant
-      expect(Participant.next_number).to eql last_participant.number + 1
+      expect(described_class.next_number).to eql last_participant.number + 1
     end
   end
 end
