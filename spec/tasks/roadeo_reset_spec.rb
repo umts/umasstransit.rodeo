@@ -3,15 +3,6 @@
 require 'rails_helper'
 
 RSpec.describe 'rake roadeo:reset' do
-  before :all do
-    @original_stdout = $stdout
-    $stdout = File.new(File::NULL, 'w')
-  end
-
-  after :all do
-    $stdout = @original_stdout
-  end
-
   before do
     create :bus
     participant = create :participant
@@ -60,12 +51,16 @@ RSpec.describe 'rake roadeo:reset' do
 
     it 'destroys all non-admins' do
       non_admin = create :user
-      admin = create :user, :admin
-
       task.execute
 
       user_ids = User.pluck(:id)
       expect(user_ids).not_to include(non_admin.id)
+    end
+
+    it 'does not destroy admins' do
+      admin = create :user, :admin
+      task.execute
+
       expect(user_ids).to include(admin.id)
     end
   end

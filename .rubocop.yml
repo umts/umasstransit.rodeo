@@ -24,6 +24,10 @@ Metrics/ClassLength:
 Metrics/MethodLength:
   Max: 20
 
+RSpec/DescribeClass:
+  Exclude:
+    - spec/tasks/**/*
+
 RSpec/MessageSpies:
   EnforcedStyle: receive
 
