@@ -3,8 +3,11 @@
 require 'rails_helper'
 
 RSpec.shared_examples 'they are not allowed to edit' do
-  it 'shows participants and scores' do
+  it 'shows participants' do
     expect(page).to have_text mp.participant.name
+  end
+
+  it 'shows scores' do
     expect(row).to have_text mp.score
   end
 
@@ -18,32 +21,31 @@ RSpec.describe 'viewing the scoreboard' do
   let!(:participant) { mp.participant }
   let(:row) { find('tr', text: participant.name) }
 
-  context 'while not logged in' do
-    before do
-      when_current_user_is nil
-      visit scoreboard_participants_path
-    end
+  before do
+    when_current_user_is user
+    visit scoreboard_participants_path
+  end
+
+  context 'when not logged in' do
+    let(:user) { nil }
 
     include_examples 'they are not allowed to edit'
   end
 
-  context 'while not an admin' do
-    before do
-      when_current_user_is :anyone
-      visit scoreboard_participants_path
-    end
+  context 'when not an admin' do
+    let(:user) { :anybody }
 
     include_examples 'they are not allowed to edit'
   end
 
-  context 'while an admin' do
-    it 'provides links to edit' do
-      when_current_user_is :admin
-      visit scoreboard_participants_path
+  context 'when an admin' do
+    let(:user) { :admin }
 
-      # The maneuver they've completed
+    it 'provides links to edit completed scores' do
       expect(row).to have_link(text: mp.score)
-      # At least one uncompleted score
+    end
+
+    it 'provides links to edit uncompleted scores' do
       expect(row).to have_link(text: '—')
     end
   end

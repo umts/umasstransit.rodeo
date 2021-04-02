@@ -1,5 +1,6 @@
 = render 'shared/title', title: 'Add Participant to Maneuvers Queue'
-= form_tag assign_number_participants_path, class: 'scoring form-inline' do
+= form_tag assign_number_participants_path,
+  id: 'add_to_queue', class: 'scoring form-inline' do
   = select_tag :id,
     options_from_collection_for_select(@unassigned, :id, :name),
     class: 'form-control mr-3 mb-3 mb-sm-0'

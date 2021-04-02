@@ -2,22 +2,23 @@
 
 require 'rails_helper'
 
-RSpec.describe 'signing out a user' do
-  it 'signs out the user' do
-    user = create :user
-    login_as user
+RSpec.describe 'interacting with the menu bar' do
+  before do
+    when_current_user_is :anybody
     visit root_path
-    click_on 'Logout'
-    expect(page).to have_text 'Signed out successfully.'
   end
-end
 
-RSpec.describe 'editing a user account' do
-  it 'allows the user to edit account information' do
-    user = create :user
-    login_as user
-    visit root_path
-    click_on 'Edit Account'
-    expect(current_path).to eql edit_user_registration_path
+  describe 'signing out a user' do
+    it 'signs out the user' do
+      click_on 'Logout'
+      expect(page).to have_text 'Signed out successfully.'
+    end
+  end
+
+  describe 'editing a user account' do
+    it 'allows the user to edit account information' do
+      click_on 'Edit Account'
+      expect(page).to have_current_path(edit_user_registration_path)
+    end
   end
 end

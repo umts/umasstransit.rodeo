@@ -27,6 +27,7 @@ Metrics/MethodLength:
 RSpec/DescribeClass:
   Exclude:
     - spec/tasks/**/*
+    - spec/system/**/*
 
 RSpec/MessageSpies:
   EnforcedStyle: receive

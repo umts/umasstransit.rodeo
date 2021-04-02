@@ -17,7 +17,7 @@ RSpec.describe 'finding a participant' do
            :perfect_score, maneuver: maneuver
   end
 
-  context 'finds the previous' do
+  describe 'previous participant' do
     context 'when called on first participant' do
       it 'gets first participant' do
         when_current_user_is :admin
@@ -38,7 +38,7 @@ RSpec.describe 'finding a participant' do
     end
   end
 
-  context 'finds the next' do
+  describe 'next participant' do
     context 'when called on non-last participant' do
       it 'redirects to the next participant' do
         when_current_user_is :admin
@@ -64,7 +64,7 @@ RSpec.describe 'finding a participant' do
         when_current_user_is :admin
         visit maneuver_participant_path(record3.id)
         click_link 'Next participant'
-        expect(current_path).to eql new_maneuver_participant_path
+        expect(page).to have_current_path(new_maneuver_participant_path, ignore_query: true)
       end
     end
   end
