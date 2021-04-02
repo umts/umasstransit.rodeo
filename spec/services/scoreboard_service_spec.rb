@@ -8,11 +8,16 @@ RSpec.describe ScoreboardService do
     scores.each { |model| let!(model) { create model } }
     let!(:participant) { create :participant }
 
+    # it "broadcasts quiz_scores to their update channel" do
+    #   chanel = QuizScoresChannel
+    #   expect { described_class.update with: quiz_score }
+    #     .to have_broadcasted_to("quiz_scores:update).from_channel(channel)
+    # end
     scores.each do |score|
       it "broadcasts #{score}s to their update channel" do
-        chanel = "#{score.to_s.camelize}sChannel".constantize
+        channel = "#{score.to_s.camelize}sChannel".constantize
         expect { described_class.update with: send(score) }
-          .to have_broadcasted_to("#{score}s:update").from_channel(chanel)
+          .to have_broadcasted_to("#{score}s:update").from_channel(channel)
       end
     end
 
