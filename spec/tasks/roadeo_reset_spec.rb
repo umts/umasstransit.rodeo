@@ -26,7 +26,7 @@ RSpec.describe 'rake roadeo:reset' do
     it 'does not destroy anything' do
       [Bus, Participant, CircleCheckScore, QuizScore,
        OnboardJudging, ManeuverParticipant, User].each do |model|
-        expect { task.execute }.not_to(change { model.count })
+        expect { task.execute }.not_to change(model, :count)
       end
     end
   end
@@ -52,16 +52,13 @@ RSpec.describe 'rake roadeo:reset' do
     it 'destroys all non-admins' do
       non_admin = create :user
       task.execute
-
-      user_ids = User.pluck(:id)
-      expect(user_ids).not_to include(non_admin.id)
+      expect(User.pluck(:id)).not_to include(non_admin.id)
     end
 
     it 'does not destroy admins' do
       admin = create :user, :admin
       task.execute
-
-      expect(user_ids).to include(admin.id)
+      expect(User.pluck(:id)).to include(admin.id)
     end
   end
 end
