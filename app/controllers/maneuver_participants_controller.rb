@@ -67,9 +67,7 @@ class ManeuverParticipantsController < ApplicationController
 
     obstacle_params.each do |key, value|
       obstacle = Obstacle.find_by id: key.split('_').last.to_i
-      if obstacle.present?
-        obstacles_hit[obstacle.id] = [obstacle.point_value, value.to_i]
-      end
+      obstacles_hit[obstacle.id] = [obstacle.point_value, value.to_i] if obstacle.present?
     end
 
     obstacles_hit
@@ -83,9 +81,7 @@ class ManeuverParticipantsController < ApplicationController
 
     target_params.each do |key, value|
       target = DistanceTarget.find_by id: key.split('_').last.to_i
-      if target.present?
-        distances_achieved[[target.minimum, target.multiplier]] = value.to_i
-      end
+      distances_achieved[[target.minimum, target.multiplier]] = value.to_i if target.present?
     end
 
     distances_achieved

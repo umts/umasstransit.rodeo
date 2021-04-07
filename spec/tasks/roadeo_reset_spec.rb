@@ -23,13 +23,13 @@ RSpec.describe 'rake roadeo:reset' do
   end
 
   it 'warns you and requires confirmation' do
-    allow(STDIN).to receive('gets').and_return("No\n")
+    allow($stdin).to receive('gets').and_return("No\n")
     expect { task.execute }.to output(/destroy all/).to_stdout
   end
 
   context 'when denied confirmation' do
     before :each do
-      allow(STDIN).to receive('gets').and_return("No\n")
+      allow($stdin).to receive('gets').and_return("No\n")
     end
 
     it 'does not destroy anything' do
@@ -42,7 +42,7 @@ RSpec.describe 'rake roadeo:reset' do
 
   context 'when granted confirmation' do
     before :each do
-      allow(STDIN).to receive('gets').and_return("YES\n")
+      allow($stdin).to receive('gets').and_return("YES\n")
     end
 
     it 'destroys all buses' do

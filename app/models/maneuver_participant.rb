@@ -1,6 +1,14 @@
 # frozen_string_literal: true
 
 class ManeuverParticipant < ApplicationRecord
+  MIN_SCORE = 0
+  MAX_SCORE = 50
+
+  REVERSE_PENALTY = 10
+  SPEED_PENALTY = 25
+  STOP_PENALTY = 25
+  CAD_PENALTY = 50
+
   include ScoreboardPublisher
 
   has_paper_trail
@@ -31,24 +39,35 @@ class ManeuverParticipant < ApplicationRecord
 
   private
 
-  # rubocop:disable Metrics/AbcSize
   def set_score
-    score = 50
-    obstacles_hit.each do |_obstacle_id, values_array|
-      # values array is [point_value, times hit]
-      score -= values_array.first * values_array.last
-    end
-    distances_achieved.each do |(minimum, multiplier), distance|
-      # if distance is less than minimum, don't add anything
-      score -= [0, (distance - minimum)].max * multiplier
-    end
-    score -= reversed_direction * 10
-    score -= 25 if maneuver.speed_target.present? && !speed_achieved?
-    score -= 25 if maneuver.counts_additional_stops? && made_additional_stops?
-    score -= 50 unless completed_as_designed?
-    # bound score between 0 and 50
-    score = [0, [score, 50].min].max
-    assign_attributes score: score
+    score = MAX_SCORE - obstacle_penalty - distance_penalty - reverse_penalty -
+            speed_penalty - additional_stops_penalty - cad_penalty
+    assign_attributes score: score.clamp(MIN_SCORE, MAX_SCORE)
   end
-  # rubocop:enable Metrics/AbcSize
+
+  def additional_stops_penalty
+    maneuver.counts_additional_stops? && made_additional_stops? ? STOP_PENALTY : 0
+  end
+
+  def cad_penalty
+    completed_as_designed? ? 0 : CAD_PENALTY
+  end
+
+  def distance_penalty
+    distances_achieved.each.sum do |(minimum, multiplier), distance|
+      [0, (distance - minimum)].max * multiplier
+    end
+  end
+
+  def obstacle_penalty
+    obstacles_hit.each_value.sum { |points, count| points * count }
+  end
+
+  def reverse_penalty
+    reversed_direction * REVERSE_PENALTY
+  end
+
+  def speed_penalty
+    maneuver.speed_target.present? && !speed_achieved? ? SPEED_PENALTY : 0
+  end
 end

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-require_relative 'concerns/scoreboard_publisher.rb'
+require_relative 'concerns/scoreboard_publisher'
 
 RSpec.describe ManeuverParticipant do
   it_behaves_like 'a scoreboard publisher'
