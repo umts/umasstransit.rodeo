@@ -5,7 +5,7 @@ class User < ApplicationRecord
 
   devise :database_authenticatable, :registerable, :validatable
   validates :name, :email, presence: true, uniqueness: { case_sensitive: false }
-  validates :email, format: /\A[^@]+@([^@\.]+\.)+[^@\.]+\z/
+  validates :email, format: /\A[^@]+@([^@.]+\.)+[^@.]+\z/
   validates :encrypted_password, presence: true
 
   scope :unapproved, -> { where.not approved: true }

@@ -2,6 +2,7 @@
 
 class OnboardJudging < ApplicationRecord
   include ScoreboardPublisher
+  MAX_SCORE = 50
 
   has_paper_trail
 
@@ -16,11 +17,6 @@ class OnboardJudging < ApplicationRecord
   before_validation :initialize_score_attributes
   before_validation :set_score
 
-  SCORE_COLUMNS = %w[
-    missed_turn_signals missed_horn_sounds missed_flashers abrupt_turns
-    times_moved_with_door_open unannounced_stops sudden_stops sudden_starts
-  ].freeze
-
   def creator
     user_id = versions.find_by(event: 'create').whodunnit
     User.find_by id: user_id if user_id
@@ -29,26 +25,31 @@ class OnboardJudging < ApplicationRecord
   private
 
   def initialize_score_attributes
-    SCORE_COLUMNS.each do |column_name|
+    penalties.each_key do |column_name|
       self[column_name] ||= 0
     end
   end
 
-  # rubocop:disable Metrics/AbcSize
+  def penalties
+    {
+      missed_turn_signals: 1,
+      missed_horn_sounds: 3,
+      missed_flashers: 3,
+      times_moved_with_door_open: 3,
+      unannounced_stops: 10,
+      sudden_stops: 1,
+      sudden_starts: 1,
+      abrupt_turns: 1
+    }
+  end
+
   def set_score
-    score = 50
-    score -= missed_turn_signals
-    score -= 3 * missed_horn_sounds
-    score -= 3 * missed_flashers
-    score -= 3 * times_moved_with_door_open
-    score -= 10 * unannounced_stops
-    score -= sudden_stops
-    score -= sudden_starts
-    score -= abrupt_turns
-    if minutes_elapsed >= 7
-      score -= 60 * (minutes_elapsed - 7) + seconds_elapsed
-    end
+    score = MAX_SCORE - time_penalty -
+            penalties.sum { |type, pen| self[type] * pen }
     assign_attributes score: score
   end
-  # rubocop:enable Metrics/AbcSize
+
+  def time_penalty
+    [0, (minutes_elapsed * 60 + seconds_elapsed) - (7 * 60)].max
+  end
 end
