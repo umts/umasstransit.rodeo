@@ -2,14 +2,8 @@
 
 class ScoreboardRenderer < ParticipantsController
   module ScoreboardRendererHelper
-    def javascript_include_tag(*sources)
-      options = sources.extract_options!.merge(debug: false)
-      super(*sources, options)
-    end
-
-    def stylesheet_link_tag(*sources)
-      options = sources.extract_options!.merge(debug: false)
-      super(*sources, options)
+    def debug_assets
+      false
     end
 
     def user_signed_in?
@@ -17,6 +11,7 @@ class ScoreboardRenderer < ParticipantsController
     end
   end
   helper ScoreboardRendererHelper
+
   skip_forgery_protection
 
   class << self
