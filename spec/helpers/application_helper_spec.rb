@@ -9,10 +9,12 @@ RSpec.describe ApplicationHelper do
     let(:path) { 'http://example.com/path' }
     let(:text) { 'My Link Text' }
     let(:call) { helper.nav_item(path, text, role: :admin) }
+
     before { allow(helper).to receive(:current_user).and_return user }
 
     context 'without required role' do
       let(:user) { create :user }
+
       it 'returns nil' do
         expect(call).to be nil
       end
@@ -29,12 +31,10 @@ RSpec.describe ApplicationHelper do
         expect(call).to have_link(text)
       end
 
-      context 'with a block given' do
-        it 'yields the block' do
-          expect do |block|
-            helper.nav_item(path, role: :admin, &block)
-          end.to yield_control
-        end
+      it 'yields a given block' do
+        expect do |block|
+          helper.nav_item(path, role: :admin, &block)
+        end.to yield_control
       end
     end
   end
