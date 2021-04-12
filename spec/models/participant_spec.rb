@@ -6,40 +6,43 @@ RSpec.describe Participant do
   let!(:participant) { create :participant }
 
   describe 'update_scoreboard' do
+    before do
+      allow(ScoreboardService).to receive(:update)
+    end
+
     it 'tells the scoreboard to add on create with number' do
-      expect(ScoreboardService).to receive(:update)
-        .with(with: instance_of(described_class), type: :add)
       create :participant
+      expect(ScoreboardService).to have_received(:update)
+        .with(with: instance_of(described_class), type: :add)
     end
 
     it 'does not tell the scoreboard to add on create without number' do
-      expect(ScoreboardService).not_to receive(:update)
       create :participant, number: nil
+      expect(ScoreboardService).not_to have_received(:update)
     end
 
     it 'tells the scoreboard to add when number is set' do
       new_participant = create :participant, number: nil
-      expect(ScoreboardService).to receive(:update)
-        .with(with: new_participant, type: :add)
       new_participant.update(number: 999)
+      expect(ScoreboardService).to have_received(:update)
+        .with(with: new_participant, type: :add)
     end
 
     it 'tells the scoreboard to update on update' do
-      expect(ScoreboardService).to receive(:update)
-        .with(with: participant)
       participant.update(name: 'Padington Bear')
+      expect(ScoreboardService).to have_received(:update).with(with: participant)
     end
 
     it 'tells the scoreboard to remove on destroy' do
-      expect(ScoreboardService).to receive(:update)
-        .with(with: participant, type: :remove)
       participant.destroy
+      expect(ScoreboardService).to have_received(:update)
+        .with(with: participant, type: :remove)
     end
 
     it 'tells the scoreboard to remove when number is un-set' do
-      expect(ScoreboardService).to receive(:update)
-        .with(with: participant, type: :remove)
       participant.update(number: nil)
+      expect(ScoreboardService).to have_received(:update)
+        .with(with: participant, type: :remove)
     end
   end
 

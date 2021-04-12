@@ -29,8 +29,5 @@ RSpec/DescribeClass:
     - spec/tasks/**/*
     - spec/system/**/*
 
-RSpec/MessageSpies:
-  EnforcedStyle: receive
-
 Style/Documentation:
   Enabled: false
