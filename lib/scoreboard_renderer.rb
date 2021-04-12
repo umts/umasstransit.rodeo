@@ -29,8 +29,4 @@ class ScoreboardRenderer < ParticipantsController
       super(:scoreboard, assigns: assigns)
     end
   end
-
-  def flash
-    {}
-  end
 end
