@@ -6,39 +6,18 @@
     - if user_signed_in?
       %ul.navbar-nav.mr-auto
         - if Participant.any?
-          %li.nav-item
-            = link_to scoreboard_participants_path do
-              %button.mx-3.btn.btn-outline-primary{type: :button} Scoreboard
-        - if current_user.admin? || current_user.judge?
-          %li.nav-item
-            = link_to maneuvers_path do
-              %button.mx-3.btn.btn-outline-primary{type: :button} Maneuvers
-        - if current_user.admin? || current_user.circle_check_scorer?
-          %li.nav-item
-            = link_to circle_check_scores_path do
-              %button.mx-3.btn.btn-outline-primary{type: :button} Circle Check
-        - if current_user.admin? || current_user.quiz_scorer?
-          %li.nav-item
-            = link_to quiz_scores_path do
-              %button.mx-3.btn.btn-outline-primary{type: :button} Quiz
-        - if current_user.admin? || current_user.master_of_ceremonies?
-          %li.nav-item
-            = link_to participants_path do
-              %button.mx-3.btn.btn-outline-primary{type: :button} Participants
-          %li.nav-item
-            = link_to buses_path do
-              %button.mx-3.btn.btn-outline-primary{type: :button} Buses
-        - if current_user.admin?
-          %li.nav-item
-            = link_to admin_users_path do
-              %button.mx-3.btn.btn-outline-primary{type: :button} Roles
-          %li.nav-item
-            = link_to manage_admin_users_path do
-              %button.mx-3.btn.btn-outline-primary{type: :button}
-                Manage Users
-                - unless User.where(approved: false).count.zero?
-                  %span.badge.badge-warning
-                    = User.where(approved: false).count
+          = nav_item scoreboard_participants_path, 'Scoreboard'
+        = nav_item maneuvers_path, 'Maneuvers', role: :judge
+        = nav_item circle_check_scores_path, 'Circle Check', role: :circle_check_scorer
+        = nav_item quiz_scores_path, 'Quiz', role: :quiz_scorer
+        = nav_item participants_path, 'Participants', role: :master_of_ceremonies
+        = nav_item buses_path, 'Buses', role: :master_of_ceremonies
+        = nav_item admin_users_path, 'Roles', role: :admin
+        = nav_item manage_admin_users_path, role: :admin do
+          Manage Users
+          - unless User.where(approved: false).count.zero?
+            %span.badge.badge-warning
+              = User.where(approved: false).count
       .dropdown
         %button.btn.nav-item.dropdown-toggle{data: {toggle: 'dropdown'}}
           = current_user.name
@@ -46,11 +25,9 @@
           = link_to 'Edit Account', edit_user_registration_path, class: 'dropdown-item'
           = link_to 'Logout', destroy_user_session_path, method: :delete, class: 'dropdown-item'
     - elsif !@archiving
-      .navbar-nav.ml-auto
-        = link_to new_user_session_path do
-          %button.mx-3.btn.btn-outline-primary.nav-item.login{type: :button} Log in
-        = link_to new_user_registration_path do 
-          %button.mx-3.btn.btn-outline-primary.nav-item.login{type: :button} Request a login
+      %ul.navbar-nav.ml-auto
+        = nav_item new_user_session_path, 'Log in'
+        = nav_item new_user_registration_path 'Request a login'
     - else
       %h1.navbar-text.ml-auto
         #{Time.now.year} Roadeo Final Results
