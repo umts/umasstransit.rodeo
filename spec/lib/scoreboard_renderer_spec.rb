@@ -9,8 +9,9 @@ RSpec.describe ScoreboardRenderer do
     let(:participant) { create :participant }
     let(:maneuver) { create :maneuver }
     let(:output) { Nokogiri::HTML(described_class.render) }
-    let(:css) { ->(*args) { output.css(*args) } }
-    let(:sb) { 'table.scoreboard tbody' }
+    let(:nav) { output.css('nav #mainnav') }
+    let(:scoreboard) { output.css('table.scoreboard tbody') }
+
     before do
       create :maneuver_participant, maneuver: maneuver, participant: participant
     end
@@ -20,38 +21,38 @@ RSpec.describe ScoreboardRenderer do
     end
 
     it 'has non-debug stylesheets' do
-      stylesheets = css['head link[rel="stylesheet"]'].map { |s| s['href'] }
+      stylesheets = output.css('head link[rel="stylesheet"]').map { |s| s['href'] }
       expect(stylesheets).not_to include(match('debug'))
     end
 
     it 'has non-debug javascript' do
-      js = css['script[src]'].map { |s| s['src'] }
+      js = output.css('script[src]').map { |s| s['src'] }
       expect(js).not_to include(match('debug'))
     end
 
     it 'has no navigation buttons' do
-      expect(css['nav #mainnav a']).to be_empty
+      expect(nav.css('a')).to be_empty
     end
 
     it 'has a "Final Results" header' do
-      expect(css['nav h1', text: 'Final Results']).to be_present
+      expect(nav.css('h1', text: 'Final Results')).to be_present
     end
 
     it 'has the scoreboard table' do
-      expect(css[sb]).to be_present
+      expect(scoreboard).to be_present
     end
 
     it 'has the participants' do
-      expect(css["#{sb} tr"].count).to be(1)
-      expect(css["#{sb} td.participant", text: participant.name]).to be_present
+      expect(scoreboard.css('tr').count).to be(1)
+      expect(scoreboard.css('td.participant', text: participant.name)).to be_present
     end
 
     it 'has the maneuvers' do
       sel = <<~CSS.squish
-        #{sb} tr[data-participant-id="#{participant.id}"]
+        tr[data-participant-id="#{participant.id}"]
         td[data-maneuver-id="#{maneuver.id}"]
       CSS
-      expect(css[sel]).to be_present
+      expect(scoreboard.css(sel)).to be_present
     end
   end
 end
