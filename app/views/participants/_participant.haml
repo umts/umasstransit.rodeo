@@ -12,14 +12,14 @@
       = score_cell record,
         allowed: @can_edit_scores,
         new: new_maneuver_participant_path(maneuver: maneuver.name, participant: participant.number),
-        edit: url_for(record)
+        edit: record
 
   - onboard_judging = participant.onboard_judging
   %td.onboard-judging{data: {onboard_judging_id: onboard_judging.try(:id)}.merge(score_data onboard_judging)}
     = score_cell onboard_judging,
       allowed: @can_edit_scores,
       new: new_onboard_judging_path(participant: participant.number),
-      edit: url_for(onboard_judging)
+      edit: onboard_judging
 
   %td.maneuver-score{data: {math: 'row-maneuversum', math_mask: '#0'}}= participant.maneuver_score
 
