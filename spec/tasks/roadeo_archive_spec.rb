@@ -31,12 +31,6 @@ RSpec.describe 'rake roadeo:archive:assets' do
   let(:assets) { ARCHIVE.join('assets') }
   let(:asset_files) { assets.glob('*').map(&:to_path) }
 
-  after(:all) do
-    ac = Rake::Task['assets:clobber']
-    ac.reenable
-    ac.invoke
-  end
-
   it 'creates the assets directory' do
     task.invoke
     expect(assets).to exist
@@ -55,10 +49,5 @@ RSpec.describe 'rake roadeo:archive:assets' do
     fontdir = assets.join('@fortawesome/fontawesome-free/webfonts')
     expect(fontdir).to exist
     expect(fontdir.glob('fa-*')).to be_present
-  end
-
-  it 'Clobbers generated assets in public/assets' do
-    expect(Rake::Task['assets:clobber']).to receive(:invoke).and_call_original
-    task.invoke
   end
 end

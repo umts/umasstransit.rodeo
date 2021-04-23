@@ -19,10 +19,11 @@ namespace :roadeo do
       end
     end
 
-    desc 'Compile assets and add them to `/archive/assets/`'
-    task assets: [:environment, 'assets:precompile'] do
-      FileUtils.cp_r(Rails.root.join('public/assets'), ARCHIVE)
-      Rake::Task['assets:clobber'].invoke unless Rails.env.production?
+    desc 'Compile assets to `/archive/assets/`'
+    task assets: :environment do
+      app = Rails.application
+      manifest = Sprockets::Manifest.new(app.assets, ARCHIVE.join('assets'))
+      manifest.compile('manifest.js')
     end
   end
 end
