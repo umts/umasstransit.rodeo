@@ -47,7 +47,7 @@ group :test do
   gem 'codeclimate-test-reporter', '~> 1.0'
   gem 'rack_session_access'
   gem 'rails-controller-testing'
-  gem 'rspec-rails', '~> 3.7'
+  gem 'rspec-rails'
   gem 'simplecov'
   gem 'timecop'
   gem 'webdrivers'
