@@ -4,7 +4,8 @@ AllCops:
   Exclude:
     - 'bin/**/*'
     - 'config.ru'
-    - 'config/**/*'
+    - 'config/{environments,initializers}/*'
+    - 'config/{application,boot,environment,puma,spring}.rb'
     - 'db/migrate/*'
     - 'db/schema.rb'
     - 'vendor/**/*'
@@ -14,6 +15,7 @@ Metrics/AbcSize:
   Max: 20
 Metrics/BlockLength:
   Exclude:
+    - config/routes.rb
     - db/seeds.rb
     - spec/**/*
 Metrics/ClassLength:
