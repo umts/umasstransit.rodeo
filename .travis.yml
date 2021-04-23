@@ -2,20 +2,25 @@ dist: focal
 services:
   - mysql
 language: ruby
-rvm: 2.6.6
 env: CODECLIMATE_REPO_TOKEN=b1b9b856c0aa49c7733aedea0b460b1c118c2ff1296db77bdcf762e6e8ff91c5
 before_install:
   - yes | gem update --system --force
   - gem install bundler
+  - nvm install 'lts/*'
+  - nvm use 'lts/*'
+install:
+  - bundle install --jobs=3 --retry=3
+  - yarn install
 before_script:
   - cp config/database.yml.example config/database.yml
   - bundle exec rake db:reset
-  - nvm install 'lts/*'
-  - nvm use 'lts/*'
-  - yarn install
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
 script:
   - bundle exec rspec
-  - bundle exec codeclimate-test-reporter
+after_script:
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
 notifications:
   email:
     on_success: never
