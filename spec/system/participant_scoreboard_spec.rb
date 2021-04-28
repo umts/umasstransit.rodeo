@@ -2,32 +2,54 @@
 
 require 'rails_helper'
 
-RSpec.describe 'scoring appears properly' do
+RSpec.describe 'viewing the scoreboard' do
   let!(:participant) { create :participant }
-  it 'when participant is intialized' do
+
+  it 'shows the scores' do
     visit scoreboard_participants_path
     expect(page).to have_text participant.total_score
   end
-  it 'when participant has a quiz score' do
-    quiz_score = create :quiz_score
-    participant.update quiz_score: quiz_score
-    visit scoreboard_participants_path
-    expect(page).to have_text quiz_score.score
+
+  context 'when participant has a quiz score' do
+    let!(:quiz_score) { create :quiz_score }
+
+    before do
+      participant.update quiz_score: quiz_score
+    end
+
+    it 'shows the quiz score' do
+      visit scoreboard_participants_path
+      expect(page).to have_text quiz_score.score
+    end
   end
-  it 'when participant has a circle check score' do
-    circle_check_score = create :circle_check_score
-    participant.update circle_check_score: circle_check_score
-    visit scoreboard_participants_path
-    expect(page).to have_text circle_check_score.score
+
+  context 'when participant has a circle check score' do
+    let!(:cc_score) { create :circle_check_score }
+
+    before do
+      participant.update circle_check_score: cc_score
+    end
+
+    it 'shows the circle check score' do
+      visit scoreboard_participants_path
+      expect(page).to have_text cc_score.score
+    end
   end
-  it 'when participant has maneuver scores' do
-    maneuver_participant = create :maneuver_participant, :perfect_score,
-                                  participant: participant
-    visit scoreboard_participants_path
-    expect(page).to have_text maneuver_participant.score
+
+  context 'when participant has maneuver scores' do
+    let!(:mp) { create :maneuver_participant, :perfect_score, participant: participant }
+
+    it 'shows the maneuver score' do
+      visit scoreboard_participants_path
+      expect(page).to have_text mp.score
+    end
   end
+
   it 'shows m-dash when participant has no scores' do
     visit scoreboard_participants_path
-    expect(page).to have_text '—'
+
+    within('tr', text: participant.name) do
+      expect(page).to have_text '—'
+    end
   end
 end

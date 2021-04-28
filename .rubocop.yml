@@ -1,7 +1,8 @@
-require: rubocop-rails
+require:
+  - rubocop-rails
+  - rubocop-rspec
 
 AllCops:
-  TargetRubyVersion: 2.6
   Exclude:
     - 'bin/**/*'
     - 'config.ru'
@@ -21,6 +22,11 @@ Metrics/ClassLength:
   Max: 150
 Metrics/MethodLength:
   Max: 20
+
+RSpec/DescribeClass:
+  Exclude:
+    - spec/tasks/**/*
+    - spec/system/**/*
 
 Style/Documentation:
   Enabled: false
