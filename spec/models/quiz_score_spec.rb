@@ -4,9 +4,10 @@ require 'rails_helper'
 require_relative 'concerns/scoreboard_publisher'
 
 RSpec.describe QuizScore do
+  let(:participant) { create :participant }
+
   it_behaves_like 'a scoreboard publisher'
 
-  let(:participant) { create :participant }
   describe 'score' do
     it 'score should have the correct value' do
       score = create :quiz_score, participant: participant

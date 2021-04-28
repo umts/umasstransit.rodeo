@@ -5,6 +5,7 @@ require 'rails_helper'
 RSpec.describe ScoreboardHelper do
   describe '.sort_list' do
     before { create :maneuver }
+
     let(:asc) { 0 }
     let(:desc) { 1 }
     let(:man_count) do

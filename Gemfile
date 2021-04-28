@@ -16,7 +16,7 @@ gem 'mysql2', '~> 0.5.2'
 gem 'openssl'
 gem 'paper_trail'
 gem 'puma'
-gem 'rails', '~> 6.0.3'
+gem 'rails', '~> 6.1.3'
 gem 'sassc-rails'
 gem 'uglifier'
 gem 'underscore-rails'
@@ -35,8 +35,9 @@ group :development do
   gem 'capistrano-pending', require: false
   gem 'capistrano-rails', require: false
   gem 'listen', '~> 3.0.5'
-  gem 'rubocop'
-  gem 'rubocop-rails'
+  gem 'rubocop', require: false
+  gem 'rubocop-rails', require: false
+  gem 'rubocop-rspec', require: false
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
@@ -46,7 +47,7 @@ group :test do
   gem 'capybara'
   gem 'rack_session_access'
   gem 'rails-controller-testing'
-  gem 'rspec-rails', '~> 3.7'
+  gem 'rspec-rails'
   gem 'simplecov'
   gem 'timecop'
   gem 'webdrivers'

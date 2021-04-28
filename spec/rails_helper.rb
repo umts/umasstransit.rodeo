@@ -5,7 +5,6 @@ require File.expand_path('../config/environment', __dir__)
 
 require 'spec_helper'
 
-require 'action_cable/testing/rspec'
 require 'capybara/rails'
 require 'factory_bot_rails'
 require 'rack_session_access/capybara'
