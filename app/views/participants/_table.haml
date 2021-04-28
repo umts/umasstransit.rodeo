@@ -8,8 +8,8 @@
         %th
         %th
     %tbody
-      = form_for Participant.new do |f|
-        %tr
+      = form_with model: Participant.new, local: true do |f|
+        %tr#new_participant
           %td= f.text_field :name, placeholder: 'Name', class: 'form-control'
           %td= f.number_field :number, class: 'form-control'
           %td= f.collection_select :bus_id, @buses, :id, :number,
@@ -17,14 +17,16 @@
           %td= f.submit 'Add', class: 'btn btn-primary'
           %td
       - @participants.each do |participant|
-        %tr
-          = form_for participant do |f|
+        %tr{ data: { participant_id: participant.id } }
+          = form_with model: participant, namespace: participant.id, local: true do |f|
             %td= f.text_field :name, value: participant.name,
               class: 'form-control', required: true
             %td= f.number_field :number, value: participant.number,
               class: 'form-control'
             %td= f.collection_select :bus_id, @buses, :id, :number,
-              {value: participant.try(:bus_id), include_blank: true}, { class: 'form-control' }
+              {value: participant.try(:bus_id), include_blank: true},
+              { class: 'form-control' }
             %td= f.submit 'Save', class: 'btn btn-primary'
-          %td= button_to 'Remove', participant_path(participant), method: :delete, class: 'btn btn-danger'
+          %td= button_to 'Remove', participant_path(participant),
+            method: :delete, class: 'btn btn-danger'
 

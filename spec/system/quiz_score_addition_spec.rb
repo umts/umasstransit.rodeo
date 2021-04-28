@@ -3,70 +3,107 @@
 require 'rails_helper'
 
 RSpec.describe 'adding a quiz score' do
+  let(:role) { :admin }
   let!(:participant) { create :participant }
-  it 'shows user name' do
-    when_current_user_is :admin
+
+  before do
+    when_current_user_is role
     visit quiz_scores_path
+  end
+
+  it 'shows user name' do
     fill_in 'quiz_score_points_achieved', with: '2'
     click_on 'Save score'
     expect(page).to have_text participant.name.to_s
   end
+
   context 'with judge privilege' do
+    let(:role) { :judge }
+
     it 'will not add the quiz score' do
-      when_current_user_is :judge
-      visit quiz_scores_path
+      fill_in 'quiz_score_points_achieved', with: '70'
+      click_on 'Save score'
+      expect(participant.quiz_score).to be_blank
+    end
+
+    it 'informs you of failure' do
       fill_in 'quiz_score_points_achieved', with: '70'
       click_on 'Save score'
       expect(page).to have_text 'You are not authorized to make that action.'
     end
   end
+
   context 'with quiz scorer privilege' do
+    let(:field) { 'quiz_score_points_achieved' }
+    let(:role) { :quiz_scorer }
+
     it 'adds the quiz score' do
-      when_current_user_is :quiz_scorer
-      visit quiz_scores_path
-      fill_in 'quiz_score_points_achieved', with: '50'
+      fill_in field, with: '50'
+      click_on 'Save score'
+      expect(page).to have_field(field, with: '50.0')
+    end
+
+    it 'informs you of success' do
+      fill_in field, with: '50'
       click_on 'Save score'
       expect(page).to have_text 'Quiz score was saved.'
-      input = find_field :quiz_score_points_achieved
-      expect(input.value).to eql '50.0'
     end
   end
+
   context 'with admin privilege' do
+    let(:field) { 'quiz_score_points_achieved' }
+
     it 'adds the quiz score' do
-      when_current_user_is :admin
-      visit quiz_scores_path
-      fill_in 'quiz_score_points_achieved', with: '50'
+      fill_in field, with: '50'
+      click_on 'Save score'
+      expect(page).to have_field(field, with: '50.0')
+    end
+
+    it 'informs you of success' do
+      fill_in field, with: '50'
       click_on 'Save score'
       expect(page).to have_text 'Quiz score was saved.'
-      input = find_field :quiz_score_points_achieved
-      expect(input.value).to eql '50.0'
     end
   end
+
   context 'with blank fields' do
     it 'will not add a quiz score' do
-      when_current_user_is :admin
-      visit quiz_scores_path
+      click_on 'Save score'
+      expect(participant.quiz_score).to be_blank
+    end
+
+    it 'informs you of failure' do
       click_on 'Save score'
       expect(page).to have_text "Points achieved can't be blank"
     end
   end
-  context 'when out of range' do
-    it 'will not accept negative number' do
-      when_current_user_is :admin
-      visit quiz_scores_path
+
+  context 'when score is negative' do
+    before do
       fill_in 'quiz_score_points_achieved', with: '-14'
+    end
+
+    it 'will not accept the score' do
       click_on 'Save score'
       expected = 'Points achieved must be greater than or equal to 0'
       expect(page).to have_text expected
     end
-    it 'will not accept positive number greater than total points' do
-      when_current_user_is :admin
-      visit quiz_scores_path
+  end
+
+  context 'when score is above the maximum' do
+    let!(:max_score) do
       input = find_field 'quiz_score_total_points'
-      out_of_range = input.value.to_i + 1
-      fill_in 'quiz_score_points_achieved', with: out_of_range.to_s
+      input.value.to_i
+    end
+    let!(:bad_score) { (max_score + 1).to_s }
+
+    before do
+      fill_in 'quiz_score_points_achieved', with: bad_score
+    end
+
+    it 'will not accept positive number greater than total points' do
       click_on 'Save score'
-      expected = "Points achieved must be less than or equal to #{input.value}"
+      expected = "Points achieved must be less than or equal to #{max_score}"
       expect(page).to have_text expected
     end
   end

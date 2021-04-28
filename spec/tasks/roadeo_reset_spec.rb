@@ -3,16 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'rake roadeo:reset' do
-  before :all do
-    @original_stdout = $stdout
-    $stdout = File.new(File::NULL, 'w')
-  end
-
-  after :all do
-    $stdout = @original_stdout
-  end
-
-  before :each do
+  before do
     create :bus
     participant = create :participant
     create :circle_check_score, participant: participant
@@ -28,20 +19,20 @@ RSpec.describe 'rake roadeo:reset' do
   end
 
   context 'when denied confirmation' do
-    before :each do
+    before do
       allow($stdin).to receive('gets').and_return("No\n")
     end
 
     it 'does not destroy anything' do
       [Bus, Participant, CircleCheckScore, QuizScore,
        OnboardJudging, ManeuverParticipant, User].each do |model|
-        expect { task.execute }.not_to(change { model.count })
+        expect { task.execute }.not_to change(model, :count)
       end
     end
   end
 
   context 'when granted confirmation' do
-    before :each do
+    before do
       allow($stdin).to receive('gets').and_return("YES\n")
     end
 
@@ -60,13 +51,14 @@ RSpec.describe 'rake roadeo:reset' do
 
     it 'destroys all non-admins' do
       non_admin = create :user
-      admin = create :user, :admin
-
       task.execute
+      expect(User.pluck(:id)).not_to include(non_admin.id)
+    end
 
-      user_ids = User.pluck(:id)
-      expect(user_ids).not_to include(non_admin.id)
-      expect(user_ids).to include(admin.id)
+    it 'does not destroy admins' do
+      admin = create :user, :admin
+      task.execute
+      expect(User.pluck(:id)).to include(admin.id)
     end
   end
 end

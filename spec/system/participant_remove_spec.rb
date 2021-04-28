@@ -3,9 +3,10 @@
 require 'rails_helper'
 
 RSpec.describe 'removing a participant' do
-  before :each do
+  before do
     create :participant
   end
+
   context 'with admin privilege' do
     it 'removes a participant' do
       when_current_user_is :admin

@@ -1,4 +1,6 @@
-require: rubocop-rails
+require:
+  - rubocop-rails
+  - rubocop-rspec
 
 AllCops:
   Exclude:
@@ -22,6 +24,11 @@ Metrics/ClassLength:
   Max: 150
 Metrics/MethodLength:
   Max: 20
+
+RSpec/DescribeClass:
+  Exclude:
+    - spec/tasks/**/*
+    - spec/system/**/*
 
 Style/Documentation:
   Enabled: false

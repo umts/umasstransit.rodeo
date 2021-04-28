@@ -21,13 +21,14 @@ RSpec.describe User do
   describe 'Devise method overwrites' do
     describe 'active_for_authentication' do
       subject { create :user, :unapproved }
+
       it { is_expected.not_to be_active_for_authentication }
     end
 
     describe 'inactive_message' do
       it 'returns :not_approved for an unapproved user' do
         user = create :user, :unapproved
-        expect(user.inactive_message).to eql :not_approved
+        expect(user.inactive_message).to be :not_approved
       end
     end
   end
