@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   devise_for :users
 
@@ -32,7 +34,7 @@ Rails.application.routes.draw do
 
   resources :quiz_scores, only: %i[create index update]
 
-  namespace :admin do 
+  namespace :admin do
     resources :users, only: %i[destroy index update] do
       collection do
         get :manage
@@ -42,5 +44,4 @@ Rails.application.routes.draw do
       end
     end
   end
-
 end
