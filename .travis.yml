@@ -2,7 +2,10 @@ dist: focal
 services:
   - mysql
 language: ruby
-env: CC_TEST_REPORTER_ID=b1b9b856c0aa49c7733aedea0b460b1c118c2ff1296db77bdcf762e6e8ff91c5
+cache: bundler
+env:
+  global:
+    - CC_TEST_REPORTER_ID=b1b9b856c0aa49c7733aedea0b460b1c118c2ff1296db77bdcf762e6e8ff91c5
 before_install:
   - yes | gem update --system --force
   - gem install bundler
