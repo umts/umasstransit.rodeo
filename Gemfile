@@ -45,7 +45,6 @@ end
 group :test do
   gem 'action-cable-testing'
   gem 'capybara'
-  gem 'codeclimate-test-reporter', '~> 1.0'
   gem 'rack_session_access'
   gem 'rails-controller-testing'
   gem 'rspec-rails'
