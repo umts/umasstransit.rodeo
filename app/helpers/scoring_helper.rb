@@ -34,7 +34,7 @@ module ScoringHelper
     }
     disabled = (options[types[type][1]] && value == options[types[type][1]])
 
-    button_tag(class: 'btn btn-primary increment input-group-append',
+    button_tag(class: 'btn btn-primary increment input-group-append mx-3',
                type: :button,
                data: { field: sanitize_to_id(target_field),
                        type: types[type][0] },
