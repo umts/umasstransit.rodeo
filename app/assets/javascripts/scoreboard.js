@@ -3,6 +3,8 @@ $(document).ready(function(){
     var scoreboard = $('.scoreboard-content').get(0);
     if (scoreboard.requestFullscreen) {
       scoreboard.requestFullscreen();
+    } else if (scoreboard.webkitRequestFullscreen) { /* Safari */
+      scoreboard.webkitRequestFullscreen();
     }
   });
 
