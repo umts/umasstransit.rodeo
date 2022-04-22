@@ -21,8 +21,8 @@ module ScoringHelper
     end
     value ||= options[:value]
     tag.div(class: 'input-group input-group-lg') do
-      concat number_field_tag name, value, options
       concat increment_button name, value, :-, options
+      concat number_field_tag name, value, options
       concat increment_button name, value, :+, options
     end
   end
@@ -34,7 +34,7 @@ module ScoringHelper
     }
     disabled = (options[types[type][1]] && value == options[types[type][1]])
 
-    button_tag(class: 'btn btn-primary increment input-group-append ml-3',
+    button_tag(class: 'btn btn-primary increment input-group-append',
                type: :button,
                data: { field: sanitize_to_id(target_field),
                        type: types[type][0] },
