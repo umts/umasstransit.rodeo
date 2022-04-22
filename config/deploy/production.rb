@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-remote_user = Net::SSH::Config.for('umasstransit.rodeo')[:user] || ENV['USER']
-server 'umasstransit.rodeo',
-       roles: %w[app db web],
-       user: remote_user
-set :tmp_dir, "/tmp/#{remote_user}"
+server 'umasstransit.rodeo', roles: %w[app db web]
+
+set :default_env, { 'SECRET_KEY_BASE' => 'NOT_A_REAL_SECRET_AND_THATS_OK' }
