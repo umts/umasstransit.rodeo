@@ -14,8 +14,8 @@ $(document).ready(function(){
       field.val(value).change();
       var min = field.attr('min');
       var max = field.attr('max');
-      if(min && value === parseInt(min)) $(this).prop('disabled', true);
-      if(max && value === parseInt(max)) $(this).prop('disabled', true);
+      if(value === parseInt(min)) $(this).prop('disabled', true);
+      if(value === parseInt(max)) $(this).prop('disabled', true);
     }
   });
 });
