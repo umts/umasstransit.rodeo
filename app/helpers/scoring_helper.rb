@@ -20,10 +20,10 @@ module ScoringHelper
       options.update(min: range.min, max: range.max)
     end
     value ||= options[:value]
-    tag.div(class: 'input-group input-group-lg') do
+    tag.div(class: 'input-group') do
+      concat tag.div(class: 'input-group-prepend') { increment_button name, value, :-, options }
       concat number_field_tag name, value, options
-      concat increment_button name, value, :-, options
-      concat increment_button name, value, :+, options
+      concat tag.div(class: 'input-group-append') { increment_button name, value, :+, options }
     end
   end
 
