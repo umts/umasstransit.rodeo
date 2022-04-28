@@ -3,8 +3,7 @@ $(document).ready(function(){
 
   $('.scoring').on('click', 'button.increment', function(){
     var field_name = $(this).data('field');
-    var other_button = document.querySelectorAll("[data-field='" + field_name + "']");
-    other_button.forEach(function(element){ element.disabled = false});
+    $("[data-field='" + field_name + "']").prop('disabled', false);
     var field = $('input[type=number]#' + field_name);
     if(field){
       var value = parseInt(field.val());
