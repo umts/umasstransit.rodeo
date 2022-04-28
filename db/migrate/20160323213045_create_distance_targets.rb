@@ -1,4 +1,4 @@
-class CreateDistanceTargets < ActiveRecord::Migration
+class CreateDistanceTargets < ActiveRecord::Migration[4.2]
   def change
     create_table :distance_targets do |t|
       t.integer :x

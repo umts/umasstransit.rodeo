@@ -1,4 +1,4 @@
-class CreateObstacles < ActiveRecord::Migration
+class CreateObstacles < ActiveRecord::Migration[4.2]
   def change
     create_table :obstacles do |t|
       t.integer :x

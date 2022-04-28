@@ -1,4 +1,4 @@
-class RecreateBuses < ActiveRecord::Migration
+class RecreateBuses < ActiveRecord::Migration[4.2]
   def change
     create_table :buses do |t|
       t.string :number
