@@ -11,12 +11,10 @@ namespace :roadeo do
     desc 'Archive the HTML scoreboard to `/archive/index.html`'
     task index: ARCHIVE.join('index.html')
 
-    file ARCHIVE.join('index.html') => :environment do |t|
+    file ARCHIVE.join('index.html') => :environment do |task|
       require 'scoreboard_renderer'
 
-      File.open(t.name, 'w') do |f|
-        f.write ScoreboardRenderer.render
-      end
+      File.write task.name, ScoreboardRenderer.render
     end
 
     desc 'Compile assets to `/archive/assets/`'
