@@ -22,7 +22,8 @@ namespace :roadeo do
     desc 'Compile assets to `/archive/assets/`'
     task assets: :environment do
       app = Rails.application
-      manifest = Sprockets::Manifest.new(app.assets, ARCHIVE.join('assets'))
+      assets = app.assets || Sprockets::Railtie.build_environment(app)
+      manifest = Sprockets::Manifest.new(assets, ARCHIVE.join('assets'))
       manifest.compile('manifest.js')
     end
   end
