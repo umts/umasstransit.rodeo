@@ -1,4 +1,4 @@
-class CreateManeuverParticipants < ActiveRecord::Migration
+class CreateManeuverParticipants < ActiveRecord::Migration[4.2]
   def change
     create_table :maneuver_participants do |t|
       t.integer :maneuver_id

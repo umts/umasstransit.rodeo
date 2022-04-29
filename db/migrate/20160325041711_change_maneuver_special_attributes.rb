@@ -1,4 +1,4 @@
-class ChangeManeuverSpecialAttributes < ActiveRecord::Migration
+class ChangeManeuverSpecialAttributes < ActiveRecord::Migration[4.2]
   def up
     remove_column :maneuvers, :has_stops_count, :boolean
     add_column :maneuvers, :counts_additional_stops, :boolean

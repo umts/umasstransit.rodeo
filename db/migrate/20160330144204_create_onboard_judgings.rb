@@ -1,4 +1,4 @@
-class CreateOnboardJudgings < ActiveRecord::Migration
+class CreateOnboardJudgings < ActiveRecord::Migration[4.2]
   def change
     create_table :onboard_judgings do |t|
       t.integer :participant_id

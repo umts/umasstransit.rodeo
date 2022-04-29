@@ -1,4 +1,4 @@
-class CreateQuizScores < ActiveRecord::Migration
+class CreateQuizScores < ActiveRecord::Migration[4.2]
   def change
     create_table :quiz_scores do |t|
       t.float :points_achieved

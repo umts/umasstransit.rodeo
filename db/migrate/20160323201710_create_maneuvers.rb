@@ -1,4 +1,4 @@
-class CreateManeuvers < ActiveRecord::Migration
+class CreateManeuvers < ActiveRecord::Migration[4.2]
   def change
     create_table :maneuvers do |t|
       t.string :name

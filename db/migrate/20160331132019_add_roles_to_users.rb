@@ -1,4 +1,4 @@
-class AddRolesToUsers < ActiveRecord::Migration
+class AddRolesToUsers < ActiveRecord::Migration[4.2]
   def change
     add_column :users, :judge, :boolean, null: false, default: false
     add_column :users, :quiz_scorer, :boolean, null: false, default: false
