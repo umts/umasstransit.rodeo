@@ -7,7 +7,7 @@ class QuizScore < ApplicationRecord
 
   belongs_to :participant
 
-  validates :participant, :points_achieved, :total_points, presence: true
+  validates :points_achieved, :total_points, presence: true
   validates :participant, uniqueness: true
   validates :points_achieved, numericality: {
     less_than_or_equal_to: :total_points,

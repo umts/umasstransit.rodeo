@@ -20,7 +20,7 @@ class ManeuverParticipant < ApplicationRecord
   serialize :distances_achieved, Hash
 
   validates :maneuver, uniqueness: { scope: :participant }
-  validates :maneuver, :participant, :score, :reversed_direction, presence: true
+  validates :score, :reversed_direction, presence: true
 
   before_validation :set_score
 
