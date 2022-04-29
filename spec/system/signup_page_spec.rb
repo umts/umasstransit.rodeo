@@ -54,8 +54,8 @@ RSpec.describe 'signing up' do
       end
     end
 
-    %w[Maneuver Circle\ Check Quiz
-       Participants Buses Roles Manage\ Users].each do |nav_item|
+    ['Maneuver', 'Circle Check', 'Quiz', 'Participants',
+     'Buses', 'Roles', 'Manage Users'].each do |nav_item|
       it "does not allow the user to visit the #{nav_item} page" do
         within 'nav' do
           expect(current_scope).not_to have_text(nav_item)

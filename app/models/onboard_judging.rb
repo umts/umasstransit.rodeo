@@ -50,6 +50,6 @@ class OnboardJudging < ApplicationRecord
   end
 
   def time_penalty
-    [0, (minutes_elapsed * 60 + seconds_elapsed) - (7 * 60)].max
+    [0, ((minutes_elapsed * 60) + seconds_elapsed) - (7 * 60)].max
   end
 end
