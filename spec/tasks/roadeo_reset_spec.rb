@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'rake roadeo:reset' do
+RSpec.describe 'rake roadeo:reset', task: 'roadeo:reset' do
   before do
     create :bus
     participant = create :participant

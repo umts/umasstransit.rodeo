@@ -8,10 +8,9 @@ module TaskExampleGroup
 
   included do
     # Make the Rake task available as `task` in your examples:
-    subject(:task) { tasks[task_name] }
+    subject(:task) { Rake::Task[task_name] }
 
-    let(:task_name) { self.class.top_level_description.sub(/\Arake /, '') }
-    let(:tasks) { Rake::Task }
+    let(:task_name) { self.class.metadata[:task] }
 
     # This is for silencing, not expectations
     # rubocop:disable RSpec/ExpectOutput
