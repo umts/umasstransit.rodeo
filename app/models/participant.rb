@@ -51,6 +51,22 @@ class Participant < ApplicationRecord
     JOIN
   end
 
+  def self.scoreboard_data
+    oj_score = null_as_zero('`onboard_judgings`.`score`').to_sql
+    man_sum = null_as_zero('maneuver_sums.maneuver_sum').to_sql
+
+    numbered
+      .include_quiz
+      .include_circle_check
+      .include_onboard
+      .include_mp_sum
+      .left_joins(:maneuver_participants).includes(:maneuver_participants)
+      .select "#{man_sum} + #{oj_score} AS maneuver_score",
+              "#{man_sum} + #{oj_score} + #{QuizScore.score_calculation.to_sql} + " \
+              "#{CircleCheckScore.score_calculation.to_sql} AS total_score",
+              is_top(Arel.sql('total_score').desc, arel_table[:id], top: 20).to_sql
+  end
+
   def as_json(options = {})
     display_name = if show_name?
                      display_information(:name, :number)
