@@ -29,6 +29,10 @@ class ManeuverParticipant < ApplicationRecord
     User.find_by id: user_id if user_id
   end
 
+  def self.participant_sums
+    select('`participant_id`', 'SUM(`score`) AS maneuver_sum').group(:participant_id)
+  end
+
   def self.scoreboard_grouping
     grouping = {}
     ManeuverParticipant.all.group_by(&:participant_id).each_pair do |pid, mps|
