@@ -11,18 +11,17 @@ namespace :roadeo do
     desc 'Archive the HTML scoreboard to `/archive/index.html`'
     task index: ARCHIVE.join('index.html')
 
-    file ARCHIVE.join('index.html') => :environment do |t|
+    file ARCHIVE.join('index.html') => :environment do |task|
       require 'scoreboard_renderer'
 
-      File.open(t.name, 'w') do |f|
-        f.write ScoreboardRenderer.render
-      end
+      File.write task.name, ScoreboardRenderer.render
     end
 
     desc 'Compile assets to `/archive/assets/`'
     task assets: :environment do
       app = Rails.application
-      manifest = Sprockets::Manifest.new(app.assets, ARCHIVE.join('assets'))
+      assets = app.assets || Sprockets::Railtie.build_environment(app)
+      manifest = Sprockets::Manifest.new(assets, ARCHIVE.join('assets'))
       manifest.compile('manifest.js')
     end
   end
