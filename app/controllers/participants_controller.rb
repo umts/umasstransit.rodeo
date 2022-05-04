@@ -44,7 +44,6 @@ class ParticipantsController < ApplicationController
     @participants = Participant.scoreboard_data.scoreboard_order @sort_order
     @can_edit_scores = current_user.try :admin?
     @maneuvers = Maneuver.order :sequence_number
-    @scores = ManeuverParticipant.scoreboard_grouping
   end
 
   def update
