@@ -20,8 +20,7 @@ class ScoreboardRenderer < ParticipantsController
         archiving: true,
         can_edit_scores: false,
         maneuvers: Maneuver.order(:sequence_number),
-        participants: Participant.scoreboard_order(nil),
-        scores: ManeuverParticipant.scoreboard_grouping
+        participants: Participant.scoreboard_data.scoreboard_order(nil)
       }
     end
 
