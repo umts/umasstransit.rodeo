@@ -88,8 +88,8 @@ class Participant < ApplicationRecord
   end
 
   def maneuver_score
-    score = maneuver_participants.sum :score
-    score + onboard_judging.try(:score).to_i
+    attributes['maneuver_score'] ||
+      maneuver_participants.sum(:score) + onboard_judging&.score.to_i
   end
 
   def display_information(*options)
@@ -114,14 +114,13 @@ class Participant < ApplicationRecord
   end
 
   def total_score
-    total = maneuver_score
-    total += circle_check_score.score if circle_check_score.present?
-    total += quiz_score.score if quiz_score.present?
-    total
+    attributes['total_score'] ||
+      maneuver_score + circle_check_score&.score.to_i + quiz_score&.score.to_i
   end
 
   def show_name?
-    Participant.name_shown.include? self
+    attributes['top_20'] == 1 ||
+      attributes['top_20'].blank? && Participant.scoreboard_data.reject { |p| p.top_20.zero? }.include?(self)
   end
 
   def self.next_number
@@ -144,10 +143,6 @@ class Participant < ApplicationRecord
     end
   end
   # rubocop:enable Metrics/CyclomaticComplexity
-
-  def self.name_shown
-    scoreboard_order(:total_score).first(20)
-  end
 
   private
 
