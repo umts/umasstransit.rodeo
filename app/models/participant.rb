@@ -64,14 +64,14 @@ class Participant < ApplicationRecord
         .select "#{man_sum} + #{oj_score} AS maneuver_score",
                 "#{man_sum} + #{oj_score} + #{QuizScore.score_calculation.to_sql} + " \
                 "#{CircleCheckScore.score_calculation.to_sql} AS total_score",
-                is_top(Arel.sql('total_score').desc, arel_table[:id], top: 20).to_sql
+                top?(Arel.sql('total_score').desc, arel_table[:id], top: 20).to_sql
     end
 
     def scoreboard_order(sort_order = nil)
-      sorts = { nil =>              [{ total_score: :desc }, ->(u) { u.total_score * -1 }],
-                total_score:        [{ total_score: :desc }, ->(u) { u.total_score * -1 }],
-                maneuver_score:     [{ maneuver_score: :desc }, ->(u) { u.maneuver_score * -1 }],
-                participant_name:   [{ name: :asc }],
+      sorts = { nil => [{ total_score: :desc }, ->(u) { u.total_score * -1 }],
+                total_score: [{ total_score: :desc }, ->(u) { u.total_score * -1 }],
+                maneuver_score: [{ maneuver_score: :desc }, ->(u) { u.maneuver_score * -1 }],
+                participant_name: [{ name: :asc }],
                 participant_number: [{ number: :asc }] }
 
       sql, lb = sorts[sort_order]
@@ -104,7 +104,7 @@ class Participant < ApplicationRecord
 
   def maneuver_score
     attributes['maneuver_score'] ||
-      maneuver_participants.sum(:score) + onboard_judging&.score.to_i
+      (maneuver_participants.sum(:score) + onboard_judging&.score.to_i)
   end
 
   def display_information(*options)
@@ -130,14 +130,13 @@ class Participant < ApplicationRecord
 
   def total_score
     attributes['total_score'] ||
-      maneuver_score + circle_check_score&.score.to_i + quiz_score&.score.to_i
+      (maneuver_score + circle_check_score&.score.to_i + quiz_score&.score.to_i)
   end
 
   def show_name?
     attributes['top_20'] == 1 ||
-      attributes['top_20'].blank? && Participant.scoreboard_data.reject { |p| p.top_20.zero? }.include?(self)
+      (attributes['top_20'].blank? && Participant.scoreboard_data.reject { |p| p.top_20.zero? }.include?(self))
   end
-
 
   private
 

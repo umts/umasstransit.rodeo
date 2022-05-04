@@ -16,9 +16,9 @@ class ApplicationRecord < ActiveRecord::Base
     end
 
     # Arel node for a DENSE_RANK window function, can be used in a `SELECT` clause.
-    def is_top(*orders, top: 20)
+    def top?(*orders, top: 20)
       window = Arel::Nodes::Window.new
-      window.orders += orders.map{ |o| cast_to_node(o) }
+      window.orders += orders.map { |o| cast_to_node(o) }
       Arel::Nodes::Over.new(Arel::Nodes::NamedFunction.new('DENSE_RANK', []), window).then do |wf|
         wf.lteq(top).as("top_#{top}")
       end
