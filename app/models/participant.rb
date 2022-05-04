@@ -3,11 +3,6 @@
 class Participant < ApplicationRecord
   has_paper_trail
 
-  SORT_ORDERS = %i[total_score
-                   maneuver_score
-                   participant_name
-                   participant_number].freeze
-
   belongs_to :bus, optional: true
   has_many :maneuver_participants, dependent: :destroy
   has_many :maneuvers, through: :maneuver_participants
@@ -124,7 +119,11 @@ class Participant < ApplicationRecord
 
   # rubocop:disable Metrics/CyclomaticComplexity
   def self.scoreboard_order(sort_order = nil)
-    raise ArgumentError if sort_order && SORT_ORDERS.exclude?(sort_order)
+    sorts = { total_score:        ['total_score DESC', ->(u) { u.total_score * -1 }],
+              maneuver_score:     ['maneuver_score DESC', ->(u) { u.maneuver_score * -1 }],
+              participant_name:   ['name ASC'],
+              participant_number: ['number ASC'] }
+    raise ArgumentError if sort_order && sorts.keys.exclude?(sort_order)
 
     case sort_order
     when :total_score, nil
