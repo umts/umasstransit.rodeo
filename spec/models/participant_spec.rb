@@ -173,19 +173,4 @@ RSpec.describe Participant do
       expect(call[:participant_number]).to eq expected
     end
   end
-
-  describe 'name_shown' do
-    it 'excludes participant with 21st highest score' do
-      create_list :maneuver_participant, 20, :perfect_score
-      imperfect_score = create :maneuver_participant, :perfect_score,
-                               reversed_direction: 2
-      expect(described_class.name_shown).not_to include imperfect_score.participant
-    end
-
-    it 'includes participant with highest score' do
-      top_score = create :maneuver_participant, :perfect_score
-      create_list :maneuver_participant, 19, :perfect_score
-      expect(described_class.name_shown).to include top_score.participant
-    end
-  end
 end
