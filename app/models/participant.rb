@@ -20,8 +20,6 @@ class Participant < ApplicationRecord
   validates :number, numericality: { greater_than_or_equal_to: 0 },
                      allow_blank: true
 
-  default_scope { order :number }
-
   scope :numbered, -> { where.not number: nil }
   scope :not_numbered, -> { where number: nil }
 
