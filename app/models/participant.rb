@@ -117,26 +117,24 @@ class Participant < ApplicationRecord
     maximum(:number).to_i + 1
   end
 
-  # rubocop:disable Metrics/CyclomaticComplexity
   def self.scoreboard_order(sort_order = nil)
-    sorts = { total_score:        ['total_score DESC', ->(u) { u.total_score * -1 }],
-              maneuver_score:     ['maneuver_score DESC', ->(u) { u.maneuver_score * -1 }],
-              participant_name:   ['name ASC'],
-              participant_number: ['number ASC'] }
-    raise ArgumentError if sort_order && sorts.keys.exclude?(sort_order)
+    sorts = { nil =>              [{ total_score: :desc }, ->(u) { u.total_score * -1 }],
+              total_score:        [{ total_score: :desc }, ->(u) { u.total_score * -1 }],
+              maneuver_score:     [{ maneuver_score: :desc }, ->(u) { u.maneuver_score * -1 }],
+              participant_name:   [{ name: :asc }],
+              participant_number: [{ number: :asc }] }
 
-    case sort_order
-    when :total_score, nil
-      numbered.includes(:maneuver_participants).sort_by(&:total_score).reverse
-    when :maneuver_score
-      numbered.includes(:maneuver_participants).sort_by(&:maneuver_score).reverse
-    when :participant_name
-      unscoped.numbered.order :name
-    when :participant_number
-      numbered.order :number
+    sql, lb = sorts[sort_order]
+    attributes = first.attributes
+
+    if attributes.key?(sql.keys.first.to_s)
+      order sql
+    elsif lb.present?
+      (current_scope || all).sort_by(&lb)
+    else
+      raise ArgumentError
     end
   end
-  # rubocop:enable Metrics/CyclomaticComplexity
 
   private
 
