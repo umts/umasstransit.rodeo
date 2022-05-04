@@ -26,6 +26,31 @@ class Participant < ApplicationRecord
   after_destroy :update_scoreboard
   after_save :update_scoreboard
 
+  def self.include_circle_check
+    select("`#{table_name}`.*")
+      .left_joins(:circle_check_score).eager_load(:circle_check_score)
+      .merge(CircleCheckScore.with_scores)
+  end
+
+  def self.include_onboard
+    select("`#{table_name}`.*",
+           "#{null_as_zero('`onboard_judgings`.`score`').to_sql} AS oj_score")
+      .left_joins(:onboard_judging).eager_load(:onboard_judging)
+  end
+
+  def self.include_quiz
+    select("`#{table_name}`.*")
+      .left_joins(:quiz_score).eager_load(:quiz_score)
+      .merge(QuizScore.with_scores)
+  end
+
+  def self.include_mp_sum
+    joins(<<~JOIN).select("`#{table_name}`.*", 'maneuver_sums.maneuver_sum')
+      LEFT OUTER JOIN (#{ManeuverParticipant.participant_sums.to_sql}) maneuver_sums
+      ON maneuver_sums.participant_id = `participants`.`id`
+    JOIN
+  end
+
   def as_json(options = {})
     display_name = if show_name?
                      display_information(:name, :number)
