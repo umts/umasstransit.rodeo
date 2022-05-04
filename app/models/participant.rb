@@ -68,19 +68,14 @@ class Participant < ApplicationRecord
   end
 
   def as_json(options = {})
-    display_name = if show_name?
-                     display_information(:name, :number)
-                   else
-                     display_information(:number)
-                   end
-    super(options).merge(
-      display_name: display_name,
-      onboard_score: onboard_judging.try(:score),
-      maneuver_score: maneuver_score,
-      circle_check_score: circle_check_score.try(:score),
-      quiz_score: quiz_score.try(:score),
-      total_score: total_score
-    )
+    display_name = show_name? ? display_information(:name, :number) : display_information(:number)
+
+    super(options).merge display_name: display_name,
+                         onboard_score: onboard_judging&.score,
+                         maneuver_score: maneuver_score,
+                         circle_check_score: circle_check_score&.score,
+                         quiz_score: quiz_score&.score,
+                         total_score: total_score
   end
 
   def completed?(maneuver)
