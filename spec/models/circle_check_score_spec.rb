@@ -30,8 +30,10 @@ RSpec.describe CircleCheckScore do
     end
 
     it 'can get the calculation from the database' do
-      allow(score).to receive(:attributes).and_return({'circle_check_score' => 42})
-      expect(score.score).to eq(42)
+      allow(described_class).to receive(:with_scores)
+        .and_return(described_class.select('42 AS circle_check_score'))
+      score_from_db = described_class.select('*').with_scores.find(score.id)
+      expect(score_from_db.score).to eq(42)
     end
   end
 end

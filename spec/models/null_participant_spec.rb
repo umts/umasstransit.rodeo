@@ -4,6 +4,7 @@ require 'rails_helper'
 
 RSpec.describe NullParticipant do
   subject(:np) { described_class.new(number: 999) }
+
   it 'is always read-only' do
     expect(np.readonly?).to be(true)
   end

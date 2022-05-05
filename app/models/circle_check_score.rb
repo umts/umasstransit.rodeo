@@ -30,6 +30,6 @@ class CircleCheckScore < ApplicationRecord
   end
 
   def score
-    attributes['circle_check_score'] || (50 / total_defects.to_f) * defects_found
+    attributes['circle_check_score'] || ((50 / total_defects.to_f) * defects_found)
   end
 end

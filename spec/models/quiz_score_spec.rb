@@ -30,8 +30,11 @@ RSpec.describe QuizScore do
     end
 
     it 'can get the calculation from the database' do
-      allow(score).to receive(:attributes).and_return({'quiz_score' => 23})
-      expect(score.score).to eq(23)
+      allow(described_class).to receive(:with_scores)
+        .and_return(described_class.select('23 AS quiz_score'))
+
+      score_from_db = described_class.select('*').with_scores.find(score.id)
+      expect(score_from_db.score).to eq(23)
     end
   end
 end

@@ -29,7 +29,7 @@ RSpec.describe ApplicationRecord do
       let(:expression) { :something_else }
 
       it 'raises an ArgumentError' do
-        expect { subject }.to raise_error(ArgumentError)
+        expect { call }.to raise_error(ArgumentError)
       end
     end
   end
