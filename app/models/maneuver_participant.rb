@@ -24,11 +24,6 @@ class ManeuverParticipant < ApplicationRecord
 
   before_validation :set_score
 
-  def creator
-    user_id = versions.find_by(event: 'create').whodunnit
-    User.find_by id: user_id if user_id
-  end
-
   def self.participant_sums
     select('`participant_id`', 'SUM(`score`) AS maneuver_sum').group(:participant_id)
   end
@@ -37,6 +32,11 @@ class ManeuverParticipant < ApplicationRecord
     all.group_by(&:participant_id).transform_values do |mps|
       mps.group_by(&:maneuver_id).transform_values(&:first)
     end
+  end
+
+  def creator
+    user_id = versions.find_by(event: 'create').whodunnit
+    User.find_by id: user_id if user_id
   end
 
   private

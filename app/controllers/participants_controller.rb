@@ -44,10 +44,10 @@ class ParticipantsController < ApplicationController
     @sort_order = params[:sort_order].try :to_sym
 
     @maneuvers = Maneuver.order :sequence_number
-    if (@participants_exist = Participant.numbered.any?)
-      @maneuver_participants = ManeuverParticipant.scoreboard_grouping
-      @participants = Participant.scoreboard_data.scoreboard_order @sort_order
-    end
+    return unless (@participants_exist = Participant.numbered.any?)
+
+    @maneuver_participants = ManeuverParticipant.scoreboard_grouping
+    @participants = Participant.scoreboard_data.scoreboard_order @sort_order
   end
 
   def update
