@@ -6,7 +6,7 @@
       = participant.display_information(:number)
 
   - @maneuvers.each do |maneuver|
-    - record = participant.maneuver_participants.find_by(maneuver: maneuver)
+    - record = @maneuver_participants.dig(participant.id, maneuver.id)
     %td.maneuver-participant{data: {maneuver_id: maneuver.id}.merge(score_data record)}
       = score_cell record,
         allowed: @can_edit_scores,

@@ -40,10 +40,12 @@ class ParticipantsController < ApplicationController
   def scoreboard
     params.permit :sort_order
     @page_title = 'Scoreboard'
-    @sort_order = params[:sort_order].try :to_sym
-    @participants = Participant.scoreboard_data.scoreboard_order @sort_order
     @can_edit_scores = current_user.try :admin?
+    @sort_order = params[:sort_order].try :to_sym
+
     @maneuvers = Maneuver.order :sequence_number
+    @maneuver_participants = ManeuverParticipant.scoreboard_grouping
+    @participants = Participant.scoreboard_data.scoreboard_order @sort_order
   end
 
   def update

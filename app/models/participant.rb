@@ -60,7 +60,6 @@ class Participant < ApplicationRecord
         .include_circle_check
         .include_onboard
         .include_mp_sum
-        .left_joins(:maneuver_participants).includes(:maneuver_participants)
         .select "#{man_sum} + #{oj_score} AS maneuver_score",
                 "#{man_sum} + #{oj_score} + #{QuizScore.score_calculation.to_sql} + " \
                 "#{CircleCheckScore.score_calculation.to_sql} AS total_score",
