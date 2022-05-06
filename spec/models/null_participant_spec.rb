@@ -16,14 +16,14 @@ RSpec.describe NullParticipant do
   end
 
   describe '#show_name?' do
-    before { allow(np).to receive(:attributes) }
+    before { allow(Participant).to receive(:scoreboard_data) }
 
     it 'is always false' do
       expect(np.show_name?).to be(false)
     end
 
     it "doesn't even check" do
-      expect(np).not_to have_received(:attributes)
+      expect(Participant).not_to have_received(:scoreboard_data)
     end
   end
 end
