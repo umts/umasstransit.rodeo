@@ -68,22 +68,24 @@ class Participant < ApplicationRecord
     end
 
     def scoreboard_order(sort_order = nil)
-      sorts = { nil => [{ total_score: :desc }, ->(u) { u.total_score * -1 }],
-                total_score: [{ total_score: :desc }, ->(u) { u.total_score * -1 }],
-                maneuver_score: [{ maneuver_score: :desc }, ->(u) { u.maneuver_score * -1 }],
-                participant_name: [{ name: :asc }],
-                participant_number: [{ number: :asc }] }
-
-      sql, lb = sorts[sort_order]
+      sql, lbda = scoreboard_sorts[sort_order]
       attributes = first&.attributes || {}
 
       if attributes.key?(sql.keys.first.to_s)
         order sql
-      elsif lb.present?
-        (current_scope || all).sort_by(&lb)
+      elsif lbda
+        (current_scope || all).sort_by(&lbda)
       else
         raise ArgumentError
       end
+    end
+
+    def scoreboard_sorts
+      { nil => [{ total_score: :desc }, ->(u) { u.total_score * -1 }],
+        total_score: [{ total_score: :desc }, ->(u) { u.total_score * -1 }],
+        maneuver_score: [{ maneuver_score: :desc }, ->(u) { u.maneuver_score * -1 }],
+        participant_name: [{ name: :asc }],
+        participant_number: [{ number: :asc }] }
     end
   end
 
