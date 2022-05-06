@@ -54,6 +54,8 @@ class Participant < ApplicationRecord
     def scoreboard_data
       oj_score = null_as_zero('`onboard_judgings`.`score`').to_sql
       man_sum = null_as_zero('maneuver_sums.maneuver_sum').to_sql
+      total_score = "#{man_sum} + #{oj_score} + #{QuizScore.score_calculation.to_sql} + " \
+                    "#{CircleCheckScore.score_calculation.to_sql}"
 
       numbered
         .include_quiz
@@ -61,9 +63,8 @@ class Participant < ApplicationRecord
         .include_onboard
         .include_mp_sum
         .select "#{man_sum} + #{oj_score} AS maneuver_score",
-                "#{man_sum} + #{oj_score} + #{QuizScore.score_calculation.to_sql} + " \
-                "#{CircleCheckScore.score_calculation.to_sql} AS total_score",
-                top?(Arel.sql('total_score').desc, arel_table[:id], top: 20).to_sql
+                "#{total_score} AS total_score",
+                top?(Arel.sql(total_score).desc, top: 20).to_sql
     end
 
     def scoreboard_order(sort_order = nil)
