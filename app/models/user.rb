@@ -15,8 +15,7 @@ class User < ApplicationRecord
   end
 
   def role?(role)
-    admin? ||
-      (master_of_ceremonies? || scoring_enabled?) && send(role)
+    admin? || ((master_of_ceremonies? || scoring_enabled?) && send(role))
   end
 
   def scoring_enabled?

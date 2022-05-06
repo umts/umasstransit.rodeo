@@ -7,7 +7,8 @@ class BusesController < ApplicationController
     bus = Bus.new bus_params
     if bus.save
       flash[:notice] = 'Bus was successfully added.'
-    else flash[:errors] = bus.errors.full_messages
+    else
+      flash[:errors] = bus.errors.full_messages
     end
     redirect_back fallback_location: buses_path
   end
