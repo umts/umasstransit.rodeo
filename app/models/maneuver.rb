@@ -30,7 +30,8 @@ class Maneuver < ApplicationRecord
   def previous_participant(number = nil)
     if number.present?
       participants.where('number < ?', number).last
-    else participants.last
+    else
+      participants.last
     end
   end
 end

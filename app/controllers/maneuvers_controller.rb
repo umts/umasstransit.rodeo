@@ -20,9 +20,9 @@ class ManeuversController < ApplicationController
                                                participant: participant.number
         redirect_to new_mp
       end
-    else redirect_to maneuvers_path,
-                     notice: 'There are no more participants in the queue for
-                              this maneuver.'
+    else
+      redirect_to maneuvers_path,
+                  notice: 'There are no more participants in the queue for this maneuver.'
     end
   end
 

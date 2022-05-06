@@ -44,6 +44,9 @@ RSpec.describe ScoreboardRenderer do
 
     it 'has the participants' do
       expect(scoreboard.css('tr').count).to be(1)
+    end
+
+    it "displays the participant's name" do
       expect(scoreboard.css('td.participant', text: participant.name)).to be_present
     end
 

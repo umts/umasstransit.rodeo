@@ -24,7 +24,7 @@ maneuvers['Judgement Stop'] =
                     name: 'Judgement Stop',
                     counts_additional_stops: true
 
-([10] * 14 << 25).each do |obst_point|
+(([10] * 14) << 25).each do |obst_point|
   FactoryBot.create :obstacle,
                     point_value: obst_point,
                     obstacle_type: 'cone',
@@ -45,7 +45,7 @@ end
                     maneuver: maneuvers['Rear Dual Clearance']
 end
 
-([10] * 11 << 25).each do |obst_point|
+(([10] * 11) << 25).each do |obst_point|
   FactoryBot.create :obstacle,
                     point_value: obst_point,
                     obstacle_type: 'cone',
@@ -59,7 +59,7 @@ FactoryBot.create :distance_target,
                   maneuver: maneuvers['Right Turn'],
                   name: 'pivot cone'
 
-([5] * 50 + [10, 25]).each do |obst_point|
+(([5] * 50) + [10, 25]).each do |obst_point|
   FactoryBot.create :obstacle,
                     point_value: obst_point,
                     obstacle_type: 'cone',
@@ -101,14 +101,14 @@ FactoryBot.create :distance_target,
                   maneuver: maneuvers['First Passenger Stop'],
                   name: 'rear tire to curb'
 
-([10] * 8 + [25] * 2).each do |obst_point|
+(([10] * 8) + ([25] * 2)).each do |obst_point|
   FactoryBot.create :obstacle,
                     point_value: obst_point,
                     obstacle_type: 'cone',
                     maneuver: maneuvers['Left Turn']
 end
 
-([5] * 50 + [10, 25]).each do |obst_point|
+(([5] * 50) + [10, 25]).each do |obst_point|
   FactoryBot.create :obstacle,
                     point_value: obst_point,
                     obstacle_type: 'cone',
