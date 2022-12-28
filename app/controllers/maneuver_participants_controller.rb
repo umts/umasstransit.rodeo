@@ -40,7 +40,7 @@ class ManeuverParticipantsController < ApplicationController
 
   def update
     attrs = params.permit(:reversed_direction, :speed_achieved,
-                          :made_additional_stops, :completed_as_designed)
+                          :made_additional_stops, :completed_as_designed).to_hash
     attrs[:obstacles_hit] = parse_obstacles
     attrs[:distances_achieved] = parse_distance_targets
     @record.update! attrs
