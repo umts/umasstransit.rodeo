@@ -13,6 +13,15 @@ gem 'haml-rails'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'mysql2', '~> 0.5.2'
+
+# The net-* gems are former default gems that are dependencies of mail.
+# Mail 2.8.0 fixes the dependencies, but has broken file permissions.
+# This whole block can be removed once mail 2.8.1 is released.
+gem 'mail', '!= 2.8.0'
+gem 'net-smtp'
+gem 'net-imap'
+gem 'net-pop'
+
 gem 'openssl'
 gem 'paper_trail'
 gem 'puma'
