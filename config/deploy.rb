@@ -5,6 +5,7 @@ lock '~> 3.14'
 
 set :application, 'umasstransit.rodeo'
 set :repo_url, 'git@github.com:umts/umasstransit.rodeo.git'
+set :branch, 'main'
 
 set :deploy_to, '/srv/rodeo/'
 
