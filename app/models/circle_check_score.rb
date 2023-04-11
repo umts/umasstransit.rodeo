@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class CircleCheckScore < ApplicationRecord
+  include NormalizedScore
   include ScoreboardPublisher
 
   belongs_to :participant
@@ -14,11 +15,9 @@ class CircleCheckScore < ApplicationRecord
 
   TOTAL_DEFECTS_DEFAULT = 5
 
+  def self.score_components = %i[defects_found total_defects]
+
   def as_json(options = {})
     super(options).merge(score: score)
-  end
-
-  def score
-    (50 / total_defects) * defects_found
   end
 end

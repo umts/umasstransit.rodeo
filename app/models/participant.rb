@@ -3,11 +3,6 @@
 class Participant < ApplicationRecord
   has_paper_trail
 
-  SORT_ORDERS = %i[total_score
-                   maneuver_score
-                   participant_name
-                   participant_number].freeze
-
   belongs_to :bus, optional: true
   has_many :maneuver_participants, dependent: :destroy
   has_many :maneuvers, through: :maneuver_participants
@@ -20,28 +15,89 @@ class Participant < ApplicationRecord
   validates :number, numericality: { greater_than_or_equal_to: 0 },
                      allow_blank: true
 
-  default_scope { order :number }
-
   scope :numbered, -> { where.not number: nil }
   scope :not_numbered, -> { where number: nil }
 
   after_destroy :update_scoreboard
   after_save :update_scoreboard
 
+  class << self
+    def include_circle_check
+      select("`#{table_name}`.*")
+        .left_joins(:circle_check_score).eager_load(:circle_check_score)
+        .merge(CircleCheckScore.with_scores)
+    end
+
+    def include_onboard
+      select("`#{table_name}`.*",
+             "#{null_as_zero('`onboard_judgings`.`score`').to_sql} AS oj_score")
+        .left_joins(:onboard_judging).eager_load(:onboard_judging)
+    end
+
+    def include_quiz
+      select("`#{table_name}`.*")
+        .left_joins(:quiz_score).eager_load(:quiz_score)
+        .merge(QuizScore.with_scores)
+    end
+
+    def include_mp_sum
+      joins(<<~JOIN).select("`#{table_name}`.*", 'maneuver_sums.maneuver_sum')
+        LEFT OUTER JOIN (#{ManeuverParticipant.participant_sums.to_sql}) maneuver_sums
+        ON maneuver_sums.participant_id = `participants`.`id`
+      JOIN
+    end
+
+    def next_number
+      maximum(:number).to_i + 1
+    end
+
+    def scoreboard_data
+      oj_score = null_as_zero('`onboard_judgings`.`score`').to_sql
+      man_sum = null_as_zero('maneuver_sums.maneuver_sum').to_sql
+      total_score = "#{man_sum} + #{oj_score} + #{QuizScore.score_calculation.to_sql} + " \
+                    "#{CircleCheckScore.score_calculation.to_sql}"
+
+      numbered
+        .include_quiz
+        .include_circle_check
+        .include_onboard
+        .include_mp_sum
+        .select "#{man_sum} + #{oj_score} AS maneuver_score",
+                "#{total_score} AS total_score",
+                top?(Arel.sql(total_score).desc, top: 20).to_sql
+    end
+
+    def scoreboard_order(sort_order = nil)
+      sql, lbda = scoreboard_sorts[sort_order]
+      attributes = first&.attributes || {}
+
+      if attributes.key?(sql.keys.first.to_s)
+        order sql
+      elsif lbda
+        (current_scope || all).sort_by(&lbda)
+      else
+        raise ArgumentError
+      end
+    end
+
+    def scoreboard_sorts
+      { nil => [{ total_score: :desc }, ->(u) { u.total_score * -1 }],
+        total_score: [{ total_score: :desc }, ->(u) { u.total_score * -1 }],
+        maneuver_score: [{ maneuver_score: :desc }, ->(u) { u.maneuver_score * -1 }],
+        participant_name: [{ name: :asc }],
+        participant_number: [{ number: :asc }] }
+    end
+  end
+
   def as_json(options = {})
-    display_name = if show_name?
-                     display_information(:name, :number)
-                   else
-                     display_information(:number)
-                   end
-    super(options).merge(
-      display_name: display_name,
-      onboard_score: onboard_judging.try(:score),
-      maneuver_score: maneuver_score,
-      circle_check_score: circle_check_score.try(:score),
-      quiz_score: quiz_score.try(:score),
-      total_score: total_score
-    )
+    display_name = show_name? ? display_information(:name, :number) : display_information(:number)
+
+    super(options).merge display_name: display_name,
+                         onboard_score: onboard_judging&.score,
+                         maneuver_score: maneuver_score,
+                         circle_check_score: circle_check_score&.score,
+                         quiz_score: quiz_score&.score,
+                         total_score: total_score
   end
 
   def completed?(maneuver)
@@ -49,8 +105,8 @@ class Participant < ApplicationRecord
   end
 
   def maneuver_score
-    score = maneuver_participants.sum :score
-    score + onboard_judging.try(:score).to_i
+    attributes['maneuver_score'] ||
+      (maneuver_participants.sum(:score) + onboard_judging&.score.to_i)
   end
 
   def display_information(*options)
@@ -75,39 +131,13 @@ class Participant < ApplicationRecord
   end
 
   def total_score
-    total = maneuver_score
-    total += circle_check_score.score if circle_check_score.present?
-    total += quiz_score.score if quiz_score.present?
-    total
+    attributes['total_score'] ||
+      (maneuver_score + circle_check_score&.score.to_i + quiz_score&.score.to_i)
   end
 
   def show_name?
-    Participant.name_shown.include? self
-  end
-
-  def self.next_number
-    maximum(:number).to_i + 1
-  end
-
-  # rubocop:disable Metrics/CyclomaticComplexity
-  def self.scoreboard_order(sort_order = nil)
-    raise ArgumentError if sort_order && SORT_ORDERS.exclude?(sort_order)
-
-    case sort_order
-    when :total_score, nil
-      numbered.includes(:maneuver_participants).sort_by(&:total_score).reverse
-    when :maneuver_score
-      numbered.includes(:maneuver_participants).sort_by(&:maneuver_score).reverse
-    when :participant_name
-      unscoped.numbered.order :name
-    when :participant_number
-      numbered.order :number
-    end
-  end
-  # rubocop:enable Metrics/CyclomaticComplexity
-
-  def self.name_shown
-    scoreboard_order(:total_score).first(20)
+    attributes['top_20'] == 1 ||
+      (attributes['top_20'].blank? && Participant.scoreboard_data.reject { |p| p.top_20.zero? }.include?(self))
   end
 
   private

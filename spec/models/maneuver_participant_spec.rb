@@ -6,7 +6,45 @@ require_relative 'concerns/scoreboard_publisher'
 RSpec.describe ManeuverParticipant do
   it_behaves_like 'a scoreboard publisher'
 
-  describe 'score' do
+  describe '.scoreboard_grouping' do
+    subject(:call) { described_class.scoreboard_grouping }
+
+    let(:maneuvers) { create_list :maneuver, 5 }
+    let(:participants) { create_list :participant, 5 }
+
+    before do
+      participants.each do |participant|
+        maneuvers.each do |maneuver|
+          create :maneuver_participant, maneuver: maneuver, participant: participant
+        end
+      end
+    end
+
+    it { is_expected.to be_a(Hash) }
+
+    it 'has Hash values' do
+      expect(call.values).to all(be_a(Hash))
+    end
+
+    it 'is first keyed by partipant ids' do
+      expect(call.keys).to match_array(participants.map(&:id))
+    end
+
+    it 'is next keyed by mareuver ids' do
+      expect(call.values.first.keys).to match_array(maneuvers.map(&:id))
+    end
+
+    it 'contains maneuver participants' do
+      mp = described_class.last
+      expect(call.dig(mp.participant_id, mp.maneuver_id)).to eq(mp)
+    end
+
+    it 'contains all of the maneuver participants' do
+      expect(call.values.map(&:values).flatten.length).to eq(described_class.count)
+    end
+  end
+
+  describe '#score' do
     let!(:record) { create :maneuver_participant, :perfect_score }
 
     it 'is a perfect score' do

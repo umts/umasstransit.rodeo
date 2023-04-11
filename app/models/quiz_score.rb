@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class QuizScore < ApplicationRecord
+  include NormalizedScore
   include ScoreboardPublisher
 
   has_paper_trail
@@ -16,11 +17,9 @@ class QuizScore < ApplicationRecord
 
   TOTAL_POINTS_DEFAULT = 100
 
+  def self.score_components = %i[points_achieved total_points]
+
   def as_json(options = {})
     super(options).merge(score: score)
-  end
-
-  def score
-    (50 / total_points * points_achieved).round 1
   end
 end

@@ -1,4 +1,4 @@
-- if @participants.present?
+- if @participants_exist
   .scoreboard
     %button.btn.btn-primary.fullscreen
       %i.fas.fa-expand
@@ -19,7 +19,7 @@
           = render @participants
       %table#template.d-none
         %tbody
-          = render Participant.new(id: 0, number: 0)
+          = render partial: 'participant', locals: { participant: NullParticipant.new }
   = javascript_include_tag 'cable.js' unless @archiving
 - else
-  No participants yet.
+  %h2 No participants yet
