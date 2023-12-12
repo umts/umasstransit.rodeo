@@ -12,5 +12,5 @@ App.manuever_participants =
         a.text(score)
       else
         cell.text(score)
-      cell.attr('data-text', score).attr('data-score', score)
+      cell.attr('data-text', score).attr('data-score', score).addClass('last-updated')
       $("table.scoreboard").trigger("recalculate")
