@@ -28,7 +28,7 @@
     - if @maneuver.speed_target.present?
       .form-group
         = label_tag "Achieved #{@maneuver.speed_target} mph"
-        = hidden_field_tag :speed_acheived, false
+        = hidden_field_tag :speed_achieved, false
         = giant_check_box_tag :speed_achieved, true, @record.speed_achieved?
     - if @maneuver.counts_additional_stops?
       .form-group
