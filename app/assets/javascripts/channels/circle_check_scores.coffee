@@ -6,3 +6,6 @@ App.circle_check_scores =
       cell = $("tr[data-participant-id=#{participant}] td.circle-check-score")
       cell.text(score).attr('data-text', score).attr('data-score', score).addClass('last-updated')
       $("table.scoreboard").trigger("recalculate")
+      setTimeout ->
+        cell.removeClass('last-updated')
+      , 5000

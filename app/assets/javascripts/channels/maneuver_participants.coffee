@@ -14,3 +14,6 @@ App.manuever_participants =
         cell.text(score)
       cell.attr('data-text', score).attr('data-score', score).addClass('last-updated')
       $("table.scoreboard").trigger("recalculate")
+      setTimeout ->
+        cell.removeClass('last-updated')
+      , 5000
