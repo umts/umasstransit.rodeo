@@ -20,7 +20,6 @@ App.participants = App.cable.subscriptions.create "ParticipantsChannel",
         cell
           .text(participant.display_name)
           .attr('data-text', participant.number)
-          .addClass('last-updated')
 
       when 'remove'
         row = $("tr[data-participant-id=#{participant.id}]")
