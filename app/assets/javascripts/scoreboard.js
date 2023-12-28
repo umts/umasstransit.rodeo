@@ -26,6 +26,13 @@ $(document).ready(function(){
   });
 });
 
+function flashCell(cell) {
+  cell.addClass('last-updated');
+  setTimeout(() => {
+    cell.removeClass('last-updated');
+  }, 5000);
+}
+
 //Sum of all but the last three elements in an array
 $.tablesorter.equations['maneuversum'] = function(arry, config) {
   const maneuver_count = arry.length - 3; //cc, quiz, grand-total

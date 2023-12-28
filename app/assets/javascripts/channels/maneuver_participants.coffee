@@ -14,3 +14,4 @@ App.manuever_participants =
         cell.text(score)
       cell.attr('data-text', score).attr('data-score', score)
       $("table.scoreboard").trigger("recalculate")
+      flashCell(cell);

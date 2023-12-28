@@ -6,3 +6,4 @@ App.circle_check_scores =
       cell = $("tr[data-participant-id=#{participant}] td.circle-check-score")
       cell.text(score).attr('data-text', score).attr('data-score', score)
       $("table.scoreboard").trigger("recalculate")
+      flashCell(cell)
