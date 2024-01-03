@@ -1,16 +1,17 @@
 - if @participants_exist
   .scoreboard
-    %button.btn.btn-primary.fullscreen
-      %i.fas.fa-expand
-    = form_with model: [:admin, current_user], local: true do |f|
-      = f.hidden_field :lock_scores, value: !current_user.lock_scores
-      = f.button class: 'btn btn-primary' do
-        - if current_user.lock_scores
-          Unlock Scores
-          %i.fas.fa-lock-open
-        - else
-          Lock Scores
-          %i.fas.fa-lock
+    .form-inline
+      %button.btn.btn-primary.fullscreen
+        %i.fas.fa-expand
+      = form_with model: [:admin, current_user], local: true do |f|
+        = f.hidden_field :lock_scores, value: !current_user.lock_scores
+        = f.button class: 'btn btn-primary ml-2' do
+          - if current_user.lock_scores
+            Unlock Scores
+            %i.fas.fa-lock-open
+          - else
+            Lock Scores
+            %i.fas.fa-lock
     .scoreboard-content
       - table_classes = %w[scoreboard table table-bordered table-striped table-sm text-center]
       %table{class: table_classes, data: {sortList: sort_list(@sort_order)}}
