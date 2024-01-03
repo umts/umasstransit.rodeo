@@ -52,14 +52,14 @@ module Admin
       return if current_user.id != params.require(:id).to_i || lock_scores.blank?
 
       @user.update lock_scores
-      notice = case lock_scores
+      notice = case lock_scores[:lock_scores]
                when 'true'
                  'Scores have been locked.'
                when 'false'
                  if User.scoring_enabled?
-                   'Scores are still locked by other users.'
-                 else
                    'Scores have been unlocked.'
+                 else
+                   'Scores are still locked by other users!'
                  end
                end
 
