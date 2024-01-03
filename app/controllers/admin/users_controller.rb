@@ -49,7 +49,7 @@ module Admin
 
     def catch_lock_scores
       lock_scores = params.fetch(:user, {}).permit(:lock_scores)
-      return if lock_scores.blank?
+      return if current_user.id != params.require(:id).to_i || lock_scores.blank?
 
       @user.update lock_scores
       notice = case lock_scores
