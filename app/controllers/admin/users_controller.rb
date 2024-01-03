@@ -3,8 +3,8 @@
 module Admin
   class UsersController < ApplicationController
     before_action :find_user, except: %i[index manage]
-    before_action(only: %i[destroy update]) { require_role :admin }
     before_action :catch_lock_scores, only: :update
+    before_action(only: %i[destroy update]) { require_role :admin }
 
     def approve
       @user.approve!
@@ -52,8 +52,18 @@ module Admin
       return if lock_scores.blank?
 
       @user.update lock_scores
-      redirect_to scoreboard_participants_path,
-                  notice: "Scores have been #{lock_scores[:lock_scores] == 'true' ? 'locked' : 'unlocked'}"
+      notice = case lock_scores
+               when 'true'
+                 'Scores have been locked.'
+               when 'false'
+                 if User.scoring_enabled?
+                   'Scores are still locked by other users.'
+                 else
+                   'Scores have been unlocked.'
+                 end
+               end
+
+      redirect_to scoreboard_participants_path, notice:
     end
   end
 end

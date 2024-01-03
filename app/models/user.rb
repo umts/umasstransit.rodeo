@@ -9,9 +9,10 @@ class User < ApplicationRecord
   validates :encrypted_password, presence: true
 
   scope :unapproved, -> { where.not approved: true }
+  scope :score_lockers, -> { where(admin: true).or(where(master_of_ceremonies: true)).where({ lock_scores: true }) }
 
   def self.scoring_enabled?
-    where('users.admin = true OR users.master_of_ceremonies = true').pluck(:lock_scores).uniq == [false]
+    score_lockers.blank?
   end
 
   def approve!
