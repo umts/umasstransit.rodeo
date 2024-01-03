@@ -4,6 +4,7 @@ module Admin
   class UsersController < ApplicationController
     before_action :find_user, except: %i[index manage]
     before_action(only: %i[destroy update]) { require_role :admin }
+    before_action :catch_lock_scores, only: :update
 
     def approve
       @user.approve!
@@ -30,7 +31,7 @@ module Admin
     def update
       return unless @user.update user_params
 
-      redirect_back(fallback_location: admin_users_path, notice: 'User has been updated.')
+      redirect_to admin_users_path, notice: 'User has been updated.'
     end
 
     private
@@ -43,7 +44,16 @@ module Admin
       params.require(:user).permit :admin, :quiz_scorer,
                                    :circle_check_scorer,
                                    :master_of_ceremonies,
-                                   :judge, :lock_scores
+                                   :judge
+    end
+
+    def catch_lock_scores
+      lock_scores = params.fetch(:user, {}).permit(:lock_scores)
+      return if lock_scores.blank?
+
+      @user.update lock_scores
+      redirect_to scoreboard_participants_path,
+                  notice: "Scores have been #{lock_scores[:lock_scores] == 'true' ? 'locked' : 'unlocked'}"
     end
   end
 end
