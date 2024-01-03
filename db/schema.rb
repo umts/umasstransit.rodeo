@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_19_134558) do
+ActiveRecord::Schema.define(version: 2024_01_03_205602) do
 
   create_table "buses", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
     t.string "number"
@@ -135,6 +135,7 @@ ActiveRecord::Schema.define(version: 2021_02_19_134558) do
     t.boolean "master_of_ceremonies", default: false, null: false
     t.boolean "admin", default: false, null: false
     t.boolean "approved", default: false
+    t.boolean "lock_scores", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["name"], name: "index_users_on_name", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

@@ -19,7 +19,7 @@ class User < ApplicationRecord
   end
 
   def scoring_enabled?
-    true
+    where('users.admin = true OR users.master_of_ceremonies = true').pluck(:lock_scores).uniq == [false]
   end
 
   # Require admins to approve users once they register.

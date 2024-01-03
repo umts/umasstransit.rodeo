@@ -43,7 +43,7 @@ module Admin
       params.require(:user).permit :admin, :quiz_scorer,
                                    :circle_check_scorer,
                                    :master_of_ceremonies,
-                                   :judge
+                                   :judge, :lock_scores
     end
   end
 end
