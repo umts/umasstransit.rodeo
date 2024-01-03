@@ -43,4 +43,14 @@ module ScoreboardHelper
       link_to_if allowed, '&mdash;'.html_safe, new
     end
   end
+
+  def format_locking_users(locking_users)
+    locking_users = locking_users.pluck(:name)
+    if current_user.lock_scores?
+      locking_users.delete(current_user.name)
+      "#{locking_users.join(', ')} and you"
+    else
+      locking_users.to_sentence
+    end
+  end
 end

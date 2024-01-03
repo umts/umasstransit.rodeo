@@ -1,18 +1,23 @@
 - if @participants_exist
   .scoreboard
-    .form-inline
+    .d-flex.align-items-center
       %button.btn.btn-primary.fullscreen
         %i.fas.fa-expand
       - if current_user
         = form_with model: [:admin, current_user], local: true do |f|
           = f.hidden_field :lock_scores, value: !current_user.lock_scores
-          = f.button class: 'btn btn-primary ml-2' do
+          = f.button class: 'btn btn-primary mx-2' do
             - if current_user.lock_scores
               Unlock Scores
               %i.fas.fa-lock-open
             - else
               Lock Scores
               %i.fas.fa-lock
+      - if !User.scoring_enabled?
+        - if current_user.role?(:master_of_ceremonies)
+          Scores are locked by #{format_locking_users(User.score_lockers)}
+        - else
+          Scores are locked!
     .scoreboard-content
       - table_classes = %w[scoreboard table table-bordered table-striped table-sm text-center]
       %table{class: table_classes, data: {sortList: sort_list(@sort_order)}}
