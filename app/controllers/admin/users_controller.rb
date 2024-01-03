@@ -30,7 +30,7 @@ module Admin
     def update
       return unless @user.update user_params
 
-      redirect_to admin_users_path, notice: 'User has been updated.'
+      redirect_back(fallback_location: admin_users_path, notice: 'User has been updated.')
     end
 
     private
