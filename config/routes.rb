@@ -45,5 +45,5 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :settings, only: :update
+  post :flip_scores_lock, to: 'settings#flip_scores_lock'
 end

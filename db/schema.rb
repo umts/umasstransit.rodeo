@@ -116,8 +116,8 @@ ActiveRecord::Schema.define(version: 2024_01_05_205316) do
   end
 
   create_table "settings", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
-    t.integer "singleton_guard"
-    t.boolean "scores_locked", default: false
+    t.integer "singleton_guard", null: false
+    t.boolean "scores_locked", default: true, null: false
     t.index ["singleton_guard"], name: "index_settings_on_singleton_guard", unique: true
   end
 

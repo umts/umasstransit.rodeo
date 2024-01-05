@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'singleton'
-
 class Settings < ApplicationRecord
   validates :singleton_guard, inclusion: { in: [0] }
 
