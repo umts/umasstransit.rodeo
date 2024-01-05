@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_19_134558) do
+ActiveRecord::Schema.define(version: 2024_01_05_205316) do
 
   create_table "buses", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
     t.string "number"
@@ -115,6 +115,12 @@ ActiveRecord::Schema.define(version: 2021_02_19_134558) do
     t.index ["participant_id"], name: "index_quiz_scores_on_participant_id", unique: true
   end
 
+  create_table "settings", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
+    t.integer "singleton_guard"
+    t.boolean "scores_locked", default: false
+    t.index ["singleton_guard"], name: "index_settings_on_singleton_guard", unique: true
+  end
+
   create_table "users", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
     t.string "name", default: "", null: false
     t.string "email", default: "", null: false
@@ -135,6 +141,7 @@ ActiveRecord::Schema.define(version: 2021_02_19_134558) do
     t.boolean "master_of_ceremonies", default: false, null: false
     t.boolean "admin", default: false, null: false
     t.boolean "approved", default: false
+    t.boolean "lock_scores", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["name"], name: "index_users_on_name", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
