@@ -4,7 +4,7 @@ FactoryBot.define do
   factory :distance_target do
     name { 'Pivot cone' }
     x { 0 }
-    y { 0 }
+    add_attribute(:y) { 0 } # Kernel#y is a method added by Psych
     direction { 0 }
     intervals { 5 }
     multiplier { 5 }
