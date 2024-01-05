@@ -1,7 +1,20 @@
 - if @participants_exist
   .scoreboard
-    %button.btn.btn-primary.fullscreen
-      %i.fas.fa-expand
+    .d-flex.align-items-center
+      %button.btn.btn-primary.fullscreen.mr-2
+        %i.fas.fa-expand
+      - if current_user&.role?(:master_of_ceremonies)
+        = form_with model: Settings.instance, local: true do |f|
+          = f.hidden_field :scores_locked, value: !f.object.scores_locked
+          = f.button class: 'btn btn-primary mr-2' do
+            - if f.object.scores_locked
+              Unlock Scores
+              %i.fas.fa-lock-open
+            - else
+              Lock Scores
+              %i.fas.fa-lock
+      - elsif Settings.instance.scores_locked?
+        Scores are locked!
     .scoreboard-content
       - table_classes = %w[scoreboard table table-bordered table-striped table-sm text-center]
       %table{class: table_classes, data: {sortList: sort_list(@sort_order)}}

@@ -44,4 +44,6 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  resources :settings, only: :update
 end
