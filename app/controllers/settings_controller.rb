@@ -5,9 +5,9 @@ class SettingsController < ApplicationController
     settings = Settings.instance
     if settings.update({ scores_locked: !settings.scores_locked })
       redirect_to scoreboard_participants_path,
-                  success: settings.scores_locked? ? t('.scores_locked') : t('.scores_unlocked')
+                  notice: settings.scores_locked? ? t('.scores_locked') : t('.scores_unlocked')
     else
-      redirect_to scoreboard_participants_path, danger: settings.errors.full_messages.to_sentence
+      redirect_to scoreboard_participants_path, alert: settings.errors.full_messages.to_sentence
     end
   end
 end
