@@ -141,7 +141,6 @@ ActiveRecord::Schema.define(version: 2024_01_05_205316) do
     t.boolean "master_of_ceremonies", default: false, null: false
     t.boolean "admin", default: false, null: false
     t.boolean "approved", default: false
-    t.boolean "lock_scores", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["name"], name: "index_users_on_name", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
