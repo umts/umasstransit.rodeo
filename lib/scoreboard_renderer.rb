@@ -2,13 +2,9 @@
 
 class ScoreboardRenderer < ParticipantsController
   module ScoreboardRendererHelper
-    def debug_assets
-      false
-    end
-
-    def user_signed_in?
-      false
-    end
+    def current_user = nil
+    def debug_assets = false
+    def user_signed_in? = false
   end
   helper ScoreboardRendererHelper
 
@@ -27,7 +23,7 @@ class ScoreboardRenderer < ParticipantsController
     end
 
     def render
-      super(:scoreboard, assigns: assigns)
+      super(:scoreboard, assigns:)
     end
   end
 end
