@@ -6,13 +6,13 @@
       - if current_user&.role?(:master_of_ceremonies)
         = form_with url: flip_scores_lock_path, local: true do |f|
           = f.button class: 'btn btn-primary mr-2' do
-            - if Settings.instance.scores_locked?
+            - if Settings.scores_locked?
               Unlock Scores
               %i.fas.fa-lock-open
             - else
               Lock Scores
               %i.fas.fa-lock
-      - elsif Settings.instance.scores_locked?
+      - elsif Settings.scores_locked?
         Scores are locked!
     .scoreboard-content
       - table_classes = %w[scoreboard table table-bordered table-striped table-sm text-center]

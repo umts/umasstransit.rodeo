@@ -15,7 +15,7 @@ class User < ApplicationRecord
   end
 
   def role?(role)
-    admin? || ((master_of_ceremonies? || !Settings.instance.scores_locked?) && send(role))
+    admin? || ((master_of_ceremonies? || !Settings.scores_locked?) && send(role))
   end
 
   # Require admins to approve users once they register.
