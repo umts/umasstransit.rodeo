@@ -19,7 +19,6 @@ RSpec.configure do |config|
 
   config.before :all do
     FactoryBot.reload
-    Settings.first_or_create!(scores_locked: false)
   end
   config.include FactoryBot::Syntax::Methods
 
