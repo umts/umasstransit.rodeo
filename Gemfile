@@ -10,6 +10,7 @@ gem 'coffee-rails'
 gem 'devise', '~> 4.6'
 gem 'haml'
 gem 'haml-rails'
+gem 'irb'
 gem 'jquery-rails'
 gem 'mysql2', '~> 0.5.2'
 gem 'openssl'
@@ -55,6 +56,6 @@ end
 group :development, :test do
   gem 'factory_bot_rails'
   gem 'ffaker'
-  gem 'pry-byebug'
+  gem 'debug'
   gem 'rb-readline', require: false
 end
