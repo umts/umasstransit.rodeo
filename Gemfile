@@ -13,6 +13,7 @@ gem 'haml-rails'
 gem 'irb'
 gem 'jquery-rails'
 gem 'mysql2', '~> 0.5.2'
+gem 'mutex_m' # Needed for Ruby >=3.4 on Rails <=7.1
 gem 'openssl'
 gem 'paper_trail'
 gem 'puma'
