@@ -20,7 +20,6 @@ gem 'puma'
 gem 'rails', '~> 6.1.3'
 gem 'sassc-rails'
 gem 'uglifier'
-gem 'underscore-rails'
 
 group :production do
   gem 'exception_notification'
