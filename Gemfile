@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 source 'https://rubygems.org'
-ruby File.read(File.expand_path('.ruby-version', __dir__)).strip
+ruby file: '.ruby-version'
 
 gem 'bootsnap'
 gem 'bootstrap', '~> 4.3.1'
@@ -13,6 +13,7 @@ gem 'haml-rails'
 gem 'irb'
 gem 'jquery-rails'
 gem 'mysql2', '~> 0.5.2'
+gem 'mutex_m' # Needed for Ruby >=3.4 on Rails <=7.1
 gem 'openssl'
 gem 'paper_trail'
 gem 'puma'

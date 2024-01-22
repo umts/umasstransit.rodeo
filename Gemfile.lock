@@ -188,7 +188,8 @@ GEM
     mini_portile2 (2.8.5)
     minitest (5.21.2)
     msgpack (1.4.5)
-    mysql2 (0.5.3)
+    mutex_m (0.2.0)
+    mysql2 (0.5.5)
     net-imap (0.3.7)
       date
       net-protocol
@@ -399,6 +400,7 @@ DEPENDENCIES
   irb
   jquery-rails
   listen (~> 3.0.5)
+  mutex_m
   mysql2 (~> 0.5.2)
   openssl
   paper_trail
@@ -422,7 +424,7 @@ DEPENDENCIES
   webdrivers
 
 RUBY VERSION
-   ruby 3.1.4p223
+   ruby 3.3.0p0
 
 BUNDLED WITH
-   2.4.12
+   2.5.5
