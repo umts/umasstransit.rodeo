@@ -17,8 +17,9 @@ gem 'mysql2', '~> 0.5.2'
 gem 'openssl'
 gem 'paper_trail'
 gem 'puma'
-gem 'rails', '~> 6.1.3'
+gem 'rails', '~> 7.0.8'
 gem 'sassc-rails'
+gem 'sprockets-rails'
 gem 'uglifier'
 
 group :production do
