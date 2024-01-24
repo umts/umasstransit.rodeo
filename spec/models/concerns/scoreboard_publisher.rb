@@ -10,13 +10,13 @@ RSpec.shared_examples_for 'a scoreboard publisher' do
   it 'updates the scoreboard after create' do
     allow(ScoreboardService).to receive(:update)
 
-    create factory_name
+    create(factory_name)
     expect(ScoreboardService).to have_received(:update)
       .with(with: instance_of(described_class))
   end
 
   it 'updates the scoreboard after update' do
-    object = create factory_name
+    object = create(factory_name)
     allow(ScoreboardService).to receive(:update)
 
     object.save

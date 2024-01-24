@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe Participant do
-  let!(:participant) { create :participant }
+  let!(:participant) { create(:participant) }
 
   describe 'update_scoreboard' do
     before do
@@ -11,18 +11,18 @@ RSpec.describe Participant do
     end
 
     it 'tells the scoreboard to add on create with number' do
-      create :participant
+      create(:participant)
       expect(ScoreboardService).to have_received(:update)
         .with(with: instance_of(described_class), type: :add)
     end
 
     it 'does not tell the scoreboard to add on create without number' do
-      create :participant, number: nil
+      create(:participant, number: nil)
       expect(ScoreboardService).not_to have_received(:update)
     end
 
     it 'tells the scoreboard to add when number is set' do
-      new_participant = create :participant, number: nil
+      new_participant = create(:participant, number: nil)
       new_participant.update(number: 999)
       expect(ScoreboardService).to have_received(:update)
         .with(with: new_participant, type: :add)
@@ -47,11 +47,11 @@ RSpec.describe Participant do
   end
 
   describe 'completed?' do
-    let(:maneuver) { create :maneuver }
+    let(:maneuver) { create(:maneuver) }
 
     context 'when participant has completed maneuver' do
       before do
-        create :maneuver_participant, maneuver:, participant:
+        create(:maneuver_participant, maneuver:, participant:)
       end
 
       it 'returns true' do
@@ -72,21 +72,21 @@ RSpec.describe Participant do
     end
 
     it 'increases by quiz score' do
-      quiz_score = create :quiz_score
+      quiz_score = create(:quiz_score)
       expect { participant.update quiz_score: }
         .to change(participant, :total_score)
         .by(quiz_score.score)
     end
 
     it 'increases by circle check score' do
-      circle_check_score = create :circle_check_score
+      circle_check_score = create(:circle_check_score)
       expect { participant.update circle_check_score: }
         .to change(participant, :total_score)
         .by(circle_check_score.score)
     end
 
     it 'increases by onboard judging score' do
-      onboard_judging = create :onboard_judging
+      onboard_judging = create(:onboard_judging)
       expect { participant.update onboard_judging: }
         .to change(participant, :total_score)
         .by(onboard_judging.score)
@@ -95,7 +95,7 @@ RSpec.describe Participant do
 
   describe 'maneuver_score' do
     it 'returns the maneuver score' do
-      maneuver_partip = create :maneuver_participant, :perfect_score
+      maneuver_partip = create(:maneuver_participant, :perfect_score)
       expect(maneuver_partip.participant.maneuver_score).to be 50
     end
   end
@@ -103,7 +103,7 @@ RSpec.describe Participant do
   describe 'display_information' do
     subject(:call) { ->(*info) { participant.display_information(*info) } }
 
-    let(:participant) { create :participant }
+    let(:participant) { create(:participant) }
 
     it 'displays bus information' do
       expected = participant.bus.number
@@ -132,8 +132,8 @@ RSpec.describe Participant do
 
   describe 'next_number' do
     it 'returns the last non-nil participant number' do
-      create :participant
-      last_participant = create :participant
+      create(:participant)
+      last_participant = create(:participant)
       expect(described_class.next_number).to eql last_participant.number + 1
     end
   end
@@ -143,31 +143,31 @@ RSpec.describe Participant do
 
     it 'can sort participants by total score' do
       create(:onboard_judging, :perfect, participant:)
-      oj2 = create :onboard_judging, minutes_elapsed: 8
-      oj3 = create :onboard_judging, minutes_elapsed: 9
+      oj2 = create(:onboard_judging, minutes_elapsed: 8)
+      oj3 = create(:onboard_judging, minutes_elapsed: 9)
       expected = [participant, oj2.participant, oj3.participant]
       expect(call[:total_score]).to eql expected
     end
 
     it 'can sort participants by maneuver score' do
       create(:maneuver_participant, :perfect_score, participant:)
-      mp2 = create :maneuver_participant, :perfect_score, reversed_direction: 1
-      mp3 = create :maneuver_participant, :perfect_score, reversed_direction: 2
+      mp2 = create(:maneuver_participant, :perfect_score, reversed_direction: 1)
+      mp3 = create(:maneuver_participant, :perfect_score, reversed_direction: 2)
       expected = [participant, mp2.participant, mp3.participant]
       expect(call[:maneuver_score]).to eql expected
     end
 
     it 'can sort participants by participant name' do
       participant.update(name: 'Akiva')
-      participant2 = create :participant, name: 'Arta'
-      participant3 = create :participant, name: 'Molly'
+      participant2 = create(:participant, name: 'Arta')
+      participant3 = create(:participant, name: 'Molly')
       expected = [participant, participant2, participant3]
       expect(call[:participant_name]).to eq expected
     end
 
     it 'can sort participants by participant number' do
-      participant2 = create :participant
-      participant3 = create :participant
+      participant2 = create(:participant)
+      participant3 = create(:participant)
       expected = [participant, participant2, participant3]
       expect(call[:participant_number]).to eq expected
     end

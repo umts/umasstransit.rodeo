@@ -8,10 +8,10 @@ RSpec.describe 'updating a participant' do
   end
 
   context 'with master of ceremonies privilege' do
-    let!(:participant) { create :participant, name: 'Foo Bar' }
+    let!(:participant) { create(:participant, name: 'Foo Bar') }
 
     before do
-      create :bus, number: 'Big Yellow Bus'
+      create(:bus, number: 'Big Yellow Bus')
       when_current_user_is :master_of_ceremonies
       visit participants_path
     end
@@ -36,7 +36,7 @@ RSpec.describe 'updating a participant' do
         end
       end
 
-      it 'will assign a number' do
+      it 'assigns a number' do
         within 'form#add_to_queue' do
           click_on 'Add to maneuver queue'
         end
@@ -47,8 +47,8 @@ RSpec.describe 'updating a participant' do
 
   context 'with another participant' do
     before do
-      create :participant, number: 1
-      create :participant, number: 2
+      create(:participant, number: 1)
+      create(:participant, number: 2)
       when_current_user_is :admin
       visit participants_path
     end
@@ -61,7 +61,7 @@ RSpec.describe 'updating a participant' do
   end
 
   context 'with admin privilege' do
-    let!(:participant) { create :participant, name: 'Harf Buzz' }
+    let!(:participant) { create(:participant, name: 'Harf Buzz') }
 
     before do
       when_current_user_is :admin
@@ -78,7 +78,7 @@ RSpec.describe 'updating a participant' do
   end
 
   context 'with judge privilege' do
-    let!(:participant) { create :participant, name: 'Sniff Snagg' }
+    let!(:participant) { create(:participant, name: 'Sniff Snagg') }
 
     before do
       when_current_user_is :judge

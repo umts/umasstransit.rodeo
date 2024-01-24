@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'updating a circle check score' do
   before do
-    create :circle_check_score, total_defects: 5, defects_found: 3
+    create(:circle_check_score, total_defects: 5, defects_found: 3)
   end
 
   context 'with admin privilege' do
@@ -53,10 +53,10 @@ RSpec.describe 'updating a circle check score' do
       visit circle_check_scores_path
     end
 
-    it 'will not update circle check score' do
+    it 'does not update circle check score' do
       fill_in 'circle_check_score_defects_found', with: '4'
       click_on 'Save score'
-      expect(page).not_to have_text 'Circle check score was saved.'
+      expect(page).to have_no_text 'Circle check score was saved.'
     end
   end
 
@@ -67,7 +67,7 @@ RSpec.describe 'updating a circle check score' do
       fill_in 'circle_check_score_defects_found', with: '-420'
     end
 
-    it 'will not accept negative number' do
+    it 'does not accept negative number' do
       click_on 'Save score'
       expected = 'Defects found must be greater than or equal to 0'
       expect(page).to have_text expected
@@ -81,7 +81,7 @@ RSpec.describe 'updating a circle check score' do
       fill_in 'circle_check_score_defects_found', with: ''
     end
 
-    it 'will not accept a blank field' do
+    it 'does not accept a blank field' do
       click_on 'Save score'
       expected = "Defects found can't be blank"
       expect(page).to have_text expected
@@ -96,7 +96,7 @@ RSpec.describe 'updating a circle check score' do
       input.value.to_i
     end
 
-    it 'will not accept positive number greater than total points' do
+    it 'does not accept positive number greater than total points' do
       fill_in 'circle_check_score_defects_found', with: (total_defects + 1).to_s
       click_on 'Save score'
       expected = "Defects found must be less than or equal to #{total_defects}"

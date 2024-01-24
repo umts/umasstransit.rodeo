@@ -5,8 +5,8 @@ require 'rails_helper'
 RSpec.describe ScoreboardService do
   describe '.update' do
     scores = %i[circle_check_score maneuver_participant onboard_judging quiz_score]
-    scores.each { |model| let!(model) { create model } }
-    let!(:participant) { create :participant }
+    scores.each { |model| let!(model) { create(model) } }
+    let!(:participant) { create(:participant) }
 
     # it "broadcasts quiz_scores to their update channel" do
     #   chanel = QuizScoresChannel

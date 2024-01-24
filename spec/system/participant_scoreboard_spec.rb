@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'viewing the scoreboard' do
-  let!(:participant) { create :participant }
+  let!(:participant) { create(:participant) }
 
   it 'shows the scores' do
     visit scoreboard_participants_path
@@ -11,7 +11,7 @@ RSpec.describe 'viewing the scoreboard' do
   end
 
   context 'when participant has a quiz score' do
-    let!(:quiz_score) { create :quiz_score }
+    let!(:quiz_score) { create(:quiz_score) }
 
     before do
       participant.update quiz_score:
@@ -24,7 +24,7 @@ RSpec.describe 'viewing the scoreboard' do
   end
 
   context 'when participant has a circle check score' do
-    let!(:cc_score) { create :circle_check_score }
+    let!(:cc_score) { create(:circle_check_score) }
 
     before do
       participant.update circle_check_score: cc_score
@@ -37,7 +37,7 @@ RSpec.describe 'viewing the scoreboard' do
   end
 
   context 'when participant has maneuver scores' do
-    let!(:mp) { create :maneuver_participant, :perfect_score, participant: }
+    let!(:mp) { create(:maneuver_participant, :perfect_score, participant:) }
 
     it 'shows the maneuver score' do
       visit scoreboard_participants_path

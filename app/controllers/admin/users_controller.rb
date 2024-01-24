@@ -11,26 +11,26 @@ module Admin
                   notice: "#{@user.name} has been approved."
     end
 
-    def destroy
-      @user.destroy!
-      redirect_back fallback_location: admin_users_path,
-                    notice: 'User has been removed.'
-    end
-
     def index
       @page_title = 'User Roles'
       @users = User.order(:name)
-    end
-
-    def manage
-      @page_title = 'Manage Users'
-      @users = User.unapproved.order :name
     end
 
     def update
       return unless @user.update user_params
 
       redirect_to admin_users_path, notice: 'User has been updated.'
+    end
+
+    def destroy
+      @user.destroy!
+      redirect_back fallback_location: admin_users_path,
+                    notice: 'User has been removed.'
+    end
+
+    def manage
+      @page_title = 'Manage Users'
+      @users = User.unapproved.order :name
     end
 
     private
