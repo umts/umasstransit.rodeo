@@ -174,7 +174,7 @@ unless Rails.env.production? || ENV['SKIP_PARTICIPANTS']
   35.times do
     p = FactoryBot.create(:participant, name: FFaker::Name.name, bus:)
 
-    maneuvers.each do |_name, m|
+    maneuvers.each_value do |m|
       mp = ManeuverParticipant.new participant: p,
                                    maneuver: m,
                                    reversed_direction: 0,
