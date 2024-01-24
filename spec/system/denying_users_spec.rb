@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'denying a user' do
-  let!(:user) { create :user, :unapproved }
+  let!(:user) { create(:user, :unapproved) }
 
   before do
     when_current_user_is :admin

@@ -60,11 +60,11 @@ RSpec.describe 'adding a participant' do
   context 'when attempting to add a duplicate participant' do
     before do
       when_current_user_is :admin
-      create :participant, name: 'Foo Bar'
+      create(:participant, name: 'Foo Bar')
       visit participants_path
     end
 
-    it 'will not add a participant' do
+    it 'does not add a participant' do
       fill_in 'Name', with: 'Foo Bar'
       expect { click_on 'Add' }.not_to change(Participant, :count)
     end
@@ -78,12 +78,12 @@ RSpec.describe 'adding a participant' do
 
   context 'with a unique number and bus number' do
     before do
-      create :bus, number: 'Big Yellow Bus'
+      create(:bus, number: 'Big Yellow Bus')
       when_current_user_is :admin
       visit participants_path
     end
 
-    it 'will add a participant' do
+    it 'adds a participant' do
       fill_in 'participant_name', with: 'Foo Bar'
       fill_in 'participant_number', with: '1'
       select('Big Yellow Bus', from: 'participant_bus_id')
@@ -105,7 +105,7 @@ RSpec.describe 'adding a participant' do
       visit participants_path
     end
 
-    it 'will not add a participant' do
+    it 'does not add a participant' do
       fill_in 'participant_name', with: 'Foo Bar'
       fill_in 'participant_number', with: '1'
       expect { click_on 'Add' }.not_to change(Participant, :count)
@@ -125,7 +125,7 @@ RSpec.describe 'adding a participant' do
       visit participants_path
     end
 
-    it 'will not add a participant' do
+    it 'does not add a participant' do
       expect { click_on 'Add' }.not_to change(Participant, :count)
     end
 

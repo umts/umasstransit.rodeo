@@ -24,7 +24,7 @@ RSpec.describe 'adding a bus' do
   end
 
   context 'with judge privilege' do
-    it 'will not add a bus' do
+    it 'does not add a bus' do
       when_current_user_is :judge
       visit buses_path
       fill_in 'bus_number', with: 'Big Yellow Bus'

@@ -6,14 +6,14 @@ require 'scoreboard_renderer'
 
 RSpec.describe ScoreboardRenderer do
   describe '.render' do
-    let(:participant) { create :participant }
-    let(:maneuver) { create :maneuver }
+    let(:participant) { create(:participant) }
+    let(:maneuver) { create(:maneuver) }
     let(:output) { Nokogiri::HTML(described_class.render) }
     let(:nav) { output.css('nav #mainnav') }
     let(:scoreboard) { output.css('table.scoreboard tbody') }
 
     before do
-      create :maneuver_participant, maneuver:, participant:
+      create(:maneuver_participant, maneuver:, participant:)
     end
 
     it 'is an HTML document' do

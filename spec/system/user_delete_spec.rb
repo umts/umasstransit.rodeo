@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe 'deleting a user' do
   context 'with admin privilege' do
     before do
-      create :user
+      create(:user)
       when_current_user_is :admin
       visit admin_users_path
     end
@@ -18,12 +18,12 @@ RSpec.describe 'deleting a user' do
 
   context 'with master of ceremonies privilege' do
     before do
-      create :user
+      create(:user)
       when_current_user_is :master_of_ceremonies
       visit admin_users_path
     end
 
-    it 'will not delete a user' do
+    it 'does not delete a user' do
       click_on 'Remove', match: :first
       expect(page).to have_text 'You are not authorized to make that action.'
     end
