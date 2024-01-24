@@ -9,7 +9,7 @@ namespace :roadeo do
     next unless input == 'YES'
 
     Bus.destroy_all
-    Participant.all.each(&:destroy)
-    User.where.not(admin: true).each(&:destroy)
+    Participant.find_each(&:destroy)
+    User.where.not(admin: true).find_each(&:destroy)
   end
 end
