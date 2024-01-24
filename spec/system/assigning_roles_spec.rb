@@ -29,7 +29,7 @@ RSpec.describe 'assigning roles' do
       visit admin_users_path
     end
 
-    it 'will not assign roles to users' do
+    it 'does not assign roles to users' do
       check 'user_circle_check_scorer'
       check 'user_judge'
       click_on 'Save'

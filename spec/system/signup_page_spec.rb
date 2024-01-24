@@ -43,7 +43,7 @@ RSpec.describe 'signing up' do
 
   context 'when awaiting approval' do
     before do
-      create :participant
+      create(:participant)
       when_current_user_is :anyone
       visit root_path
     end
@@ -58,7 +58,7 @@ RSpec.describe 'signing up' do
      'Buses', 'Roles', 'Manage Users'].each do |nav_item|
       it "does not allow the user to visit the #{nav_item} page" do
         within 'nav' do
-          expect(current_scope).not_to have_text(nav_item)
+          expect(current_scope).to have_no_text(nav_item)
         end
       end
     end

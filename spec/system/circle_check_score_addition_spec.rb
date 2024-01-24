@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'adding a circle check score' do
   before do
-    create :participant
+    create(:participant)
   end
 
   context 'with admin privilege' do
@@ -53,7 +53,7 @@ RSpec.describe 'adding a circle check score' do
       visit circle_check_scores_path
     end
 
-    it 'will not add a circle check score' do
+    it 'does not add a circle check score' do
       fill_in 'circle_check_score_defects_found', with: '4'
       click_on 'Save score'
       expect(page).to have_text 'You are not authorized to make that action.'
@@ -61,7 +61,7 @@ RSpec.describe 'adding a circle check score' do
   end
 
   context 'with blank fields' do
-    it 'will not add a circle check score' do
+    it 'does not add a circle check score' do
       when_current_user_is :admin
       visit circle_check_scores_path
       click_on 'Save score'
@@ -76,7 +76,7 @@ RSpec.describe 'adding a circle check score' do
       fill_in 'circle_check_score_defects_found', with: '-420'
     end
 
-    it 'will not accept negative number' do
+    it 'does not accept negative number' do
       click_on 'Save score'
       expected = 'Defects found must be greater than or equal to 0'
       expect(page).to have_text expected
@@ -91,7 +91,7 @@ RSpec.describe 'adding a circle check score' do
       fill_in 'circle_check_score_total_defects', with: 4
     end
 
-    it 'will not accept positive number greater than total points' do
+    it 'does not accept positive number greater than total points' do
       click_on 'Save score'
       expected = 'Defects found must be less than or equal to 4'
       expect(page).to have_text expected

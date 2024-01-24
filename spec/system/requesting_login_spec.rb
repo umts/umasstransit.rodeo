@@ -14,7 +14,7 @@ RSpec.describe 'login requests' do
   end
 
   context 'when requesting a login' do
-    let(:new_user) { build :user }
+    let(:new_user) { build(:user) }
 
     before do
       visit new_user_registration_path
@@ -37,7 +37,7 @@ RSpec.describe 'login requests' do
   end
 
   context 'when logging in without approval' do
-    let(:user) { create :user, :unapproved }
+    let(:user) { create(:user, :unapproved) }
 
     before do
       visit new_user_session_path

@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'adding a quiz score' do
   let(:role) { :admin }
-  let!(:participant) { create :participant }
+  let!(:participant) { create(:participant) }
 
   before do
     when_current_user_is role
@@ -20,7 +20,7 @@ RSpec.describe 'adding a quiz score' do
   context 'with judge privilege' do
     let(:role) { :judge }
 
-    it 'will not add the quiz score' do
+    it 'does not add the quiz score' do
       fill_in 'quiz_score_points_achieved', with: '70'
       click_on 'Save score'
       expect(participant.quiz_score).to be_blank
@@ -67,7 +67,7 @@ RSpec.describe 'adding a quiz score' do
   end
 
   context 'with blank fields' do
-    it 'will not add a quiz score' do
+    it 'does not add a quiz score' do
       click_on 'Save score'
       expect(participant.quiz_score).to be_blank
     end
@@ -83,7 +83,7 @@ RSpec.describe 'adding a quiz score' do
       fill_in 'quiz_score_points_achieved', with: '-14'
     end
 
-    it 'will not accept the score' do
+    it 'does not accept the score' do
       click_on 'Save score'
       expected = 'Points achieved must be greater than or equal to 0'
       expect(page).to have_text expected
@@ -101,7 +101,7 @@ RSpec.describe 'adding a quiz score' do
       fill_in 'quiz_score_points_achieved', with: bad_score
     end
 
-    it 'will not accept positive number greater than total points' do
+    it 'does not accept positive number greater than total points' do
       click_on 'Save score'
       expected = "Points achieved must be less than or equal to #{max_score}"
       expect(page).to have_text expected

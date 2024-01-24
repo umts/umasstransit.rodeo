@@ -4,13 +4,13 @@ require 'rails_helper'
 
 RSpec.describe 'rake roadeo:reset', task: 'roadeo:reset' do
   before do
-    create :bus
-    participant = create :participant
+    create(:bus)
+    participant = create(:participant)
     create(:circle_check_score, participant:)
     create(:quiz_score, participant:)
     create(:onboard_judging, participant:)
     create(:maneuver_participant, participant:)
-    create :user
+    create(:user)
   end
 
   it 'warns you and requires confirmation' do
@@ -50,13 +50,13 @@ RSpec.describe 'rake roadeo:reset', task: 'roadeo:reset' do
     end
 
     it 'destroys all non-admins' do
-      non_admin = create :user
+      non_admin = create(:user)
       task.execute
       expect(User.pluck(:id)).not_to include(non_admin.id)
     end
 
     it 'does not destroy admins' do
-      admin = create :user, :admin
+      admin = create(:user, :admin)
       task.execute
       expect(User.pluck(:id)).to include(admin.id)
     end

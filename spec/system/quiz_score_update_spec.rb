@@ -7,7 +7,7 @@ RSpec.describe 'updating a quiz score' do
   let(:role) { :admin }
 
   before do
-    create :quiz_score, points_achieved: 50, total_points: 100
+    create(:quiz_score, points_achieved: 50, total_points: 100)
     when_current_user_is role
     visit quiz_scores_path
   end
@@ -47,7 +47,7 @@ RSpec.describe 'updating a quiz score' do
 
     before { fill_in field, with: '70' }
 
-    it 'will not update quiz score' do
+    it 'does not update quiz score' do
       click_on 'Save score'
       expect(page).to have_text 'You are not authorized to make that action.'
     end
@@ -56,7 +56,7 @@ RSpec.describe 'updating a quiz score' do
   context 'when quiz score is negative' do
     before { fill_in field, with: '-14' }
 
-    it 'will not accept the score' do
+    it 'does not accept the score' do
       click_on 'Save score'
       expected = 'Points achieved must be greater than or equal to 0'
       expect(page).to have_text expected
@@ -72,7 +72,7 @@ RSpec.describe 'updating a quiz score' do
 
     before { fill_in field, with: bad_score }
 
-    it 'will not accept the score' do
+    it 'does not accept the score' do
       click_on 'Save score'
       expected = "Points achieved must be less than or equal to #{max_score}"
       expect(page).to have_text expected
@@ -82,7 +82,7 @@ RSpec.describe 'updating a quiz score' do
   context 'when blank field quiz score' do
     before { fill_in field, with: '' }
 
-    it 'will not accept blank number' do
+    it 'does not accept blank number' do
       click_on 'Save score'
       expect(page).to have_text "Points achieved can't be blank"
     end
