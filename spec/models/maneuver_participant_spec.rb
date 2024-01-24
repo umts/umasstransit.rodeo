@@ -15,7 +15,7 @@ RSpec.describe ManeuverParticipant do
     before do
       participants.each do |participant|
         maneuvers.each do |maneuver|
-          create :maneuver_participant, maneuver: maneuver, participant: participant
+          create :maneuver_participant, maneuver:, participant:
         end
       end
     end

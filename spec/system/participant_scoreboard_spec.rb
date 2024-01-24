@@ -14,7 +14,7 @@ RSpec.describe 'viewing the scoreboard' do
     let!(:quiz_score) { create :quiz_score }
 
     before do
-      participant.update quiz_score: quiz_score
+      participant.update quiz_score:
     end
 
     it 'shows the quiz score' do
@@ -37,7 +37,7 @@ RSpec.describe 'viewing the scoreboard' do
   end
 
   context 'when participant has maneuver scores' do
-    let!(:mp) { create :maneuver_participant, :perfect_score, participant: participant }
+    let!(:mp) { create :maneuver_participant, :perfect_score, participant: }
 
     it 'shows the maneuver score' do
       visit scoreboard_participants_path

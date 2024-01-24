@@ -46,7 +46,7 @@ class OnboardJudging < ApplicationRecord
   def set_score
     score = MAX_SCORE - time_penalty -
             penalties.sum { |type, pen| self[type] * pen }
-    assign_attributes score: score
+    assign_attributes score:
   end
 
   def time_penalty

@@ -13,7 +13,7 @@ RSpec.describe ScoreboardRenderer do
     let(:scoreboard) { output.css('table.scoreboard tbody') }
 
     before do
-      create :maneuver_participant, maneuver: maneuver, participant: participant
+      create :maneuver_participant, maneuver:, participant:
     end
 
     it 'is an HTML document' do

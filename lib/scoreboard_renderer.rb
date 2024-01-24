@@ -27,7 +27,7 @@ class ScoreboardRenderer < ParticipantsController
     end
 
     def render
-      super(:scoreboard, assigns: assigns)
+      super(:scoreboard, assigns:)
     end
   end
 end

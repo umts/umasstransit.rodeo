@@ -51,8 +51,7 @@ RSpec.describe Participant do
 
     context 'when participant has completed maneuver' do
       before do
-        create :maneuver_participant, maneuver: maneuver,
-                                      participant: participant
+        create :maneuver_participant, maneuver:, participant:
       end
 
       it 'returns true' do
@@ -74,21 +73,21 @@ RSpec.describe Participant do
 
     it 'increases by quiz score' do
       quiz_score = create :quiz_score
-      expect { participant.update quiz_score: quiz_score }
+      expect { participant.update quiz_score: }
         .to change(participant, :total_score)
         .by(quiz_score.score)
     end
 
     it 'increases by circle check score' do
       circle_check_score = create :circle_check_score
-      expect { participant.update circle_check_score: circle_check_score }
+      expect { participant.update circle_check_score: }
         .to change(participant, :total_score)
         .by(circle_check_score.score)
     end
 
     it 'increases by onboard judging score' do
       onboard_judging = create :onboard_judging
-      expect { participant.update onboard_judging: onboard_judging }
+      expect { participant.update onboard_judging: }
         .to change(participant, :total_score)
         .by(onboard_judging.score)
     end
@@ -143,7 +142,7 @@ RSpec.describe Participant do
     subject(:call) { ->(by) { described_class.scoreboard_order(by) } }
 
     it 'can sort participants by total score' do
-      create :onboard_judging, :perfect, participant: participant
+      create(:onboard_judging, :perfect, participant:)
       oj2 = create :onboard_judging, minutes_elapsed: 8
       oj3 = create :onboard_judging, minutes_elapsed: 9
       expected = [participant, oj2.participant, oj3.participant]
@@ -151,7 +150,7 @@ RSpec.describe Participant do
     end
 
     it 'can sort participants by maneuver score' do
-      create :maneuver_participant, :perfect_score, participant: participant
+      create(:maneuver_participant, :perfect_score, participant:)
       mp2 = create :maneuver_participant, :perfect_score, reversed_direction: 1
       mp3 = create :maneuver_participant, :perfect_score, reversed_direction: 2
       expected = [participant, mp2.participant, mp3.participant]

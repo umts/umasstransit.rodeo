@@ -32,13 +32,11 @@ module ScoringHelper
       :+ => ['plus', :max, 'fa-plus'],
       :- => ['minus', :min, 'fa-minus']
     }
-    disabled = (options[types[type][1]] && value == options[types[type][1]])
+    disabled = options[types[type][1]] && value == options[types[type][1]]
 
-    button_tag(class: 'btn btn-primary increment input-group-append',
-               type: :button,
-               data: { field: sanitize_to_id(target_field),
-                       type: types[type][0] },
-               disabled: disabled) do
+    button_tag(class: 'btn btn-primary increment input-group-append', type: :button,
+               data: { field: sanitize_to_id(target_field), type: types[type][0] },
+               disabled:) do
       tag.i class: ['fas', types[type][2]]
     end
   end
