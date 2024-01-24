@@ -419,6 +419,8 @@ DEPENDENCIES
   redis (~> 3.0)
   rspec-rails
   rubocop
+  rubocop-capybara
+  rubocop-factory_bot
   rubocop-rails
   rubocop-rspec
   sassc-rails
