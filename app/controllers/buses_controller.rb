@@ -3,6 +3,11 @@
 class BusesController < ApplicationController
   before_action(except: :index) { require_role :master_of_ceremonies }
 
+  def index
+    @page_title = 'Buses'
+    @buses = Bus.order :number
+  end
+
   def create
     bus = Bus.new bus_params
     if bus.save
@@ -11,11 +16,6 @@ class BusesController < ApplicationController
       flash[:errors] = bus.errors.full_messages
     end
     redirect_back fallback_location: buses_path
-  end
-
-  def index
-    @page_title = 'Buses'
-    @buses = Bus.order :number
   end
 
   def destroy
