@@ -6,7 +6,7 @@ require_relative 'concerns/scoreboard_publisher'
 
 RSpec.describe CircleCheckScore do
   subject(:score) do
-    create :circle_check_score, total_defects: 5, defects_found: 2, participant: participant
+    create :circle_check_score, total_defects: 5, defects_found: 2, participant:
   end
 
   let(:expected_score) { 20 }

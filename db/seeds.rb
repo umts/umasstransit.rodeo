@@ -172,7 +172,7 @@ FactoryBot.create :distance_target,
 unless Rails.env.production? || ENV['SKIP_PARTICIPANTS']
   bus = FactoryBot.create :bus
   35.times do
-    p = FactoryBot.create :participant, name: FFaker::Name.name, bus: bus
+    p = FactoryBot.create(:participant, name: FFaker::Name.name, bus:)
 
     maneuvers.each do |_name, m|
       mp = ManeuverParticipant.new participant: p,

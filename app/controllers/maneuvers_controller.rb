@@ -12,8 +12,7 @@ class ManeuversController < ApplicationController
     participant = @maneuver.next_participant(params[:relative_to])
     if participant.present?
       if participant.completed? @maneuver
-        record = ManeuverParticipant.find_by maneuver: @maneuver,
-                                             participant: participant
+        record = ManeuverParticipant.find_by(maneuver: @maneuver, participant:)
         redirect_to record
       else
         new_mp = new_maneuver_participant_path maneuver: @maneuver.name,
@@ -33,8 +32,7 @@ class ManeuversController < ApplicationController
       flash[:notice] =
         'This is the first participant who completed this maneuver.'
     end
-    redirect_to ManeuverParticipant.find_by maneuver: @maneuver,
-                                            participant: participant
+    redirect_to ManeuverParticipant.find_by(maneuver: @maneuver, participant:)
   end
 
   private

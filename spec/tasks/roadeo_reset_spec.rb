@@ -6,10 +6,10 @@ RSpec.describe 'rake roadeo:reset', task: 'roadeo:reset' do
   before do
     create :bus
     participant = create :participant
-    create :circle_check_score, participant: participant
-    create :quiz_score, participant: participant
-    create :onboard_judging, participant: participant
-    create :maneuver_participant, participant: participant
+    create(:circle_check_score, participant:)
+    create(:quiz_score, participant:)
+    create(:onboard_judging, participant:)
+    create(:maneuver_participant, participant:)
     create :user
   end
 

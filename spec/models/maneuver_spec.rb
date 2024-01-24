@@ -5,8 +5,8 @@ require 'rails_helper'
 RSpec.describe Maneuver do
   describe 'previous participant' do
     let!(:maneuver) { create :maneuver }
-    let!(:record1) { create :maneuver_participant, maneuver: maneuver }
-    let!(:record2) { create :maneuver_participant, maneuver: maneuver }
+    let!(:record1) { create :maneuver_participant, maneuver: }
+    let!(:record2) { create :maneuver_participant, maneuver: }
 
     it 'finds previous participant' do
       actual = record2.participant.number
@@ -20,8 +20,8 @@ RSpec.describe Maneuver do
 
   describe 'next participant' do
     let!(:maneuver) { create :maneuver }
-    let!(:record1) { create :maneuver_participant, maneuver: maneuver }
-    let!(:record2) { create :maneuver_participant, maneuver: maneuver }
+    let!(:record1) { create :maneuver_participant, maneuver: }
+    let!(:record2) { create :maneuver_participant, maneuver: }
 
     it 'finds the next participant' do
       actual = record1.participant.number
@@ -43,7 +43,7 @@ RSpec.describe Maneuver do
 
     context 'with the same point values and types' do
       let(:obstacle1) do
-        create :obstacle, maneuver: maneuver, point_value: 3, obstacle_type: 'cow'
+        create :obstacle, maneuver:, point_value: 3, obstacle_type: 'cow'
       end
       let!(:obstacle2) { obstacle1.dup.tap(&:save) }
 
@@ -54,10 +54,10 @@ RSpec.describe Maneuver do
 
     context 'with different point values and the same types' do
       let(:obstacle1) do
-        create :obstacle, maneuver: maneuver, point_value: 2, obstacle_type: 'boulder'
+        create :obstacle, maneuver:, point_value: 2, obstacle_type: 'boulder'
       end
       let(:obstacle2) do
-        create :obstacle, maneuver: maneuver, point_value: 4, obstacle_type: 'boulder'
+        create :obstacle, maneuver:, point_value: 4, obstacle_type: 'boulder'
       end
 
       it 'returns a hash of obstacles' do

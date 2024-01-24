@@ -20,6 +20,6 @@ class QuizScore < ApplicationRecord
   def self.score_components = %i[points_achieved total_points]
 
   def as_json(options = {})
-    super(options).merge(score: score)
+    super(options).merge(score:)
   end
 end
