@@ -23,6 +23,6 @@ class ApplicationController < ActionController::Base
   end
 
   def require_role(role)
-    (deny_access && return) unless current_user.role?(role)
+    deny_access && return unless current_user.role?(role)
   end
 end

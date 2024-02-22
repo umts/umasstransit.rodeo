@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 source 'https://rubygems.org'
-ruby File.read(File.expand_path('.ruby-version', __dir__)).strip
+ruby file: '.ruby-version'
 
 gem 'bootsnap'
 gem 'bootstrap', '~> 4.3.1'
@@ -10,15 +10,17 @@ gem 'coffee-rails'
 gem 'devise', '~> 4.6'
 gem 'haml'
 gem 'haml-rails'
+gem 'irb'
 gem 'jquery-rails'
+gem 'mutex_m' # Needed for Ruby >=3.4 on Rails <=7.1
 gem 'mysql2', '~> 0.5.2'
 gem 'openssl'
 gem 'paper_trail'
 gem 'puma'
-gem 'rails', '~> 6.1.3'
+gem 'rails', '~> 7.0.8'
 gem 'sassc-rails'
+gem 'sprockets-rails'
 gem 'uglifier'
-gem 'underscore-rails'
 
 group :production do
   gem 'exception_notification'
@@ -33,12 +35,14 @@ group :development do
   gem 'capistrano-passenger', require: false
   gem 'capistrano-pending', require: false
   gem 'capistrano-rails', require: false
-  gem 'listen', '~> 3.0.5'
+  gem 'listen'
   gem 'rubocop', require: false
+  gem 'rubocop-capybara', require: false
+  gem 'rubocop-factory_bot', require: false
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
   gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'spring-watcher-listen'
 end
 
 group :test do
@@ -47,14 +51,14 @@ group :test do
   gem 'rack_session_access'
   gem 'rails-controller-testing'
   gem 'rspec-rails'
+  gem 'selenium-webdriver'
   gem 'simplecov'
   gem 'timecop'
-  gem 'webdrivers'
 end
 
 group :development, :test do
+  gem 'debug'
   gem 'factory_bot_rails'
   gem 'ffaker'
-  gem 'pry-byebug'
   gem 'rb-readline', require: false
 end

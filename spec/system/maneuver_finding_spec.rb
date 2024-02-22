@@ -3,19 +3,10 @@
 require 'rails_helper'
 
 RSpec.describe 'finding a participant' do
-  let!(:maneuver) { create :maneuver }
-  let!(:record1) do
-    create :maneuver_participant,
-           :perfect_score, maneuver: maneuver
-  end
-  let!(:record2) do
-    create :maneuver_participant,
-           :perfect_score, maneuver: maneuver
-  end
-  let!(:record3) do
-    create :maneuver_participant,
-           :perfect_score, maneuver: maneuver
-  end
+  let!(:maneuver) { create(:maneuver) }
+  let!(:record1) { create(:maneuver_participant, :perfect_score, maneuver:) }
+  let!(:record2) { create(:maneuver_participant, :perfect_score, maneuver:) }
+  let!(:record3) { create(:maneuver_participant, :perfect_score, maneuver:) }
 
   describe 'previous participant' do
     context 'when called on first participant' do
@@ -60,7 +51,7 @@ RSpec.describe 'finding a participant' do
 
     context 'when called on last completed participant' do
       it 'redirects to new maneuver' do
-        create :participant
+        create(:participant)
         when_current_user_is :admin
         visit maneuver_participant_path(record3.id)
         click_link 'Next participant'

@@ -9,13 +9,13 @@ RSpec.describe ManeuverParticipant do
   describe '.scoreboard_grouping' do
     subject(:call) { described_class.scoreboard_grouping }
 
-    let(:maneuvers) { create_list :maneuver, 5 }
-    let(:participants) { create_list :participant, 5 }
+    let(:maneuvers) { create_list(:maneuver, 5) }
+    let(:participants) { create_list(:participant, 5) }
 
     before do
       participants.each do |participant|
         maneuvers.each do |maneuver|
-          create :maneuver_participant, maneuver: maneuver, participant: participant
+          create(:maneuver_participant, maneuver:, participant:)
         end
       end
     end
@@ -45,7 +45,7 @@ RSpec.describe ManeuverParticipant do
   end
 
   describe '#score' do
-    let!(:record) { create :maneuver_participant, :perfect_score }
+    let!(:record) { create(:maneuver_participant, :perfect_score) }
 
     it 'is a perfect score' do
       expect(record.score).to be(50)

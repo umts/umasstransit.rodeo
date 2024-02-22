@@ -4,8 +4,8 @@ require 'rails_helper'
 
 RSpec.describe 'recording an onboard judging score' do
   context 'with judge privilege' do
-    let(:judge) { create :user, :judge }
-    let(:participant) { create :participant }
+    let(:judge) { create(:user, :judge) }
+    let(:participant) { create(:participant) }
 
     before do
       when_current_user_is judge
@@ -23,8 +23,8 @@ RSpec.describe 'recording an onboard judging score' do
   end
 
   context 'with admin privilege' do
-    let(:admin) { create :user, :admin }
-    let(:participant) { create :participant }
+    let(:admin) { create(:user, :admin) }
+    let(:participant) { create(:participant) }
 
     before do
       when_current_user_is admin
@@ -42,8 +42,8 @@ RSpec.describe 'recording an onboard judging score' do
   end
 
   context 'with quiz scorer privilege' do
-    let(:quiz_scorer) { create :user, :quiz_scorer }
-    let(:participant) { create :participant }
+    let(:quiz_scorer) { create(:user, :quiz_scorer) }
+    let(:participant) { create(:participant) }
 
     before do
       when_current_user_is quiz_scorer

@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'removing a participant' do
   before do
-    create :participant
+    create(:participant)
   end
 
   context 'with admin privilege' do
@@ -26,7 +26,7 @@ RSpec.describe 'removing a participant' do
   end
 
   context 'with judge privilege' do
-    it 'will not remove a participant' do
+    it 'does not remove a participant' do
       when_current_user_is :judge
       visit participants_path
       click_on 'Remove'

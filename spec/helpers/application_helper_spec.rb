@@ -13,15 +13,15 @@ RSpec.describe ApplicationHelper do
     before { allow(helper).to receive(:current_user).and_return user }
 
     context 'without required role' do
-      let(:user) { create :user }
+      let(:user) { create(:user) }
 
       it 'returns nil' do
-        expect(call).to be nil
+        expect(call).to be_nil
       end
     end
 
     context 'with required role' do
-      let(:user) { create :user, :admin }
+      let(:user) { create(:user, :admin) }
 
       it 'links to the path' do
         expect(call).to have_link(href: path)

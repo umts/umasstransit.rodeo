@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'updating onboard judging' do
-  let!(:onboard_judging) { create :onboard_judging, :perfect }
+  let!(:onboard_judging) { create(:onboard_judging, :perfect) }
 
   context 'with judge privilege' do
     before do

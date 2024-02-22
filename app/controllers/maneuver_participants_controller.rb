@@ -5,16 +5,11 @@ class ManeuverParticipantsController < ApplicationController
   before_action :find_maneuver_and_participant, only: :create
   before_action(only: %i[create update]) { require_role :judge }
 
-  def create
-    unless @participant.completed? @maneuver
-      attrs = { maneuver: @maneuver, participant: @participant }
-      attrs.merge! params.permit(:reversed_direction, :speed_achieved,
-                                 :made_additional_stops, :completed_as_designed)
-      attrs[:obstacles_hit] = parse_obstacles
-      attrs[:distances_achieved] = parse_distance_targets
-      ManeuverParticipant.create! attrs
-    end
-    redirect_to next_participant_maneuver_path(@maneuver)
+  def show
+    @maneuver = @record.maneuver
+    @participant = @record.participant
+    @page_title = "Judging #{@maneuver.name}"
+    @page_subtitle = @participant.display_information(:name, :number, :bus)
   end
 
   def new
@@ -31,11 +26,16 @@ class ManeuverParticipantsController < ApplicationController
                                       participant: @participant
   end
 
-  def show
-    @maneuver = @record.maneuver
-    @participant = @record.participant
-    @page_title = "Judging #{@maneuver.name}"
-    @page_subtitle = @participant.display_information(:name, :number, :bus)
+  def create
+    unless @participant.completed? @maneuver
+      attrs = { maneuver: @maneuver, participant: @participant }
+      attrs.merge! params.permit(:reversed_direction, :speed_achieved,
+                                 :made_additional_stops, :completed_as_designed)
+      attrs[:obstacles_hit] = parse_obstacles
+      attrs[:distances_achieved] = parse_distance_targets
+      ManeuverParticipant.create! attrs
+    end
+    redirect_to next_participant_maneuver_path(@maneuver)
   end
 
   def update

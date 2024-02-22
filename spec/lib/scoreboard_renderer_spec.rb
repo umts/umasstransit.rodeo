@@ -6,14 +6,14 @@ require 'scoreboard_renderer'
 
 RSpec.describe ScoreboardRenderer do
   describe '.render' do
-    let(:participant) { create :participant }
-    let(:maneuver) { create :maneuver }
+    let(:participant) { create(:participant) }
+    let(:maneuver) { create(:maneuver) }
     let(:output) { Nokogiri::HTML(described_class.render) }
     let(:nav) { output.css('nav #mainnav') }
     let(:scoreboard) { output.css('table.scoreboard tbody') }
 
     before do
-      create :maneuver_participant, maneuver: maneuver, participant: participant
+      create(:maneuver_participant, maneuver:, participant:)
     end
 
     it 'is an HTML document' do
@@ -21,12 +21,12 @@ RSpec.describe ScoreboardRenderer do
     end
 
     it 'has non-debug stylesheets' do
-      stylesheets = output.css('head link[rel="stylesheet"]').map { |s| s['href'] }
+      stylesheets = output.css('head link[rel="stylesheet"]').pluck('href')
       expect(stylesheets).not_to include(match('debug'))
     end
 
     it 'has non-debug javascript' do
-      js = output.css('script[src]').map { |s| s['src'] }
+      js = output.css('script[src]').pluck('src')
       expect(js).not_to include(match('debug'))
     end
 

@@ -3,9 +3,9 @@
 require 'rails_helper'
 
 RSpec.describe 'recording a new maneuver score' do
-  let(:judge) { create :user, :judge }
-  let(:maneuver) { create :maneuver }
-  let(:participant) { create :participant }
+  let(:judge) { create(:user, :judge) }
+  let(:maneuver) { create(:maneuver) }
+  let(:participant) { create(:participant) }
   let(:mp) do
     ManeuverParticipant.find_by maneuver_id: maneuver,
                                 participant_id: participant

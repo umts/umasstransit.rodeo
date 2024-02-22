@@ -14,6 +14,13 @@ class ParticipantsController < ApplicationController
                 notice: 'Participant has been added to the queue.'
   end
 
+  def index
+    @participants = Participant.order(:created_at).reverse
+    @unassigned = Participant.not_numbered.order :name
+    @next_number = Participant.next_number
+    @buses = Bus.order :number
+  end
+
   def create
     participant = Participant.new user_params
     if participant.save
@@ -24,17 +31,16 @@ class ParticipantsController < ApplicationController
     redirect_to participants_path
   end
 
+  def update
+    return unless @participant.update user_params
+
+    redirect_to participants_path, notice: 'Participant has been updated.'
+  end
+
   def destroy
     @participant.destroy!
     redirect_to participants_path,
                 notice: 'Participant has been removed.'
-  end
-
-  def index
-    @participants = Participant.order(:created_at).reverse
-    @unassigned = Participant.not_numbered.order :name
-    @next_number = Participant.next_number
-    @buses = Bus.order :number
   end
 
   def scoreboard
@@ -48,12 +54,6 @@ class ParticipantsController < ApplicationController
 
     @maneuver_participants = ManeuverParticipant.scoreboard_grouping
     @participants = Participant.scoreboard_data.scoreboard_order @sort_order
-  end
-
-  def update
-    return unless @participant.update user_params
-
-    redirect_to participants_path, notice: 'Participant has been updated.'
   end
 
   def welcome

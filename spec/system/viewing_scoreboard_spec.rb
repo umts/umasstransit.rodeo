@@ -17,7 +17,7 @@ RSpec.shared_examples 'they are not allowed to edit' do
 end
 
 RSpec.describe 'viewing the scoreboard' do
-  let(:mp) { create :maneuver_participant }
+  let(:mp) { create(:maneuver_participant) }
   let!(:participant) { mp.participant }
   let(:row) { find('tr', text: participant.name) }
 
