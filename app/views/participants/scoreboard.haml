@@ -4,7 +4,7 @@
       %button.btn.btn-primary.fullscreen.mr-2
         %i.fas.fa-expand
       - if current_user&.role?(:master_of_ceremonies)
-        = form_with url: flip_scores_lock_path, local: true do |f|
+        = form_with url: toggle_scores_lock_path, local: true do |f|
           = f.button class: 'btn btn-primary mr-2' do
             - if Settings.scores_locked?
               Unlock Scores

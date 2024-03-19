@@ -45,5 +45,5 @@ Rails.application.routes.draw do
     end
   end
 
-  post :flip_scores_lock, to: 'settings#flip_scores_lock'
+  post :toggle_scores_lock, to: 'settings#toggle_scores_lock'
 end
