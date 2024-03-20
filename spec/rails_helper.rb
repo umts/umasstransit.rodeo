@@ -27,6 +27,7 @@ RSpec.configure do |config|
   config.before(:suite) do
     Warden.test_mode!
     Rails.application.load_tasks
+    Settings.instance.update!(scores_locked: false)
   end
 
   config.before(:each, type: :system) do

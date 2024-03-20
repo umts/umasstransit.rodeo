@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[6.1].define(version: 2021_02_19_134558) do
+ActiveRecord::Schema.define(version: 2024_01_05_205316) do
 
   create_table "buses", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
     t.string "number"
@@ -113,6 +113,12 @@ ActiveRecord::Schema[6.1].define(version: 2021_02_19_134558) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["participant_id"], name: "index_quiz_scores_on_participant_id", unique: true
+  end
+
+  create_table "settings", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
+    t.integer "singleton_guard", null: false
+    t.boolean "scores_locked", default: true, null: false
+    t.index ["singleton_guard"], name: "index_settings_on_singleton_guard", unique: true
   end
 
   create_table "users", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|

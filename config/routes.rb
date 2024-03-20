@@ -44,4 +44,6 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  post :toggle_scores_lock, to: 'settings#toggle_scores_lock'
 end
