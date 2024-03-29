@@ -31,3 +31,6 @@
 
 en:
   hello: "Hello world"
+  settings:
+    scores_locked: 'Successfully locked scores'
+    scores_unlocked: 'Successfully unlocked scores'
