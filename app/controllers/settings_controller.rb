@@ -3,7 +3,7 @@
 class SettingsController < ApplicationController
   def toggle_scores_lock
     settings = Settings.instance
-    if settings.update({ scores_locked: !settings.scores_locked? })
+    if settings.toggle(:scores_locked).save
       redirect_to scoreboard_participants_path,
                   notice: settings.scores_locked? ? t('.scores_locked') : t('.scores_unlocked')
     else

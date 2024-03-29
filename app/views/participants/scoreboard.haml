@@ -12,7 +12,7 @@
             - else
               Lock Scores
               %i.fas.fa-lock
-      - elsif Settings.scores_locked?
+      - elsif Settings.scores_locked? && !@archiving
         Scores are locked!
     .scoreboard-content
       - table_classes = %w[scoreboard table table-bordered table-striped table-sm text-center]
