@@ -1,7 +1,19 @@
 - if @participants_exist
   .scoreboard
-    %button.btn.btn-primary.fullscreen
-      %i.fas.fa-expand
+    .d-flex.align-items-center
+      %button.btn.btn-primary.fullscreen.mr-2
+        %i.fas.fa-expand
+      - if current_user&.role?(:master_of_ceremonies)
+        = form_with url: toggle_scores_lock_path, local: true do |f|
+          = f.button class: 'btn btn-primary mr-2' do
+            - if Settings.scores_locked?
+              Unlock Scores
+              %i.fas.fa-lock-open
+            - else
+              Lock Scores
+              %i.fas.fa-lock
+      - elsif Settings.scores_locked? && !@archiving
+        Scores are locked!
     .scoreboard-content
       - table_classes = %w[scoreboard table table-bordered table-striped table-sm text-center]
       %table{class: table_classes, data: {sortList: sort_list(@sort_order)}}

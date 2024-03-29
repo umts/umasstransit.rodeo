@@ -2,13 +2,9 @@
 
 class ScoreboardRenderer < ParticipantsController
   module ScoreboardRendererHelper
-    def debug_assets
-      false
-    end
-
-    def user_signed_in?
-      false
-    end
+    def current_user = nil
+    def debug_assets = false
+    def user_signed_in? = false
   end
   helper ScoreboardRendererHelper
 
