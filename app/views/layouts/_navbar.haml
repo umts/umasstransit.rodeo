@@ -21,7 +21,7 @@
       .dropdown
         %button.btn.nav-item.dropdown-toggle{data: {toggle: 'dropdown'}}
           = current_user.name
-        .dropdown-menu
+        .dropdown-menu.dropdown-menu-right
           = link_to 'Edit Account', edit_user_registration_path, class: 'dropdown-item'
           = link_to 'Logout', destroy_user_session_path, method: :delete, class: 'dropdown-item'
     - elsif @archiving
