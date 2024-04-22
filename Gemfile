@@ -21,6 +21,7 @@ gem 'puma'
 gem 'rails', '~> 7.0.8'
 gem 'sassc-rails'
 gem 'sprockets-rails'
+gem 'thruster'
 gem 'uglifier'
 
 group :production do
@@ -36,6 +37,7 @@ group :development do
   gem 'capistrano-passenger', require: false
   gem 'capistrano-pending', require: false
   gem 'capistrano-rails', require: false
+  gem 'dockerfile-rails'
   gem 'listen'
   gem 'rubocop', require: false
   gem 'rubocop-capybara', require: false
