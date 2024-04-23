@@ -8,6 +8,7 @@ gem 'bootstrap', '~> 4.3.1'
 gem 'certified'
 gem 'coffee-rails'
 gem 'devise', '~> 4.6'
+gem 'factory_bot_rails'
 gem 'haml'
 gem 'haml-rails'
 gem 'irb'
@@ -58,7 +59,6 @@ end
 
 group :development, :test do
   gem 'debug'
-  gem 'factory_bot_rails'
   gem 'ffaker'
   gem 'rb-readline', require: false
 end

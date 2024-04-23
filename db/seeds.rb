@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'factory_bot_rails'
-require 'ffaker'
 
 exit if Rails.env.test?
 
@@ -169,54 +168,56 @@ FactoryBot.create :distance_target,
                   maneuver: maneuvers['Judgement Stop'],
                   name: 'marker cone to front of bus'
 
-unless Rails.env.production? || ENV['SKIP_PARTICIPANTS']
-  bus = FactoryBot.create :bus
-  35.times do
-    p = FactoryBot.create(:participant, name: FFaker::Name.name, bus:)
+exit if Rails.env.production? || ENV['SKIP_PARTICIPANTS']
 
-    maneuvers.each_value do |m|
-      mp = ManeuverParticipant.new participant: p,
-                                   maneuver: m,
-                                   reversed_direction: 0,
-                                   completed_as_designed: true
-      unless m.name.include?('Passenger') || rand(4).zero?
-        m.obstacles.order('rand()').take(2).each do |obst|
-          mp.obstacles_hit[obst.id] ||= [obst.point_value, 0]
-          mp.obstacles_hit[obst.id][1] += 1
-        end
+require 'ffaker'
+
+bus = FactoryBot.create :bus
+35.times do
+  p = FactoryBot.create(:participant, name: FFaker::Name.name, bus:)
+
+  maneuvers.each_value do |m|
+    mp = ManeuverParticipant.new participant: p,
+                                 maneuver: m,
+                                 reversed_direction: 0,
+                                 completed_as_designed: true
+    unless m.name.include?('Passenger') || rand(4).zero?
+      m.obstacles.order('rand()').take(2).each do |obst|
+        mp.obstacles_hit[obst.id] ||= [obst.point_value, 0]
+        mp.obstacles_hit[obst.id][1] += 1
       end
-      dt = m.distance_targets.order('rand()').first
-      mp.distances_achieved[[dt.minimum, dt.multiplier]] = rand(3) if dt
-      mp.save!
     end
-
-    CircleCheckScore.create! participant: p,
-                             total_defects: 5,
-                             defects_found: rand(0..5)
-    QuizScore.create! participant: p,
-                      total_points: 100,
-                      points_achieved: rand(0..100)
-    OnboardJudging.create! participant: p,
-                           minutes_elapsed: rand(6..8),
-                           seconds_elapsed: rand(60),
-                           missed_turn_signals: 0,
-                           missed_flashers: rand(2),
-                           missed_horn_sounds: rand(2),
-                           times_moved_with_door_open: 0,
-                           unannounced_stops: 0,
-                           sudden_stops: 0,
-                           sudden_starts: 0,
-                           abrupt_turns: 0
+    dt = m.distance_targets.order('rand()').first
+    mp.distances_achieved[[dt.minimum, dt.multiplier]] = rand(3) if dt
+    mp.save!
   end
 
-  15.times { FactoryBot.create :participant, name: FFaker::Name.name }
-
-  FactoryBot.create :user, name: 'Karin Eichelman',
-                           email: 'karin@example.com',
-                           password: 'password',
-                           admin: true
-  FactoryBot.create :user, name: 'Jake Brians',
-                           email: 'jbox@example.com',
-                           password: 'password',
-                           master_of_ceremonies: true
+  CircleCheckScore.create! participant: p,
+                           total_defects: 5,
+                           defects_found: rand(0..5)
+  QuizScore.create! participant: p,
+                    total_points: 100,
+                    points_achieved: rand(0..100)
+  OnboardJudging.create! participant: p,
+                         minutes_elapsed: rand(6..8),
+                         seconds_elapsed: rand(60),
+                         missed_turn_signals: 0,
+                         missed_flashers: rand(2),
+                         missed_horn_sounds: rand(2),
+                         times_moved_with_door_open: 0,
+                         unannounced_stops: 0,
+                         sudden_stops: 0,
+                         sudden_starts: 0,
+                         abrupt_turns: 0
 end
+
+15.times { FactoryBot.create :participant, name: FFaker::Name.name }
+
+FactoryBot.create :user, name: 'Karin Eichelman',
+                         email: 'karin@example.com',
+                         password: 'password',
+                         admin: true
+FactoryBot.create :user, name: 'Jake Brians',
+                         email: 'jbox@example.com',
+                         password: 'password',
+                         master_of_ceremonies: true
