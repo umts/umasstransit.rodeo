@@ -3,6 +3,9 @@
 Rails.application.routes.draw do
   devise_for :users
 
+  #TODO: In Rails 7.1, we can use the built-in Rails::HealthController and remove ours
+  get 'up' => 'health#show', as: :rails_health_check
+
   root 'participants#welcome'
 
   resources :buses, only: %i[create index destroy]
