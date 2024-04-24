@@ -11,5 +11,8 @@
     "jquery.are-you-sure": "^1.9.0",
     "tablesorter": "^2.31.1"
   },
+  "engines": {
+    "yarn": "^1.22.0"
+  },
   "packageManager": "yarn@1.22.22"
 }

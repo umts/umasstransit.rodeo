@@ -29,4 +29,7 @@
 !/archive/.keep
 
 /node_modules
+.yarnrc
+.yarn/releases/*
+
 spec/examples.txt
