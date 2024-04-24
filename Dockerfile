@@ -45,18 +45,18 @@ RUN npm install -g yarn@$YARN_VERSION
 ENV PATH="/usr/local/node/bin:$PATH"
 
 # Install application gems
-COPY Gemfile Gemfile.lock .ruby-version ./
+COPY --link Gemfile Gemfile.lock .ruby-version ./
 RUN bundle install && \
     bundle exec bootsnap precompile --gemfile && \
     rm -rf ~/.bundle/ "${BUNDLE_PATH}"/ruby/*/cache "${BUNDLE_PATH}"/ruby/*/bundler/gems/*/.git
 
 # Install node modules
-COPY .yarnrc package.json yarn.lock ./
-COPY .yarn/releases/* .yarn/releases/
+COPY --link .yarnrc package.json yarn.lock ./
+COPY --link .yarn/releases/* .yarn/releases/
 RUN yarn install --frozen-lockfile
 
 # Copy application code
-COPY . .
+COPY --link . .
 
 # Precompile bootsnap code for faster boot times
 RUN bundle exec bootsnap precompile app/ lib/
