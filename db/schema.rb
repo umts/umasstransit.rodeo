@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_01_05_205316) do
-
+ActiveRecord::Schema[7.0].define(version: 2024_04_29_181500) do
   create_table "buses", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
     t.string "number"
     t.datetime "created_at", null: false
@@ -151,9 +150,11 @@ ActiveRecord::Schema.define(version: 2024_01_05_205316) do
     t.integer "item_id", null: false
     t.string "event", null: false
     t.string "whodunnit"
-    t.text "object"
+    t.text "old_object"
     t.datetime "created_at"
+    t.text "object", size: :long, collation: "utf8mb4_bin"
     t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
+    t.check_constraint "json_valid(`object`)", name: "object"
   end
 
 end
