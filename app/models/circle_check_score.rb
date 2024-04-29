@@ -4,6 +4,8 @@ class CircleCheckScore < ApplicationRecord
   include NormalizedScore
   include ScoreboardPublisher
 
+  has_paper_trail
+
   belongs_to :participant
 
   validates :total_defects, :defects_found, presence: true
