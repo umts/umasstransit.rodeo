@@ -30,6 +30,7 @@ group :production do
 end
 
 group :development do
+  gem 'bcrypt_pbkdf', require: false
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'capistrano', '~> 3.14', require: false
@@ -38,6 +39,7 @@ group :development do
   gem 'capistrano-pending', require: false
   gem 'capistrano-rails', require: false
   gem 'dockerfile-rails'
+  gem 'ed25519', require: false
   gem 'listen'
   gem 'rubocop', require: false
   gem 'rubocop-capybara', require: false
