@@ -16,7 +16,7 @@ gem 'jquery-rails'
 gem 'mutex_m' # Needed for Ruby >=3.4 on Rails <=7.1
 gem 'mysql2', '~> 0.5.2'
 gem 'openssl'
-gem 'paper_trail', '~> 12.2'
+gem 'paper_trail'
 gem 'puma'
 gem 'rails', '~> 7.0.8'
 gem 'sassc-rails'
