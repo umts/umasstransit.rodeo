@@ -7,8 +7,7 @@ module Admin
 
     def approve
       @user.approve!
-      redirect_to manage_admin_users_path,
-                  notice: "#{@user.name} has been approved."
+      redirect_to manage_admin_users_path, notice: t('.success', name: @user.name)
     end
 
     def index
@@ -19,13 +18,12 @@ module Admin
     def update
       return unless @user.update user_params
 
-      redirect_to admin_users_path, notice: 'User has been updated.'
+      redirect_to admin_users_path, notice: t('.success')
     end
 
     def destroy
       @user.destroy!
-      redirect_back fallback_location: admin_users_path,
-                    notice: 'User has been removed.'
+      redirect_back fallback_location: admin_users_path, notice: t('.success')
     end
 
     def manage
