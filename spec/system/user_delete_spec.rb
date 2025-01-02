@@ -12,7 +12,7 @@ RSpec.describe 'deleting a user' do
 
     it 'deletes user' do
       click_on 'Remove', match: :first
-      expect(page).to have_text 'User has been removed.'
+      expect(page).to have_text 'User has been removed'
     end
   end
 
@@ -25,7 +25,7 @@ RSpec.describe 'deleting a user' do
 
     it 'does not delete a user' do
       click_on 'Remove', match: :first
-      expect(page).to have_text 'You are not authorized to make that action.'
+      expect(page).to have_text 'You are not authorized to take that action'
     end
   end
 
