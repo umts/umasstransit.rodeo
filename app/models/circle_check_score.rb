@@ -20,6 +20,6 @@ class CircleCheckScore < ApplicationRecord
   def self.score_components = %i[defects_found total_defects]
 
   def as_json(options = {})
-    super(options).merge(score:)
+    super.merge(score:)
   end
 end
