@@ -18,6 +18,11 @@ class HealthController < ActionController::Base
   end
 
   def html_status(message:)
+    # This _is_ dangerous if `message` is not sanitized. But it only called above
+    # with the strings 'UP' or 'DOWN'. This whole controller can go away after we
+    # upgrade to Rails 7.1
+    # rubocop:disable Rails/OutputSafety
     %(<!DOCTYPE html><html><body"><h1>#{message}</h1></body></html>).html_safe
+    # rubocop:enable Rails/OutputSafety
   end
 end
