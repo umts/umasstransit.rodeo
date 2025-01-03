@@ -11,7 +11,7 @@ class BusesController < ApplicationController
   def create
     bus = Bus.new bus_params
     if bus.save
-      flash[:notice] = 'Bus was successfully added.'
+      flash[:notice] = t('.success')
     else
       flash[:errors] = bus.errors.full_messages
     end
@@ -21,7 +21,7 @@ class BusesController < ApplicationController
   def destroy
     bus = Bus.find_by id: params.require(:id)
     bus.destroy!
-    flash[:notice] = 'Bus was successfully deleted.'
+    flash[:notice] = t('.success')
     redirect_back fallback_location: buses_path
   end
 

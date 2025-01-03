@@ -23,7 +23,7 @@ RSpec.describe 'updating a circle check score' do
     it 'informs you of success' do
       fill_in 'circle_check_score_defects_found', with: '4'
       click_on 'Save score'
-      expect(page).to have_text 'Circle check score was saved.'
+      expect(page).to have_text 'Circle check score has been saved'
     end
   end
 
@@ -43,7 +43,7 @@ RSpec.describe 'updating a circle check score' do
     it 'informs you of success' do
       fill_in 'circle_check_score_defects_found', with: '4'
       click_on 'Save score'
-      expect(page).to have_text 'Circle check score was saved.'
+      expect(page).to have_text 'Circle check score has been saved'
     end
   end
 
@@ -56,7 +56,7 @@ RSpec.describe 'updating a circle check score' do
     it 'does not update circle check score' do
       fill_in 'circle_check_score_defects_found', with: '4'
       click_on 'Save score'
-      expect(page).to have_no_text 'Circle check score was saved.'
+      expect(page).to have_no_text 'Circle check score has been saved'
     end
   end
 

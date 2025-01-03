@@ -29,7 +29,7 @@ RSpec.describe 'adding a quiz score' do
     it 'informs you of failure' do
       fill_in 'quiz_score_points_achieved', with: '70'
       click_on 'Save score'
-      expect(page).to have_text 'You are not authorized to make that action.'
+      expect(page).to have_text 'You are not authorized to take that action'
     end
   end
 
@@ -46,7 +46,7 @@ RSpec.describe 'adding a quiz score' do
     it 'informs you of success' do
       fill_in field, with: '50'
       click_on 'Save score'
-      expect(page).to have_text 'Quiz score was saved.'
+      expect(page).to have_text 'Quiz score has been saved'
     end
   end
 
@@ -62,7 +62,7 @@ RSpec.describe 'adding a quiz score' do
     it 'informs you of success' do
       fill_in field, with: '50'
       click_on 'Save score'
-      expect(page).to have_text 'Quiz score was saved.'
+      expect(page).to have_text 'Quiz score has been saved'
     end
   end
 

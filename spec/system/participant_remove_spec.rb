@@ -12,7 +12,7 @@ RSpec.describe 'removing a participant' do
       when_current_user_is :admin
       visit participants_path
       click_on 'Remove'
-      expect(page).to have_text 'Participant has been removed.'
+      expect(page).to have_text 'Participant has been removed'
     end
   end
 
@@ -21,7 +21,7 @@ RSpec.describe 'removing a participant' do
       when_current_user_is :master_of_ceremonies
       visit participants_path
       click_on 'Remove'
-      expect(page).to have_text 'Participant has been removed.'
+      expect(page).to have_text 'Participant has been removed'
     end
   end
 
@@ -30,7 +30,7 @@ RSpec.describe 'removing a participant' do
       when_current_user_is :judge
       visit participants_path
       click_on 'Remove'
-      expect(page).to have_text 'You are not authorized to make that action.'
+      expect(page).to have_text 'You are not authorized to take that action'
     end
   end
 end

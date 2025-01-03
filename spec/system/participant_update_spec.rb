@@ -21,7 +21,7 @@ RSpec.describe 'updating a participant' do
         fill_in 'participant[name]', with: 'Akiva Green'
         click_on 'Save'
       end
-      expect(page).to have_text 'Participant has been updated.'
+      expect(page).to have_text 'Participant has been updated'
     end
 
     context 'with a numberless participant' do
@@ -40,7 +40,7 @@ RSpec.describe 'updating a participant' do
         within 'form#add_to_queue' do
           click_on 'Add to maneuver queue'
         end
-        expect(page).to have_text 'Participant has been added to the queue.'
+        expect(page).to have_text 'Participant has been added to the queue'
       end
     end
   end
@@ -56,7 +56,7 @@ RSpec.describe 'updating a participant' do
     it 'does not allow duplicate numbers' do
       fill_in 'participant_number', with: 2, match: :first
       click_on 'Save', match: :first
-      expect(page).to have_text 'Please choose a unique participant number.'
+      expect(page).to have_text 'Please choose a unique participant number'
     end
   end
 
@@ -73,7 +73,7 @@ RSpec.describe 'updating a participant' do
         fill_in 'participant[name]', with: 'Akiva Green'
         click_on 'Save'
       end
-      expect(page).to have_text 'Participant has been updated.'
+      expect(page).to have_text 'Participant has been updated'
     end
   end
 
@@ -90,7 +90,7 @@ RSpec.describe 'updating a participant' do
         fill_in 'participant[name]', with: 'Akiva Green'
         click_on 'Save'
       end
-      expect(page).to have_text 'You are not authorized to make that action.'
+      expect(page).to have_text 'You are not authorized to take that action'
     end
   end
 end

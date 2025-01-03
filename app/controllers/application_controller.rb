@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
   end
 
   def deny_access
-    flash[:alert] = 'You are not authorized to make that action.'
+    flash[:alert] = t('denied')
     redirect_back fallback_location: root_path
   end
 

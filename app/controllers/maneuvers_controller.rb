@@ -20,8 +20,7 @@ class ManeuversController < ApplicationController
         redirect_to new_mp
       end
     else
-      redirect_to maneuvers_path,
-                  notice: 'There are no more participants in the queue for this maneuver.'
+      redirect_to maneuvers_path, notice: t('.missing')
     end
   end
 
@@ -29,8 +28,7 @@ class ManeuversController < ApplicationController
     participant = @maneuver.previous_participant(params[:relative_to])
     if participant.blank?
       participant = Participant.find_by(number: params[:relative_to])
-      flash[:notice] =
-        'This is the first participant who completed this maneuver.'
+      flash[:notice] = t('.missing')
     end
     redirect_to ManeuverParticipant.find_by(maneuver: @maneuver, participant:)
   end

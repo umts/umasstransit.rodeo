@@ -30,7 +30,44 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  admin:
+    users:
+      approve:
+        success: '%{name} has been approved'
+      update:
+        success: 'User has been updated'
+      destroy:
+        success: 'User has been removed'
+  buses:
+    create:
+      success: 'Bus has been added'
+    destroy:
+      success: 'Bus has been removed'
+  denied: 'You are not authorized to take that action'
+  maneuver_participants:
+    update:
+      success: 'Maneuver score has been saved'
+  maneuvers:
+    next_participant:
+      missing: 'There are no more participants in the queue for this maneuver'
+    previous_participant:
+      missing: 'This is the first participant who completed this maneuver'
+  non_maneuver_scores:
+    success: '%{score_name} has been saved'
+  onboard_judgings:
+    create:
+      success: 'Onboard score has been saved'
+    update:
+      success: 'Onboard score has been saved'
+  participants:
+    assign_number:
+      success: 'Participant has been added to the queue'
+    create:
+      success: 'Participant has been successfully created'
+    destroy:
+      success: 'Participant has been removed'
+    update:
+      success: 'Participant has been updated'
   settings:
     scores_locked: 'Successfully locked scores'
     scores_unlocked: 'Successfully unlocked scores'

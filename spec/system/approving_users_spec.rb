@@ -17,7 +17,7 @@ RSpec.describe 'approving a user' do
 
   it 'informs you of the approval' do
     click_on 'Approve'
-    expect(page).to have_text "#{user.name} has been approved."
+    expect(page).to have_text "#{user.name} has been approved"
   end
 
   it 'redirects to the index' do
