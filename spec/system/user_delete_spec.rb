@@ -18,13 +18,11 @@ RSpec.describe 'deleting a user' do
 
   context 'with master of ceremonies privilege' do
     before do
-      create(:user)
       when_current_user_is :master_of_ceremonies
       visit admin_users_path
     end
 
-    it 'does not delete a user' do
-      click_on 'Remove', match: :first
+    it 'does not allow access to the user list' do
       expect(page).to have_text 'You are not authorized to take that action'
     end
   end

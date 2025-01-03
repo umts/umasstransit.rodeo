@@ -13,28 +13,28 @@ RSpec.describe 'locking the scores' do
   context 'when you are not priveliged' do
     let(:user) { create(:user) }
 
-    it 'should display when the scores are locked' do
+    it 'displays when the scores are locked' do
       expect(page).to have_text 'Scores are locked!'
     end
 
-    it 'should not display the lock scores button' do
-      expect(page).not_to have_text 'Unlock Scores'
+    it 'does not display the lock scores button' do
+      expect(page).to have_no_text 'Unlock Scores'
     end
   end
 
   context 'when you are the master of ceremonies' do
     let(:user) { create(:user, :master_of_ceremonies) }
 
-    it 'should not display when the scores are locked' do
-      expect(page).not_to have_text 'Scores are locked!'
+    it 'does not display when the scores are locked' do
+      expect(page).to have_no_text 'Scores are locked!'
     end
 
-    it 'should display the lock scores button' do
+    it 'displays the lock scores button' do
       expect(page).to have_text 'Unlock Scores'
     end
 
-    it 'should allow you to lock and unlock the scores' do
-      expect{ click_on 'Unlock Scores' }.to change(Settings, :scores_locked?)
+    it 'allows you to lock and unlock the scores' do
+      expect { click_on 'Unlock Scores' }.to change(Settings, :scores_locked?)
     end
   end
 end

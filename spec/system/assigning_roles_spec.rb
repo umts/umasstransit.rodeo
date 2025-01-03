@@ -29,10 +29,7 @@ RSpec.describe 'assigning roles' do
       visit admin_users_path
     end
 
-    it 'does not assign roles to users' do
-      check 'user_circle_check_scorer'
-      check 'user_judge'
-      click_on 'Save'
+    it 'does not permit access to the user list' do
       expect(page).to have_text 'You are not authorized to take that action'
     end
   end
