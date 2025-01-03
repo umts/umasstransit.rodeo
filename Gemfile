@@ -26,7 +26,7 @@ gem 'uglifier'
 
 group :production do
   gem 'exception_notification'
-  gem 'redis', '~> 3.0'
+  gem 'redis', '~> 5.3'
 end
 
 group :development do
