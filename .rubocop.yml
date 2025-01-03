@@ -15,6 +15,9 @@ AllCops:
     - 'vendor/**/*'
   NewCops: enable
 
+Capybara/ClickLinkOrButtonStyle:
+  Enabled: false
+
 Metrics/AbcSize:
   Max: 20
 Metrics/BlockLength:
