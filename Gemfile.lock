@@ -91,7 +91,7 @@ GEM
       popper_js (>= 1.14.3, < 2)
       sassc-rails (>= 2.0.0)
     builder (3.3.0)
-    capistrano (3.16.0)
+    capistrano (3.19.2)
       airbrussh (>= 1.0.0)
       i18n
       rake (>= 10.0.0)
@@ -416,7 +416,7 @@ DEPENDENCIES
   binding_of_caller
   bootsnap
   bootstrap (~> 4.3.1)
-  capistrano (~> 3.14)
+  capistrano (~> 3.19)
   capistrano-bundler
   capistrano-passenger
   capistrano-pending
