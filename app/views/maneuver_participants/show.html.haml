@@ -8,10 +8,7 @@
     - @maneuver.grouped_obstacles.each do |(point_value, type), obstacles|
       .form-group
         = label_tag "#{point_value}-point #{type.pluralize} touched"
-        - if @record.obstacles_hit.values.first.is_a? Integer
-          - value = @record.obstacles_hit[point_value] || 0
-        - else
-          - value = @record.obstacles_hit[obstacles.first.id].try(:[],1) || 0
+        - value = @record.obstacles_hit[obstacles.first.id].try(:[],1) || 0
         = number_field_tag_with_buttons "obstacle_#{obstacles.first.id}", value, in: 0..obstacles.count
     - @maneuver.distance_targets.each do |target|
       .form-group
