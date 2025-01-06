@@ -78,12 +78,12 @@ GEM
     base64 (0.2.0)
     bcrypt (3.1.16)
     bcrypt_pbkdf (1.1.0)
-    better_errors (2.9.1)
-      coderay (>= 1.0.0)
+    better_errors (2.10.1)
       erubi (>= 1.0.0)
       rack (>= 0.9.0)
-    binding_of_caller (1.0.0)
-      debug_inspector (>= 0.0.1)
+      rouge (>= 1.0.0)
+    binding_of_caller (1.0.1)
+      debug_inspector (>= 1.2.0)
     bootsnap (1.10.3)
       msgpack (~> 1.2)
     bootstrap (4.3.1)
@@ -91,7 +91,7 @@ GEM
       popper_js (>= 1.14.3, < 2)
       sassc-rails (>= 2.0.0)
     builder (3.3.0)
-    capistrano (3.16.0)
+    capistrano (3.19.2)
       airbrussh (>= 1.0.0)
       i18n
       rake (>= 10.0.0)
@@ -115,7 +115,6 @@ GEM
       regexp_parser (>= 1.5, < 3.0)
       xpath (~> 3.2)
     certified (1.0.0)
-    coderay (1.1.3)
     coffee-rails (5.0.0)
       coffee-script (>= 2.2.0)
       railties (>= 5.2.0)
@@ -124,12 +123,13 @@ GEM
       execjs
     coffee-script-source (1.12.2)
     concurrent-ruby (1.3.4)
+    connection_pool (2.4.1)
     crass (1.0.6)
     date (3.3.4)
     debug (1.9.1)
       irb (~> 1.10)
       reline (>= 0.3.8)
-    debug_inspector (1.1.0)
+    debug_inspector (1.2.0)
     devise (4.8.1)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -142,11 +142,10 @@ GEM
       rails (>= 3.0.0)
     ed25519 (1.3.0)
     erubi (1.13.1)
-    erubis (2.7.0)
     exception_notification (4.5.0)
       actionmailer (>= 5.2, < 8)
       activesupport (>= 5.2, < 8)
-    execjs (2.8.1)
+    execjs (2.10.0)
     factory_bot (6.5.0)
       activesupport (>= 5.0.0)
     factory_bot_rails (6.4.4)
@@ -156,20 +155,15 @@ GEM
     ffi (1.17.1)
     globalid (1.2.1)
       activesupport (>= 6.1)
-    haml (5.2.2)
-      temple (>= 0.8.0)
+    haml (6.3.0)
+      temple (>= 0.8.2)
+      thor
       tilt
-    haml-rails (2.0.1)
+    haml-rails (2.1.0)
       actionpack (>= 5.1)
       activesupport (>= 5.1)
-      haml (>= 4.0.6, < 6.0)
-      html2haml (>= 1.0.1)
+      haml (>= 4.0.6)
       railties (>= 5.1)
-    html2haml (2.2.0)
-      erubis (~> 2.7.0)
-      haml (>= 4.0, < 6)
-      nokogiri (>= 1.6.0)
-      ruby_parser (~> 3.5)
     i18n (1.14.6)
       concurrent-ruby (~> 1.0)
     io-console (0.7.2)
@@ -185,6 +179,7 @@ GEM
     listen (3.9.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
+    logger (1.6.4)
     loofah (2.24.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -201,7 +196,7 @@ GEM
     minitest (5.25.4)
     msgpack (1.4.5)
     mutex_m (0.2.0)
-    mysql2 (0.5.5)
+    mysql2 (0.5.6)
     net-imap (0.4.10)
       date
       net-protocol
@@ -223,7 +218,7 @@ GEM
     openssl (3.3.0)
     orm_adapter (0.5.0)
     ostruct (0.6.1)
-    paper_trail (15.1.0)
+    paper_trail (16.0.0)
       activerecord (>= 6.1)
       request_store (~> 1.4)
     parallel (1.26.3)
@@ -283,16 +278,20 @@ GEM
     rb-readline (0.5.5)
     rdoc (6.6.3.1)
       psych (>= 4.0.0)
-    redis (3.3.5)
+    redis (5.3.0)
+      redis-client (>= 0.22.0)
+    redis-client (0.23.0)
+      connection_pool
     regexp_parser (2.10.0)
     reline (0.4.2)
       io-console (~> 0.5)
-    request_store (1.6.0)
+    request_store (1.7.0)
       rack (>= 1.4)
     responders (3.0.1)
       actionpack (>= 5.0)
       railties (>= 5.0)
     rexml (3.4.0)
+    rouge (4.5.1)
     rspec-core (3.11.0)
       rspec-support (~> 3.11.0)
     rspec-expectations (3.11.0)
@@ -336,8 +335,6 @@ GEM
       rubocop-capybara (~> 2.17)
       rubocop-factory_bot (~> 2.22)
     ruby-progressbar (1.13.0)
-    ruby_parser (3.18.1)
-      sexp_processor (~> 4.16)
     rubyzip (2.3.2)
     sassc (2.4.0)
       ffi (~> 1.9)
@@ -347,11 +344,12 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
-    selenium-webdriver (4.16.0)
+    selenium-webdriver (4.27.0)
+      base64 (~> 0.2)
+      logger (~> 1.4)
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
-    sexp_processor (4.16.0)
     simplecov (0.21.2)
       docile (~> 1.1)
       simplecov-html (~> 0.11)
@@ -362,12 +360,12 @@ GEM
     spring-watcher-listen (2.1.0)
       listen (>= 2.7, < 4.0)
       spring (>= 4)
-    sprockets (4.2.0)
+    sprockets (4.2.1)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
-    sprockets-rails (3.4.2)
-      actionpack (>= 5.2)
-      activesupport (>= 5.2)
+    sprockets-rails (3.5.2)
+      actionpack (>= 6.1)
+      activesupport (>= 6.1)
       sprockets (>= 3.0.0)
     sshkit (1.23.2)
       base64
@@ -376,22 +374,22 @@ GEM
       net-ssh (>= 2.8.0)
       ostruct
     stringio (3.1.0)
-    temple (0.8.2)
+    temple (0.10.3)
     thor (1.3.2)
     thruster (0.1.3)
-    tilt (2.0.10)
+    tilt (2.5.0)
     timecop (0.9.4)
     timeout (0.4.1)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
-    uglifier (4.2.0)
+    uglifier (4.2.1)
       execjs (>= 0.3.0, < 3)
     unicode-display_width (3.1.3)
       unicode-emoji (~> 4.0, >= 4.0.4)
     unicode-emoji (4.0.4)
     warden (1.2.9)
       rack (>= 2.0.9)
-    websocket (1.2.10)
+    websocket (1.2.11)
     websocket-driver (0.7.6)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
@@ -409,7 +407,7 @@ DEPENDENCIES
   binding_of_caller
   bootsnap
   bootstrap (~> 4.3.1)
-  capistrano (~> 3.14)
+  capistrano (~> 3.19)
   capistrano-bundler
   capistrano-passenger
   capistrano-pending
@@ -430,7 +428,7 @@ DEPENDENCIES
   jquery-rails
   listen
   mutex_m
-  mysql2 (~> 0.5.2)
+  mysql2 (~> 0.5.6)
   openssl
   paper_trail
   puma
@@ -438,7 +436,7 @@ DEPENDENCIES
   rails (~> 7.0.8)
   rails-controller-testing
   rb-readline
-  redis (~> 3.0)
+  redis (~> 5.3)
   rspec-rails
   rubocop
   rubocop-capybara
@@ -456,7 +454,7 @@ DEPENDENCIES
   uglifier
 
 RUBY VERSION
-   ruby 3.3.0p0
+   ruby 3.3.6p108
 
 BUNDLED WITH
-   2.5.5
+   2.6.2

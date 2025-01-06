@@ -3,7 +3,7 @@
 module Admin
   class UsersController < ApplicationController
     before_action :find_user, except: %i[index manage]
-    before_action(only: %i[destroy update]) { require_role :admin }
+    before_action { require_role :admin }
 
     def approve
       @user.approve!

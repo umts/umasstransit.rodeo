@@ -14,7 +14,7 @@ gem 'haml-rails'
 gem 'irb'
 gem 'jquery-rails'
 gem 'mutex_m' # Needed for Ruby >=3.4 on Rails <=7.1
-gem 'mysql2', '~> 0.5.2'
+gem 'mysql2', '~> 0.5.6'
 gem 'openssl'
 gem 'paper_trail'
 gem 'puma'
@@ -26,14 +26,14 @@ gem 'uglifier'
 
 group :production do
   gem 'exception_notification'
-  gem 'redis', '~> 3.0'
+  gem 'redis', '~> 5.3'
 end
 
 group :development do
   gem 'bcrypt_pbkdf', require: false
   gem 'better_errors'
   gem 'binding_of_caller'
-  gem 'capistrano', '~> 3.14', require: false
+  gem 'capistrano', '~> 3.19', require: false
   gem 'capistrano-bundler', require: false
   gem 'capistrano-passenger', require: false
   gem 'capistrano-pending', require: false
