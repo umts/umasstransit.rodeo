@@ -1,5 +1,5 @@
 //= require jquery3
-//= require jquery_ujs
+//= require rails-ujs
 //= require bootstrap
 //= require jquery.are-you-sure
 //= require tablesorter/dist/js/jquery.tablesorter
