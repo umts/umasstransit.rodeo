@@ -6,7 +6,6 @@ $(document).ready(function(){
     var existingNumbers = $('.participants input[type=number]').not($(this)).map(function(){
       return parseInt($(this).val());
     });
-    existingNumbers = $.unique(existingNumbers);
     currentNumber = parseInt($(this).val());
     if(existingNumbers.index(currentNumber) !== -1)
       $('.uniqueness-warning').show();
