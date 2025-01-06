@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(function(){
   if($('.participants .uniqueness-warning').is(':visible'))
     $('.uniqueness-warning').hide();
 

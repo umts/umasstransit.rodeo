@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(function(){
   $('#score_form').areYouSure();
 
   $('.scoring').on('click', 'button.increment', function(){
