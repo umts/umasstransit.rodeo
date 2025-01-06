@@ -17,5 +17,5 @@ function checkPasswordMatch() {
 };
 
 $(function(){
-   $("#user_password_confirmation").keyup(checkPasswordMatch);
+   $("#user_password_confirmation").on('keyup', checkPasswordMatch);
 });
