@@ -1,4 +1,4 @@
-//= require jquery3
+//= require jquery
 //= require rails-ujs
 //= require bootstrap
 //= require jquery.are-you-sure

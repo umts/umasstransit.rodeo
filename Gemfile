@@ -12,7 +12,6 @@ gem 'factory_bot_rails'
 gem 'haml'
 gem 'haml-rails'
 gem 'irb'
-gem 'jquery-rails'
 gem 'mutex_m' # Needed for Ruby >=3.4 on Rails <=7.1
 gem 'mysql2', '~> 0.5.6'
 gem 'openssl'
