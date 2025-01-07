@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 ruby file: '.ruby-version'
 
 gem 'bootsnap'
-gem 'bootstrap', '~> 4.3.1'
+gem 'bootstrap', '~> 5.3.3'
 gem 'certified'
 gem 'coffee-rails'
 gem 'devise', '~> 4.6'
