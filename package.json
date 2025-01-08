@@ -25,5 +25,8 @@
   "packageManager": "yarn@1.22.22",
   "scripts": {
     "build:css": "postcss ./app/assets/stylesheets/application.scss -o ./app/assets/builds/application.css"
+  },
+  "devDependencies": {
+    "run-pty": "^5.0.0"
   }
 }
