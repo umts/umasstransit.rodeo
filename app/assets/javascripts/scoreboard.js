@@ -12,7 +12,7 @@ $(function(){
     'headerTemplate': '<div class="header-label align-middle">{content}</div>{icon}',
     'cssAsc': 'bg-info',
     'cssDesc': 'bg-info',
-    'cssIcon': 'fas header-icon align-middle',
+    'cssIcon': 'fa-solid header-icon align-middle',
     'cssIconAsc': 'fa-sort-up',
     'cssIconDesc': 'fa-sort-down',
     'cssIconNone': 'fa-sort',
