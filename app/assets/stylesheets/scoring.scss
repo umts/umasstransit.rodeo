@@ -12,7 +12,7 @@
   .btn-group-toggle.checkbox .btn {
     i {
       @extend %fa-icon;
-      @extend .fas;
+      @extend .fa-solid;
 
       &::before {
         content: fa-content($fa-var-circle);
@@ -20,7 +20,7 @@
     }
 
     &.active i::before {
-      content: fa-content($fa-var-check-circle);
+      content: fa-content($fa-var-circle-check);
     }
   }
 

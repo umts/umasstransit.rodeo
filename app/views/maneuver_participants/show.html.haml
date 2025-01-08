@@ -43,9 +43,9 @@
       = submit_tag 'Save score', class: 'btn btn-primary submit'
       = link_to previous_participant_maneuver_path(@maneuver, relative_to: @participant.number) do
         %button.btn.btn-secondary.actions{type: :button}
-          %i.fas.fa-arrow-left
+          %i.fa-solid.fa-arrow-left
           %span.d-none.d-sm-inline Previous participant
       = link_to next_participant_maneuver_path(@maneuver, relative_to: @participant.number) do
         %button.btn.btn-secondary.actions{type: :button}
           %span.d-none.d-sm-inline Next participant
-          %i.fas.fa-arrow-right
+          %i.fa-solid.fa-arrow-right
