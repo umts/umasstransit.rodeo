@@ -37,7 +37,7 @@ module ScoringHelper
     button_tag(class: 'btn btn-primary increment input-group-append', type: :button,
                data: { field: sanitize_to_id(target_field), type: types[type][0] },
                disabled:) do
-      tag.i class: ['fas', types[type][2]]
+      tag.i class: ['fa-solid', types[type][2]]
     end
   end
 end

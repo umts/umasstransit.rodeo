@@ -2,16 +2,16 @@
   .scoreboard
     .d-flex.align-items-center
       %button.btn.btn-primary.fullscreen.mr-2
-        %i.fas.fa-expand
+        %i.fa-solid.fa-expand
       - if current_user&.role?(:master_of_ceremonies)
         = form_with url: toggle_scores_lock_path, local: true do |f|
           = f.button class: 'btn btn-primary mr-2' do
             - if Settings.scores_locked?
               Unlock Scores
-              %i.fas.fa-lock-open
+              %i.fa-solid.fa-lock-open
             - else
               Lock Scores
-              %i.fas.fa-lock
+              %i.fa-solid.fa-lock
       - elsif Settings.scores_locked? && !@archiving
         Scores are locked!
     .scoreboard-content
