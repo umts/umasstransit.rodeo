@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(function(){
   $('.scoreboard').on('click', 'button.fullscreen', function(){
     var scoreboard = $('.scoreboard-content').get(0);
     if (scoreboard.requestFullscreen) {
