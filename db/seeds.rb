@@ -170,11 +170,11 @@ FactoryBot.create :distance_target,
 
 exit if Rails.env.production? || ENV['SKIP_PARTICIPANTS']
 
-require 'ffaker'
+require 'faker'
 
 bus = FactoryBot.create :bus
 35.times do
-  p = FactoryBot.create(:participant, name: FFaker::Name.name, bus:)
+  p = FactoryBot.create(:participant, name: Faker::Name.name, bus:)
 
   maneuvers.each_value do |m|
     mp = ManeuverParticipant.new participant: p,
@@ -211,7 +211,7 @@ bus = FactoryBot.create :bus
                          abrupt_turns: 0
 end
 
-15.times { FactoryBot.create :participant, name: FFaker::Name.name }
+15.times { FactoryBot.create :participant, name: Faker::Name.name }
 
 FactoryBot.create :user, name: 'Karin Eichelman',
                          email: 'karin@example.com',

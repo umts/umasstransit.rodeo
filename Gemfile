@@ -63,6 +63,6 @@ end
 
 group :development, :test do
   gem 'debug'
-  gem 'ffaker'
+  gem 'faker'
   gem 'rb-readline', require: false
 end

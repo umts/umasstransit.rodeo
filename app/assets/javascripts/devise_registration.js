@@ -15,6 +15,7 @@ function checkPasswordMatch() {
       $("#divCheckPasswordMatch").html("Password is too short".fontcolor('red'));
     }
 };
-$(document).ready(function(){
-   $("#user_password_confirmation").keyup(checkPasswordMatch);
+
+$(function(){
+   $("#user_password_confirmation").on('keyup', checkPasswordMatch);
 });
