@@ -334,6 +334,9 @@ GEM
       rubocop-ast (>= 1.30.0, < 2.0)
     rubocop-rspec (3.3.0)
       rubocop (~> 1.61)
+    rubocop-rspec_rails (2.30.0)
+      rubocop (~> 1.61)
+      rubocop-rspec (~> 3, >= 3.0.1)
     ruby-progressbar (1.13.0)
     rubyzip (2.3.2)
     sassc (2.4.0)
@@ -443,6 +446,7 @@ DEPENDENCIES
   rubocop-factory_bot
   rubocop-rails
   rubocop-rspec
+  rubocop-rspec_rails
   sassc-rails
   selenium-webdriver
   simplecov
