@@ -9,6 +9,7 @@
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.7.2",
     "bootstrap": "^4.6.2",
+    "jquery": "^3.5.1",
     "jquery.are-you-sure": "^1.9.0",
     "popper.js": "^1.16.1",
     "tablesorter": "^2.32.0"
