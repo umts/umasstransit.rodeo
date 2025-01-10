@@ -4,14 +4,13 @@ source 'https://rubygems.org'
 ruby file: '.ruby-version'
 
 gem 'bootsnap'
-gem 'bootstrap', '~> 4.3.1'
+gem 'bootstrap', '~> 4.6.2'
 gem 'certified'
-gem 'devise', '~> 4.6'
+gem 'devise', '~> 4.9'
 gem 'factory_bot_rails'
 gem 'haml'
 gem 'haml-rails'
 gem 'irb'
-gem 'jquery-rails'
 gem 'mutex_m' # Needed for Ruby >=3.4 on Rails <=7.1
 gem 'mysql2', '~> 0.5.6'
 gem 'openssl'
@@ -62,6 +61,6 @@ end
 
 group :development, :test do
   gem 'debug'
-  gem 'ffaker'
+  gem 'faker'
   gem 'rb-readline', require: false
 end

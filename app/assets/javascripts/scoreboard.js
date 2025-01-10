@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(function(){
   $('.scoreboard').on('click', 'button.fullscreen', function(){
     var scoreboard = $('.scoreboard-content').get(0);
     if (scoreboard.requestFullscreen) {
@@ -12,7 +12,7 @@ $(document).ready(function(){
     'headerTemplate': '<div class="header-label align-middle">{content}</div>{icon}',
     'cssAsc': 'bg-info',
     'cssDesc': 'bg-info',
-    'cssIcon': 'fas header-icon align-middle',
+    'cssIcon': 'fa-solid header-icon align-middle',
     'cssIconAsc': 'fa-sort-up',
     'cssIconDesc': 'fa-sort-down',
     'cssIconNone': 'fa-sort',
