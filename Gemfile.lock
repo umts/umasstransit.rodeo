@@ -76,7 +76,7 @@ GEM
     autoprefixer-rails (10.4.19.0)
       execjs (~> 2)
     base64 (0.2.0)
-    bcrypt (3.1.16)
+    bcrypt (3.1.20)
     bcrypt_pbkdf (1.1.0)
     better_errors (2.10.1)
       erubi (>= 1.0.0)
@@ -129,7 +129,7 @@ GEM
       irb (~> 1.10)
       reline (>= 0.3.8)
     debug_inspector (1.2.0)
-    devise (4.8.1)
+    devise (4.9.4)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 4.1.0)
@@ -284,9 +284,9 @@ GEM
       io-console (~> 0.5)
     request_store (1.7.0)
       rack (>= 1.4)
-    responders (3.0.1)
-      actionpack (>= 5.0)
-      railties (>= 5.0)
+    responders (3.1.1)
+      actionpack (>= 5.2)
+      railties (>= 5.2)
     rexml (3.4.0)
     rouge (4.5.1)
     rspec-core (3.11.0)
@@ -412,7 +412,7 @@ DEPENDENCIES
   certified
   coffee-rails
   debug
-  devise (~> 4.6)
+  devise (~> 4.9)
   dockerfile-rails
   ed25519
   exception_notification
