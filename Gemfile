@@ -6,12 +6,17 @@ ruby file: '.ruby-version'
 gem 'bootsnap'
 gem 'certified'
 gem 'coffee-rails'
+# TODO: remove when on Rails 7.1
+gem 'concurrent-ruby', '= 1.3.4'
 gem 'devise', '~> 4.9'
 gem 'factory_bot_rails'
 gem 'haml'
 gem 'haml-rails'
 gem 'irb'
-gem 'mutex_m' # Needed for Ruby >=3.4 on Rails <=7.1
+# TODO: remove when on Rails 7.1
+gem 'logger'
+# TODO: remove when on Rails 7.1
+gem 'mutex_m'
 gem 'mysql2', '~> 0.5.6'
 gem 'openssl'
 gem 'paper_trail'
