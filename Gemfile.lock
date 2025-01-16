@@ -137,7 +137,7 @@ GEM
       warden (~> 1.2.3)
     diff-lcs (1.5.1)
     docile (1.4.1)
-    dockerfile-rails (1.7.0)
+    dockerfile-rails (1.7.2)
       rails (>= 3.0.0)
     ed25519 (1.3.0)
     erubi (1.13.1)
@@ -411,6 +411,7 @@ DEPENDENCIES
   capybara
   certified
   coffee-rails
+  concurrent-ruby (= 1.3.4)
   debug
   devise (~> 4.9)
   dockerfile-rails
@@ -422,6 +423,7 @@ DEPENDENCIES
   haml-rails
   irb
   listen
+  logger
   mutex_m
   mysql2 (~> 0.5.6)
   openssl
