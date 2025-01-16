@@ -121,7 +121,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.12.2)
-    concurrent-ruby (1.3.5)
+    concurrent-ruby (1.3.4)
     connection_pool (2.4.1)
     crass (1.0.6)
     date (3.4.1)
@@ -411,6 +411,7 @@ DEPENDENCIES
   capybara
   certified
   coffee-rails
+  concurrent-ruby (= 1.3.4)
   debug
   devise (~> 4.9)
   dockerfile-rails
@@ -422,6 +423,7 @@ DEPENDENCIES
   haml-rails
   irb
   listen
+  logger
   mutex_m
   mysql2 (~> 0.5.6)
   openssl
