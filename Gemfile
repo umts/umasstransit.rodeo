@@ -8,7 +8,7 @@ gem 'bootstrap', '~> 4.6.2'
 gem 'certified'
 gem 'coffee-rails'
 # TODO: remove when on Rails 7.1
-gem 'concurrent-ruby', '= 1.3.4'
+gem 'concurrent-ruby', '1.3.5'
 gem 'devise', '~> 4.9'
 gem 'factory_bot_rails'
 gem 'haml'

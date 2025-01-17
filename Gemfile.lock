@@ -121,7 +121,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.12.2)
-    concurrent-ruby (1.3.4)
+    concurrent-ruby (1.3.5)
     connection_pool (2.4.1)
     crass (1.0.6)
     date (3.4.1)
@@ -411,7 +411,7 @@ DEPENDENCIES
   capybara
   certified
   coffee-rails
-  concurrent-ruby (= 1.3.4)
+  concurrent-ruby (= 1.3.5)
   debug
   devise (~> 4.9)
   dockerfile-rails
