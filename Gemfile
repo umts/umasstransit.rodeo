@@ -16,13 +16,13 @@ gem 'paper_trail'
 gem 'puma'
 gem 'rails', '~> 7.2.2'
 gem 'sassc-rails'
+gem 'solid_cable'
 gem 'sprockets-rails'
 gem 'thruster'
 gem 'uglifier'
 
 group :production do
   gem 'exception_notification'
-  gem 'redis', '~> 5.3'
 end
 
 group :development do
