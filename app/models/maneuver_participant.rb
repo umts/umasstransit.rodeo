@@ -16,8 +16,8 @@ class ManeuverParticipant < ApplicationRecord
   belongs_to :maneuver
   belongs_to :participant
 
-  serialize :obstacles_hit, Hash
-  serialize :distances_achieved, Hash
+  serialize :obstacles_hit, type: Hash
+  serialize :distances_achieved, type: Hash
 
   validates :maneuver, uniqueness: { scope: :participant }
   validates :score, :reversed_direction, presence: true
