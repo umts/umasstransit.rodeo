@@ -8,10 +8,8 @@ class ParticipantsController < ApplicationController
   end
 
   def assign_number
-    @participant.update! number: params.require(:number),
-                         bus_id: params.require(:bus_id)
-    redirect_to participants_path,
-                notice: 'Participant has been added to the queue.'
+    @participant.update! number: params.require(:number), bus_id: params.require(:bus_id)
+    redirect_to participants_path, notice: t('.success')
   end
 
   def index
@@ -24,7 +22,7 @@ class ParticipantsController < ApplicationController
   def create
     participant = Participant.new user_params
     if participant.save
-      flash[:notice] = 'Participant was successfully created.'
+      flash[:notice] = t('.success')
     else
       flash[:errors] = participant.errors.full_messages
     end
@@ -34,13 +32,12 @@ class ParticipantsController < ApplicationController
   def update
     return unless @participant.update user_params
 
-    redirect_to participants_path, notice: 'Participant has been updated.'
+    redirect_to participants_path, notice: t('.success')
   end
 
   def destroy
     @participant.destroy!
-    redirect_to participants_path,
-                notice: 'Participant has been removed.'
+    redirect_to participants_path, notice: t('.success')
   end
 
   def scoreboard
