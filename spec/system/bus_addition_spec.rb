@@ -9,7 +9,7 @@ RSpec.describe 'adding a bus' do
       visit buses_path
       fill_in 'bus_number', with: 'Big Yellow Bus'
       click_on 'Add'
-      expect(page).to have_text 'Bus was successfully added.'
+      expect(page).to have_text 'Bus has been added'
     end
   end
 
@@ -19,7 +19,7 @@ RSpec.describe 'adding a bus' do
       visit buses_path
       fill_in 'bus_number', with: 'Big Yellow Bus'
       click_on 'Add'
-      expect(page).to have_text 'Bus was successfully added.'
+      expect(page).to have_text 'Bus has been added'
     end
   end
 
@@ -29,7 +29,7 @@ RSpec.describe 'adding a bus' do
       visit buses_path
       fill_in 'bus_number', with: 'Big Yellow Bus'
       click_on 'Add'
-      expect(page).to have_text 'You are not authorized to make that action.'
+      expect(page).to have_text 'You are not authorized to take that action'
     end
   end
 
