@@ -5,7 +5,6 @@ ruby file: '.ruby-version'
 
 gem 'bootsnap'
 gem 'certified'
-gem 'coffee-rails'
 # TODO: remove when on Rails 7.1
 gem 'concurrent-ruby', '= 1.3.4'
 gem 'devise', '~> 4.9'
