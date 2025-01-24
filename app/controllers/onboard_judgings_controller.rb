@@ -15,8 +15,7 @@ class OnboardJudgingsController < ApplicationController
 
   def create
     OnboardJudging.create! params.require(:onboard_judging).permit!
-    redirect_to select_participant_onboard_judgings_path,
-                notice: 'Onboard score has been saved.'
+    redirect_to select_participant_onboard_judgings_path, notice: t('.success')
   end
 
   def select_participant
@@ -26,8 +25,7 @@ class OnboardJudgingsController < ApplicationController
 
   def update
     @record.update params.require(:onboard_judging).permit!
-    redirect_to select_participant_onboard_judgings_path,
-                notice: 'Onboard score has been saved.'
+    redirect_to select_participant_onboard_judgings_path, notice: t('.success')
   end
 
   private

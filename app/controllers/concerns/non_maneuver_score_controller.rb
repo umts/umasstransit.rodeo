@@ -48,7 +48,7 @@ module NonManeuverScoreController
   end
 
   def change_succeeded
-    redirect_to({ action: 'index' }, notice: "#{score_name} was saved.")
+    redirect_to({ action: 'index' }, notice: t('non_maneuver_scores.success', score_name:))
   end
 
   def score_name

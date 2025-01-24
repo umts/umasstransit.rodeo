@@ -16,8 +16,8 @@ class ManeuverParticipant < ApplicationRecord
   belongs_to :maneuver
   belongs_to :participant
 
-  serialize :obstacles_hit, Hash
-  serialize :distances_achieved, Hash
+  serialize :obstacles_hit, type: Hash, coder: YAML
+  serialize :distances_achieved, type: Hash, coder: YAML
 
   validates :maneuver, uniqueness: { scope: :participant }
   validates :score, :reversed_direction, presence: true
