@@ -18,7 +18,7 @@ RSpec.describe 'deleting a bus' do
 
     it 'informs you of the deletion' do
       click_on 'Remove'
-      expect(page).to have_text 'Bus was successfully deleted.'
+      expect(page).to have_text 'Bus has been removed'
     end
   end
 
@@ -35,7 +35,7 @@ RSpec.describe 'deleting a bus' do
 
     it 'informs you of the deletion' do
       click_on 'Remove'
-      expect(page).to have_text 'Bus was successfully deleted.'
+      expect(page).to have_text 'Bus has been removed'
     end
   end
 
@@ -52,7 +52,7 @@ RSpec.describe 'deleting a bus' do
 
     it 'informs you of the failure' do
       click_on 'Remove'
-      expect(page).to have_text 'You are not authorized to make that action.'
+      expect(page).to have_text 'You are not authorized to take that action'
     end
   end
 end

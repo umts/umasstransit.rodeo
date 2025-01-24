@@ -56,7 +56,7 @@ RSpec.describe 'recording an onboard judging score' do
 
     it 'informs you of the failure' do
       click_on 'Save'
-      expect(page).to have_text 'You are not authorized to make that action.'
+      expect(page).to have_text 'You are not authorized to take that action'
     end
   end
 end

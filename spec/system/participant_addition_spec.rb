@@ -17,7 +17,7 @@ RSpec.describe 'adding a participant' do
     it 'informs you of success' do
       fill_in 'participant_name', with: 'Foo Bar'
       click_on 'Add'
-      expect(page).to have_text 'Participant was successfully created.'
+      expect(page).to have_text 'Participant has been successfully created'
     end
   end
 
@@ -35,7 +35,7 @@ RSpec.describe 'adding a participant' do
     it 'informs you of success' do
       fill_in 'participant_name', with: 'Foo Bar'
       click_on 'Add'
-      expect(page).to have_text 'Participant was successfully created.'
+      expect(page).to have_text 'Participant has been successfully created'
     end
   end
 
@@ -53,7 +53,7 @@ RSpec.describe 'adding a participant' do
     it 'informs you of failure' do
       fill_in 'participant_name', with: 'Foo Bar'
       click_on 'Add'
-      expect(page).to have_text 'You are not authorized to make that action.'
+      expect(page).to have_text 'You are not authorized to take that action'
     end
   end
 
@@ -95,7 +95,7 @@ RSpec.describe 'adding a participant' do
       fill_in 'participant_number', with: '1'
       select('Big Yellow Bus', from: 'participant_bus_id')
       click_on 'Add'
-      expect(page).to have_text 'Participant was successfully created.'
+      expect(page).to have_text 'Participant has been successfully created'
     end
   end
 
