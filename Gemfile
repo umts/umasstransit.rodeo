@@ -4,7 +4,6 @@ source 'https://rubygems.org'
 ruby file: '.ruby-version'
 
 gem 'bootsnap'
-gem 'bootstrap', '~> 4.6.2'
 gem 'certified'
 gem 'coffee-rails'
 # TODO: remove when on Rails 7.1
