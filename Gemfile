@@ -5,7 +5,6 @@ ruby file: '.ruby-version'
 
 gem 'bootsnap'
 gem 'certified'
-gem 'coffee-rails'
 gem 'devise', '~> 4.9'
 gem 'factory_bot_rails'
 gem 'haml'
