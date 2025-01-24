@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_04_29_205408) do
+ActiveRecord::Schema[7.1].define(version: 2025_01_22_152926) do
   create_table "buses", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
     t.string "number"
     t.datetime "created_at", null: false

@@ -5,22 +5,16 @@ ruby file: '.ruby-version'
 
 gem 'bootsnap'
 gem 'certified'
-# TODO: remove when on Rails 7.1
-gem 'concurrent-ruby', '= 1.3.4'
 gem 'devise', '~> 4.9'
 gem 'factory_bot_rails'
 gem 'haml'
 gem 'haml-rails'
 gem 'irb'
-# TODO: remove when on Rails 7.1
-gem 'logger'
-# TODO: remove when on Rails 7.1
-gem 'mutex_m'
 gem 'mysql2', '~> 0.5.6'
 gem 'openssl'
 gem 'paper_trail'
 gem 'puma'
-gem 'rails', '~> 7.0.8'
+gem 'rails', '~> 7.1.5'
 gem 'sassc-rails'
 gem 'sprockets-rails'
 gem 'thruster'
