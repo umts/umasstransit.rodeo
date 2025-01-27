@@ -21,7 +21,7 @@ RSpec.describe 'updating onboard judging' do
     it 'Informs you of success' do
       fill_in 'onboard_judging_minutes_elapsed', with: '10'
       click_on 'Save'
-      expect(page).to have_text 'Onboard score has been saved.'
+      expect(page).to have_text 'Onboard score has been saved'
     end
   end
 
@@ -41,7 +41,7 @@ RSpec.describe 'updating onboard judging' do
     it 'Informs you of success' do
       fill_in 'onboard_judging_minutes_elapsed', with: '10'
       click_on 'Save'
-      expect(page).to have_text 'Onboard score has been saved.'
+      expect(page).to have_text 'Onboard score has been saved'
     end
   end
 
@@ -55,7 +55,7 @@ RSpec.describe 'updating onboard judging' do
     it 'informs you of failure' do
       fill_in 'onboard_judging_minutes_elapsed', with: '10'
       click_on 'Save'
-      expect(page).to have_text 'You are not authorized to make that action.'
+      expect(page).to have_text 'You are not authorized to take that action'
     end
   end
 end

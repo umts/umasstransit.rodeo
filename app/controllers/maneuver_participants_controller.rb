@@ -44,7 +44,7 @@ class ManeuverParticipantsController < ApplicationController
     attrs[:obstacles_hit] = parse_obstacles
     attrs[:distances_achieved] = parse_distance_targets
     @record.update! attrs
-    flash[:notice] = 'Maneuver score has been saved.'
+    flash[:notice] = t('.success')
     redirect_back fallback_location: maneuver_participant_path(@record)
   end
 

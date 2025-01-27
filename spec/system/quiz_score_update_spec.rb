@@ -22,7 +22,7 @@ RSpec.describe 'updating a quiz score' do
 
     it 'informs you of success' do
       click_on 'Save score'
-      expect(page).to have_text 'Quiz score was saved.'
+      expect(page).to have_text 'Quiz score has been saved'
     end
   end
 
@@ -38,7 +38,7 @@ RSpec.describe 'updating a quiz score' do
 
     it 'informs you of success' do
       click_on 'Save score'
-      expect(page).to have_text 'Quiz score was saved.'
+      expect(page).to have_text 'Quiz score has been saved'
     end
   end
 
@@ -49,7 +49,7 @@ RSpec.describe 'updating a quiz score' do
 
     it 'does not update quiz score' do
       click_on 'Save score'
-      expect(page).to have_text 'You are not authorized to make that action.'
+      expect(page).to have_text 'You are not authorized to take that action'
     end
   end
 
