@@ -288,10 +288,6 @@ GEM
     rb-readline (0.5.5)
     rdoc (6.11.0)
       psych (>= 4.0.0)
-    redis (5.3.0)
-      redis-client (>= 0.22.0)
-    redis-client (0.23.0)
-      connection_pool
     regexp_parser (2.10.0)
     reline (0.6.0)
       io-console (~> 0.5)
@@ -368,6 +364,11 @@ GEM
       simplecov_json_formatter (~> 0.1)
     simplecov-html (0.13.1)
     simplecov_json_formatter (0.1.4)
+    solid_cable (3.0.5)
+      actioncable (>= 7.2)
+      activejob (>= 7.2)
+      activerecord (>= 7.2)
+      railties (>= 7.2)
     spring (4.2.1)
     spring-watcher-listen (2.1.0)
       listen (>= 2.7, < 4.0)
@@ -453,7 +454,6 @@ DEPENDENCIES
   rails (~> 7.2.2)
   rails-controller-testing
   rb-readline
-  redis (~> 5.3)
   rspec-rails
   rubocop
   rubocop-capybara
@@ -464,6 +464,7 @@ DEPENDENCIES
   sassc-rails
   selenium-webdriver
   simplecov
+  solid_cable
   spring
   spring-watcher-listen
   sprockets-rails
