@@ -18,20 +18,17 @@ class Maneuver < ApplicationRecord
   end
 
   def next_participant(number = nil)
-    participant = participants.find_by('number > ?', number) if number.present?
-    if participant.blank?
-      participant = Participant.numbered.order(:number).find do |p|
+    participants.order(:number).find_by('number > ?', number).presence ||
+      Participant.numbered.order(:number).find do |p|
         !p.completed? self
       end
-    end
-    participant
   end
 
   def previous_participant(number = nil)
     if number.present?
-      participants.where('number < ?', number).last
+      participants.order(number: :desc).find_by(number: ...number)
     else
-      participants.last
+      participants.order(:number).last
     end
   end
 end

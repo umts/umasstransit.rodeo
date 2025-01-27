@@ -14,7 +14,7 @@ gem 'mysql2', '~> 0.5.6'
 gem 'openssl'
 gem 'paper_trail'
 gem 'puma'
-gem 'rails', '~> 7.1.5'
+gem 'rails', '~> 7.2.2'
 gem 'sassc-rails'
 gem 'sprockets-rails'
 gem 'thruster'
@@ -42,6 +42,7 @@ group :development do
   gem 'rubocop-factory_bot', require: false
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
+  gem 'rubocop-rspec_rails', require: false
   gem 'spring'
   gem 'spring-watcher-listen'
 end
