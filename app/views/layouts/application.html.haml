@@ -5,6 +5,11 @@
     %meta{name: 'viewport', content: 'width=device-width, initial-scale=1.0'}
     %title= title_text @page_title
     = favicon_link_tag 'favicon.png'
+    = content_tag :style, nonce: content_security_policy_nonce do
+      :plain
+        :root {
+          --body-bg-color: #{Rails.configuration.roadeo.background};
+        }
     = stylesheet_link_tag 'application.css', media: 'all'
     = csrf_meta_tags
     = action_cable_meta_tag

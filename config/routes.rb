@@ -1,10 +1,9 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  devise_for :users
+  get 'up' => 'rails/health#show', as: :rails_health_check
 
-  # TODO: In Rails 7.1, we can use the built-in Rails::HealthController and remove ours
-  get 'up' => 'health#show', as: :rails_health_check
+  devise_for :users
 
   root 'participants#welcome'
 
