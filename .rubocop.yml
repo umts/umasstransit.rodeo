@@ -12,6 +12,7 @@ AllCops:
     - 'config/{environments,initializers}/*'
     - 'config/{application,boot,environment,puma,spring}.rb'
     - 'db/migrate/*'
+    - 'db/cable_schema.rb'
     - 'db/schema.rb'
     - 'vendor/**/*'
   NewCops: enable
