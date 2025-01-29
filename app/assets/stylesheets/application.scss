@@ -1,4 +1,4 @@
-$body-bg: <%= Rails.configuration.roadeo.background || 'lightblue' %>;
+$body-bg: var(--body-bg-color);
 $fa-font-path: "@fortawesome/fontawesome-free/webfonts";
 
 @import "bootstrap/scss/bootstrap";

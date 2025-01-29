@@ -5,6 +5,7 @@ ruby file: '.ruby-version'
 
 gem 'bootsnap'
 gem 'certified'
+gem 'cssbundling-rails'
 gem 'devise', '~> 4.9'
 gem 'factory_bot_rails'
 gem 'haml'
@@ -14,15 +15,14 @@ gem 'mysql2', '~> 0.5.6'
 gem 'openssl'
 gem 'paper_trail'
 gem 'puma'
-gem 'rails', '~> 7.1.5'
-gem 'sassc-rails'
+gem 'rails', '~> 7.2.2'
+gem 'solid_cable'
 gem 'sprockets-rails'
 gem 'thruster'
 gem 'uglifier'
 
 group :production do
   gem 'exception_notification'
-  gem 'redis', '~> 5.3'
 end
 
 group :development do
@@ -42,6 +42,7 @@ group :development do
   gem 'rubocop-factory_bot', require: false
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
+  gem 'rubocop-rspec_rails', require: false
   gem 'spring'
   gem 'spring-watcher-listen'
 end
