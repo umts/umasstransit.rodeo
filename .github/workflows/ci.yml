@@ -26,3 +26,9 @@ jobs:
       - run: bin/setup
       - run: bin/rails test:prepare
       - run: bundle exec rspec
+  rubocop:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup
+      - run: bundle exec rubocop
