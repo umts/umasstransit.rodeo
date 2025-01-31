@@ -16,6 +16,9 @@
         Scores are locked!
     .scoreboard-content
       - table_classes = %w[scoreboard table table-bordered table-striped table-sm text-center]
+      - row_locals = { maneuvers: @maneuvers,
+                       maneuver_participants: @maneuver_participants,
+                       can_edit_scores: @can_edit_scores }
       %table{ class: table_classes, data: { sortList: sort_list(@sort_order) } }
         %thead.thead-light
           %tr
@@ -28,10 +31,10 @@
             %th Quiz
             %th Total score
         %tbody
-          = render @participants
+          = render @participants, **row_locals
       %table#template.d-none
         %tbody
-          = render partial: 'participant', locals: { participant: NullParticipant.new }
+          = render partial: 'participant', locals: row_locals.merge(participant: NullParticipant.new)
   = javascript_include_tag 'cable.js' unless @archiving
 - else
   %h2 No participants yet

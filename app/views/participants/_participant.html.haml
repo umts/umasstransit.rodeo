@@ -5,18 +5,18 @@
     - else
       = participant.display_information(:number)
 
-  - @maneuvers.each do |maneuver|
-    - record = @maneuver_participants.dig(participant.id, maneuver.id)
+  - maneuvers.each do |maneuver|
+    - record = maneuver_participants.dig(participant.id, maneuver.id)
     %td.maneuver-participant{ data: { maneuver_id: maneuver.id }.merge(score_data(record)) }
       = score_cell record,
-                   allowed: @can_edit_scores,
+                   allowed: can_edit_scores,
                    new: new_maneuver_participant_path(maneuver: maneuver.name, participant: participant.number),
                    edit: record
 
   - onboard_judging = participant.onboard_judging
   %td.onboard-judging{ data: { onboard_judging_id: onboard_judging.try(:id) }.merge(score_data(onboard_judging)) }
     = score_cell onboard_judging,
-                 allowed: @can_edit_scores,
+                 allowed: can_edit_scores,
                  new: new_onboard_judging_path(participant: participant.number),
                  edit: onboard_judging
 
@@ -25,13 +25,13 @@
   - cc = participant.circle_check_score
   %td.circle-check-score{ data: { circle_check_score_id: cc.try(:id) }.merge(score_data(cc)) }
     = score_cell cc,
-                 allowed: @can_edit_scores,
+                 allowed: can_edit_scores,
                  new: circle_check_scores_path
 
   - quiz = participant.quiz_score
   %td.quiz-score{ data: { quiz_score_id: quiz.try(:id) }.merge(score_data(quiz)) }
     = score_cell quiz,
-                 allowed: @can_edit_scores,
+                 allowed: can_edit_scores,
                  new: quiz_scores_path
 
   %td.total-score{ data: { math: 'row-subtotalsum' } }= participant.total_score
