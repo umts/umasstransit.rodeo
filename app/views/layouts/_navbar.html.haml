@@ -1,12 +1,11 @@
 %nav.navbar.navbar-expand-lg
-  %a.navbar-brand{href: root_path}= image_tag 'favicon.png'
-  %button.navbar-toggler{type: 'button', data: { toggle: 'collapse', target: '#mainnav' }}
+  %a.navbar-brand{ href: root_path }= image_tag 'favicon.png'
+  %button.navbar-toggler{ type: 'button', data: { toggle: 'collapse', target: '#mainnav' } }
     %i.fa-solid.fa-bars
   #mainnav.collapse.navbar-collapse
     - if user_signed_in?
       %ul.navbar-nav.mr-auto
-        - if Participant.any?
-          = nav_item scoreboard_participants_path, 'Scoreboard'
+        = nav_item scoreboard_participants_path, 'Scoreboard' if Participant.any?
         = nav_item maneuvers_path, 'Maneuvers', role: :judge
         = nav_item circle_check_scores_path, 'Circle Check', role: :circle_check_scorer
         = nav_item quiz_scores_path, 'Quiz', role: :quiz_scorer
@@ -19,14 +18,14 @@
             %span.badge.badge-warning
               = User.where(approved: false).count
       .dropdown
-        %button.btn.nav-item.dropdown-toggle{data: { toggle: 'dropdown' }}
+        %button.btn.nav-item.dropdown-toggle{ data: { toggle: 'dropdown' } }
           = current_user.name
         .dropdown-menu.dropdown-menu-right
           = link_to 'Edit Account', edit_user_registration_path, class: 'dropdown-item'
           = link_to 'Logout', destroy_user_session_path, method: :delete, class: 'dropdown-item'
-    - elsif @archiving
+    - elsif archiving
       %h1.navbar-text.ml-auto
-        #{Time.now.year} Roadeo Final Results
+        #{Time.zone.now.year} Roadeo Final Results
     - else
       %ul.navbar-nav.ml-auto
         = nav_item new_user_session_path, 'Log in'
