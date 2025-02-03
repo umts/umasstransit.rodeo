@@ -16,10 +16,10 @@
         Scores are locked!
     .scoreboard-content
       - table_classes = %w[scoreboard table table-bordered table-striped table-sm text-center]
-      %table{class: table_classes, data: {sortList: sort_list(@sort_order)}}
+      %table{class: table_classes, data: { sortList: sort_list(@sort_order) }}
         %thead.thead-light
           %tr
-            %th{data: {sortInitialOrder: 'asc'}} Participant
+            %th{data: { sortInitialOrder: 'asc' }} Participant
             - @maneuvers.each do |maneuver|
               %th= maneuver.name
             %th Onboard Judging
