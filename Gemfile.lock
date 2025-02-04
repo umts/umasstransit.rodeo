@@ -119,6 +119,8 @@ GEM
       regexp_parser (>= 1.5, < 3.0)
       xpath (~> 3.2)
     certified (1.0.0)
+    childprocess (5.1.0)
+      logger (~> 1.5)
     concurrent-ruby (1.3.5)
     connection_pool (2.5.0)
     crass (1.0.6)
@@ -176,6 +178,7 @@ GEM
       sysexits (~> 1.1)
     i18n (1.14.7)
       concurrent-ruby (~> 1.0)
+    iniparse (1.5.0)
     io-console (0.8.0)
     irb (1.15.1)
       pp (>= 0.6.0)
@@ -227,6 +230,10 @@ GEM
     openssl (3.3.0)
     orm_adapter (0.5.0)
     ostruct (0.6.1)
+    overcommit (0.66.0)
+      childprocess (>= 0.6.3, < 6)
+      iniparse (~> 1.4)
+      rexml (>= 3.3.9)
     paper_trail (16.0.0)
       activerecord (>= 6.1)
       request_store (~> 1.4)
@@ -450,6 +457,7 @@ DEPENDENCIES
   listen
   mysql2 (~> 0.5.6)
   openssl
+  overcommit
   paper_trail
   puma
   rack_session_access
