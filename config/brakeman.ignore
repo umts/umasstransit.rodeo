@@ -1,0 +1,28 @@
+{
+  "ignored_warnings": [
+    {
+      "warning_type": "Mass Assignment",
+      "warning_code": 105,
+      "fingerprint": "f288cae5c17b92c2c2ce725845b2bd747bf4edbd6ce963344712b9ecd4cf9e3c",
+      "check_name": "PermitAttributes",
+      "message": "Potentially dangerous key allowed for mass assignment",
+      "file": "app/controllers/admin/users_controller.rb",
+      "line": 41,
+      "link": "https://brakemanscanner.org/docs/warning_types/mass_assignment/",
+      "code": "params.require(:user).permit(:admin, :quiz_scorer, :circle_check_scorer, :master_of_ceremonies, :judge)",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Admin::UsersController",
+        "method": "user_params"
+      },
+      "user_input": ":admin",
+      "confidence": "High",
+      "cwe_id": [
+        915
+      ],
+      "note": "The `Admin::UsersController` is only accessible to admins; they are allowed to set the `admin` attribute of other users."
+    }
+  ],
+  "brakeman_version": "7.0.0"
+}
