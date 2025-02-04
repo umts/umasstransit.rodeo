@@ -26,7 +26,10 @@
                   = participant.display_information(:name, :number)
                   = f.hidden_field :participant_id, value: participant.id
                 %td= f.number_field :points_achieved, placeholder: 'Enter a score...', step: 0.1, class: 'form-control'
-                %td= f.number_field :total_points, value: participant.quiz_score.total_points || QuizScore::TOTAL_POINTS_DEFAULT, class: 'form-control'
+                %td
+                  = f.number_field :total_points,
+                                   value: participant.quiz_score.total_points || QuizScore::TOTAL_POINTS_DEFAULT,
+                                   class: 'form-control'
                 %td= f.submit 'Save score', class: 'btn btn-primary'
 - else
   No participants have been created yet.
