@@ -25,9 +25,13 @@ RSpec.describe 'rake roadeo:reset', task: 'roadeo:reset' do
 
     it 'does not destroy anything' do
       [Bus, Participant, CircleCheckScore, QuizScore,
-       OnboardJudging, ManeuverParticipant, User].each do |model|
+       OnboardJudging, ManeuverParticipant, User, PaperTrail::Version].each do |model|
         expect { task.execute }.not_to change(model, :count)
       end
+    end
+
+    it 'does not change whether scores are locked' do
+      expect { task.execute }.not_to(change { Settings.instance.scores_locked })
     end
   end
 
@@ -59,6 +63,25 @@ RSpec.describe 'rake roadeo:reset', task: 'roadeo:reset' do
       admin = create(:user, :admin)
       task.execute
       expect(User.pluck(:id)).to include(admin.id)
+    end
+
+    it 'locks scores from being updated' do
+      task.execute
+      expect(Settings.instance.scores_locked).to be true
+    end
+
+    context 'when an argument is passed' do
+      it 'destroys all paper trail records other than users' do
+        expect { task.invoke('true') }.to change { PaperTrail::Version.where.not(item_type: 'User').count }.to 0
+      end
+    end
+
+    context 'when no argument is passed' do
+      it 'retains all paper trail records' do
+        previous_records = PaperTrail::Version.all.to_a
+        task.execute
+        expect(PaperTrail::Version.all.to_a).to include(*previous_records)
+      end
     end
   end
 end

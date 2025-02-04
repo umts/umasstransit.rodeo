@@ -9,12 +9,12 @@
       Currently waiting confirmation for: #{resource.unconfirmed_email}
   .form-group
     = f.label :password
-    = f.password_field :password, autocomplete: 'off', id: 'user_password', min: Devise.password_length.min, class: 'form-control'
+    = f.password_field :password, autocomplete: 'off', min: Devise.password_length.min, class: 'form-control'
     %small.form-text.text-muted Leave blank if you don't want to change it
   .form-group
     = f.label :password_confirmation
-    = f.password_field :password_confirmation, autocomplete: 'off', id: 'user_password_confirmation', class: 'form-control'
-  #divCheckPasswordMatch.registrationFormAlert
+    = f.password_field :password_confirmation, autocomplete: 'off', class: 'form-control'
+  #check-password-match
   .form-group
     = f.label :current_password
     = f.password_field :current_password, autocomplete: 'off', class: 'form-control'
@@ -24,4 +24,5 @@
 %h3.pt-5 Cancel my account
 .form-group
   Unhappy?
-  = button_to 'Cancel my account', registration_path(resource_name), data: { confirm: 'Are you sure?' }, method: :delete, class: 'btn btn-danger'
+  = button_to 'Cancel my account', registration_path(resource_name),
+              data: { confirm: 'Are you sure?' }, method: :delete, class: 'btn btn-danger'
