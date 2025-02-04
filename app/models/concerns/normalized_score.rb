@@ -13,10 +13,6 @@ module NormalizedScore
       null_as_zero Arel::Nodes::Multiplication.new(scale, raw_score)
     end
 
-    def score_components
-      raise NotImplementedError
-    end
-
     def with_scores
       select score_calculation.as(name.underscore)
     end
