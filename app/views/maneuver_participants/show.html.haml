@@ -8,14 +8,14 @@
     - @maneuver.grouped_obstacles.each do |(point_value, type), obstacles|
       .form-group
         = label_tag "#{point_value}-point #{type.pluralize} touched"
-        - value = @record.obstacles_hit[obstacles.first.id].try(:[],1) || 0
+        - value = @record.obstacles_hit[obstacles.first.id].try(:[], 1) || 0
         = number_field_tag_with_buttons "obstacle_#{obstacles.first.id}", value, in: 0..obstacles.count
     - @maneuver.distance_targets.each do |target|
       .form-group
         = label_tag "#{target.interval_type} from #{target.name}"
         = number_field_tag_with_buttons "target_#{target.id}",
-          @record.distances_achieved[[target.minimum, target.multiplier]],
-          min: 0
+                                        @record.distances_achieved[[target.minimum, target.multiplier]],
+                                        min: 0
     .form-group
       - if @maneuver.name.include? 'Reverse'
         = label_tag 'Extra reverses'

@@ -1,6 +1,6 @@
 %nav.navbar.navbar-expand-lg
   %a.navbar-brand{href: root_path}= image_tag 'favicon.png'
-  %button.navbar-toggler{type: 'button', data: {toggle: 'collapse', target: '#mainnav'}}
+  %button.navbar-toggler{type: 'button', data: { toggle: 'collapse', target: '#mainnav' }}
     %i.fa-solid.fa-bars
   #mainnav.collapse.navbar-collapse
     - if user_signed_in?
@@ -19,7 +19,7 @@
             %span.badge.badge-warning
               = User.where(approved: false).count
       .dropdown
-        %button.btn.nav-item.dropdown-toggle{data: {toggle: 'dropdown'}}
+        %button.btn.nav-item.dropdown-toggle{data: { toggle: 'dropdown' }}
           = current_user.name
         .dropdown-menu.dropdown-menu-right
           = link_to 'Edit Account', edit_user_registration_path, class: 'dropdown-item'
@@ -30,4 +30,4 @@
     - else
       %ul.navbar-nav.ml-auto
         = nav_item new_user_session_path, 'Log in'
-        = nav_item new_user_registration_path ,'Request a login'
+        = nav_item new_user_registration_path, 'Request a login'
