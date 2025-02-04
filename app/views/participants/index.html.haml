@@ -1,9 +1,9 @@
 .participants
   - if @unassigned.present?
-    = render 'add_to_queue'
+    = render 'add_to_queue', unassigned: @unassigned, buses: @buses, next_number: @next_number
   - else
     No participants to add to the maneuvers queue.
   = render 'shared/title', title: 'Participants'
   .uniqueness-warning.alert.alert-warning
     Please choose a unique participant number.
-  = render 'table'
+  = render 'table', participants: @participants, buses: @buses

@@ -26,7 +26,7 @@ RSpec.describe 'updating a participant' do
 
     context 'with a numberless participant' do
       before do
-        within 'tr#new_participant' do
+        within 'tr#new-participant' do
           fill_in 'participant_name', with: 'Teddy Bear'
           click_on 'Add'
         end

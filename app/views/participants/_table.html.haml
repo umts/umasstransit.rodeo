@@ -9,24 +9,23 @@
         %th
     %tbody
       = form_with model: Participant.new, local: true do |f|
-        %tr#new_participant
+        %tr#new-participant
           %td= f.text_field :name, placeholder: 'Name', class: 'form-control'
           %td= f.number_field :number, class: 'form-control'
-          %td= f.collection_select :bus_id, @buses, :id, :number,
-            {include_blank: true}, {class: 'form-control'}
+          %td
+            = f.collection_select :bus_id, buses, :id, :number,
+                                  { include_blank: true }, { class: 'form-control' }
           %td= f.submit 'Add', class: 'btn btn-primary'
           %td
-      - @participants.each do |participant|
+      - participants.each do |participant|
         %tr{ data: { participant_id: participant.id } }
           = form_with model: participant, namespace: participant.id, local: true do |f|
-            %td= f.text_field :name, value: participant.name,
-              class: 'form-control', required: true
-            %td= f.number_field :number, value: participant.number,
-              class: 'form-control'
-            %td= f.collection_select :bus_id, @buses, :id, :number,
-              {value: participant.try(:bus_id), include_blank: true},
-              { class: 'form-control' }
+            %td= f.text_field :name, value: participant.name, class: 'form-control', required: true
+            %td= f.number_field :number, value: participant.number, class: 'form-control'
+            %td
+              = f.collection_select :bus_id, buses, :id, :number,
+                                    { value: participant.try(:bus_id), include_blank: true },
+                                    { class: 'form-control' }
             %td= f.submit 'Save', class: 'btn btn-primary'
-          %td= button_to 'Remove', participant_path(participant),
-            method: :delete, class: 'btn btn-danger'
-
+          %td
+            = button_to 'Remove', participant_path(participant), method: :delete, class: 'btn btn-danger'
