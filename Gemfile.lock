@@ -94,6 +94,8 @@ GEM
       debug_inspector (>= 1.2.0)
     bootsnap (1.18.4)
       msgpack (~> 1.2)
+    brakeman (7.0.0)
+      racc
     builder (3.3.0)
     capistrano (3.19.2)
       airbrussh (>= 1.0.0)
@@ -435,6 +437,7 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   bootsnap
+  brakeman
   capistrano (~> 3.19)
   capistrano-bundler
   capistrano-passenger
