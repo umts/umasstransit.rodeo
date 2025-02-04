@@ -5,14 +5,14 @@ function checkPasswordMatch() {
     var yesMatch = "Passwords match.".fontcolor('green');
 
     if (password != confirmPassword){
-      $("#divCheckPasswordMatch").html(noMatch);
+      $("#check-password-match").html(noMatch);
     }
     else{
-      $("#divCheckPasswordMatch").html(yesMatch);
+      $("#check-password-match").html(yesMatch);
     }
     var minLength = $('#user_password').attr('min');
     if (password.length < minLength){
-      $("#divCheckPasswordMatch").html("Password is too short".fontcolor('red'));
+      $("#check-password-match").html("Password is too short".fontcolor('red'));
     }
 };
 
