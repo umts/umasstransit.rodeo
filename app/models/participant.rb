@@ -68,15 +68,15 @@ class Participant < ApplicationRecord
     end
 
     def scoreboard_order(sort_order = nil)
+      raise ArgumentError unless scoreboard_sorts.key?(sort_order)
+
       sql, lbda = scoreboard_sorts[sort_order]
       attributes = first&.attributes || {}
 
       if attributes.key?(sql.keys.first.to_s)
         order sql
-      elsif lbda
-        (current_scope || all).sort_by(&lbda)
       else
-        raise ArgumentError
+        (current_scope || all).sort_by(&lbda)
       end
     end
 

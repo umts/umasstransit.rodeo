@@ -171,5 +171,9 @@ RSpec.describe Participant do
       expected = [participant, participant2, participant3]
       expect(call[:participant_number]).to eq expected
     end
+
+    it 'raises an error if the given order is invalid' do
+      expect { call[:circle_check_score] }.to raise_error ArgumentError
+    end
   end
 end
