@@ -1,8 +1,8 @@
 !!!
-%html{lang: 'en'}
+%html{ lang: 'en' }
   %head
-    %meta{charset: 'utf-8'}
-    %meta{name: 'viewport', content: 'width=device-width, initial-scale=1.0'}
+    %meta{ charset: 'utf-8' }
+    %meta{ name: 'viewport', content: 'width=device-width, initial-scale=1.0' }
     %title= title_text @page_title
     = favicon_link_tag 'favicon.png'
     = content_tag :style, nonce: content_security_policy_nonce do
@@ -15,7 +15,7 @@
     = action_cable_meta_tag
   %body
     .container-fluid
-      = render 'layouts/navbar'
+      = render 'layouts/navbar', archiving: @archiving
       - if flash[:error].present?
         .alert.alert-danger= flash[:error]
       - if flash[:errors].present?
@@ -25,7 +25,6 @@
         .alert.alert-warning= flash[:alert]
       - if flash[:notice].present?
         .alert.alert-success= flash[:notice]
-      - if @page_title.present?
-        = render 'shared/title', title: @page_title, subtitle: @page_subtitle
+      = render 'shared/title', title: @page_title, subtitle: @page_subtitle if @page_title.present?
       = yield
     = javascript_include_tag 'application.js'
