@@ -14,7 +14,7 @@ class OnboardJudgingsController < ApplicationController
   end
 
   def create
-    OnboardJudging.create! params.require(:onboard_judging).permit!
+    OnboardJudging.create! onboard_judging_params
     redirect_to select_participant_onboard_judgings_path, notice: t('.success')
   end
 
@@ -24,7 +24,7 @@ class OnboardJudgingsController < ApplicationController
   end
 
   def update
-    @record.update params.require(:onboard_judging).permit!
+    @record.update onboard_judging_params
     redirect_to select_participant_onboard_judgings_path, notice: t('.success')
   end
 
@@ -32,5 +32,13 @@ class OnboardJudgingsController < ApplicationController
 
   def find_record
     @record = OnboardJudging.find_by id: params.require(:id)
+  end
+
+  def onboard_judging_params
+    time_fields = %i[minutes_elapsed seconds_elapsed]
+    safety_fields = %i[missed_turn_signals missed_horn_sounds missed_flashers times_moved_with_door_open]
+    smoothness_fields = %i[unannounced_stops sudden_stops sudden_starts abrupt_turns]
+
+    params.require(:onboard_judging).permit([:participant_id] + time_fields + safety_fields + smoothness_fields)
   end
 end
