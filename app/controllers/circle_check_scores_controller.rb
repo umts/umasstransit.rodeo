@@ -6,8 +6,7 @@ class CircleCheckScoresController < ApplicationController
   private
 
   def score_params
-    params.require(:circle_check_score)
-          .permit(:participant_id, :defects_found, :total_defects)
+    params.expect circle_check_score: %i[participant_id defects_found total_defects]
   end
 
   def scorer_role
