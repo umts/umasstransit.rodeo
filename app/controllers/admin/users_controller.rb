@@ -38,10 +38,7 @@ module Admin
     end
 
     def user_params
-      params.require(:user).permit :admin, :quiz_scorer,
-                                   :circle_check_scorer,
-                                   :master_of_ceremonies,
-                                   :judge
+      params.expect user: %i[admin quiz_scorer circle_check_scorer master_of_ceremonies judge]
     end
   end
 end
