@@ -28,6 +28,6 @@ class BusesController < ApplicationController
   private
 
   def bus_params
-    params.require(:bus).permit :number
+    params.expect bus: [:number]
   end
 end
