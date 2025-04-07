@@ -39,6 +39,6 @@ class OnboardJudgingsController < ApplicationController
     safety_fields = %i[missed_turn_signals missed_horn_sounds missed_flashers times_moved_with_door_open]
     smoothness_fields = %i[unannounced_stops sudden_stops sudden_starts abrupt_turns]
 
-    params.require(:onboard_judging).permit([:participant_id] + time_fields + safety_fields + smoothness_fields)
+    params.expect onboard_judging: [:participant_id] + time_fields + safety_fields + smoothness_fields
   end
 end
