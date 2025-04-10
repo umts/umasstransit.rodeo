@@ -1,9 +1,12 @@
 # frozen_string_literal: true
 
-json.name Rails.configuration.roadeo.then { |config| "#{config.organization} - #{config.event_name}" }
-json.short_name 'Roadeo app'
-json.background_color Rails.configuration.roadeo.background
-json.theme_color Rails.configuration.roadeo.background
+Rails.configuration.roadeo.tap do |config|
+  json.name "#{config.organization} - #{config.event_name}"
+  json.short_name 'Roadeo app'
+  json.background_color config.background
+  json.theme_color config.background
+end
+
 json.start_url '/'
 json.display 'standalone'
 json.scope '/'
