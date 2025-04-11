@@ -33,7 +33,7 @@ RSpec.describe 'Archive tasks' do
       expect(assets).to exist
     end
 
-    %w[application.css application.js favicon.png].each do |asset|
+    %w[application.css application.js icon.svg favicon.ico].each do |asset|
       it "Compiles #{asset}" do
         task.invoke
         base, ext = asset.split('.', 2)
