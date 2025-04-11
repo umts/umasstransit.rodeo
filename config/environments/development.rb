@@ -72,4 +72,5 @@ Rails.application.configure do
 
   #allow ngrok to work
   config.hosts << /[a-z0-9-]+\.ngrok\.io/
+  config.hosts << /[a-f0-9]{4}(-\d{1,3}){4}\.ngrok-free\.app/
 end
