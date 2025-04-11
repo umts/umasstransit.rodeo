@@ -48,4 +48,5 @@ Rails.application.routes.draw do
   end
 
   post :toggle_scores_lock, to: 'settings#toggle_scores_lock'
+  get '/manifest', to: 'rails/pwa#manifest', as: 'pwa_manifest'
 end
