@@ -19,8 +19,8 @@ gem 'puma'
 gem 'rails', '~> 8.0.2'
 gem 'solid_cable'
 gem 'sprockets-rails'
+gem 'terser'
 gem 'thruster'
-gem 'uglifier'
 
 group :production do
   gem 'exception_notification'
