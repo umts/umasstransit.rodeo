@@ -21,9 +21,8 @@ Rails.application.configure do
   # Cache assets for far-future expiry since they are all digest stamped.
   config.public_file_server.headers = { "cache-control" => "public, max-age=#{1.year.to_i}" }
 
-  # Compress JavaScript and CSS.
+  # Compress JavaScript.
   config.assets.js_compressor = Uglifier.new(harmony: true)
-  config.assets.css_compressor = :sass
 
   # Do not fall back to assets pipeline if a precompiled asset is missed.
   config.assets.compile = false
