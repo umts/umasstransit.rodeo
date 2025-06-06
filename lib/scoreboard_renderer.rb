@@ -3,7 +3,7 @@
 class ScoreboardRenderer < ParticipantsController
   module ScoreboardRendererHelper
     def current_user = nil
-    def debug_assets = false
+    def debug_assets = false # rubocop:disable Naming/PredicateMethod
     def user_signed_in? = false
   end
   helper ScoreboardRendererHelper
