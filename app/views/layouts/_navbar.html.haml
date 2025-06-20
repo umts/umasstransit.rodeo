@@ -14,7 +14,7 @@
         = nav_item admin_users_path, 'Roles', role: :admin
         = nav_item manage_admin_users_path, role: :admin do
           Manage Users
-          - unless User.where(approved: false).count.zero?
+          - if User.where(approved: false).any?
             %span.badge.badge-warning
               = User.where(approved: false).count
       .dropdown
