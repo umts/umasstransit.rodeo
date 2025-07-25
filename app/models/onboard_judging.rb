@@ -2,6 +2,7 @@
 
 class OnboardJudging < ApplicationRecord
   include ScoreboardPublisher
+
   MAX_SCORE = 50
 
   has_paper_trail
