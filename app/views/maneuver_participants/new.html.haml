@@ -1,38 +1,8 @@
 .scoring
-  = form_tag maneuver_participants_path, id: 'score_form' do
-    = hidden_field_tag :maneuver_id, @maneuver.id
-    = hidden_field_tag :participant_id, @participant.id
-    - @maneuver.grouped_obstacles.each do |(point_value, type), obstacles|
-      .form-group
-        = label_tag "#{point_value}-point #{type.pluralize} touched"
-        = number_field_tag_with_buttons "obstacle_#{obstacles.first.id}", 0, in: 0..obstacles.count
-    - @maneuver.distance_targets.each do |target|
-      .form-group
-        = label_tag "#{target.interval_type} from #{target.name}"
-        = number_field_tag_with_buttons "target_#{target.id}", target.minimum, min: 0
-    .form-group
-      - if @maneuver.name.include? 'Reverse'
-        = label_tag 'Extra reverses'
-      - else
-        = label_tag 'Reverses'
-      = number_field_tag_with_buttons :reversed_direction, 0, min: 0
-    - if @maneuver.speed_target.present?
-      .form-group
-        = label_tag "Achieved #{@maneuver.speed_target} mph"
-        = hidden_field_tag :speed_acheived, false
-        = giant_check_box_tag :speed_achieved, true, true
-    - if @maneuver.counts_additional_stops?
-      .form-group
-        = label_tag 'Extra stops?'
-        = hidden_field_tag :made_additional_stops, false
-        = giant_check_box_tag :made_additional_stops, true, false
-    .form-group
-      = label_tag 'Completed as designed?'
-      = hidden_field_tag :completed_as_designed, false
-      = giant_check_box_tag :completed_as_designed, true, true
-    .form-group
-      = submit_tag 'Save & next', class: 'btn btn-primary submit'
-      = link_to previous_participant_maneuver_path(@maneuver) do
-        %button.btn.btn-secondary.actions{ type: :button }
-          %i.fa-solid.fa-arrow-left
-          %span.d-none.d-sm-inline Previous participant
+  = render partial: 'form', locals: { maneuver_participant: @record,
+                                      maneuver: @maneuver,
+                                      participant: @participant }
+  = link_to previous_participant_maneuver_path(@maneuver) do
+    %button.btn.btn-secondary.actions.mt-3{ type: :button }
+      %i.fa-solid.fa-arrow-left
+      %span.d-none.d-sm-inline Previous participant
