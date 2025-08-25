@@ -1,0 +1,32 @@
+= form_with model: maneuver_participant do |f|
+  = hidden_field_tag :maneuver_id, maneuver.id
+  = hidden_field_tag :participant_id, participant.id
+  - maneuver.grouped_obstacles.each do |(point_value, type), obstacles|
+    .form-group
+      = f.label :"obstacle_#{obstacles.first.id}", "#{point_value}-point #{type.pluralize} touched"
+      - value = maneuver_participant.obstacles_hit[obstacles.first.id].try(:[], 1) || 0
+      = render 'shared/with_increment_buttons' do
+        = f.number_field :"obstacle_#{obstacles.first.id}", { value:, in: 0..obstacles.count }
+  - maneuver.distance_targets.each do |target|
+    .form-group
+      = f.label "target_#{target.id}", "#{target.interval_type.capitalize} from #{target.name}"
+      - value = maneuver_participant.distances_achieved[[target.minimum, target.multiplier]] || 0
+      = render 'shared/with_increment_buttons' do
+        = f.number_field "target_#{target.id}", value:, min: 0
+  .form-group
+    = f.label :reversed_direction, maneuver.name.include?('Reverse') ? 'Extra reverses' : 'Reverses'
+    - value = maneuver_participant.reversed_direction || 0
+    = render 'shared/with_increment_buttons' do
+      = f.number_field :reversed_direction, value:, min: 0
+  - if maneuver.speed_target.present?
+    .form-group.form-check
+      = f.checkbox :speed_achieved, class: 'form-check-input'
+      = f.label :speed_achieved, "Achieved #{maneuver.speed_target} mph", class: 'form-check-label'
+  - if maneuver.counts_additional_stops?
+    .form-group
+      = f.checkbox :made_additional_stops, class: 'form-check-input'
+      = f.label :made_additional_stops, 'Extra stops?', class: 'form-check-label'
+  .form-group.form-check
+    = f.checkbox :completed_as_designed, class: 'form-check-input'
+    = f.label :completed_as_designed, 'Completed as designed?', class: 'form-check-label'
+  = submit_tag submit_text, class: 'btn btn-primary submit'

@@ -1,48 +1,15 @@
 .scoring
   - if current_user.admin? && @record.creator.present?
     %h3 Score recorded by #{@record.creator.name}
-
-  = form_tag maneuver_participant_path(@record), method: :put do
-    = hidden_field_tag :maneuver_id, @maneuver.id
-    = hidden_field_tag :participant_id, @participant.id
-    - @maneuver.grouped_obstacles.each do |(point_value, type), obstacles|
-      .form-group
-        = label_tag :"obstacle_#{obstacles.first.id}", "#{point_value}-point #{type.pluralize} touched"
-        - value = @record.obstacles_hit[obstacles.first.id].try(:[], 1) || 0
-        = render 'shared/with_increment_buttons' do
-          = number_field_tag "obstacle_#{obstacles.first.id}", value, in: 0..obstacles.count
-    - @maneuver.distance_targets.each do |target|
-      .form-group
-        = label_tag "target_#{target.id}", "#{target.interval_type} from #{target.name}"
-        = render 'shared/with_increment_buttons' do
-          = number_field_tag "target_#{target.id}",
-                             @record.distances_achieved[[target.minimum, target.multiplier]],
-                             min: 0
-    .form-group
-      = label_tag :reversed_direction, @maneuver.name.include?('Reverse') ? 'Extra reverses' : 'Reverses'
-      = render 'shared/with_increment_buttons' do
-        = number_field_tag :reversed_direction, @record.reversed_direction, min: 0
-    - if @maneuver.speed_target.present?
-      .form-group.form-check
-        = checkbox_tag :speed_achieved, '1', @record.speed_achieved, class: 'form-check-input'
-        = hidden_field_tag :speed_achieved, false
-        = label_tag :speed_achieved, "Achieved #{@maneuver.speed_target} mph", class: 'form-check-label'
-    - if @maneuver.counts_additional_stops?
-      .form-group
-        = checkbox_tag :made_additional_stops, '1', @record.made_additional_stops, class: 'form-check-input'
-        = hidden_field_tag :made_additional_stops, false
-        = label_tag :made_additional_stops, 'Extra stops?', class: 'form-check-label'
-    .form-group.form-check
-      = checkbox_tag :completed_as_designed, '1', @record.completed_as_designed, class: 'form-check-input'
-      = hidden_field_tag :completed_as_designed, false
-      = label_tag :completed_as_designed, 'Completed as designed?', class: 'form-check-label'
-    .form-group
-      = submit_tag 'Save score', class: 'btn btn-primary submit'
-      = link_to previous_participant_maneuver_path(@maneuver, relative_to: @participant.number) do
-        %button.btn.btn-secondary.actions{ type: :button }
-          %i.fa-solid.fa-arrow-left
-          %span.d-none.d-sm-inline Previous participant
-      = link_to next_participant_maneuver_path(@maneuver, relative_to: @participant.number) do
-        %button.btn.btn-secondary.actions{ type: :button }
-          %span.d-none.d-sm-inline Next participant
-          %i.fa-solid.fa-arrow-right
+  = render partial: 'form', locals: { maneuver_participant: @record,
+                                      maneuver: @maneuver,
+                                      participant: @participant,
+                                      submit_text: 'Save score' }
+  = link_to previous_participant_maneuver_path(@maneuver, relative_to: @participant.number) do
+    %button.btn.btn-secondary.actions{ type: :button }
+      %i.fa-solid.fa-arrow-left
+      %span.d-none.d-sm-inline Previous participant
+  = link_to next_participant_maneuver_path(@maneuver, relative_to: @participant.number) do
+    %button.btn.btn-secondary.actions{ type: :button }
+      %span.d-none.d-sm-inline Next participant
+      %i.fa-solid.fa-arrow-right
