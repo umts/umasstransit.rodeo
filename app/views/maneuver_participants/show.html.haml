@@ -24,8 +24,8 @@
         = number_field_tag :reversed_direction, @record.reversed_direction, min: 0
     - if @maneuver.speed_target.present?
       .form-group.form-check
-        = hidden_field_tag :speed_acheived, false
-        = checkbox_tag :speed_acheived, '1', @record.speed_acheived, class: 'form-check-input'
+        = hidden_field_tag :speed_achieved, false
+        = checkbox_tag :speed_achieved, '1', @record.speed_achieved, class: 'form-check-input'
         = label_tag :speed_achieved, "Achieved #{@maneuver.speed_target} mph", class: 'form-check-label'
     - if @maneuver.counts_additional_stops?
       .form-group
