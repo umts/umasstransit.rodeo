@@ -55,8 +55,8 @@ class ManeuverParticipantsController < ApplicationController
   end
 
   def find_maneuver_and_participant
-    @maneuver = Maneuver.find_by id: params.expect(:maneuver_id)
-    @participant = Participant.find_by id: params.expect(:participant_id)
+    @maneuver = Maneuver.find params.expect(:maneuver_id)
+    @participant = Participant.find params.expect(:participant_id)
   end
 
   def find_record
@@ -70,7 +70,7 @@ class ManeuverParticipantsController < ApplicationController
     end
 
     obstacle_params.each do |key, value|
-      obstacle = Obstacle.find_by id: key.split('_').last.to_i
+      obstacle = Obstacle.find key.split('_').last.to_i
       obstacles_hit[obstacle.id] = [obstacle.point_value, value.to_i] if obstacle.present?
     end
 
@@ -84,7 +84,7 @@ class ManeuverParticipantsController < ApplicationController
     end
 
     target_params.each do |key, value|
-      target = DistanceTarget.find_by id: key.split('_').last.to_i
+      target = DistanceTarget.find key.split('_').last.to_i
       distances_achieved[[target.minimum, target.multiplier]] = value.to_i if target.present?
     end
 
