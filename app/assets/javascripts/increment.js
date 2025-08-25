@@ -19,4 +19,6 @@ $(() => {
     if(value <= min) buttons.filter('[data-action=decrement]').prop('disabled', true);
     if(value >= max) buttons.filter('[data-action=increment]').prop('disabled', true);
   });
+
+  $('.increment input').trigger('change');
 });
