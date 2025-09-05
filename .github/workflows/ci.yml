@@ -23,7 +23,7 @@ jobs:
       RAILS_ENV: test
       DATABASE_URL: mysql2://root@127.0.0.1:3306/umasstransit_rodeo_test
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: ./.github/actions/setup
       - run: bin/setup
       - run: bin/rails test:prepare
@@ -31,18 +31,18 @@ jobs:
   rubocop:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: ./.github/actions/setup
       - run: bundle exec rubocop
   haml-lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: ./.github/actions/setup
       - run: bundle exec haml-lint
   brakeman:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: ./.github/actions/setup
       - run: bundle exec brakeman --no-pager
