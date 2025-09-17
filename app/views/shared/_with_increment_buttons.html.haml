@@ -1,0 +1,8 @@
+.input-group.increment
+  .input-group-prepend
+    %button.btn.btn-primary{ type: 'button', 'data-action': 'decrement' }
+      %i.fa-solid.fa-minus
+  = yield
+  .input-group-append
+    %button.btn.btn-primary{ type: 'button', 'data-action': 'increment' }
+      %i.fa-solid.fa-plus
