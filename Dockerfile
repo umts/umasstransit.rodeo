@@ -37,10 +37,6 @@ FROM base as build
 RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y build-essential default-libmysqlclient-dev node-gyp pkg-config python-is-python3
 
-# Install yarn
-ARG YARN_VERSION=1.22.22
-RUN npm install -g yarn@$YARN_VERSION
-
 # Build options
 ENV PATH="/usr/local/node/bin:$PATH"
 
@@ -51,8 +47,8 @@ RUN bundle install && \
     rm -rf ~/.bundle/ "${BUNDLE_PATH}"/ruby/*/cache "${BUNDLE_PATH}"/ruby/*/bundler/gems/*/.git
 
 # Install node modules
-COPY --link package.json yarn.lock ./
-RUN yarn install --frozen-lockfile
+COPY --link package.json package-lock.json ./
+RUN npm ci
 
 # Copy application code
 COPY --link . .
