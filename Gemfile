@@ -59,7 +59,6 @@ group :test do
   gem 'rspec-rails'
   gem 'selenium-webdriver'
   gem 'simplecov'
-  gem 'timecop'
 end
 
 group :development, :test do
