@@ -3,11 +3,11 @@ $(function() {
     $('.uniqueness-warning').hide();
   }
 
-  $('.participants').on('change', 'input[type=number]', function() {
-    const existingNumbers = $('.participants input[type=number]').not($(this)).map(function() {
-      return parseInt($(this).val());
+  $('.participants').on('change', 'input[type=number]', function(e) {
+    const existingNumbers = $('.participants input[type=number]').not($(e.target)).map(function(_, other) {
+      return parseInt($(other).val());
     });
-    currentNumber = parseInt($(this).val());
+    const currentNumber = parseInt($(e.target).val());
     if (existingNumbers.index(currentNumber) !== -1) {
       $('.uniqueness-warning').show();
     } else $('.uniqueness-warning').hide();
