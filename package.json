@@ -20,9 +20,13 @@
     "tablesorter": "^2.32.0"
   },
   "scripts": {
+    "lint:css": "stylelint **/*.css **/*.scss",
     "build:css": "postcss ./app/assets/stylesheets/application.scss -o ./app/assets/builds/application.css"
   },
   "devDependencies": {
-    "run-pty": "^5.0.0"
+    "run-pty": "^5.0.0",
+    "stylelint": "^16.24.0",
+    "stylelint-config-standard": "^39.0.0",
+    "stylelint-config-standard-scss": "^16.0.0"
   }
 }
