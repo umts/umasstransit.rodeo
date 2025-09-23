@@ -23,9 +23,15 @@ module.exports = [
     },
   },
   {
-    files: ['app/javascript/**/*.js'],
+    files: ['app/assets/javascripts/**/*.js'],
     languageOptions: {
-      globals: {...globals.browser},
+      globals: {
+        ...globals.browser,
+        '$': 'readonly',
+        'App': 'readonly',
+        'flashCell': 'readonly',
+        'ActionCable': 'readonly',
+      },
     },
   },
   {
