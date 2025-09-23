@@ -1,9 +1,9 @@
-$(function(){
-  $('.scoreboard').on('click', 'button.fullscreen', function(){
-    var scoreboard = $('.scoreboard-content').get(0);
+$(function() {
+  $('.scoreboard').on('click', 'button.fullscreen', function() {
+    const scoreboard = $('.scoreboard-content').get(0);
     if (scoreboard.requestFullscreen) {
       scoreboard.requestFullscreen();
-    } else if (scoreboard.webkitRequestFullscreen) { /* Safari */
+    } else if (scoreboard.webkitRequestFullscreen) {/* Safari */
       scoreboard.webkitRequestFullscreen();
     }
   });
@@ -21,8 +21,8 @@ $(function(){
     'widgetOptions': {
       'math_textAttr': 'data-score',
       'math_ignore': [0],
-      'math_mask': '#0.0'
-    }
+      'math_mask': '#0.0',
+    },
   });
 });
 
@@ -33,18 +33,18 @@ function flashCell(cell) {
   }, 5000);
 }
 
-//Sum of all but the last three elements in an array
+// Sum of all but the last three elements in an array
 $.tablesorter.equations['maneuversum'] = function(arry, config) {
-  const maneuver_count = arry.length - 3; //cc, quiz, grand-total
+  const maneuver_count = arry.length - 3; // cc, quiz, grand-total
   const maneuvers = arry.slice(0, maneuver_count);
   const sum = (accumulator, currentValue) => accumulator + currentValue;
 
   return maneuvers.reduce(sum);
 };
 
-//Sum of the last three elements in an array
+// Sum of the last three elements in an array
 $.tablesorter.equations['subtotalsum'] = function(arry, config) {
-  const maneuver_count = arry.length - 3; //cc, quiz, grand-total
+  const maneuver_count = arry.length - 3; // cc, quiz, grand-total
   const non_maneuvers = arry.slice(maneuver_count);
   const sum = (accumulator, currentValue) => accumulator + currentValue;
 

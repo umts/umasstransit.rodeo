@@ -1,4 +1,4 @@
-App.participants = App.cable.subscriptions.create("ParticipantsChannel", {
+App.participants = App.cable.subscriptions.create('ParticipantsChannel', {
   received(data) {
     const participant = data.participant;
     switch (data.event) {
@@ -6,8 +6,8 @@ App.participants = App.cable.subscriptions.create("ParticipantsChannel", {
         var new_row = $('table#template tr').first().clone();
         new_row.attr('data-participant-id', participant.id);
         new_row.find('td.participant')
-          .text(participant.display_name)
-          .attr('data-text', participant.number);
+            .text(participant.display_name)
+            .attr('data-text', participant.number);
         new_row.find('.maneuver-participant a, .onboard-judging a').attr('href', (_, value) => {
           value.replace(/participant=\d+/, `participant=${participant.number}`);
         });
@@ -25,5 +25,5 @@ App.participants = App.cable.subscriptions.create("ParticipantsChannel", {
         break;
     }
     $('table.scoreboard').trigger('update');
-  }
+  },
 });
