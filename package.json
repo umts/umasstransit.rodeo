@@ -24,10 +24,10 @@
     "build:css": "postcss ./app/assets/stylesheets/application.scss -o ./app/assets/builds/application.css"
   },
   "devDependencies": {
-    "@eslint/js": "^9.36.0",
-    "eslint": "^9.36.0",
-    "eslint-config-google": "^0.14.0",
-    "globals": "^16.4.0",
-    "run-pty": "^5.0.0"
+    "run-pty": "^5.0.0",
+    "@eslint/js": "*",
+    "eslint": "*",
+    "eslint-config-google": "*",
+    "globals": "*"
   }
 }
