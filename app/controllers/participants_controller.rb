@@ -30,9 +30,12 @@ class ParticipantsController < ApplicationController
   end
 
   def update
-    return unless @participant.update user_params
-
-    redirect_to participants_path, notice: t('.success')
+    if @participant.update user_params
+      flash[:notice] = t('.success')
+    else
+      flash[:errors] = @participant.errors.full_messages
+    end
+    redirect_to participants_path
   end
 
   def destroy
