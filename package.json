@@ -8,7 +8,7 @@
   "private": true,
   "dependencies": {
     "@csstools/postcss-sass": "^5.1.1",
-    "@fortawesome/fontawesome-free": "^7.0.1",
+    "@fortawesome/fontawesome-free": "^7.1.0",
     "autoprefixer": "^10.4.21",
     "bootstrap": "^4.6.2",
     "jquery": "^3.7.1",
@@ -21,13 +21,17 @@
   },
   "scripts": {
     "lint": "eslint .",
+    "lint:css": "stylelint **/*.css **/*.scss",
     "build:css": "postcss ./app/assets/stylesheets/application.scss -o ./app/assets/builds/application.css"
   },
   "devDependencies": {
-    "run-pty": "^5.0.0",
     "@eslint/js": "*",
     "eslint": "*",
     "eslint-config-google": "*",
-    "globals": "*"
+    "globals": "*",
+    "run-pty": "^5.0.0",
+    "stylelint": "*",
+    "stylelint-config-standard": "*",
+    "stylelint-config-standard-scss": "*"
   }
 }

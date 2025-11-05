@@ -18,6 +18,10 @@ PreCommit:
     enabled: true
     required_executable: npm
     command: ["npm", "run", "lint"]
+  StyleLint:
+    enabled: true
+    required_executable: npm
+    command: ["npm", "run", "lint:css"]
 PrePush:
   Brakeman:
     enabled: true
