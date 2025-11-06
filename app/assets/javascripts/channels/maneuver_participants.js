@@ -1,4 +1,4 @@
-App.manuever_participants = App.cable.subscriptions.create("ManeuverParticipantsChannel", {
+App.manuever_participants = App.cable.subscriptions.create('ManeuverParticipantsChannel', {
   received(data) {
     const participant = data.participant_id;
     const maneuver = data.maneuver_id;
@@ -12,7 +12,7 @@ App.manuever_participants = App.cable.subscriptions.create("ManeuverParticipants
       cell.text(score);
     }
     cell.attr('data-text', score).attr('data-score', score);
-    $("table.scoreboard").trigger("recalculate");
+    $('table.scoreboard').trigger('recalculate');
     flashCell(cell);
-  }
+  },
 });
