@@ -28,6 +28,7 @@
     "@eslint/js": "*",
     "eslint": "*",
     "eslint-config-google": "*",
+    "eslint-formatter-compact": "^9.0.1",
     "globals": "*",
     "run-pty": "^5.0.0",
     "stylelint": "*",
