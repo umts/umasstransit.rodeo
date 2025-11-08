@@ -4,8 +4,8 @@ module.exports = {
     '@csstools/postcss-sass': {
       includePaths: ['node_modules'],
       quietDeps: true,
-      silenceDeprecations: ['import']
+      silenceDeprecations: ['import'],
     },
-    autoprefixer: {}
-  }
+    'autoprefixer': {},
+  },
 };
