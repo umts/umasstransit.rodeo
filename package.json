@@ -9,7 +9,7 @@
   "dependencies": {
     "@csstools/postcss-sass": "^5.1.1",
     "@fortawesome/fontawesome-free": "^7.1.0",
-    "autoprefixer": "^10.4.21",
+    "autoprefixer": "^10.4.22",
     "bootstrap": "^4.6.2",
     "jquery": "^3.7.1",
     "jquery.are-you-sure": "^1.9.0",
