@@ -7,8 +7,8 @@
 @use "@fortawesome/fontawesome-free/scss/regular" as far;
 
 $body-bg: var(--body-bg-color);
-@import "bootstrap/scss/bootstrap";
 
+@import "bootstrap/scss/bootstrap";
 @import "navbar";
 @import "participants";
 @import "scoreboard";
