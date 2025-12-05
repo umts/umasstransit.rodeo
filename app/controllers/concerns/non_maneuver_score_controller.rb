@@ -44,7 +44,7 @@ module NonManeuverScoreController
 
   def change_failed(errors)
     flash[:errors] = errors
-    redirect_back fallback_location: { action: 'index' }
+    redirect_back_or_to({ action: 'index' })
   end
 
   def change_succeeded
