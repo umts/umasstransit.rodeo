@@ -418,9 +418,9 @@ GEM
     terser (1.2.6)
       execjs (>= 0.3.0, < 3)
     thor (1.4.0)
-    thruster (0.1.16)
-    thruster (0.1.16-arm64-darwin)
-    thruster (0.1.16-x86_64-darwin)
+    thruster (0.1.17)
+    thruster (0.1.17-arm64-darwin)
+    thruster (0.1.17-x86_64-darwin)
     tilt (2.6.1)
     timeout (0.4.4)
     trilogy (2.9.0)
@@ -660,9 +660,9 @@ CHECKSUMS
   temple (0.10.4) sha256=b7a1e94b6f09038ab0b6e4fe0126996055da2c38bec53a8a336f075748fff72c
   terser (1.2.6) sha256=6ddf00b93df7015b07e2b9b149e74cd70fa7aa4f0f89a15d9922a6ebd13f37ab
   thor (1.4.0) sha256=8763e822ccb0f1d7bee88cde131b19a65606657b847cc7b7b4b82e772bcd8a3d
-  thruster (0.1.16) sha256=daa74b5b88e75df5a8f82559d9cd242391c5941735bdfe33a66fb266120168ad
-  thruster (0.1.16-arm64-darwin) sha256=b7047cf7d19f7c43cdb99159f5f611cefcff70c0082e424b5bc01f91ade1e2f5
-  thruster (0.1.16-x86_64-darwin) sha256=1a239fceea8236f954d52b52cd47d574c8c0f8bd7b6471254f7b546512719292
+  thruster (0.1.17) sha256=6f3f1de43e22f0162d81cbc363f45ee42a1b8460213856c1a899cbf0d3297235
+  thruster (0.1.17-arm64-darwin) sha256=75da66fc4a0f012f9a317f6362f786a3fa953879a3fa6bed8deeaebf1c1d66ec
+  thruster (0.1.17-x86_64-darwin) sha256=b49e4c52563d1476d3aa1e12f7f57febb4510ac163f6abeac7c7c0de8a54437f
   tilt (2.6.1) sha256=35a99bba2adf7c1e362f5b48f9b581cce4edfba98117e34696dde6d308d84770
   timeout (0.4.4) sha256=f0f6f970104b82427cd990680f539b6bbb8b1e55efa913a55c6492935e4e0edb
   trilogy (2.9.0) sha256=a2d63b663ba68a4758e15d1f9afb228f5d16efc7fe7cea68699e1c106ef6067f
