@@ -160,8 +160,8 @@ GEM
       i18n (>= 1.8.11, < 2)
     ffi (1.17.1)
     ffi (1.17.1-arm64-darwin)
-    ffi (1.17.1-x86-linux-gnu)
     ffi (1.17.1-x86_64-darwin)
+    ffi (1.17.1-x86_64-linux-gnu)
     globalid (1.3.0)
       activesupport (>= 6.1)
     haml (7.1.0)
@@ -234,6 +234,8 @@ GEM
     nokogiri (1.19.0-arm64-darwin)
       racc (~> 1.4)
     nokogiri (1.19.0-x86_64-darwin)
+      racc (~> 1.4)
+    nokogiri (1.19.0-x86_64-linux-gnu)
       racc (~> 1.4)
     openssl (4.0.0)
     orm_adapter (0.5.0)
@@ -422,6 +424,7 @@ GEM
     thruster (0.1.17)
     thruster (0.1.17-arm64-darwin)
     thruster (0.1.17-x86_64-darwin)
+    thruster (0.1.17-x86_64-linux)
     tilt (2.6.1)
     timeout (0.4.4)
     trilogy (2.9.0)
@@ -447,9 +450,8 @@ GEM
 PLATFORMS
   arm64-darwin
   ruby
-  x86-linux
-  x86-linux-gnu
   x86_64-darwin
+  x86_64-linux
 
 DEPENDENCIES
   action-cable-testing
@@ -560,8 +562,8 @@ CHECKSUMS
   faker (3.5.3) sha256=b961482dc0bb15ccb9a98ea7878b925669e9ae8f5e59b607da540b768137d765
   ffi (1.17.1) sha256=26f6b0dbd1101e6ffc09d3ca640b2a21840cc52731ad8a7ded9fb89e5fb0fc39
   ffi (1.17.1-arm64-darwin) sha256=a8e04f79d375742c54ee7f9fff4b4022b87200a4ec0eb082128d3b6559e67b4d
-  ffi (1.17.1-x86-linux-gnu) sha256=01411c78cb3cff3c88cf67b2a7b24534e9b1638253d88581fef44c2083f6a174
   ffi (1.17.1-x86_64-darwin) sha256=0036199c290462dd7f03bc22933644c1685b7834a21788062bd5df48c72aa7a6
+  ffi (1.17.1-x86_64-linux-gnu) sha256=8c0ade2a5d19f3672bccfe3b58e016ae5f159e3e2e741c856db87fcf07c903d0
   globalid (1.3.0) sha256=05c639ad6eb4594522a0b07983022f04aa7254626ab69445a0e493aa3786ff11
   haml (7.1.0) sha256=aed691bddcaaf4855398b3e4dd39d8590600b0f0151f4def1c2aa83bfd444248
   haml-rails (3.0.0) sha256=091fe496a85ca521d9cac87fb50f1ecf77a57974a99aa7e267130add81a5585f
@@ -595,6 +597,7 @@ CHECKSUMS
   nokogiri (1.19.0) sha256=e304d21865f62518e04f2bf59f93bd3a97ca7b07e7f03952946d8e1c05f45695
   nokogiri (1.19.0-arm64-darwin) sha256=0811dfd936d5f6dd3f6d32ef790568bf29b2b7bead9ba68866847b33c9cf5810
   nokogiri (1.19.0-x86_64-darwin) sha256=1dad56220b603a8edb9750cd95798bffa2b8dd9dd9aa47f664009ee5b43e3067
+  nokogiri (1.19.0-x86_64-linux-gnu) sha256=f482b95c713d60031d48c44ce14562f8d2ce31e3a9e8dd0ccb131e9e5a68b58c
   openssl (4.0.0) sha256=185711ed93d4e9c9a9db6efea7edb202dfe04f7d3692fbab988e3d84e498ee91
   orm_adapter (0.5.0) sha256=aa5d0be5d540cbb46d3a93e88061f4ece6a25f6e97d6a47122beb84fe595e9b9
   ostruct (0.6.3) sha256=95a2ed4a4bd1d190784e666b47b2d3f078e4a9efda2fccf18f84ddc6538ed912
@@ -664,6 +667,7 @@ CHECKSUMS
   thruster (0.1.17) sha256=6f3f1de43e22f0162d81cbc363f45ee42a1b8460213856c1a899cbf0d3297235
   thruster (0.1.17-arm64-darwin) sha256=75da66fc4a0f012f9a317f6362f786a3fa953879a3fa6bed8deeaebf1c1d66ec
   thruster (0.1.17-x86_64-darwin) sha256=b49e4c52563d1476d3aa1e12f7f57febb4510ac163f6abeac7c7c0de8a54437f
+  thruster (0.1.17-x86_64-linux) sha256=77b8f335075bd4ece7631dc84a19a710a1e6e7102cbce147b165b45851bdfcd3
   tilt (2.6.1) sha256=35a99bba2adf7c1e362f5b48f9b581cce4edfba98117e34696dde6d308d84770
   timeout (0.4.4) sha256=f0f6f970104b82427cd990680f539b6bbb8b1e55efa913a55c6492935e4e0edb
   trilogy (2.9.0) sha256=a2d63b663ba68a4758e15d1f9afb228f5d16efc7fe7cea68699e1c106ef6067f
