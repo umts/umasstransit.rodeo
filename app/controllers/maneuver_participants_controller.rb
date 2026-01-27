@@ -13,8 +13,8 @@ class ManeuverParticipantsController < ApplicationController
   end
 
   def new
-    @maneuver = Maneuver.find_by name: params.require(:maneuver)
-    @participant = Participant.find_by number: params.require(:participant)
+    @maneuver = Maneuver.find_by name: params.expect(:maneuver)
+    @participant = Participant.find_by number: params.expect(:participant)
     @page_title = "Judging #{@maneuver.name}"
     @page_subtitle = @participant.display_information(:name, :number, :bus)
 
@@ -29,8 +29,8 @@ class ManeuverParticipantsController < ApplicationController
   def create
     unless @participant.completed? @maneuver
       attrs = { maneuver: @maneuver, participant: @participant }
-      attrs.merge! params.permit(:reversed_direction, :speed_achieved,
-                                 :made_additional_stops, :completed_as_designed)
+      attrs.merge! maneuver_participant_params.permit(:reversed_direction, :speed_achieved,
+                                                      :made_additional_stops, :completed_as_designed)
       attrs[:obstacles_hit] = parse_obstacles
       attrs[:distances_achieved] = parse_distance_targets
       ManeuverParticipant.create! attrs
@@ -39,8 +39,8 @@ class ManeuverParticipantsController < ApplicationController
   end
 
   def update
-    attrs = params.permit(:reversed_direction, :speed_achieved,
-                          :made_additional_stops, :completed_as_designed).to_hash
+    attrs = maneuver_participant_params.permit(:reversed_direction, :speed_achieved,
+                                               :made_additional_stops, :completed_as_designed).to_hash
     attrs[:obstacles_hit] = parse_obstacles
     attrs[:distances_achieved] = parse_distance_targets
     @record.update! attrs
@@ -50,23 +50,27 @@ class ManeuverParticipantsController < ApplicationController
 
   private
 
+  def maneuver_participant_params
+    params.expect(maneuver_participant: {})
+  end
+
   def find_maneuver_and_participant
-    @maneuver = Maneuver.find_by id: params.require(:maneuver_id)
-    @participant = Participant.find_by id: params.require(:participant_id)
+    @maneuver = Maneuver.find params.expect(:maneuver_id)
+    @participant = Participant.find params.expect(:participant_id)
   end
 
   def find_record
-    @record = ManeuverParticipant.find_by id: params.require(:id)
+    @record = ManeuverParticipant.find params.expect(:id)
   end
 
   def parse_obstacles
     obstacles_hit = {}
-    obstacle_params = params.select do |key, value|
+    obstacle_params = maneuver_participant_params.select do |key, value|
       key.starts_with?('obstacle') && value.to_i != 0
     end
 
     obstacle_params.each do |key, value|
-      obstacle = Obstacle.find_by id: key.split('_').last.to_i
+      obstacle = Obstacle.find key.split('_').last.to_i
       obstacles_hit[obstacle.id] = [obstacle.point_value, value.to_i] if obstacle.present?
     end
 
@@ -75,12 +79,12 @@ class ManeuverParticipantsController < ApplicationController
 
   def parse_distance_targets
     distances_achieved = {}
-    target_params = params.select do |key, _value|
+    target_params = maneuver_participant_params.select do |key, _value|
       key.starts_with?('target')
     end
 
     target_params.each do |key, value|
-      target = DistanceTarget.find_by id: key.split('_').last.to_i
+      target = DistanceTarget.find key.split('_').last.to_i
       distances_achieved[[target.minimum, target.multiplier]] = value.to_i if target.present?
     end
 
