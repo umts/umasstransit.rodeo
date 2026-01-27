@@ -1,4 +1,6 @@
 name: ci
+permissions:
+  contents: read
 on:
   push:
     branches:
@@ -8,39 +10,5 @@ on:
       - main
 
 jobs:
-  rspec:
-    runs-on: ubuntu-latest
-    services:
-      mariadb:
-        image: mariadb:10.4
-        env:
-          MARIADB_ALLOW_EMPTY_ROOT_PASSWORD: true
-        ports:
-          - 3306:3306
-    env:
-      RAILS_ENV: test
-      DATABASE_URL: mysql2://root@127.0.0.1:3306/umasstransit_rodeo_test
-    steps:
-      - uses: actions/checkout@v4
-      - uses: ./.github/actions/setup
-      - run: bin/setup
-      - run: bin/rails test:prepare
-      - run: bundle exec rspec
-  rubocop:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: ./.github/actions/setup
-      - run: bundle exec rubocop
-  haml-lint:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: ./.github/actions/setup
-      - run: bundle exec haml-lint
-  brakeman:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: ./.github/actions/setup
-      - run: bundle exec brakeman --no-pager
+  rails:
+    uses: umts/.github/.github/workflows/integrate-rails-app.yml@main
