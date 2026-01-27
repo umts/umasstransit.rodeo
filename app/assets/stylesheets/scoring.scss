@@ -9,16 +9,6 @@
     }
   }
 
-  .btn-group-toggle.checkbox .btn {
-    i {
-      @include fas.icon(fa.$var-circle);
-    }
-
-    &.active i::before {
-      content: fa.fa-content(fa.$var-circle-check);
-    }
-  }
-
   fieldset {
     border: 1px solid $secondary;
   }

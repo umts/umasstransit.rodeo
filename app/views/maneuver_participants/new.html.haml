@@ -4,32 +4,32 @@
     = hidden_field_tag :participant_id, @participant.id
     - @maneuver.grouped_obstacles.each do |(point_value, type), obstacles|
       .form-group
-        = label_tag "#{point_value}-point #{type.pluralize} touched"
-        = number_field_tag_with_buttons "obstacle_#{obstacles.first.id}", 0, in: 0..obstacles.count
+        = label_tag :"obstacle_#{obstacles.first.id}", "#{point_value}-point #{type.pluralize} touched"
+        = render 'shared/with_increment_buttons' do
+          = number_field_tag "obstacle_#{obstacles.first.id}", 0, in: 0..obstacles.count
     - @maneuver.distance_targets.each do |target|
       .form-group
-        = label_tag "#{target.interval_type} from #{target.name}"
-        = number_field_tag_with_buttons "target_#{target.id}", target.minimum, min: 0
+        = label_tag :"target_#{target.id}", "#{target.interval_type.capitalize} from #{target.name}"
+        = render 'shared/with_increment_buttons' do
+          = number_field_tag "target_#{target.id}", target.minimum, min: 0
     .form-group
-      - if @maneuver.name.include? 'Reverse'
-        = label_tag 'Extra reverses'
-      - else
-        = label_tag 'Reverses'
-      = number_field_tag_with_buttons :reversed_direction, 0, min: 0
+      = label_tag :reversed_direction, @maneuver.name.include?('Reverse') ? 'Extra reverses' : 'Reverses'
+      = render 'shared/with_increment_buttons' do
+        = number_field_tag :reversed_direction, 0, min: 0
     - if @maneuver.speed_target.present?
-      .form-group
-        = label_tag "Achieved #{@maneuver.speed_target} mph"
-        = hidden_field_tag :speed_acheived, false
-        = giant_check_box_tag :speed_achieved, true, true
+      .form-group.form-check
+        = checkbox_tag :speed_achieved, true, class: 'form-check-input'
+        = hidden_field_tag :speed_achieved, false
+        = label_tag :speed_achieved, "Achieved #{@maneuver.speed_target} mph", class: 'form-check-label'
     - if @maneuver.counts_additional_stops?
       .form-group
-        = label_tag 'Extra stops?'
+        = checkbox_tag :made_additional_stops, false, class: 'form-check-input'
         = hidden_field_tag :made_additional_stops, false
-        = giant_check_box_tag :made_additional_stops, true, false
-    .form-group
-      = label_tag 'Completed as designed?'
+        = label_tag :made_additional_stops, 'Extra stops?', class: 'form-check-label'
+    .form-group.form-check
+      = checkbox_tag :completed_as_designed, true, class: 'form-check-input'
       = hidden_field_tag :completed_as_designed, false
-      = giant_check_box_tag :completed_as_designed, true, true
+      = label_tag :completed_as_designed, 'Completed as designed?', class: 'form-check-label'
     .form-group
       = submit_tag 'Save & next', class: 'btn btn-primary submit'
       = link_to previous_participant_maneuver_path(@maneuver) do
