@@ -29,17 +29,12 @@ RUN curl -sL https://github.com/nodenv/node-build/archive/master.tar.gz | tar xz
     /tmp/node-build-master/bin/node-build "${NODE_VERSION}" /usr/local/node && \
     rm -rf /tmp/node-build-master
 
-
 # Throw-away build stage to reduce size of final image
 FROM base as build
 
 # Install packages needed to build gems and node modules
 RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y build-essential default-libmysqlclient-dev node-gyp pkg-config python-is-python3
-
-# Install yarn
-ARG YARN_VERSION=1.22.22
-RUN npm install -g yarn@$YARN_VERSION
 
 # Build options
 ENV PATH="/usr/local/node/bin:$PATH"
@@ -51,8 +46,8 @@ RUN bundle install && \
     rm -rf ~/.bundle/ "${BUNDLE_PATH}"/ruby/*/cache "${BUNDLE_PATH}"/ruby/*/bundler/gems/*/.git
 
 # Install node modules
-COPY --link package.json yarn.lock ./
-RUN yarn install --frozen-lockfile
+COPY --link package.json package-lock.json ./
+RUN npm ci
 
 # Copy application code
 COPY --link . .
@@ -62,7 +57,6 @@ RUN bundle exec bootsnap precompile app/ lib/
 
 # Precompiling assets for production without requiring secret RAILS_MASTER_KEY
 RUN SECRET_KEY_BASE=DUMMY ./bin/rails assets:precompile
-
 
 # Final stage for app image
 FROM base

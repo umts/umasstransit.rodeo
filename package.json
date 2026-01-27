@@ -8,8 +8,8 @@
   "private": true,
   "dependencies": {
     "@csstools/postcss-sass": "^5.1.1",
-    "@fortawesome/fontawesome-free": "^7.0.0",
-    "autoprefixer": "^10.4.21",
+    "@fortawesome/fontawesome-free": "^7.1.0",
+    "autoprefixer": "^10.4.23",
     "bootstrap": "^4.6.2",
     "jquery": "^3.7.1",
     "jquery.are-you-sure": "^1.9.0",
@@ -19,14 +19,20 @@
     "postcss-scss": "^4.0.9",
     "tablesorter": "^2.32.0"
   },
-  "engines": {
-    "yarn": "^1.22.0"
-  },
-  "packageManager": "yarn@1.22.22",
   "scripts": {
+    "lint": "eslint .",
+    "lint:css": "stylelint **/*.css **/*.scss",
     "build:css": "postcss ./app/assets/stylesheets/application.scss -o ./app/assets/builds/application.css"
   },
   "devDependencies": {
-    "run-pty": "^5.0.0"
+    "@eslint/js": "*",
+    "eslint": "*",
+    "eslint-config-google": "*",
+    "eslint-formatter-compact": "^9.0.1",
+    "globals": "*",
+    "run-pty": "^5.0.0",
+    "stylelint": "*",
+    "stylelint-config-standard": "*",
+    "stylelint-config-standard-scss": "*"
   }
 }
