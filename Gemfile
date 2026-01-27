@@ -15,7 +15,7 @@ gem 'jbuilder'
 gem 'openssl'
 gem 'paper_trail'
 gem 'puma'
-gem 'rails', '~> 8.0.4'
+gem 'rails', '~> 8.1.1'
 gem 'solid_cable'
 gem 'sprockets-rails'
 gem 'terser'
@@ -31,7 +31,7 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'brakeman', require: false
-  gem 'capistrano', '~> 3.19', require: false
+  gem 'capistrano', '~> 3.20', require: false
   gem 'capistrano-bundler', require: false
   gem 'capistrano-passenger', require: false
   gem 'capistrano-pending', require: false
