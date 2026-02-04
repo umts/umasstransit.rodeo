@@ -158,10 +158,10 @@ GEM
       railties (>= 6.1.0)
     faker (3.5.3)
       i18n (>= 1.8.11, < 2)
-    ffi (1.17.1)
-    ffi (1.17.1-arm64-darwin)
-    ffi (1.17.1-x86_64-darwin)
-    ffi (1.17.1-x86_64-linux-gnu)
+    ffi (1.17.3)
+    ffi (1.17.3-arm64-darwin)
+    ffi (1.17.3-x86_64-darwin)
+    ffi (1.17.3-x86_64-linux-gnu)
     globalid (1.3.0)
       activesupport (>= 6.1)
     haml (7.1.0)
@@ -193,7 +193,8 @@ GEM
     json (2.18.1)
     language_server-protocol (3.17.0.5)
     lint_roller (1.1.0)
-    listen (3.9.0)
+    listen (3.10.0)
+      logger
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
     logger (1.7.0)
@@ -561,10 +562,10 @@ CHECKSUMS
   factory_bot (6.5.5) sha256=ce59295daee1b4704dab8a2fee6816f513d467c6aa3bc587860767d74a66efbe
   factory_bot_rails (6.5.1) sha256=d3cc4851eae4dea8a665ec4a4516895045e710554d2b5ac9e68b94d351bc6d68
   faker (3.5.3) sha256=b961482dc0bb15ccb9a98ea7878b925669e9ae8f5e59b607da540b768137d765
-  ffi (1.17.1) sha256=26f6b0dbd1101e6ffc09d3ca640b2a21840cc52731ad8a7ded9fb89e5fb0fc39
-  ffi (1.17.1-arm64-darwin) sha256=a8e04f79d375742c54ee7f9fff4b4022b87200a4ec0eb082128d3b6559e67b4d
-  ffi (1.17.1-x86_64-darwin) sha256=0036199c290462dd7f03bc22933644c1685b7834a21788062bd5df48c72aa7a6
-  ffi (1.17.1-x86_64-linux-gnu) sha256=8c0ade2a5d19f3672bccfe3b58e016ae5f159e3e2e741c856db87fcf07c903d0
+  ffi (1.17.3) sha256=0e9f39f7bb3934f77ad6feab49662be77e87eedcdeb2a3f5c0234c2938563d4c
+  ffi (1.17.3-arm64-darwin) sha256=0c690555d4cee17a7f07c04d59df39b2fba74ec440b19da1f685c6579bb0717f
+  ffi (1.17.3-x86_64-darwin) sha256=1f211811eb5cfaa25998322cdd92ab104bfbd26d1c4c08471599c511f2c00bb5
+  ffi (1.17.3-x86_64-linux-gnu) sha256=3746b01f677aae7b16dc1acb7cb3cc17b3e35bdae7676a3f568153fb0e2c887f
   globalid (1.3.0) sha256=05c639ad6eb4594522a0b07983022f04aa7254626ab69445a0e493aa3786ff11
   haml (7.1.0) sha256=aed691bddcaaf4855398b3e4dd39d8590600b0f0151f4def1c2aa83bfd444248
   haml-rails (3.0.0) sha256=091fe496a85ca521d9cac87fb50f1ecf77a57974a99aa7e267130add81a5585f
@@ -577,7 +578,7 @@ CHECKSUMS
   json (2.18.1) sha256=fe112755501b8d0466b5ada6cf50c8c3f41e897fa128ac5d263ec09eedc9f986
   language_server-protocol (3.17.0.5) sha256=fd1e39a51a28bf3eec959379985a72e296e9f9acfce46f6a79d31ca8760803cc
   lint_roller (1.1.0) sha256=2c0c845b632a7d172cb849cc90c1bce937a28c5c8ccccb50dfd46a485003cc87
-  listen (3.9.0) sha256=db9e4424e0e5834480385197c139cb6b0ae0ef28cc13310cfd1ca78377d59c67
+  listen (3.10.0) sha256=c6e182db62143aeccc2e1960033bebe7445309c7272061979bb098d03760c9d2
   logger (1.7.0) sha256=196edec7cc44b66cfb40f9755ce11b392f21f7967696af15d274dde7edff0203
   loofah (2.25.0) sha256=df5ed7ac3bac6a4ec802df3877ee5cc86d027299f8952e6243b3dac446b060e6
   mail (2.9.0) sha256=6fa6673ecd71c60c2d996260f9ee3dd387d4673b8169b502134659ece6d34941
