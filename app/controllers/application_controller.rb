@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
 
   def deny_access
     flash[:alert] = t('denied')
-    redirect_back fallback_location: root_path
+    redirect_back_or_to root_path
   end
 
   def require_role(role)
