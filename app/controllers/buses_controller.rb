@@ -15,14 +15,14 @@ class BusesController < ApplicationController
     else
       flash[:errors] = bus.errors.full_messages
     end
-    redirect_back fallback_location: buses_path
+    redirect_back_or_to buses_path
   end
 
   def destroy
     bus = Bus.find_by id: params.require(:id)
     bus.destroy!
     flash[:notice] = t('.success')
-    redirect_back fallback_location: buses_path
+    redirect_back_or_to buses_path
   end
 
   private

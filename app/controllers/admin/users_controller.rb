@@ -23,7 +23,7 @@ module Admin
 
     def destroy
       @user.destroy!
-      redirect_back fallback_location: admin_users_path, notice: t('.success')
+      redirect_back_or_to admin_users_path, notice: t('.success')
     end
 
     def manage
