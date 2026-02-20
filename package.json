@@ -11,7 +11,7 @@
     "@fortawesome/fontawesome-free": "^7.2.0",
     "autoprefixer": "^10.4.24",
     "bootstrap": "^4.6.2",
-    "jquery": "^3.7.1",
+    "jquery": "^4.0.0",
     "jquery.are-you-sure": "^1.9.0",
     "popper.js": "^1.16.1",
     "postcss": "^8.5.6",
