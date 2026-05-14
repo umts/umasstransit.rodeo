@@ -7,35 +7,35 @@
     = hidden_field_tag :participant_id, @participant.id
     - @maneuver.grouped_obstacles.each do |(point_value, type), obstacles|
       .form-group
-        = label_tag "#{point_value}-point #{type.pluralize} touched"
+        = label_tag :"obstacle_#{obstacles.first.id}", "#{point_value}-point #{type.pluralize} touched"
         - value = @record.obstacles_hit[obstacles.first.id].try(:[], 1) || 0
-        = number_field_tag_with_buttons "obstacle_#{obstacles.first.id}", value, in: 0..obstacles.count
+        = render 'shared/with_increment_buttons' do
+          = number_field_tag "obstacle_#{obstacles.first.id}", value, in: 0..obstacles.count
     - @maneuver.distance_targets.each do |target|
       .form-group
-        = label_tag "#{target.interval_type} from #{target.name}"
-        = number_field_tag_with_buttons "target_#{target.id}",
-                                        @record.distances_achieved[[target.minimum, target.multiplier]],
-                                        min: 0
+        = label_tag "target_#{target.id}", "#{target.interval_type} from #{target.name}"
+        = render 'shared/with_increment_buttons' do
+          = number_field_tag "target_#{target.id}",
+                             @record.distances_achieved[[target.minimum, target.multiplier]],
+                             min: 0
     .form-group
-      - if @maneuver.name.include? 'Reverse'
-        = label_tag 'Extra reverses'
-      - else
-        = label_tag 'Reverses'
-      = number_field_tag_with_buttons :reversed_direction, @record.reversed_direction, min: 0
+      = label_tag :reversed_direction, @maneuver.name.include?('Reverse') ? 'Extra reverses' : 'Reverses'
+      = render 'shared/with_increment_buttons' do
+        = number_field_tag :reversed_direction, @record.reversed_direction, min: 0
     - if @maneuver.speed_target.present?
-      .form-group
-        = label_tag "Achieved #{@maneuver.speed_target} mph"
-        = hidden_field_tag :speed_acheived, false
-        = giant_check_box_tag :speed_achieved, true, @record.speed_achieved?
+      .form-group.form-check
+        = checkbox_tag :speed_achieved, '1', @record.speed_achieved, class: 'form-check-input'
+        = hidden_field_tag :speed_achieved, false
+        = label_tag :speed_achieved, "Achieved #{@maneuver.speed_target} mph", class: 'form-check-label'
     - if @maneuver.counts_additional_stops?
       .form-group
-        = label_tag 'Extra stops?'
+        = checkbox_tag :made_additional_stops, '1', @record.made_additional_stops, class: 'form-check-input'
         = hidden_field_tag :made_additional_stops, false
-        = giant_check_box_tag :made_additional_stops, true, @record.made_additional_stops?
-    .form-group
-      = label_tag 'Completed as designed?'
+        = label_tag :made_additional_stops, 'Extra stops?', class: 'form-check-label'
+    .form-group.form-check
+      = checkbox_tag :completed_as_designed, '1', @record.completed_as_designed, class: 'form-check-input'
       = hidden_field_tag :completed_as_designed, false
-      = giant_check_box_tag :completed_as_designed, true, @record.completed_as_designed?
+      = label_tag :completed_as_designed, 'Completed as designed?', class: 'form-check-label'
     .form-group
       = submit_tag 'Save score', class: 'btn btn-primary submit'
       = link_to previous_participant_maneuver_path(@maneuver, relative_to: @participant.number) do
