@@ -39,3 +39,7 @@ spec/examples.txt
 
 # Local overcommit configuration
 .local-overcommit.yml
+
+# Ignore key files for decrypting credentials and more.
+/config/credentials/*.key
+
