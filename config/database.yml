@@ -1,0 +1,29 @@
+default: &default
+  url: <%= ENV.fetch('DATABASE_URL', nil) %>
+  adapter: trilogy
+  encoding: utf8mb4
+  collation: utf8mb4_unicode_520_ci
+  username: <%= ENV.fetch('DATABASE_USER', ENV['USER']) %>
+
+production:
+  primary: &primary_production
+    <<: *default
+    database: <%= Rails.application.credentials.dig(:database, :database) %>
+    username: <%= Rails.application.credentials.dig(:database, :username) %>
+    password: <%= Rails.application.credentials.dig(:database, :password) %>
+    host: <%= Rails.application.credentials.dig(:database, :host) %>
+    port: <%= Rails.application.credentials.dig(:database, :port) %>
+    sslverify: true
+    sslca: /srv/rodeo/shared/do-ca-certificate.crt
+  cable:
+    <<: *primary_production
+    database: <%= Rails.application.credentials.dig(:database, :cable_database) %>
+    migrations_paths: db/cable_migrate
+
+development:
+  <<: *default
+  database: umasstransit_rodeo_development
+
+test:
+  <<: *default
+  database: umasstransit_rodeo_test
