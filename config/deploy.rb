@@ -7,7 +7,6 @@ set :branch, 'main'
 set :deploy_to, '/srv/rodeo/'
 
 append :linked_files,
-       'config/database.yml',
        'config/roadeo.yml',
        'config/credentials/production.key'
 append :linked_dirs, 'log', 'tmp/pids'
