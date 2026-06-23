@@ -62,7 +62,7 @@ RSpec.describe ApplicationRecord do
     end
 
     it 'has the correct window' do
-      expect(call.left.to_sql).to match(/OVER \(ORDER BY `thing`\)/)
+      expect(call.left.to_sql).to include('OVER (ORDER BY `thing`)')
     end
   end
 end
