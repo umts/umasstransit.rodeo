@@ -26,7 +26,6 @@ $(function() {
   });
 });
 
-// eslint-disable-next-line no-unused-vars
 function flashCell(cell) {
   cell.addClass('last-updated');
   setTimeout(() => {

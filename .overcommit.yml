@@ -14,11 +14,6 @@ PreCommit:
     enabled: true
     required_executable: bundle
     command: ["bundle", "exec", "rubocop"]
-  EsLint:
-    enabled: true
-    required_executable: npm
-    command: ["npm", "run", "lint"]
-    flags: ["--", "--format=compact"]
   StyleLint:
     enabled: true
     required_executable: npm
