@@ -6,7 +6,7 @@ App.manuever_participants = App.cable.subscriptions.create("ManeuverParticipants
 
     const cell = $(`tr[data-participant-id=${participant}] td[data-maneuver-id=${maneuver}]`);
     const a = cell.find("a");
-    if (a.length) {
+    if (a.length > 0) {
       a.text(score);
     } else {
       cell.text(score);

@@ -7,11 +7,11 @@ $(function () {
     const existingNumbers = $(".participants input[type=number]")
       .not($(e.target))
       .map(function (_, other) {
-        return parseInt($(other).val());
+        return Number.parseInt($(other).val());
       });
-    const currentNumber = parseInt($(e.target).val());
-    if (existingNumbers.index(currentNumber) !== -1) {
+    const currentNumber = Number.parseInt($(e.target).val());
+    if (existingNumbers.index(currentNumber) === -1) {$(".uniqueness-warning").hide();} else {
       $(".uniqueness-warning").show();
-    } else $(".uniqueness-warning").hide();
+    }
   });
 });
