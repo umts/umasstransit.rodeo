@@ -27,6 +27,7 @@ $(function () {
   });
 });
 
+// oxlint-disable-next-line no-implicit-globals no-unused-vars
 function flashCell(cell) {
   cell.addClass("last-updated");
   setTimeout(() => {
@@ -35,19 +36,15 @@ function flashCell(cell) {
 }
 
 // Sum of all but the last three elements in an array
-$.tablesorter.equations["maneuversum"] = function (arry, config) {
+$.tablesorter.equations["maneuversum"] = function (arry) {
   const maneuverCount = arry.length - 3; // cc, quiz, grand-total
   const maneuvers = arry.slice(0, maneuverCount);
-  const sum = (accumulator, currentValue) => accumulator + currentValue;
-
-  return maneuvers.reduce(sum);
+  return maneuvers.reduce((accumulator, currentValue) => accumulator + currentValue);
 };
 
 // Sum of the last three elements in an array
-$.tablesorter.equations["subtotalsum"] = function (arry, config) {
+$.tablesorter.equations["subtotalsum"] = function (arry) {
   const maneuverCount = arry.length - 3; // cc, quiz, grand-total
   const nonManeuvers = arry.slice(maneuverCount);
-  const sum = (accumulator, currentValue) => accumulator + currentValue;
-
-  return nonManeuvers.reduce(sum);
+  return nonManeuvers.reduce((accumulator, currentValue) => accumulator + currentValue);
 };

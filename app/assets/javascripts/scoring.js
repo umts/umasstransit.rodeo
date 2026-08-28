@@ -7,8 +7,8 @@ $(function () {
     if (field) {
       let value = Number.parseInt(field.val());
       const type = button.data("type");
-      if (type === "minus") value--;
-      if (type === "plus") value++;
+      if (type === "minus") value -= 1;
+      if (type === "plus") value += 1;
       field.val(value).trigger("change");
     }
   });

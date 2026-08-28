@@ -22,7 +22,7 @@ PreCommit:
     enabled: true
     required_executable: bundle
     command: ["bundle", "exec", "rubocop"]
-  StyleLint:
+  Stylelint:
     enabled: true
     required_executable: npx
     command: ["npx", "stylelint"]

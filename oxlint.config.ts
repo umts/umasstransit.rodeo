@@ -16,5 +16,7 @@ export default defineConfig({
     perf: "error",
     restriction: "error",
   },
-  rules: {},
+  rules: {
+    "unicorn/no-array-reduce": "off",
+  },
 });
