@@ -7,14 +7,14 @@ plugins:
 
 AllCops:
   Exclude:
-    - 'bin/**/*'
-    - 'config.ru'
-    - 'config/{environments,initializers}/*'
-    - 'config/{application,boot,ci,environment,puma,spring}.rb'
-    - 'db/migrate/*'
-    - 'db/cable_schema.rb'
-    - 'db/schema.rb'
-    - 'vendor/**/*'
+    - "bin/**/*"
+    - "config.ru"
+    - "config/{environments,initializers}/*"
+    - "config/{application,boot,ci,environment,puma,spring}.rb"
+    - "db/migrate/*"
+    - "db/cable_schema.rb"
+    - "db/schema.rb"
+    - "vendor/**/*"
   NewCops: enable
 
 Metrics/AbcSize:
