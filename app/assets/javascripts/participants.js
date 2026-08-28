@@ -7,9 +7,9 @@ $(function () {
     const existingNumbers = $(".participants input[type=number]")
       .not($(e.target))
       .map(function (_, other) {
-        return Number.parseInt($(other).val());
+        return Math.trunc(Number($(other).val()));
       });
-    const currentNumber = Number.parseInt($(e.target).val());
+    const currentNumber = Math.trunc(Number($(e.target).val()));
     if (existingNumbers.index(currentNumber) === -1) {
       $(".uniqueness-warning").hide();
     } else {

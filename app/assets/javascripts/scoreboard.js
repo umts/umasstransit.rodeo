@@ -37,14 +37,16 @@ function flashCell(cell) {
 
 // Sum of all but the last three elements in an array
 $.tablesorter.equations["maneuversum"] = function (arry) {
-  const maneuverCount = arry.length - 3; // cc, quiz, grand-total
+  // cc, quiz, grand-total
+  const maneuverCount = arry.length - 3;
   const maneuvers = arry.slice(0, maneuverCount);
   return maneuvers.reduce((accumulator, currentValue) => accumulator + currentValue);
 };
 
 // Sum of the last three elements in an array
 $.tablesorter.equations["subtotalsum"] = function (arry) {
-  const maneuverCount = arry.length - 3; // cc, quiz, grand-total
+  // cc, quiz, grand-total
+  const maneuverCount = arry.length - 3;
   const nonManeuvers = arry.slice(maneuverCount);
   return nonManeuvers.reduce((accumulator, currentValue) => accumulator + currentValue);
 };
