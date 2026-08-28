@@ -5,6 +5,7 @@
   "repository": "git@github.com:umts/umasstransit.rodeo.git",
   "author": "UMass Transit",
   "license": "MIT",
+  "type": "module",
   "private": true,
   "dependencies": {
     "@csstools/postcss-sass": "*",
