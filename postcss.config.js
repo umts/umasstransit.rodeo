@@ -4,7 +4,7 @@ export default {
     "@csstools/postcss-sass": {
       includePaths: ["node_modules"],
       quietDeps: true,
-      silenceDeprecations: ["import"],
+      silenceDeprecations: ["import", "legacy-js-api"],
     },
     autoprefixer: {},
   },

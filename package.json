@@ -1,13 +1,8 @@
 {
-  "name": "umasstransit.rodeo",
-  "version": "0.0.1",
   "private": true,
-  "description": "UMass Transit Roadeo app",
-  "license": "MIT",
-  "author": "UMass Transit",
-  "repository": "git@github.com:umts/umasstransit.rodeo.git",
   "type": "module",
   "scripts": {
+    "build": "rolldown --config",
     "build:css": "postcss ./app/assets/stylesheets/application.scss -o ./app/assets/builds/application.css",
     "fmt": "oxfmt",
     "fmt:check": "oxfmt --check",
@@ -28,7 +23,6 @@
     "tablesorter": "*"
   },
   "devDependencies": {
-    "globals": "*",
     "oxfmt": "*",
     "oxlint": "*",
     "run-pty": "*",
