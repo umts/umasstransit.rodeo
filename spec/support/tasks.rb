@@ -13,13 +13,12 @@ module TaskExampleGroup
     let(:task_name) { self.class.metadata[:task] }
 
     # This is for silencing, not expectations
-    # rubocop:disable RSpec/ExpectOutput
+    # rubocop:disable-next RSpec/ExpectOutput
     around do |example|
       original_stdout = $stdout
       $stdout = File.new(File::NULL, 'w')
       example.run
       $stdout = original_stdout
     end
-    # rubocop:enable RSpec/ExpectOutput
   end
 end
