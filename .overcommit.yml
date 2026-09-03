@@ -17,6 +17,7 @@ PreCommit:
     enabled: true
     required_executable: npx
     command: ["npx", "oxfmt"]
+    flags: ["--check", "--no-error-on-unmatched-pattern"]
     # TODO: Remove when upstreamed.
     include:
       - "**/*.js"
@@ -27,8 +28,6 @@ PreCommit:
       - "**/*.md"
       - "**/*.json"
       - "**/*.yml"
-    exclude:
-      - "package.json"
   OxLint:
     enabled: true
     required_executable: npx
