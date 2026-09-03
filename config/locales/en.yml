@@ -33,41 +33,41 @@ en:
   admin:
     users:
       approve:
-        success: '%{name} has been approved'
+        success: "%{name} has been approved"
       update:
-        success: 'User has been updated'
+        success: "User has been updated"
       destroy:
-        success: 'User has been removed'
+        success: "User has been removed"
   buses:
     create:
-      success: 'Bus has been added'
+      success: "Bus has been added"
     destroy:
-      success: 'Bus has been removed'
-  denied: 'You are not authorized to take that action'
+      success: "Bus has been removed"
+  denied: "You are not authorized to take that action"
   maneuver_participants:
     update:
-      success: 'Maneuver score has been saved'
+      success: "Maneuver score has been saved"
   maneuvers:
     next_participant:
-      missing: 'There are no more participants in the queue for this maneuver'
+      missing: "There are no more participants in the queue for this maneuver"
     previous_participant:
-      missing: 'This is the first participant who completed this maneuver'
+      missing: "This is the first participant who completed this maneuver"
   non_maneuver_scores:
-    success: '%{score_name} has been saved'
+    success: "%{score_name} has been saved"
   onboard_judgings:
     create:
-      success: 'Onboard score has been saved'
+      success: "Onboard score has been saved"
     update:
-      success: 'Onboard score has been saved'
+      success: "Onboard score has been saved"
   participants:
     assign_number:
-      success: 'Participant has been added to the queue'
+      success: "Participant has been added to the queue"
     create:
-      success: 'Participant has been successfully created'
+      success: "Participant has been successfully created"
     destroy:
-      success: 'Participant has been removed'
+      success: "Participant has been removed"
     update:
-      success: 'Participant has been updated'
+      success: "Participant has been updated"
   settings:
-    scores_locked: 'Successfully locked scores'
-    scores_unlocked: 'Successfully unlocked scores'
+    scores_locked: "Successfully locked scores"
+    scores_unlocked: "Successfully unlocked scores"

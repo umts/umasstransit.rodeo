@@ -5,5 +5,6 @@
 // = require_self
 // = require_tree ./channels
 
+// oxlint-disable-next-line no-unused-expressions
 window.App || (window.App = {});
 App.cable = ActionCable.createConsumer();

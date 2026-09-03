@@ -1,11 +1,11 @@
-module.exports = {
-  parser: 'postcss-scss',
+export default {
+  parser: "postcss-scss",
   plugins: {
-    '@csstools/postcss-sass': {
-      includePaths: ['node_modules'],
+    "@csstools/postcss-sass": {
+      includePaths: ["node_modules"],
       quietDeps: true,
-      silenceDeprecations: ['import'],
+      silenceDeprecations: ["import", "legacy-js-api"],
     },
-    'autoprefixer': {},
+    autoprefixer: {},
   },
 };

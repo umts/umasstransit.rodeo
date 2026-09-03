@@ -1,7 +1,7 @@
 default: &default
-  organization: 'UMass Transit'
-  event_name: 'Safety Roadeo'
-  background: 'lightblue'
+  organization: "UMass Transit"
+  event_name: "Safety Roadeo"
+  background: "lightblue"
 
 development:
   <<: *default

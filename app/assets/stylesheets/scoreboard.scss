@@ -24,11 +24,19 @@
 }
 
 td.last-updated {
-  animation: 1s ease-in-out 0s 5 blink-cell
+  animation: 1s ease-in-out 0s 5 blink-cell;
 }
 
 @keyframes blink-cell {
-  0% { background-color: transparent; }
-  50% { background-color: white; }
-  100% { background-color: transparent; }
+  0% {
+    background-color: transparent;
+  }
+
+  50% {
+    background-color: white;
+  }
+
+  100% {
+    background-color: transparent;
+  }
 }

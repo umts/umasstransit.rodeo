@@ -1,3 +1,4 @@
+/* oxlint-disable no-empty-file */
 // = require jquery
 // = require rails-ujs
 // = require bootstrap
