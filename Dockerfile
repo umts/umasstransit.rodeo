@@ -1,9 +1,7 @@
 # syntax=docker/dockerfile:1
 # check=error=true
 
-# Make sure RUBY_VERSION matches the Ruby version in .ruby-version
-ARG RUBY_VERSION=3.4.9
-FROM registry.docker.com/library/ruby:$RUBY_VERSION-slim AS base
+FROM ruby:3.4.9-slim AS base
 
 # Rails app lives here
 WORKDIR /rails
@@ -24,10 +22,10 @@ ENV BUNDLE_DEPLOYMENT="1" \
     RAILS_ENV="production"
 
 # Install Node.js
-ARG NODE_VERSION=24.14.1
+COPY .node-version ./
 ENV PATH=/usr/local/node/bin:$PATH
 RUN curl -sL https://github.com/nodenv/node-build/archive/master.tar.gz | tar xz -C /tmp/ && \
-    /tmp/node-build-master/bin/node-build "${NODE_VERSION}" /usr/local/node && \
+    /tmp/node-build-master/bin/node-build "$(cat .node-version)" /usr/local/node && \
     rm -rf /tmp/node-build-master
 
 
