@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1@sha256:ecfaec9ed6d810b56388c508f4121597bfbba70d41a6dfeee4d8cad5f295fc32
 # check=error=true
 
-FROM ruby:3.4.10-slim@sha256:9d50d98e61ccbe4f1ef436349911e09b53c42a00364bcd3bda6ac107abc29528 AS base
+FROM ruby:4.0.7-slim@sha256:268a5add730705f1a6e2518737b3eb3fe6bd5007258f0ac9f09f6811c6025d88 AS base
 
 # Rails app lives here
 WORKDIR /rails
