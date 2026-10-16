@@ -20,7 +20,7 @@
                        maneuver_participants: @maneuver_participants,
                        can_edit_scores: @can_edit_scores }
       %table{ class: table_classes, data: { sortList: sort_list(@sort_order) } }
-        %thead.thead-light
+        %thead
           %tr
             %th{ data: { sortInitialOrder: 'asc' } } Participant
             - @maneuvers.each do |maneuver|
