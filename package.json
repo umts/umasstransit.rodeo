@@ -12,11 +12,11 @@
   "dependencies": {
     "@csstools/postcss-sass": "*",
     "@fortawesome/fontawesome-free": "*",
+    "@popperjs/core": "*",
     "autoprefixer": "*",
     "bootstrap": "*",
     "jquery": "*",
     "jquery.are-you-sure": "*",
-    "popper.js": "*",
     "postcss": "*",
     "postcss-cli": "*",
     "postcss-scss": "*",
