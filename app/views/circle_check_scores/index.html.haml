@@ -10,7 +10,7 @@
       %tbody
         - if @unscored.present?
           - @unscored.each do |participant|
-            = form_for CircleCheckScore.new(participant: participant), class: 'form-inline' do |f|
+            = form_for CircleCheckScore.new(participant: participant) do |f|
               %tr
                 %td
                   = participant.display_information(:name, :number)
@@ -23,7 +23,7 @@
                 %td= f.submit 'Save score', class: 'btn btn-primary'
         - if @scored.present?
           - @scored.each do |participant|
-            = form_for participant.circle_check_score, class: 'form-inline' do |f|
+            = form_for participant.circle_check_score do |f|
               %tr
                 %td
                   = participant.display_information(:name, :number)
