@@ -1,32 +1,33 @@
 %nav.navbar.navbar-expand-lg
-  %a.navbar-brand{ href: root_path }= image_tag 'icon.svg'
-  %button.navbar-toggler{ type: 'button', data: { toggle: 'collapse', target: '#mainnav' } }
-    %i.fa-solid.fa-bars
-  #mainnav.collapse.navbar-collapse
-    - if user_signed_in?
-      %ul.navbar-nav.me-auto
-        = nav_item scoreboard_participants_path, 'Scoreboard' if Participant.any?
-        = nav_item maneuvers_path, 'Maneuvers', role: :judge
-        = nav_item circle_check_scores_path, 'Circle Check', role: :circle_check_scorer
-        = nav_item quiz_scores_path, 'Quiz', role: :quiz_scorer
-        = nav_item participants_path, 'Participants', role: :master_of_ceremonies
-        = nav_item buses_path, 'Buses', role: :master_of_ceremonies
-        = nav_item admin_users_path, 'Roles', role: :admin
-        = nav_item manage_admin_users_path, role: :admin do
-          Manage Users
-          - if User.where(approved: false).any?
-            %span.badge.badge-warning
-              = User.where(approved: false).count
-      .dropdown
-        %button.btn.nav-item.dropdown-toggle{ data: { toggle: 'dropdown' } }
-          = current_user.name
-        .dropdown-menu.dropdown-menu-right
-          = link_to 'Edit Account', edit_user_registration_path, class: 'dropdown-item'
-          = link_to 'Logout', destroy_user_session_path, method: :delete, class: 'dropdown-item'
-    - elsif archiving
-      %h1.navbar-text.mb-auto
-        #{Time.zone.now.year} Roadeo Final Results
-    - else
-      %ul.navbar-nav.mb-auto
-        = nav_item new_user_session_path, 'Log in'
-        = nav_item new_user_registration_path, 'Request a login'
+  .container-fluid
+    %a.navbar-brand{ href: root_path }= image_tag 'icon.svg'
+    %button.navbar-toggler{ type: 'button', data: { bs_toggle: 'collapse', bs_target: '#mainnav' } }
+      %i.fa-solid.fa-bars
+    #mainnav.collapse.navbar-collapse
+      - if user_signed_in?
+        %ul.navbar-nav.me-auto
+          = nav_item scoreboard_participants_path, 'Scoreboard' if Participant.any?
+          = nav_item maneuvers_path, 'Maneuvers', role: :judge
+          = nav_item circle_check_scores_path, 'Circle Check', role: :circle_check_scorer
+          = nav_item quiz_scores_path, 'Quiz', role: :quiz_scorer
+          = nav_item participants_path, 'Participants', role: :master_of_ceremonies
+          = nav_item buses_path, 'Buses', role: :master_of_ceremonies
+          = nav_item admin_users_path, 'Roles', role: :admin
+          = nav_item manage_admin_users_path, role: :admin do
+            Manage Users
+            - if User.where(approved: false).any?
+              %span.badge.bg-warning.text-black
+                = User.where(approved: false).count
+        .dropdown
+          %button#account-actions.btn.nav-item.dropdown-toggle{ data: { bs_toggle: 'dropdown' } }
+            = current_user.name
+          .dropdown-menu.dropdown-menu-end{ aria: { labeled_by: 'account-actions', expanded: 'false' } }
+            = link_to 'Edit Account', edit_user_registration_path, class: 'dropdown-item'
+            = link_to 'Logout', destroy_user_session_path, method: :delete, class: 'dropdown-item'
+      - elsif archiving
+        %h1.navbar-text.mb-auto
+          #{Time.zone.now.year} Roadeo Final Results
+      - else
+        %ul.navbar-nav.mb-auto
+          = nav_item new_user_session_path, 'Log in'
+          = nav_item new_user_registration_path, 'Request a login'
