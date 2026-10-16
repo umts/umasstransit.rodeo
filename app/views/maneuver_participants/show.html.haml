@@ -26,16 +26,16 @@
     - if @maneuver.speed_target.present?
       .mb-3
         = label_tag :speed_achieved, "Achieved #{@maneuver.speed_target} mph", class: 'form-label'
-        = hidden_field_tag :speed_achieved, false
+        = hidden_field_tag :speed_achieved, false, id: nil
         = giant_check_box_tag :speed_achieved, true, @record.speed_achieved?
     - if @maneuver.counts_additional_stops?
       .mb-3
         = label_tag :made_additional_stops, 'Extra stops?', class: 'form-label'
-        = hidden_field_tag :made_additional_stops, false
+        = hidden_field_tag :made_additional_stops, false, id: nil
         = giant_check_box_tag :made_additional_stops, true, @record.made_additional_stops?
     .mb-3
       = label_tag :completed_as_designed, 'Completed as designed?', class: 'form-label'
-      = hidden_field_tag :completed_as_designed, false
+      = hidden_field_tag :completed_as_designed, false, id: nil
       = giant_check_box_tag :completed_as_designed, true, @record.completed_as_designed?
     .mb-3
       = submit_tag 'Save score', class: 'btn btn-primary submit'
