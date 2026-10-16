@@ -1,27 +1,27 @@
 = render 'shared/title', title: "Edit #{resource_name.to_s.humanize}"
 = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
   = render 'devise/shared/error_messages', resource: resource
-  .form-group
-    = f.label :email
+  .mb-3
+    = f.label :email, class: 'form-label'
     = f.email_field :email, autofocus: true, class: 'form-control'
   - if devise_mapping.confirmable? && resource.pending_reconfirmation?
     %div
       Currently waiting confirmation for: #{resource.unconfirmed_email}
-  .form-group
-    = f.label :password
+  .mb-3
+    = f.label :password, class: 'form-label'
     = f.password_field :password, autocomplete: 'off', min: Devise.password_length.min, class: 'form-control'
-    %small.form-text.text-muted Leave blank if you don't want to change it
-  .form-group
-    = f.label :password_confirmation
+    %small.d-block.form-text.text-muted Leave blank if you don't want to change it
+  .mb-3
+    = f.label :password_confirmation, class: 'form-label'
     = f.password_field :password_confirmation, autocomplete: 'off', class: 'form-control'
-  .form-group
-    = f.label :current_password
+  .mb-3
+    = f.label :current_password, class: 'form-label'
     = f.password_field :current_password, autocomplete: 'off', class: 'form-control'
-    %small.form-text.text-muted We need your current password to confirm your changes
+    %small.d-block.form-text.text-muted We need your current password to confirm your changes
   .actions
     = f.submit 'Update', class: 'btn btn-primary submit'
 %h3.pt-5 Cancel my account
-.form-group
+.mb-3
   Unhappy?
   = button_to 'Cancel my account', registration_path(resource_name),
               data: { confirm: 'Are you sure?' }, method: :delete, class: 'btn btn-danger'
