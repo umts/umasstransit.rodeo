@@ -1,6 +1,7 @@
 /* oxlint-disable no-empty-file */
 // = require jquery
 // = require rails-ujs
+// = require @popperjs/core/dist/umd/popper
 // = require bootstrap
 // = require jquery.are-you-sure
 // = require tablesorter/dist/js/jquery.tablesorter
