@@ -5,12 +5,9 @@ module ScoringHelper
   # signature to be the same as `check_box_tag`.
   # rubocop:disable-next Style/OptionalBooleanParameter
   def giant_check_box_tag(name, value = '1', checked = false, options = {})
-    tag.div(class: 'd-inline-block btn-group-toggle checkbox',
-            data: { toggle: 'buttons' }) do
-      tag.label(class: ['btn', 'btn-primary', ('active' if checked)]) do
-        concat check_box_tag name, value, checked, options
-        concat tag.i
-      end
+    tag.label(class: 'btn btn-primary', for: name) do
+      concat check_box_tag name, value, checked, options.merge({ class: class_names(options[:class], 'btn-check') })
+      concat tag.i
     end
   end
 
