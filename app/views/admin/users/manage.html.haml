@@ -11,7 +11,7 @@
           %tr
             %td= user.name
             %td= user.email
-            %td.text-right
+            %td.text-end
               = button_to 'Approve', approve_admin_user_path(user),
                           class: 'btn btn-success', form_class: 'd-inline'
               = button_to 'Deny', admin_user_path(user), method: :delete,
