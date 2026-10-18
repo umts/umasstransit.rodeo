@@ -2,7 +2,7 @@
   %table.table.table-striped.text-center
     %thead.table-dark
       %tr
-        %th.text-left Name
+        %th.text-start Name
         %th Admin
         %th Master of Ceremonies
         %th Judge
@@ -14,7 +14,7 @@
       - @users.each do |user|
         %tr
           = form_for user, url: admin_user_path(user), method: :put do |f|
-            %td.text-left= user.name
+            %td.text-start= user.name
             %td= f.check_box :admin
             %td= f.check_box :master_of_ceremonies
             %td= f.check_box :judge
