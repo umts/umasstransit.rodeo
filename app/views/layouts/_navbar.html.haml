@@ -4,7 +4,7 @@
     %i.fa-solid.fa-bars
   #mainnav.collapse.navbar-collapse
     - if user_signed_in?
-      %ul.navbar-nav.mr-auto
+      %ul.navbar-nav.me-auto
         = nav_item scoreboard_participants_path, 'Scoreboard' if Participant.any?
         = nav_item maneuvers_path, 'Maneuvers', role: :judge
         = nav_item circle_check_scores_path, 'Circle Check', role: :circle_check_scorer
@@ -24,9 +24,9 @@
           = link_to 'Edit Account', edit_user_registration_path, class: 'dropdown-item'
           = link_to 'Logout', destroy_user_session_path, method: :delete, class: 'dropdown-item'
     - elsif archiving
-      %h1.navbar-text.ml-auto
+      %h1.navbar-text.mb-auto
         #{Time.zone.now.year} Roadeo Final Results
     - else
-      %ul.navbar-nav.ml-auto
+      %ul.navbar-nav.mb-auto
         = nav_item new_user_session_path, 'Log in'
         = nav_item new_user_registration_path, 'Request a login'
