@@ -13,9 +13,8 @@
 /tmp
 
 # Ignore all of coverage, except the .last_run.json
-/coverage/index.html
-/coverage/assets/*
-/coverage/.resultset.*
+/coverage
+!/coverage/.last_run.json
 
 # Archived static scoreboard
 /archive/*
@@ -35,4 +34,3 @@ spec/examples.txt
 
 # Ignore key files for decrypting credentials and more.
 /config/credentials/*.key
-
