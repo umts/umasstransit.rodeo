@@ -12,6 +12,7 @@
   "dependencies": {
     "@csstools/postcss-sass": "*",
     "@fortawesome/fontawesome-free": "*",
+    "@hotwired/stimulus": "*",
     "autoprefixer": "*",
     "bootstrap": "*",
     "jquery": "*",
@@ -20,6 +21,7 @@
     "postcss": "*",
     "postcss-cli": "*",
     "postcss-scss": "*",
+    "rolldown": "*",
     "tablesorter": "*"
   },
   "devDependencies": {

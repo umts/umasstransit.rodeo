@@ -8,5 +8,8 @@
   },
   {
     "command": ["npm", "run", "build:css", "--", "--watch"]
+  },
+  {
+    "command": ["npm", "run", "build", "--", "--watch"]
   }
 ]
