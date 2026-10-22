@@ -13,6 +13,7 @@
     "@csstools/postcss-sass": "*",
     "@fortawesome/fontawesome-free": "*",
     "@hotwired/stimulus": "*",
+    "@rails/actioncable": "^8.1.400",
     "autoprefixer": "*",
     "bootstrap": "*",
     "jquery": "*",
