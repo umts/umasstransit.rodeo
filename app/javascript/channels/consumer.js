@@ -3,4 +3,6 @@
 
 import { createConsumer } from "@rails/actioncable";
 
-export default createConsumer();
+const cableUrl = document.querySelector("meta[name='action-cable-url']");
+
+export default cableUrl ? createConsumer(cableUrl.content) : null;
