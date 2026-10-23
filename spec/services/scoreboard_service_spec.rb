@@ -21,6 +21,14 @@ RSpec.describe ScoreboardService do
       end
     end
 
+    it 'includes the score URL in the broadcast' do
+      expected_url = Rails.application.routes.url_helpers.polymorphic_path(quiz_score)
+
+      expect { described_class.update with: quiz_score }
+        .to have_broadcasted_to('quiz_scores:update')
+        .with(hash_including('url' => expected_url)).from_channel(QuizScoresChannel)
+    end
+
     it 'broadcasts Participants to the correct channel with a default type, update' do
       expect { described_class.update with: participant }
         .to have_broadcasted_to('participants:update').from_channel(ParticipantsChannel)

@@ -46,7 +46,7 @@ class ParticipantsController < ApplicationController
   def scoreboard
     params.permit :sort_order
     @page_title = 'Scoreboard'
-    @can_edit_scores = current_user.try :admin?
+    @can_edit_scores = current_user.present? && current_user.admin?
     @sort_order = params[:sort_order].try :to_sym
 
     @maneuvers = Maneuver.order :sequence_number

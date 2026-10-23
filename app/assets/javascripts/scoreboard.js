@@ -27,14 +27,6 @@ $(function () {
   });
 });
 
-// oxlint-disable-next-line no-implicit-globals no-unused-vars
-function flashCell(cell) {
-  cell.addClass("last-updated");
-  setTimeout(() => {
-    cell.removeClass("last-updated");
-  }, 5000);
-}
-
 // Sum of all but the last three elements in an array
 $.tablesorter.equations["maneuversum"] = function (arry) {
   // cc, quiz, grand-total

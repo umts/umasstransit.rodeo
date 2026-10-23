@@ -19,7 +19,7 @@
       - row_locals = { maneuvers: @maneuvers,
                        maneuver_participants: @maneuver_participants,
                        can_edit_scores: @can_edit_scores }
-      %table{ class: table_classes, data: { sortList: sort_list(@sort_order) } }
+      %table{ class: table_classes, data: { can_edit_scores: @can_edit_scores.to_s, sortList: sort_list(@sort_order) } }
         %thead.thead-light
           %tr
             %th{ data: { sortInitialOrder: 'asc' } } Participant
@@ -35,6 +35,5 @@
       %table#template.d-none
         %tbody
           = render partial: 'participant', locals: row_locals.merge(participant: NullParticipant.new)
-  = javascript_include_tag 'cable.js' unless @archiving
 - else
   %h2 No participants yet
