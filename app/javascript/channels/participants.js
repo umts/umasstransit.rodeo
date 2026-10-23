@@ -37,15 +37,16 @@ function removeParticipant(scoreboard, participant) {
   if (row) row.remove();
 }
 
-consumer.subscriptions.create("ParticipantsChannel", {
-  received(data) {
-    const scoreboard = document.querySelector("table.scoreboard");
-    if (!scoreboard) return;
+const scoreboard = document.querySelector("table.scoreboard");
 
-    if (data.event === "add") addParticipant(scoreboard, data.participant);
-    if (data.event === "update") updateParticipant(scoreboard, data.participant);
-    if (data.event === "remove") removeParticipant(scoreboard, data.participant);
+if (consumer && scoreboard) {
+  consumer.subscriptions.create("ParticipantsChannel", {
+    received(data) {
+      if (data.event === "add") addParticipant(scoreboard, data.participant);
+      if (data.event === "update") updateParticipant(scoreboard, data.participant);
+      if (data.event === "remove") removeParticipant(scoreboard, data.participant);
 
-    scoreboard.dispatchEvent(new Event("update"));
-  },
-});
+      scoreboard.dispatchEvent(new Event("update"));
+    },
+  });
+}

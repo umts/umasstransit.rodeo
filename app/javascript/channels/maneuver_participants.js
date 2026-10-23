@@ -8,17 +8,21 @@ function scoreLink(url, score) {
   return link;
 }
 
-consumer.subscriptions.create("ManeuverParticipantsChannel", {
-  received(data) {
-    const participant = data.participant_id;
-    const maneuver = data.maneuver_id;
-    const cell = document.querySelector(
-      `tr[data-participant-id="${participant}"] td[data-maneuver-id="${maneuver}"]`,
-    );
-    const score = data.score;
-    const canEditScores = cell.closest("table.scoreboard").dataset.canEditScores === "true";
-    const content = canEditScores ? scoreLink(data.url, score) : null;
+const scoreboard = document.querySelector("table.scoreboard");
 
-    updateScoreboardCell(cell, score, content);
-  },
-});
+if (consumer && scoreboard) {
+  consumer.subscriptions.create("ManeuverParticipantsChannel", {
+    received(data) {
+      const participant = data.participant_id;
+      const maneuver = data.maneuver_id;
+      const cell = document.querySelector(
+        `tr[data-participant-id="${participant}"] td[data-maneuver-id="${maneuver}"]`,
+      );
+      const score = data.score;
+      const canEditScores = cell.closest("table.scoreboard").dataset.canEditScores === "true";
+      const content = canEditScores ? scoreLink(data.url, score) : null;
+
+      updateScoreboardCell(cell, score, content);
+    },
+  });
+}

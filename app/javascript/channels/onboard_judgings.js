@@ -8,16 +8,20 @@ function scoreLink(url, score) {
   return link;
 }
 
-consumer.subscriptions.create("OnboardJudgingsChannel", {
-  received(data) {
-    const participant = data.participant_id;
-    const cell = document.querySelector(
-      `tr[data-participant-id="${participant}"] td.onboard-judging`,
-    );
-    const score = data.score;
-    const canEditScores = cell.closest("table.scoreboard").dataset.canEditScores === "true";
-    const content = canEditScores ? scoreLink(data.url, score) : null;
+const scoreboard = document.querySelector("table.scoreboard");
 
-    updateScoreboardCell(cell, score, content);
-  },
-});
+if (consumer && scoreboard) {
+  consumer.subscriptions.create("OnboardJudgingsChannel", {
+    received(data) {
+      const participant = data.participant_id;
+      const cell = document.querySelector(
+        `tr[data-participant-id="${participant}"] td.onboard-judging`,
+      );
+      const score = data.score;
+      const canEditScores = cell.closest("table.scoreboard").dataset.canEditScores === "true";
+      const content = canEditScores ? scoreLink(data.url, score) : null;
+
+      updateScoreboardCell(cell, score, content);
+    },
+  });
+}
