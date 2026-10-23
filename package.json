@@ -12,7 +12,9 @@
   "dependencies": {
     "@csstools/postcss-sass": "*",
     "@fortawesome/fontawesome-free": "*",
+    "@hotwired/stimulus": "*",
     "@popperjs/core": "*",
+    "@rails/actioncable": "^8.1.400",
     "autoprefixer": "*",
     "bootstrap": "*",
     "jquery": "*",
@@ -20,6 +22,7 @@
     "postcss": "*",
     "postcss-cli": "*",
     "postcss-scss": "*",
+    "rolldown": "*",
     "tablesorter": "*"
   },
   "devDependencies": {
