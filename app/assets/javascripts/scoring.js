@@ -7,7 +7,8 @@ $(function () {
       const type = button.data("type");
       if (type === "minus") value -= 1;
       if (type === "plus") value += 1;
-      field.val(value).trigger("change");
+      field.val(value);
+      field[0].dispatchEvent(new Event("change", { bubbles: true }));
     }
   });
 
