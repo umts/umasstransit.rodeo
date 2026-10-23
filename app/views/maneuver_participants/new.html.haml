@@ -1,5 +1,5 @@
 .scoring
-  = form_tag maneuver_participants_path, id: 'score_form' do
+  = form_tag maneuver_participants_path, data: { controller: 'unsaved-changes' } do
     = hidden_field_tag :maneuver_id, @maneuver.id
     = hidden_field_tag :participant_id, @participant.id
     - @maneuver.grouped_obstacles.each do |(point_value, type), obstacles|

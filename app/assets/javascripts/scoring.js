@@ -1,6 +1,4 @@
 $(function () {
-  $("#score_form").areYouSure();
-
   $(".scoring").on("click", "button.increment", function (e) {
     const button = $(e.target).closest("button");
     const field = $("input[type=number]#" + button.data("field"));
@@ -9,7 +7,8 @@ $(function () {
       const type = button.data("type");
       if (type === "minus") value -= 1;
       if (type === "plus") value += 1;
-      field.val(value).trigger("change");
+      field.val(value);
+      field[0].dispatchEvent(new Event("change", { bubbles: true }));
     }
   });
 
