@@ -35,6 +35,5 @@
       %table#template.d-none
         %tbody
           = render partial: 'participant', locals: row_locals.merge(participant: NullParticipant.new)
-  = javascript_include_tag 'cable.js' unless @archiving
 - else
   %h2 No participants yet
