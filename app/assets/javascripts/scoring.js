@@ -1,6 +1,4 @@
 $(function () {
-  $("#score_form").areYouSure();
-
   $(".scoring").on("click", "button.increment", function (e) {
     const button = $(e.target).closest("button");
     const field = $("input[type=number]#" + button.data("field"));
