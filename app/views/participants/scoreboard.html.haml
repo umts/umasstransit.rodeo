@@ -15,7 +15,7 @@
       - elsif Settings.scores_locked? && !@archiving
         Scores are locked!
     .scoreboard-content
-      - table_classes = %w[scoreboard table table-bordered table-striped table-sm text-center]
+      - table_classes = %w[mb-0 scoreboard table table-bordered table-striped table-sm text-center]
       - row_locals = { maneuvers: @maneuvers,
                        maneuver_participants: @maneuver_participants,
                        can_edit_scores: @can_edit_scores }
