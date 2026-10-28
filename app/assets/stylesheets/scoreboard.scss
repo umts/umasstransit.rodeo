@@ -3,8 +3,8 @@
   max-height: calc(100vh - 230px);
   overflow: scroll;
 
-  &::backdrop {
-    background-color: $body-bg;
+  a {
+    text-decoration: none;
   }
 
   .table thead th {
@@ -28,15 +28,7 @@ td.last-updated {
 }
 
 @keyframes blink-cell {
-  0% {
-    background-color: transparent;
-  }
-
   50% {
-    background-color: white;
-  }
-
-  100% {
-    background-color: transparent;
+    background-color: var(--bs-warning);
   }
 }

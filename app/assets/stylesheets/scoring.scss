@@ -9,21 +9,17 @@
     }
   }
 
-  .btn-group-toggle.checkbox .btn {
-    i {
+  label.btn {
+    input.btn-check + i {
       @include fas.icon(fa.$var-circle);
     }
 
-    &.active i::before {
+    input.btn-check:checked + i::before {
       content: fa.fa-content(fa.$var-circle-check);
     }
   }
 
   fieldset {
     border: 1px solid $secondary;
-  }
-
-  legend {
-    width: auto;
   }
 }

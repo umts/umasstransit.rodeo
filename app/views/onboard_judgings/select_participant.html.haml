@@ -2,7 +2,7 @@
 %hr
 
 %table.select-participant.table
-  %thead.thead-dark
+  %thead.table-dark
     %tr
       %th Participant
       %th.text-center Has been judged?
@@ -13,13 +13,15 @@
         %td= participant.display_information(:name, :number)
         - if participant.onboard_judging.present?
           %td.text-center
-            %i.fa-solid.fa-check
-          %td.text-right
+            .visually-hidden Yes
+            %i.fa-solid.fa-check.text-success
+          %td.text-end
             = link_to participant.onboard_judging do
               %button.btn.btn-primary Review
         - else
           %td.text-center
-            %i.fa-solid.fa-xmark
-          %td.text-right
+            .visually-hidden No
+            %i.fa-solid.fa-xmark.text-danger
+          %td.text-end
             = link_to new_onboard_judging_path(participant: participant.number) do
               %button.btn.btn-primary Judge

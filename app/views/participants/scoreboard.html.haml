@@ -1,11 +1,11 @@
 - if @participants_exist
   .scoreboard
     .d-flex.align-items-center
-      %button.btn.btn-primary.fullscreen.mr-2
+      %button.btn.btn-primary.fullscreen.me-2
         %i.fa-solid.fa-expand
       - if current_user&.role?(:master_of_ceremonies)
         = form_with url: toggle_scores_lock_path, local: true do |f|
-          = f.button class: 'btn btn-primary mr-2' do
+          = f.button class: 'btn btn-primary me-2' do
             - if Settings.scores_locked?
               Unlock Scores
               %i.fa-solid.fa-lock-open
@@ -15,12 +15,12 @@
       - elsif Settings.scores_locked? && !@archiving
         Scores are locked!
     .scoreboard-content
-      - table_classes = %w[scoreboard table table-bordered table-striped table-sm text-center]
+      - table_classes = %w[mb-0 scoreboard table table-bordered table-striped table-sm text-center]
       - row_locals = { maneuvers: @maneuvers,
                        maneuver_participants: @maneuver_participants,
                        can_edit_scores: @can_edit_scores }
       %table{ class: table_classes, data: { sortList: sort_list(@sort_order) } }
-        %thead.thead-light
+        %thead
           %tr
             %th{ data: { sortInitialOrder: 'asc' } } Participant
             - @maneuvers.each do |maneuver|
