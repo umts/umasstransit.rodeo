@@ -163,7 +163,7 @@ GEM
     ffi (1.17.4-x86_64-linux-gnu)
     globalid (1.4.0)
       activesupport (>= 6.1)
-    haml (7.5.1)
+    haml (7.5.2)
       prism (>= 1.1.0)
       temple (>= 0.8.2)
       thor
@@ -571,7 +571,7 @@ CHECKSUMS
   ffi (1.17.4-x86_64-darwin) sha256=aa70390523cf3235096cf64962b709b4cfbd5c082a2cb2ae714eb0fe2ccda496
   ffi (1.17.4-x86_64-linux-gnu) sha256=9d3db14c2eae074b382fa9c083fe95aec6e0a1451da249eab096c34002bc752d
   globalid (1.4.0) sha256=037f12fbf1d9d7a014d501c2d5c77356fd4ddd96d7a7991d6700bba96706f427
-  haml (7.5.1) sha256=91c5843dd85d32042cc6218d2df8c81282403459958aa53caa58fda238adc287
+  haml (7.5.2) sha256=fcef494c3c5f173f5b38338b1ade7e65b1de37194919b901f047cac76f370d42
   haml-rails (3.1.0) sha256=4366474d973e4b9d5326cb216f2073150cfeff4c2a3c07fadb49a490ffdf610b
   haml_lint (0.78.0) sha256=e8840e3c3b43345eced88ea2c46adcb253be8b940b095f9e0abf4512cdad40a6
   i18n (1.15.2) sha256=00f9eb62412fe593b2a65a97daa75300d37abb8f7202ec748e94b6d46a9dd1b5
