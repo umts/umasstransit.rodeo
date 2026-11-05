@@ -4,41 +4,41 @@
   %hr
   = form_for OnboardJudging.new do |f|
     = f.hidden_field :participant_id, value: @participant.id
-    %fieldset.form-group
+    %fieldset.mb-3.px-3.pt-3
       %legend Time Elapsed
-      .form-group
+      .mb-3
         = f.number_field_with_buttons :minutes_elapsed, value: 7, min: 0
         minutes
-      .form-group
+      .mb-3
         = f.number_field_with_buttons :seconds_elapsed, value: 0, in: 0...60
         seconds
-    %fieldset.form-group
+    %fieldset.mb-3.px-3.pt-3
       %legend Safety Habits
-      .form-group
-        = f.label 'Missed turn signals'
+      .mb-3
+        = f.label :missed_turn_signals, class: 'form-label'
         = f.number_field_with_buttons :missed_turn_signals, value: 0, min: 0
-      .form-group
-        = f.label 'Missed horn sounds'
+      .mb-3
+        = f.label :missed_horn_sounds, class: 'form-label'
         = f.number_field_with_buttons :missed_horn_sounds, value: 0, min: 0
-      .form-group
-        = f.label 'Missed flashers'
+      .mb-3
+        = f.label :missed_flashers, class: 'form-label'
         = f.number_field_with_buttons :missed_flashers, value: 0, min: 0
-      .form-group
-        = f.label 'Times moved w/ door open'
+      .mb-3
+        = f.label :times_moved_with_door_open, class: 'form-label'
         = f.number_field_with_buttons :times_moved_with_door_open, value: 0, min: 0
-    %fieldset.form-group
+    %fieldset.mb-3.px-3.pt-3
       %legend Smoothness of Operation
-      .form-group
-        = f.label 'Unannounced PAX stops'
+      .mb-3
+        = f.label :unannounced_stops, 'Unannounced passenger stops', class: 'form-label'
         = f.number_field_with_buttons :unannounced_stops, value: 0, min: 0, max: 2
-      .form-group
-        = f.label 'Sudden stops'
+      .mb-3
+        = f.label :sudden_stops, class: 'form-label'
         = f.number_field_with_buttons :sudden_stops, value: 0, min: 0
-      .form-group
-        = f.label 'Sudden starts'
+      .mb-3
+        = f.label :sudden_starts, class: 'form-label'
         = f.number_field_with_buttons :sudden_starts, value: 0, min: 0
-      .form-group
-        = f.label 'Abrupt turns'
+      .mb-3
+        = f.label :abrupt_turns, class: 'form-label'
         = f.number_field_with_buttons :abrupt_turns, value: 0, min: 0
-    .form-group
+    .mb-3
       = submit_tag 'Save', class: 'btn btn-primary submit'

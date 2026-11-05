@@ -1,6 +1,6 @@
 .table-responsive
   %table.participants.table
-    %thead.thead-dark
+    %thead.table-dark
       %tr
         %th Name
         %th Number
@@ -14,7 +14,7 @@
           %td= f.number_field :number, class: 'form-control'
           %td
             = f.collection_select :bus_id, buses, :id, :number,
-                                  { include_blank: true }, { class: 'form-control' }
+                                  { include_blank: true }, { class: 'form-select' }
           %td= f.submit 'Add', class: 'btn btn-primary'
           %td
       - participants.each do |participant|
@@ -25,7 +25,7 @@
             %td
               = f.collection_select :bus_id, buses, :id, :number,
                                     { value: participant.try(:bus_id), include_blank: true },
-                                    { class: 'form-control' }
+                                    { class: 'form-select' }
             %td= f.submit 'Save', class: 'btn btn-primary'
           %td
             = button_to 'Remove', participant_path(participant), method: :delete, class: 'btn btn-danger'

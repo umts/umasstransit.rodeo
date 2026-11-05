@@ -1,5 +1,5 @@
 %table.table
-  %thead.thead-dark
+  %thead.table-dark
     %tr
       %th Number
       %th
@@ -7,8 +7,8 @@
     = form_for Bus.new do |f|
       %tr
         %td= f.text_field :number, placeholder: 'Bus number', class: 'form-control'
-        %td= f.submit 'Add', class: 'btn btn-primary'
+        %td.text-end= f.submit 'Add', class: 'btn btn-primary'
     - @buses.each do |bus|
       %tr
         %td= bus.number
-        %td= button_to 'Remove', bus_path(bus), method: :delete, class: 'btn btn-danger'
+        %td.text-end= button_to 'Remove', bus_path(bus), method: :delete, class: 'btn btn-danger'
