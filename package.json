@@ -17,7 +17,6 @@
     "autoprefixer": "*",
     "bootstrap": "*",
     "jquery": "*",
-    "jquery.are-you-sure": "*",
     "popper.js": "*",
     "postcss": "*",
     "postcss-cli": "*",
