@@ -6,7 +6,7 @@ require 'simplecov'
 Dir[Pathname(__dir__).join('support', '**', '*.rb')].each { |f| require f }
 
 SimpleCov.start 'rails' do
-  add_group 'Channels', 'app/channels'
+  enable_coverage :branch
 end
 
 RSpec.configure do |config|
