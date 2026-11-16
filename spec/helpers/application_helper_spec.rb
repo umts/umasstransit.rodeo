@@ -10,7 +10,10 @@ RSpec.describe ApplicationHelper do
     let(:text) { 'My Link Text' }
     let(:call) { helper.nav_item(path, text, role: :admin) }
 
-    before { allow(helper).to receive(:current_user).and_return user }
+    before do
+      helper.define_singleton_method(:current_user) { nil }
+      allow(helper).to receive(:current_user).and_return user
+    end
 
     context 'without required role' do
       let(:user) { create(:user) }
