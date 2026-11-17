@@ -86,6 +86,6 @@ RSpec.describe 'live scoreboard updates', :js do
   it 'removes a participant' do
     participant.destroy!
 
-    expect(page).to have_css("tr[data-participant-id='#{participant.id}']")
+    expect(page).to have_no_css("tr[data-participant-id='#{participant.id}']")
   end
 end
