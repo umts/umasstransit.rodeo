@@ -13,12 +13,18 @@ module ScoreboardService
 
     private
 
+    def broadcast_data(object)
+      object.as_json.tap do |data|
+        data['url'] = Rails.application.routes.url_helpers.polymorphic_path(object)
+      end
+    end
+
     def update_object(object)
-      channels[object.class].broadcast_to 'update', object
+      channels[object.class].broadcast_to 'update', broadcast_data(object)
     end
 
     def update_participant(participant, type)
-      ParticipantsChannel.broadcast_to type, event: type, participant:
+      ParticipantsChannel.broadcast_to type, event: type, participant: broadcast_data(participant)
     end
 
     def channels

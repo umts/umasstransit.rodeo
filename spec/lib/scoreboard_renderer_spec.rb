@@ -30,6 +30,10 @@ RSpec.describe ScoreboardRenderer do
       expect(js).not_to include(match('debug'))
     end
 
+    it 'does not include an Action Cable URL' do
+      expect(output.at_css("meta[name='action-cable-url']")).to be_nil
+    end
+
     it 'has no navigation buttons' do
       expect(nav.css('a')).to be_empty
     end
