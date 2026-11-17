@@ -1,7 +1,7 @@
 - if @unscored.present? || @scored.present?
   .table-responsive
     %table.table
-      %thead.thead-dark
+      %thead.table-dark
         %tr
           %th Participant
           %th Points achieved
@@ -10,7 +10,7 @@
       %tbody
         - if @unscored.present?
           - @unscored.each do |participant|
-            = form_for QuizScore.new(participant: participant), class: 'form-inline' do |f|
+            = form_for QuizScore.new(participant: participant) do |f|
               %tr
                 %td
                   = participant.display_information(:name, :number)
@@ -20,7 +20,7 @@
                 %td= f.submit 'Save score', class: 'btn btn-primary'
         - if @scored.present?
           - @scored.each do |participant|
-            = form_for participant.quiz_score, class: 'form-inline' do |f|
+            = form_for participant.quiz_score do |f|
               %tr
                 %td
                   = participant.display_information(:name, :number)
